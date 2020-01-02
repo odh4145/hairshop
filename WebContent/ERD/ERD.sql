@@ -82,6 +82,7 @@ CREATE TABLE SHOP
 	sh_pw varchar(15) NOT NULL,
 	sh_no_id double NOT NULL,
 	sh_name varchar(20) NOT NULL,
+	sh_telephone varchar(11) NOT NULL,
 	sh_location varchar(80),
 	sh_location_lat varchar(40),
 	sh_location_lng varchar(40),
@@ -188,9 +189,10 @@ INSERT INTO SHOP(
 	sh_id,
 	sh_pw,
 	sh_no_id,
-	sh_name
+	sh_name,
+	sh_telephone
 )
-VALUES('store01', '1234', 1111111111, '매장용');
+VALUES('store01', '1234', 1111111111, '매장용', '07011111111');
 
 INSERT INTO DESIGNER
 (
@@ -209,5 +211,3 @@ INSERT INTO SERVICE
 	sh_uid
 )
 VALUES('염색', 100000, 30000, 1);
-
-
