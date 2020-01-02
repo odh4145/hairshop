@@ -162,5 +162,16 @@ ALTER TABLE BOOK
 	ON DELETE RESTRICT
 ;
 
+/* Sample Data */
+INSERT INTO USER(
+
+)
+VALUES(0, 'test01', '손님용', '1234', '01000000000', 1);
+
+SELECT * FROM USER;
+
+
+
+
 
 
