@@ -36,6 +36,7 @@ CREATE TABLE COMMENT
 	co_content text,
 	co_name varchar(40) NOT NULL,
 	bo_uid int NOT NULL,
+	co_regdate datetime NOT NULL DEFAULT now(),
 	PRIMARY KEY (co_uid)
 );
 
@@ -57,6 +58,7 @@ CREATE TABLE REPLY
 	re_uid int NOT NULL AUTO_INCREMENT,
 	re_content text,
 	co_uid int NOT NULL,
+	re_regdate datetime NOT NULL DEFAULT now(),
 	PRIMARY KEY (re_uid)
 );
 
@@ -76,6 +78,7 @@ CREATE TABLE SHOP
 (
 	sh_uid int NOT NULL AUTO_INCREMENT,
 	sh_id int NOT NULL,
+	sh_no_id int NOT NULL,
 	sh_location varchar(80) NOT NULL,
 	sh_location_lat varchar(40) NOT NULL,
 	sh_location_lng varchar(40) NOT NULL,
@@ -84,9 +87,14 @@ CREATE TABLE SHOP
 	sh_picture3 varchar(40),
 	sh_picture4 varchar(40),
 	sh_picture5 varchar(40),
-	sh_identify int DEFAULT 2,
+	sh_dayoff1 int CHECK (sh_dayoff1 >=1 and  sh_dayoff1 <= 7),
+	sh_dayoff2 int CHECK(sh_dayoff2>= 1 AND sh_dayoff2<=7),
+	sh_starttime int NOT NULL,
+	sh_endtime int NOT NULL,
+	num_identify int DEFAULT 2,
 	PRIMARY KEY (sh_uid),
-	UNIQUE (sh_id)
+	UNIQUE (sh_id),
+	UNIQUE (sh_no_id)
 );
 
 
@@ -94,10 +102,10 @@ CREATE TABLE USER
 (
 	use_uid int NOT NULL AUTO_INCREMENT,
 	use_id varchar(40) NOT NULL,
-	use_name varchar(40) NOT NULL,
 	use_pw varchar(40) NOT NULL,
-	use_phoneNum int NOT NULL,
-	use_identify int NOT NULL DEFAULT 1,
+	use_name varchar(40) NOT NULL,
+	use_phoneNum varchar(11) NOT NULL,
+	num_identify int DEFAULT 1,
 	PRIMARY KEY (use_uid),
 	UNIQUE (use_id),
 	UNIQUE (use_phoneNum)
@@ -164,18 +172,12 @@ ALTER TABLE BOOK
 
 /* Sample Data */
 INSERT INTO USER(
-use_uid,
 use_id,
 use_pw,
 use_name,
 use_phoneNum
 )
-VALUES(0, 'test01', '1234', '손님용', '01000000000');
+VALUES('test01', '1234', '손님1', '01000000000');
 
 SELECT * FROM USER;
-
-
-
-
-
 

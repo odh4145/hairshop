@@ -298,7 +298,7 @@
 			<description></description>
 			<logical_name>co_regdate</logical_name>
 			<physical_name>co_regdate</physical_name>
-			<type></type>
+			<type>datetime</type>
 		</word>
 		<word>
 			<id>8</id>
