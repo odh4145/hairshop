@@ -74,8 +74,6 @@ public class ShopDAO {
 			pstmt.setInt(1, sh_uid);
 			rs = pstmt.executeQuery();
 			arr = createArray(rs);
-			
-			conn.commit();
 		} finally {
 			close();
 		}			

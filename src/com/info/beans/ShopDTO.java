@@ -38,9 +38,8 @@ public class ShopDTO {
 		this.sh_dayoff2 = sh_dayoff2;
 		this.sh_starttime = sh_starttime;
 		this.sh_endtime = sh_endtime;
-		System.out.println("ShopDTO(매개변수) 객체 생성");
+		System.out.println("sh_uid : " + this.sh_uid + " 객체 생성");
 	}
-	
 	
 	public int getSh_uid() {
 		return sh_uid;

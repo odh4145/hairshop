@@ -19,7 +19,7 @@ public class ShopCommand implements Command {
 		if(sh_uid != 0) {
 			try {
 				arr = dao.select(sh_uid);
-				request.setAttribute("info", arr);
+				request.setAttribute("info", arr);	
 			} catch(SQLException e) {
 				e.printStackTrace();
 			}			
