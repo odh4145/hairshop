@@ -23,7 +23,8 @@
 
 <!-- css파일 link -->
 <link href="../css/menu.css" rel="stylesheet" type="text/css">
-<link href="../css/storeInfo.css" rel="stylesheet" type="text/css">
+<link href="../css/sub.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
@@ -42,35 +43,33 @@
 <section>
 	<div class="content">
 		<!-- 상세페이지 제목 -->
-		<h2 id="content_title">${info[0].sh_name }</h2>
+		<h2 id="content_title">매장정보</h2>
+		
+		<!-- 세부메뉴 -->
+		<div class="submenu inner">
+			<h4 class="selected"><a>매장정보</a></h4>
+			<h4><a>디자이너관리</a></h4>
+			<h4><a>개인정보수정</a></h4>
+		</div>	
 		
 		<!---------------------- content ---------------------->
-		<div class="info">	
+		<div class="inner info">	
 			<div class="store_pic">
-				<img src="http://placehold.it/400x350" />
-				<img src="http://placehold.it/400x350" />
-				<img src="http://placehold.it/400x350" />
 			</div>
 			<div class="store_info">
-				<h2>${info[0].sh_name }</h2>
-				<div id="book_review">
-					<a style="border-right:1px solid #eee" href="#">
-						<i class="far fa-calendar-check"></i><br>예약
-					</a>
-					<a href="#"><i class="far fa-comment-dots"></i><br>리뷰</a>
-				</div>
-				<div class="information">
-					<p>
-						<i class="fas fa-phone"></i>${info[0].sh_telephone }<br>
-						<i class="fas fa-map-marker-alt"></i><br>
-						<i class="fas fa-clock"></i>
-						${info[0].sh_starttime }:00 - ${info[0].sh_endtime }:00<br>
-						${info[0].sh_hello }
-					</p>
-				</div>			
-			</div>			
+				<h2><input>${info[0].sh_name }</h2><br>
+				<p>
+					${info[0].sh_uid }<br>
+					${info[0].sh_name }<br>
+					${info[0].sh_telephone }<br>
+					${info[0].sh_picture1 }<br>
+					${info[0].sh_dayoff1 }<br>
+					${info[0].sh_starttime }<br>
+					${info[0].sh_endtime }
+				</p>
+			</div>	
+			
 		</div>
-		
 		<!-- 화살표버튼 -->
 		<div id="go_top">
 			<a><i class="fas fa-arrow-circle-up"></i></a>

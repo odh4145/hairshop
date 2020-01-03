@@ -1,6 +1,6 @@
 .submenu{
 	border-top:1px solid #eee;
-	margin:50px 0 0 50px;
+	margin:0 30px;
 	width:115px;
 }
 .submenu h4{
@@ -14,7 +14,13 @@
 	color:#313f67;
 	font-weight:600;
 }
+
 .selected{
 	color:#313f67 !important;
 	font-weight:600 !important;
+}
+
+.inner{
+	margin-top:30px;
+	float:left;
 }

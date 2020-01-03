@@ -103,6 +103,7 @@ header{
 /* 섹션 */
 section{
 	background: #fcfcfc;
+	min-height:700px;
 }
 
 .content{
@@ -112,6 +113,7 @@ section{
 	margin:0 auto;
 	background: white;
 	box-shadow: 10px 0px 20px 2px #ddd, -10px 0px 20px 2px #ddd;
+	overflow:hidden;
 }
 
 #content_title{
@@ -119,8 +121,8 @@ section{
 	text-align:center;
 	padding:5px 0;
 	font-size:25px;
-	color:#313f67;
-	background:rgba(255,255,255,0.5);
+	color:#f6b798;
+	background:rgba(255,255,255,0.4);
 	z-index:90;
 }
 

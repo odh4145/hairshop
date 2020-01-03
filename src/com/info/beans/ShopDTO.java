@@ -4,11 +4,11 @@ public class ShopDTO {
 	private int sh_uid;
 	private String sh_name;
 	private String sh_telephone;
+	private String sh_location;
+	private String sh_hello;
 	private String sh_picture1;
 	private String sh_picture2;
 	private String sh_picture3;
-	private String sh_picture4;
-	private String sh_picture5;
 	private int sh_dayoff1;
 	private int sh_dayoff2;
 	private int sh_starttime;
@@ -21,19 +21,18 @@ public class ShopDTO {
 	}
 	
 	// 매개변수 받는 생성자
-	public ShopDTO(int sh_uid, String sh_name, String sh_telephone, 
-			String sh_picture1, String sh_picture2, String sh_picture3,
-			String sh_picture4, String sh_picture5, int sh_dayoff1, int sh_dayoff2,
-			int sh_starttime, int sh_endtime) {
+	public ShopDTO(int sh_uid, String sh_name, String sh_telephone, String sh_location, 
+			String sh_hello, String sh_picture1, String sh_picture2, String sh_picture3, 
+			int sh_dayoff1, int sh_dayoff2, int sh_starttime, int sh_endtime) {
 		super();
 		this.sh_uid = sh_uid;
 		this.sh_name = sh_name;
 		this.sh_telephone = sh_telephone;
+		this.sh_location = sh_location;
+		this.sh_hello = sh_hello;
 		this.sh_picture1 = sh_picture1;
 		this.sh_picture2 = sh_picture2;
 		this.sh_picture3 = sh_picture3;
-		this.sh_picture4 = sh_picture4;
-		this.sh_picture5 = sh_picture5;
 		this.sh_dayoff1 = sh_dayoff1;
 		this.sh_dayoff2 = sh_dayoff2;
 		this.sh_starttime = sh_starttime;
@@ -64,7 +63,23 @@ public class ShopDTO {
 	public void setSh_telephone(String sh_telephone) {
 		this.sh_telephone = sh_telephone;
 	}
+	
+	public String getSh_loacation() {
+		return sh_location;
+	}
 
+	public void setSh_location(String sh_location) {
+		this.sh_location = sh_location;
+	}
+	
+	public String getSh_hello() {
+		return sh_hello;
+	}
+
+	public void setSh_hello(String sh_hello) {
+		this.sh_hello = sh_hello;
+	}
+	
 	public String getSh_picture1() {
 		return sh_picture1;
 	}
@@ -87,22 +102,6 @@ public class ShopDTO {
 
 	public void setSh_picture3(String sh_picture3) {
 		this.sh_picture3 = sh_picture3;
-	}
-
-	public String getSh_picture4() {
-		return sh_picture4;
-	}
-
-	public void setSh_picture4(String sh_picture4) {
-		this.sh_picture4 = sh_picture4;
-	}
-
-	public String getSh_picture5() {
-		return sh_picture5;
-	}
-
-	public void setSh_picture5(String sh_picture5) {
-		this.sh_picture5 = sh_picture5;
 	}
 
 	public int getSh_dayoff1() {
@@ -142,7 +141,7 @@ public class ShopDTO {
 	public String toString() {
 		return "ShopDTO ] " + sh_uid + ":" + sh_name + ":" + sh_telephone + ":" +  
 				sh_picture1 + ":" + sh_picture2 + ":" + sh_picture3 +  ":" + 
-				sh_picture4 + ":" + sh_picture5 + ":" + sh_dayoff1 + ":" +  
+				sh_location + ":" + sh_hello + ":" + sh_dayoff1 + ":" +  
 				sh_dayoff2 + ":" + sh_starttime + ":" + sh_endtime;
 	}
 	

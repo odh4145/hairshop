@@ -44,18 +44,18 @@ public class ShopDAO {
 			int sh_uid = rs.getInt("sh_uid");
 			String sh_name = rs.getString("sh_name");
 			String sh_telephone = rs.getString("sh_telephone");
+			String sh_location = rs.getString("sh_location");
+			String sh_hello = rs.getString("sh_hello");
 			String sh_picture1 = rs.getString("sh_picture1");
 			String sh_picture2 = rs.getString("sh_picture2");
 			String sh_picture3 = rs.getString("sh_picture3");
-			String sh_picture4 = rs.getString("sh_picture4");
-			String sh_picture5 = rs.getString("sh_picture5");
 			int sh_dayoff1 = rs.getInt("sh_dayoff1");
 			int sh_dayoff2 = rs.getInt("sh_dayoff2");
 			int sh_starttime = rs.getInt("sh_starttime");
 			int sh_endtime = rs.getInt("sh_endtime");
 			
 			ShopDTO dto = new ShopDTO(sh_uid, sh_name, sh_telephone, 
-					sh_picture1, sh_picture2, sh_picture3, sh_picture4, sh_picture5,
+					sh_location, sh_hello, sh_picture1, sh_picture2, sh_picture3,
 					sh_dayoff1, sh_dayoff2, sh_starttime, sh_endtime);
 			list.add(dto);			
 		}
@@ -81,19 +81,19 @@ public class ShopDAO {
 	}
 	
 	// 매장정보 수정하기
-	public int update(int sh_uid, String sh_name, String sh_telephone, String sh_picture1,
-				String sh_picture2, String sh_picture3, String sh_picture4, String sh_picture5,
+	public int update(int sh_uid, String sh_name, String sh_telephone, String sh_location, 
+				String sh_hello, String sh_picture1, String sh_picture2, String sh_picture3,
 				int sh_dayoff1, int sh_dayoff2, int sh_starttime, int sh_endtime) throws SQLException{
 		int cnt = 0;
 		try {
 			pstmt = conn.prepareStatement(infoInterface.STORE_UPDATE);
 			pstmt.setString(1, sh_name);
 			pstmt.setString(2, sh_telephone);
-			pstmt.setString(3, sh_picture1);
-			pstmt.setString(4, sh_picture2);
-			pstmt.setString(5, sh_picture3);
-			pstmt.setString(6, sh_picture4);
-			pstmt.setString(7, sh_picture5);
+			pstmt.setString(3, sh_location);
+			pstmt.setString(4, sh_hello);
+			pstmt.setString(5, sh_picture1);
+			pstmt.setString(6, sh_picture2);
+			pstmt.setString(7, sh_picture3);
 			pstmt.setInt(8, sh_dayoff1);
 			pstmt.setInt(9, sh_dayoff2);
 			pstmt.setInt(10, sh_starttime);
