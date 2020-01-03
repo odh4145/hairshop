@@ -51,7 +51,7 @@ public interface infoInterface {
 			+ "de_picture = ? "
 			+ "WHERE de_uid = ?";
 	
-	// 시술목록
+		// 시술목록
 		public static final String SERVICE_INSERT = 
 				"INSERT INTO SERVICE"
 				+ "(ser_name, ser_price, ser_time, sh_uid)"

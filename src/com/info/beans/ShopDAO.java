@@ -6,10 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Time;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import com.info.beans.*;
 
 public class ShopDAO {
@@ -77,9 +74,11 @@ public class ShopDAO {
 			pstmt.setInt(1, sh_uid);
 			rs = pstmt.executeQuery();
 			arr = createArray(rs);
+			
+			conn.commit();
 		} finally {
 			close();
-		}				
+		}			
 		return arr;
 	}
 	

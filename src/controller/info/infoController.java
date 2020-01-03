@@ -48,7 +48,7 @@ public class infoController extends HttpServlet {
 		
 		// 1. command 객체 수행
 		switch(com) {
-			case "/storeInfo.bbq":
+			case "/info/storeInfo.bbq":
 				command = new ShopCommand();
 				command.execute(request, response);
 				viewPage = "storeInfo.jsp";

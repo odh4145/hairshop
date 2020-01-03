@@ -21,7 +21,7 @@ public class ShopDTO {
 	}
 	
 	// 매개변수 받는 생성자
-	public ShopDTO(int sh_uid,String sh_name, String sh_telephone, 
+	public ShopDTO(int sh_uid, String sh_name, String sh_telephone, 
 			String sh_picture1, String sh_picture2, String sh_picture3,
 			String sh_picture4, String sh_picture5, int sh_dayoff1, int sh_dayoff2,
 			int sh_starttime, int sh_endtime) {

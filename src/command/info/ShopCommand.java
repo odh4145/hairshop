@@ -12,7 +12,6 @@ public class ShopCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		
 		int sh_uid = Integer.parseInt(request.getParameter("sh_uid"));
 		ShopDAO dao = new ShopDAO();
 		ShopDTO [] arr = null;
@@ -20,7 +19,7 @@ public class ShopCommand implements Command {
 		if(sh_uid != 0) {
 			try {
 				arr = dao.select(sh_uid);
-				request.setAttribute("list", arr);
+				request.setAttribute("info", arr);
 			} catch(SQLException e) {
 				e.printStackTrace();
 			}			
