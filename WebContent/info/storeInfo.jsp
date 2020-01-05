@@ -59,15 +59,46 @@
 					</a>
 					<a href="#"><i class="far fa-comment-dots"></i><br>리뷰</a>
 				</div>
+				
+				<!-- 매장 기본정보 -->
 				<div class="information">
 					<p>
 						<i class="fas fa-phone"></i>${info[0].sh_telephone }<br>
-						<i class="fas fa-map-marker-alt"></i><br>
+						<i class="fas fa-map-marker-alt"></i>${info[0].sh_location }<br>
 						<i class="fas fa-clock"></i>
 						${info[0].sh_starttime }:00 - ${info[0].sh_endtime }:00<br>
 						${info[0].sh_hello }
 					</p>
-				</div>			
+				</div>	
+				
+				<!-- 매장 가격정보 -->
+				<div class="information">
+					<h3>스타일 정보</h3>
+					<h4>경과시간은 예상일 뿐이며 매장상황에 따라 달라질 수 있습니다.</h4>
+					<ul class="price_info">
+						<li>펌<br>30000원<br><span>1시간</span></li>
+					</ul>
+					<ul class="price_info">
+						<li>펌<br>30000원<br><span>1시간</span></li>
+					</ul>
+				</div>
+				
+				<!-- 매장 가격정보 -->
+				<div class="information">
+					<h3>디자이너 정보</h3>
+					<ul class="designer">
+						<li><img src="http://placehold.it/150x150" /></li>
+						<li class="designer_name">이름 디자이너</li>
+						<li>경력 5년</li>
+						<li>펌 전문</li>
+					</ul>
+					<ul class="designer">
+						<li><img src="http://placehold.it/150x150" /></li>
+						<li class="designer_name">이름 디자이너</li>
+						<li>경력 5년</li>
+						<li>펌 전문</li>
+					</ul>
+				</div>
 			</div>			
 		</div>
 		

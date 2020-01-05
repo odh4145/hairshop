@@ -64,7 +64,7 @@ public class ShopDTO {
 		this.sh_telephone = sh_telephone;
 	}
 	
-	public String getSh_loacation() {
+	public String getSh_location() {
 		return sh_location;
 	}
 
