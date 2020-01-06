@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.info.Command;
+import command.info.DesignerListCommand;
 import command.info.ShopCommand;
 
 @WebServlet("*.bbq")
