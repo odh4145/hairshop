@@ -6,7 +6,7 @@ public interface infoInterface {
 	public static final String USERID = "myuser";
 	public static final String USERPW = "1234";
 	
-	// 매장 기본 정보 변경
+	// 매장 정보
 	public static final String STORE_SELECT_BY_UID = 
 			"SELECT * FROM SHOP WHERE sh_uid=?";
 	
@@ -52,7 +52,7 @@ public interface infoInterface {
 			+ "de_picture = ? "
 			+ "WHERE de_uid = ?";
 	
-		// 시술목록
+	// 시술목록
 	public static final String SERVICE_INSERT = 
 			"INSERT INTO SERVICE"
 			+ "(ser_name, ser_price, ser_time, sh_uid)"

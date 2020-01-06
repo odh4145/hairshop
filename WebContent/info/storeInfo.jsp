@@ -75,29 +75,24 @@
 				<div class="information">
 					<h3>스타일 정보</h3>
 					<h4>경과시간은 예상일 뿐이며 매장상황에 따라 달라질 수 있습니다.</h4>
-					<ul class="price_info">
-						<li>펌<br>30000원<br><span>1시간</span></li>
-					</ul>
-					<ul class="price_info">
-						<li>펌<br>30000원<br><span>1시간</span></li>
-					</ul>
+					<c:forEach var="dto1" items="${service }">
+						<ul class="price_info">
+							<li>${dto1.ser_name }<br>${dto1.ser_price }원<br><span>${dto1.ser_time }시간</span></li>
+						</ul>
+					</c:forEach>	
 				</div>
 				
-				<!-- 매장 가격정보 -->
+				<!-- 디자이너 목록 -->
 				<div class="information">
 					<h3>디자이너 정보</h3>
-					<ul class="designer">
-						<li><img src="http://placehold.it/150x150" /></li>
-						<li class="designer_name">이름 디자이너</li>
-						<li>경력 5년</li>
-						<li>펌 전문</li>
-					</ul>
-					<ul class="designer">
-						<li><img src="http://placehold.it/150x150" /></li>
-						<li class="designer_name">이름 디자이너</li>
-						<li>경력 5년</li>
-						<li>펌 전문</li>
-					</ul>
+					<c:forEach var="dto2" items="${designer }">
+						<ul class="designer">
+							<li><img src="http://placehold.it/150x150" /></li>
+							<li class="designer_name">${dto2.de_name } ${dto2.de_position }</li>
+							<li>${dto2.de_career }년 경력</li>
+							<li>${dto2.de_major } 전문</li>
+						</ul>
+					</c:forEach>
 				</div>
 			</div>			
 		</div>

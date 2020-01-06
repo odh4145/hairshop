@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.info.Command;
+import command.info.DesignerListCommand;
+import command.info.ServiceListCommand;
 import command.info.ShopCommand;
 
 @WebServlet("*.bbq")
@@ -50,6 +52,10 @@ public class infoController extends HttpServlet {
 		switch(com) {
 			case "/info/storeInfo.bbq":
 				command = new ShopCommand();
+				command.execute(request, response);
+				command = new DesignerListCommand();
+				command.execute(request, response);
+				command = new ServiceListCommand();
 				command.execute(request, response);
 				viewPage = "storeInfo.jsp";
 				break;
