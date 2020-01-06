@@ -76,7 +76,7 @@
 					<h3>스타일 정보</h3>
 					<h4>경과시간은 예상일 뿐이며 매장상황에 따라 달라질 수 있습니다.</h4>
 					<c:forEach var="dto1" items="${service }">
-						<ul class="designer">
+						<ul class="price_info">
 							<li>${dto1.ser_name }<br>${dto1.ser_price }원<br><span>${dto1.ser_time }시간</span></li>
 						</ul>
 					</c:forEach>	

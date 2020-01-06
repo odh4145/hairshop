@@ -20,7 +20,7 @@ CREATE TABLE BOOK
 	bo_uid int NOT NULL AUTO_INCREMENT,
 	bo_service varchar(80) NOT NULL,
 	bo_stat int NOT NULL DEFAULT 1,CHECK(bo_stat>=1 and bo_stat<=3),
-	bo_time datetime NOT NULL,
+	bo_time datetime NOT NULL default now(),
 	bo_comment varchar(80),
 	use_uid int NOT NULL,
 	de_uid int NOT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE COMMENT
 (
 	co_uid int NOT NULL AUTO_INCREMENT,
 	co_star int NOT NULL,
-	co_content text,
+	co_content text NOT NULL,
 	co_name varchar(40) NOT NULL,
 	bo_uid int NOT NULL,
 	co_regdate datetime NOT NULL DEFAULT now(),
@@ -45,19 +45,19 @@ CREATE TABLE DESIGNER
 (
 	de_uid int NOT NULL AUTO_INCREMENT,
 	de_name varchar(40) NOT NULL,
+	de_position varchar(20) NOT NULL DEFAULT '디자이너',
 	de_career int NOT NULL,
 	de_major varchar(40) NOT NULL,
-	de_pictuer varchar(40),
+	de_picture varchar(40),
 	sh_uid int NOT NULL,
-	PRIMARY KEY (de_uid),
-	UNIQUE (sh_uid)
+	PRIMARY KEY (de_uid)
 );
 
 
 CREATE TABLE REPLY
 (
 	re_uid int NOT NULL AUTO_INCREMENT,
-	re_content text,
+	re_content text NOT NULL,
 	co_uid int NOT NULL,
 	re_regdate datetime NOT NULL DEFAULT now(),
 	PRIMARY KEY (re_uid)
@@ -82,15 +82,14 @@ CREATE TABLE SHOP
 	sh_pw varchar(15) NOT NULL,
 	sh_no_id double NOT NULL,
 	sh_name varchar(20) NOT NULL,
-	sh_telephone varchar(11) NOT NULL,
+	sh_telephone varchar(30) NOT NULL,
 	sh_location varchar(80),
 	sh_location_lat varchar(40),
 	sh_location_lng varchar(40),
+	sh_hello varchar(200),
 	sh_picture1 varchar(40),
 	sh_picture2 varchar(40),
 	sh_picture3 varchar(40),
-	sh_picture4 varchar(40),
-	sh_picture5 varchar(40),
 	sh_dayoff1 int CHECK (sh_dayoff1 >=1 and  sh_dayoff1 <= 7),
 	sh_dayoff2 int CHECK(sh_dayoff2>= 1 AND sh_dayoff2<=7),
 	sh_starttime int DEFAULT 9,
@@ -174,8 +173,6 @@ ALTER TABLE BOOK
 	ON DELETE RESTRICT
 ;
 
-
-
 /** Sample Data **/
 INSERT INTO USER(
 	use_id,
@@ -190,18 +187,33 @@ INSERT INTO SHOP(
 	sh_pw,
 	sh_no_id,
 	sh_name,
-	sh_telephone
+	sh_telephone,
+	sh_location,
+	sh_hello
 )
-VALUES('store01', '1234', 1111111111, '매장용', '07011111111');
+VALUES('store01', '1234', 1111111111, '매장용', '070-1111-1111', '서울시 강남구 역삼동 1',
+'저희 매장을 찾아주셔서 감사합니다. 항상 좋은 서비스로 보답하겠습니다.');
+
+INSERT INTO DESIGNER
+(
+	de_name,
+	de_position,
+	de_career,
+	de_major,
+	de_picture,
+	sh_uid
+)
+VALUES('디자이너1', '점장님', 15, '염색', '1', 1);
 
 INSERT INTO DESIGNER
 (
 	de_name,
 	de_career,
 	de_major,
+	de_picture,
 	sh_uid
 )
-VALUES('디자이너1', 5, '염색', 1);
+VALUES('디자이너2', 3, '커트', '1', 1);
 
 INSERT INTO SERVICE
 (
@@ -211,3 +223,14 @@ INSERT INTO SERVICE
 	sh_uid
 )
 VALUES('염색', 100000, 30000, 1);
+
+INSERT INTO SERVICE
+(
+	ser_name,
+	ser_price,
+	ser_time,
+	sh_uid
+)
+VALUES('커트', 30000, 10000, 1);
+
+SELECT * FROM DESIGNER WHERE sh_uid=1;

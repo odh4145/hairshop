@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class ServiceDAO {
@@ -48,7 +49,8 @@ public class ServiceDAO {
 			int ser_uid = rs.getInt("ser_uid");
 			String ser_name = rs.getString("ser_name");
 			int ser_price = rs.getInt("ser_price");
-			Time ser_time = rs.getTime("ser_time");
+			Time time = rs.getTime("ser_time");
+			String ser_time = new SimpleDateFormat("h").format(time);
 			int sh_uid = rs.getInt("sh_uid");
 
 			ServiceDTO dto = new ServiceDTO(ser_uid, ser_name, ser_price, ser_time, sh_uid);
@@ -65,12 +67,13 @@ public class ServiceDAO {
 	public int insert(ServiceDTO dto) throws SQLException {
 		String ser_name = dto.getSer_name();
 		int ser_price = dto.getSer_price();
-		Time ser_time = dto.getSer_time();
+		String time = dto.getSer_time();
+		String ser_time = new SimpleDateFormat("h").format(time);
 		int sh_uid = dto.getSh_uid();
 		return this.insert(ser_name, ser_price, ser_time, sh_uid);
 	}
 
-	public int insert(String ser_name, int ser_price, Time ser_time, int sh_uid)
+	public int insert(String ser_name, int ser_price, String ser_time, int sh_uid)
 					throws SQLException {
 		int cnt = 0;
 
@@ -78,8 +81,8 @@ public class ServiceDAO {
 			pstmt = conn.prepareStatement(infoInterface.SERVICE_INSERT);
 			pstmt.setString(1, ser_name);
 			pstmt.setInt(2, ser_price);
-			pstmt.setTime(3, ser_time);
-			pstmt.setInt(6, sh_uid);
+			pstmt.setString(3, ser_time);
+			pstmt.setInt(4, sh_uid);
 			cnt = pstmt.executeUpdate();
 		} finally {
 			close();
@@ -118,13 +121,13 @@ public class ServiceDAO {
 
 	// 시술정보 수정하기
 	public int update(int ser_uid, String ser_name, int ser_price,
-					Time ser_time, int sh_uid) throws SQLException {
+					String ser_time, int sh_uid) throws SQLException {
 		int cnt = 0;
 		try {
 			pstmt = conn.prepareStatement(infoInterface.SERVICE_UPDATE);
 			pstmt.setString(1, ser_name);
 			pstmt.setInt(2, ser_price);
-			pstmt.setTime(3, ser_time);
+			pstmt.setString(3, ser_time);
 			pstmt.setInt(4, ser_uid);
 			cnt = pstmt.executeUpdate();
 		} finally {

@@ -6,7 +6,7 @@ public class ServiceDTO {
 	private int ser_uid;
 	private String ser_name;
 	private int ser_price;
-	private Time ser_time;
+	private String ser_time;
 	private int sh_uid;
 	
 	// 기본생성자
@@ -17,7 +17,7 @@ public class ServiceDTO {
 	
 	// 매개변수 받는 생성자
 	public ServiceDTO(int ser_uid, String ser_name, int ser_price,
-					Time ser_time, int sh_uid) {
+					String ser_time, int sh_uid) {
 		super();
 		this.ser_uid = ser_uid;
 		this.ser_name = ser_name;
@@ -51,11 +51,11 @@ public class ServiceDTO {
 		this.ser_price = ser_price;
 	}
 
-	public Time getSer_time() {
+	public String getSer_time() {
 		return ser_time;
 	}
 
-	public void setSer_time(Time ser_time) {
+	public void setSer_time(String ser_time) {
 		this.ser_time = ser_time;
 	}
 
