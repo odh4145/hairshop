@@ -19,8 +19,6 @@ public interface K {
 			"SELECT * FROM BOOK WHERE use_uid = ? ORDER BY bo_time DESC";
 	
 	// sh_uid로 book 확인
-	// 서브쿼리로 만들어야함
-	// 안되는데요 ㅅㅂ;;? DAO에서 //TODO
 	public static final String SQL_BOOK_SELECT_BY_DE_UID = 
 			"SELECT * FROM book WHERE de_uid = ?";
 	// bo_uid로 book 확인
@@ -32,4 +30,10 @@ public interface K {
 	//DELETE --> USER입장
 	public static final String SQL_BOOK_DELETE=
 			"DELETE FROM BOOK WHERE bo_uid = ?";
+	
+	//JOIN 결과 => use_uid 에 따라 받아옴
+	public static final String SQL_BOOK_JOIN_=
+			"SELECT * FROM BOOK b NATURAL JOIN DESIGNER d NATURAL JOIN USER u NATURAL JOIN SERVICE s WHERE b.use_uid = ?";
+
+	
 }

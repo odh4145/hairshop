@@ -250,8 +250,6 @@ INSERT INTO SHOP(
 )
 VALUES('store04', '1234', 4444444444, '매장', '07011111111','봉천로7길','37.490859','126.926320');
 
-
-
 INSERT INTO SERVICE
 (
 	ser_name,
@@ -260,5 +258,35 @@ INSERT INTO SERVICE
 	sh_uid
 )
 VALUES('커트', 30000, 10000, 1);
+select * from shop;
+select * from service;
+select * from designer;
+select * from `user`;
+insert into book (
+bo_service, bo_stat, bo_time, bo_comment, use_uid, de_uid, ser_uid
+) values ('test_01', 1, now(), 'bo_comment_test_01', 1, 1, 1) ;
 
+
+select * from `user`;
+insert into book 
+(
+	bo_service,
+	bo_stat,
+	bo_time,
+	bo_comment,
+	use_uid,
+	de_uid,
+	ser_uid
+)
+values('test 서비스', 1, now(), 'test comment', 1, 1, 1);
+select * from book;
 SELECT * FROM DESIGNER WHERE sh_uid=1;
+select * from book b natural join shop where b.use_uid = 1;
+select * from book b natural join designer d natural join user u natural join service s where b.use_uid = 1 ;
+/* 왜 안뜨는지 모르겠지만 따로 뺴서 해야하나 확인할것 TODO*/
+select * from book b 
+join designer d on b.de_uid = d.de_uid
+join user u on b.use_uid = u.use_id
+join service s on b.ser_uid = s.ser_uid
+join shop sh on d.sh_uid = sh.sh_uid;
+/*de_picture가 null로 들어가니 쿼리문에서 실행 문제가 생김*/

@@ -11,7 +11,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import common.K;
-import com.info.beans.DesignerDAO;
 
 public class BookDAO implements K {
 
@@ -108,15 +107,19 @@ public class BookDAO implements K {
 		return cnt;
 	}
 
-	// 예약확인하기 (user)
-	public BookDTO[] select_by_user(int use_uid) throws SQLException {
+	
+
+	// 예약확인하기(shop)
+	// TODO
+	public BookDTO[] select_by_shop(int sh_uid) throws SQLException {
 		BookDTO[] arr = null;
 
 		try {
-			pstmt = conn.prepareStatement(K.SQL_BOOK_SELECT_BY_USER);
-			pstmt.setInt(1, use_uid);
-			rs = pstmt.executeQuery();
-			arr = createArray(rs);
+			for (int i = 0; i < arr.length; i++) {
+				pstmt = conn.prepareStatement(K.SQL_BOOK_JOIN_);
+				pstmt.setInt(1, arr[i].getUse_uid());
+				rs = pstmt.executeQuery();
+			}
 		} finally {
 			close();
 		}
@@ -124,29 +127,8 @@ public class BookDAO implements K {
 		return arr;
 	};
 
-	// 예약확인하기(shop)
-
-	public BookDTO[] select_by_shop(int sh_uid) throws SQLException {
-		// 매장의 디자이너 목록 읽어와서 배열에 입력
-		DesignerDAO des = new DesignerDAO();
-		DesignerDTO[] arr_des = des.list(sh_uid);
-		BookDTO[] arr_book = null;
-
-		try {
-			for (int i = 0; i < arr_des.length; i++) {
-				pstmt = conn.prepareStatement(K.SQL_BOOK_SELECT_BY_DE_UID);
-				pstmt.setInt(1, arr_des[i].getDe_uid());
-				rs = pstmt.executeQuery();
-				arr_book = createArray(rs);
-			}
-		} finally {
-			close();
-		}
-
-		return arr_book;
-	};
-
 	// 예약 STAT 변경하기
+	// TODO SQL확인할것 돌아는 가는데 정확한지 
 	public int update(int bo_stat, int sh_uid) throws SQLException {
 		int cnt = 0;
 		try {
