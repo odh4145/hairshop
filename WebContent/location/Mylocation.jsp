@@ -2,17 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ page import ="com.location.beans.*" %>
     
-   
-	
-	<% LocDTO [] arr = (LocDTO [])request.getAttribute("shoplist"); %>
-				
-	<%
-	int o = arr.length;
-	
-	out.println("arr.length는 "+o);
-	
-	
-	%>
+
 
 
 <!-- 자기위치를 로드하는 지도 생성 -->
