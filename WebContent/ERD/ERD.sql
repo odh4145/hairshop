@@ -1,4 +1,4 @@
-SET SESSION FOREIGN_KEY_CHECKS=0;
+﻿SET SESSION FOREIGN_KEY_CHECKS=0;
 
 /* Drop Tables */
 
@@ -211,3 +211,44 @@ INSERT INTO SERVICE
 	sh_uid
 )
 VALUES('염색', 100000, 30000, 1);
+
+
+
+
+
+
+
+
+
+
+INSERT INTO SHOP(
+	sh_id,
+	sh_pw,
+	sh_no_id,
+	sh_name,
+	sh_telephone,
+	sh_location,
+	sh_location_lat,
+	sh_location_lng
+)
+VALUES('store03', '1234', 33333333333, '매장', '07011111111','보라매동 969-20','37.488356','126.931162');
+
+INSERT INTO SHOP(
+	sh_id,
+	sh_pw,
+	sh_no_id,
+	sh_name,
+	sh_telephone,
+	sh_location,
+	sh_location_lat,
+	sh_location_lng
+)
+VALUES('store04', '1234', 4444444444, '매장', '07011111111','봉천로7길','37.490859','126.926320');
+
+
+
+
+"SELECT * FROM shop WHERE sh_lat>= 37.470859 and sh_location_lat<= 37.510859 and sh_lng>=126.906320 and sh_lng<= 126.946320"
+
+"SELECT * FROM shop WHERE sh_location_lat>=37.4894413 and sh_location_lat<=37.5294413 and sh_location_lng>=126.926320 and sh_location_lng<=126.966320";
+
