@@ -23,16 +23,12 @@
 			<tr align = "center">
 				<th>${dto.co_uid }</th>
 				<th>${dto.co_name }</th>
-			 <th width="47%" align = "left"><a href ="view.do?co_uid=${dto.co_uid }"> ${dto.co_title }</a></th> 	
+			 <th width="47%" align = "left"><a href ="re_view.do?co_uid=${dto.co_uid }"> ${dto.co_title }</a></th> 	
 				<th>${dto.co_star }</th>
 				<th>${dto.co_regdate }</th>
 			</tr>	
 			</c:forEach>
 		</table>
-
-	<div align = "center">
-		<input type = "Button" value = "글쓰기" onclick = "location.href='write.do'">
-	</div>
 
 
 </body>

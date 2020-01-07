@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import command.cmt.Command;
 import command.cmt.DeleteCommand;
 import command.cmt.ListCommand;
+import command.cmt.ReViewCommand;
+import command.cmt.ReWriteCommand;
 import command.cmt.SelectCommand;
 import command.cmt.UpdateCommand;
 import command.cmt.ViewCommand;
@@ -90,6 +92,25 @@ public class WriteController extends HttpServlet {
 			command = new DeleteCommand();
 			command.execute(request, response);
 			viewPage = "/comment/deleteOk.jsp";
+			break;
+			
+		case "/reply/re_list.do":
+			command = new ListCommand();
+			command.execute(request,response);
+			viewPage ="/reply/re_list.jsp";
+			break;
+			
+			
+		case "/reply/re_view.do":
+			command = new ReViewCommand();
+			command.execute(request,response);
+			viewPage ="/reply/re_view.jsp";
+			break;
+		
+		case "/reply/reWrite.do":
+			command = new ReWriteCommand();
+			command.execute(request, response);
+			viewPage = "/reply/view.jsp";
 			break;
 		}
 		

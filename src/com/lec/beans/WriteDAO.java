@@ -44,23 +44,27 @@ public class WriteDAO {
 	// 새글 작성 <-- 제목, 내용, 작성자
 	// INSERT
 	public int insert(WriteDTO dto) throws SQLException {
-		String co_star = dto.getco_star();
-//		int co_star = dto.getco_star();
-		String co_content = dto.getco_content();
+//		int bo_uid = dto.getbo_uid();
+		int co_star = dto.getco_star();
 		String co_name = dto.getco_name();
+		String co_title = dto.getco_title();
+		String co_content = dto.getco_content();
 		
 		
-		return this.insert(co_star,co_name, co_content);
+//		return this.insert(bo_uid,co_star,co_name,co_title, co_content);
+		return this.insert(co_star,co_name,co_title, co_content);
 	}
-		public int insert( String co_star, String co_name, String co_content) throws SQLException{
+		public int insert(int co_star, String co_name, String co_title, String co_content) throws SQLException{
+//			public int insert( int bo_uid, int co_star, String co_name, String co_title, String co_content) throws SQLException{
 		int cnt = 0;
 		
 		try {
 			pstmt = conn.prepareStatement(A.SQL_WRITE_INSERT);
-			pstmt.setString(1, co_name);
-			pstmt.setString(2, co_star);
-//			pstmt.setInt(2, co_star);
-			pstmt.setString(3, co_content);
+//			pstmt.setInt(1, bo_uid);
+			pstmt.setInt(1, co_star);
+			pstmt.setString(2, co_name);
+			pstmt.setString(3, co_title);
+			pstmt.setString(4, co_content);
 			
 			 cnt = pstmt.executeUpdate();
 		} finally {
@@ -75,9 +79,9 @@ public class WriteDAO {
 		
 		while(rs.next()){
 			int co_uid = rs.getInt("co_uid");
-			String co_star = rs.getString("co_star");
-//			int co_star = rs.getInt("co_star");
+			int co_star = rs.getInt("co_star");
 			String co_name = rs.getString("co_name");
+			String co_title = rs.getString("co_title");
 			String co_content = rs.getString("co_content");
 			if(co_content == null) co_content = "";
 			int bo_uid = rs.getInt("bo_uid");
@@ -85,9 +89,9 @@ public class WriteDAO {
 			Time t = rs.getTime("co_regdate");
 			String co_regdate = new SimpleDateFormat("yyyy-MM-dd").format(d) + " " 
 							+ new SimpleDateFormat("hh:mm:ss").format(t);
-			String dName = rs.getString("de_name");
-			String boService = rs.getString("bo_service");
-			WriteDTO dto = new WriteDTO(co_uid, co_star, co_name, co_content, bo_uid, co_regdate, dName, boService);
+//			String de_name = rs.getString("de_name");
+//			String bo_service = rs.getString("bo_service");
+			WriteDTO dto = new WriteDTO(co_uid,bo_uid, co_star, co_name,co_title, co_content,co_regdate);
 			list.add(dto);			
 		}
 		
@@ -145,13 +149,13 @@ public class WriteDAO {
 	
 	// 특정 uid 의 글을 수정하기 --> 제목, 내용
 	// UPDATE
-	public int update(String co_name, int co_star, String co_content) throws SQLException {
+	public int update(int co_star, String co_content, int co_uid) throws SQLException {
 		int cnt = 0;
 		try {
 			pstmt = conn.prepareStatement(A.SQL_WRITE_UPDATE);
-			pstmt.setString(1, co_name);
-			pstmt.setInt(2, co_star);
-			pstmt.setString(3, co_content);
+			pstmt.setInt(1, co_star);
+			pstmt.setString(2, co_content);
+			pstmt.setInt(3, co_uid);
 			cnt = pstmt.executeUpdate();
 		} finally {
 			close();
