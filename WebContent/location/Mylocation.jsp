@@ -32,7 +32,7 @@
 			var userlat = pos.lat;
 			var userlng = pos.lng;
 		
-			var url = "http://localhost:8080/hairshop/aaa.loc?lat=" + userlat + "&lng=" + userlng;
+			var url = "http://localhost:8082/hairshop/shop.loc?lat=" + userlat + "&lng=" + userlng;
 			
 			 $.ajax({
 				 url : url,
@@ -45,13 +45,26 @@
 						};		
 				 }
 			 });
-			 
-			 function parseJSON(jsonObj) {
+	 
+				 function parseJSON(jsonObj) {
+						var row = jsonObj.datalist;
+						var i;
+						var table = "<tr><th>매장명</th><th>매장위치</th><th>매장Lat</th><th>매장Lng</th></tr>";
+						for (i = 0; i < row.length; i++) { // 매장 리스트 나열용 for문
+							table += "<tr>"; 
+							table += "<td>" + row[i].name + "</td>";
+							table += "<td>" + row[i].location + "</td>";
+							table += "<td>" + row[i].locationLat; + "</td>";
+							table += "<td>" + row[i].locationLng; + "</td>";
+							table += "</tr>";  
+						}
+						
+						
+						
+						$("#shoplist").html(table);
+					}
 				 
-				}
-	
-			
-        	// 미용실 정보를 표시할 마커추가
+		// 미용실 정보를 표시할 마커추가
         	  //TODO
 			//TODO Loc 안에 미용실 좌표 데이터 불러오는 코드 짜야함
         	  //TODO
@@ -166,11 +179,8 @@
 		<h5>웹 기반 위치서비스는 부정확 할 수 있습니다.</h5>
 		<div id = "map"></div>
 		
-		<div id = "shoplist">
-		<ul>
-		<li> </li>
-		</ul>
-		
+		<div>
+		<table id = "shoplist"></table>
 		</div>
 		
 		<!-- 화살표버튼 -->
@@ -186,7 +196,7 @@
 
 <!-- javascript 링크 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src=".../js/public.js" type="text/javascript"></script>
+<script src="../js/public.js" type="text/javascript"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFDCbB-7P2BDLp9LuwLHHp7e-yHfrq438&callback=initMap"
     async defer></script>
 </body>

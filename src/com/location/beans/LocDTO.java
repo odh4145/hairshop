@@ -5,6 +5,8 @@ public class LocDTO {
 	private String sh_name;
 	private String sh_telephone;
 	private String sh_location;
+	private String sh_location_lat;
+	private String sh_location_lng;
 	private String sh_hello;
 	private String sh_picture1;
 	private String sh_picture2;
@@ -15,31 +17,13 @@ public class LocDTO {
 	private int sh_endtime;
 	
 	// 기본생성자
-	public LocDTO() {	
-		super();
-		System.out.println("ShopDTO() 객체 생성");
-	}
 	
-	// 매개변수 받는 생성자
-	public LocDTO(int sh_uid, String sh_name, String sh_telephone, String sh_location, 
-			String sh_hello, String sh_picture1, String sh_picture2, String sh_picture3, 
-			int sh_dayoff1, int sh_dayoff2, int sh_starttime, int sh_endtime) {
+
+
+	public LocDTO() {
 		super();
-		this.sh_uid = sh_uid;
-		this.sh_name = sh_name;
-		this.sh_telephone = sh_telephone;
-		this.sh_location = sh_location;
-		this.sh_hello = sh_hello;
-		this.sh_picture1 = sh_picture1;
-		this.sh_picture2 = sh_picture2;
-		this.sh_picture3 = sh_picture3;
-		this.sh_dayoff1 = sh_dayoff1;
-		this.sh_dayoff2 = sh_dayoff2;
-		this.sh_starttime = sh_starttime;
-		this.sh_endtime = sh_endtime;
-		System.out.println("sh_uid : " + this.sh_uid + " 객체 생성");
 	}
-	
+
 	public int getSh_uid() {
 		return sh_uid;
 	}
@@ -63,7 +47,7 @@ public class LocDTO {
 	public void setSh_telephone(String sh_telephone) {
 		this.sh_telephone = sh_telephone;
 	}
-	
+
 	public String getSh_location() {
 		return sh_location;
 	}
@@ -71,7 +55,23 @@ public class LocDTO {
 	public void setSh_location(String sh_location) {
 		this.sh_location = sh_location;
 	}
-	
+
+	public String getSh_location_lat() {
+		return sh_location_lat;
+	}
+
+	public void setSh_location_lat(String sh_location_lat) {
+		this.sh_location_lat = sh_location_lat;
+	}
+
+	public String getSh_location_lng() {
+		return sh_location_lng;
+	}
+
+	public void setSh_location_lng(String sh_location_lng) {
+		this.sh_location_lng = sh_location_lng;
+	}
+
 	public String getSh_hello() {
 		return sh_hello;
 	}
@@ -79,7 +79,7 @@ public class LocDTO {
 	public void setSh_hello(String sh_hello) {
 		this.sh_hello = sh_hello;
 	}
-	
+
 	public String getSh_picture1() {
 		return sh_picture1;
 	}
@@ -136,6 +136,26 @@ public class LocDTO {
 		this.sh_endtime = sh_endtime;
 	}
 
+	public LocDTO(int sh_uid, String sh_name, String sh_telephone, String sh_location, String sh_location_lat,
+			String sh_location_lng, String sh_hello, String sh_picture1, String sh_picture2, String sh_picture3,
+			int sh_dayoff1, int sh_dayoff2, int sh_starttime, int sh_endtime) {
+		super();
+		this.sh_uid = sh_uid;
+		this.sh_name = sh_name;
+		this.sh_telephone = sh_telephone;
+		this.sh_location = sh_location;
+		this.sh_location_lat = sh_location_lat;
+		this.sh_location_lng = sh_location_lng;
+		this.sh_hello = sh_hello;
+		this.sh_picture1 = sh_picture1;
+		this.sh_picture2 = sh_picture2;
+		this.sh_picture3 = sh_picture3;
+		this.sh_dayoff1 = sh_dayoff1;
+		this.sh_dayoff2 = sh_dayoff2;
+		this.sh_starttime = sh_starttime;
+		this.sh_endtime = sh_endtime;
+	}
+	
 	// 디버깅용
 	@Override
 	public String toString() {

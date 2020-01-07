@@ -40,6 +40,9 @@ public interface infoInterface {
 	public static final String DESIGNER_SELECT_BY_SH_UID = 
 			"SELECT * FROM DESIGNER WHERE sh_uid=?";
 	
+	public static final String DESIGNER_SELECT_PICTURE = 
+			"SELECT de_picture FROM DESIGNER WHERE de_uid=?";
+	
 	public static final String DESIGNER_DELETE = 
 			"DELETE FROM DESIGNER WHERE de_uid = ?";
 
