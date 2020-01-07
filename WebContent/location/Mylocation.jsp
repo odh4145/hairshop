@@ -93,6 +93,9 @@
 		var marker2 = new google.maps.Marker({position:Loc2,map:map});
 
 
+		
+		
+		
         	var Mname = "품격미용실 2호점"
         	var Star = "5.0"
         	var contentString = '<div id="content">'+
