@@ -16,7 +16,6 @@
 <html lang="ko">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>test</title>
 <link href="../css/sub.css" rel="stylesheet" type="text/css"/>
@@ -24,28 +23,32 @@
 </head>
 <body>
 	<h3>Test_PASS</h3>
-	<!-- bo_stat처리 필요 DTO로 만드는게 편할듯 -->
+	<!-- 날짜, 시간 따로 나눠서 넘겨와야 함. 종료시간도 만들어서 넘겨주는게 좋을거 같다. -->
+	
 	<div class="content">
 		<!-- 상세페이지 제목 -->
-		<h2 id="content_title">${book[0].use_id }</h2>
+		<h2 id="content_title">유저 아이디 와야 할 곳</h2>
+		<c:forEach var="book" items = "${book }">
 			<div>
-			<p>예약시간 : ${book[0]. bo_time}</p>
-			<p>디자이너 이름 : ${book[0]. de_name}</p>
-			<p>가격 : ${book[0]. ser_price}</p>
-			<p>예상 시간 : ${book[0]. ser_time}</p>
-			<p>예약 현황 : ${book[0]. bo_stat}</p>
-			
+			<p>예약시간 : ${book. bo_time}</p>
+			<p>디자이너 이름 : ${book. de_name}</p>
+			<p>가격 : ${book. ser_price}</p>
+			<p>예상 시간 : ${book. ser_time}</p>
+			<p class="test">예약 현황 : ${book. bo_stat}</p>
 			</div>
+			<hr>
+		</c:forEach>
 		
 		<div class="inner">
-		<!---------------------- Todo ---------------------->
-		<!---------------------- Todo ---------------------->
-		<!---------------------- Todo ---------------------->
+	
 		</div>
 	</div>
+<script type="text/javascript">
+$(function(){
+		$("p.test").html("test");
+});</script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="js/public.js" type="text/javascript"></script>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 </body>
 </html>
 

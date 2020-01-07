@@ -18,7 +18,6 @@ public class ShowBookuserCommand implements Command_k{
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		BookUserDAO dao = new BookUserDAO();
 		BookUserDTO[] arr = null;
-		//TODO 왜...??
 		String use1 = request.getParameter("use_uid");
 		System.out.println(use1);
 		int use_uid = Integer.parseInt(request.getParameter("use_uid"));

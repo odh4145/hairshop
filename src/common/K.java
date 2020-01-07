@@ -33,7 +33,7 @@ public interface K {
 	
 	//JOIN 결과 => use_uid 에 따라 받아옴
 	public static final String SQL_BOOK_JOIN_=
-			"SELECT * FROM BOOK b NATURAL JOIN DESIGNER d NATURAL JOIN USER u NATURAL JOIN SERVICE s WHERE b.use_uid = ?";
-
+			"SELECT * FROM book b NATURAL JOIN designer d NATURAL JOIN shop s NATURAL JOIN service c WHERE b.use_uid = ?";
+			 
 	
 }
