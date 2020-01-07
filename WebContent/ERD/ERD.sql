@@ -2,13 +2,13 @@
 
 /* Drop Tables */
 
-DROP TABLE IF EXISTS REPLY;
-DROP TABLE IF EXISTS COMMENT;
-DROP TABLE IF EXISTS BOOK;
-DROP TABLE IF EXISTS DESIGNER;
-DROP TABLE IF EXISTS SERVICE;
-DROP TABLE IF EXISTS SHOP;
-DROP TABLE IF EXISTS USER;
+DROP TABLE REPLY;
+DROP TABLE COMMENT;
+DROP TABLE BOOK;
+DROP TABLE DESIGNER;
+DROP TABLE SERVICE;
+DROP TABLE SHOP;
+DROP TABLE USER;
 
 
 
@@ -261,7 +261,7 @@ VALUES('커트', 30000, 10000, 1);
 select * from shop;
 select * from service;
 select * from designer;
-select * from `user`;
+select * from user;
 insert into book (
 bo_service, bo_stat, bo_time, bo_comment, use_uid, de_uid, ser_uid
 ) values ('test_01', 1, now(), 'bo_comment_test_01', 1, 1, 1) ;

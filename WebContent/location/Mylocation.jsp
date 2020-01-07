@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ page import ="com.location.beans.*" %>
@@ -40,8 +41,8 @@
 				 cache : false,
 				 success : function(data, status){
 					if(status == "success") {
-						alert("사용자 위치 :: 위도" +userlat +"/경도" + userlng);
 						parseJSON(data);
+						plz(data);
 						};		
 				 }
 			 });
@@ -57,26 +58,39 @@
 							table += "<td>" + row[i].locationLat; + "</td>";
 							table += "<td>" + row[i].locationLng; + "</td>";
 							table += "</tr>";  
+							
 						}
-						
-						
-						
 						$("#shoplist").html(table);
+						
 					}
 				 
-		// 미용실 정보를 표시할 마커추가
-        	  //TODO
-			//TODO Loc 안에 미용실 좌표 데이터 불러오는 코드 짜야함
-        	  //TODO
+				 
+				 function plz(jsonObj){
+					var row = jsonObj.datalist;
+					var i;
+						
+					for (i = 0; i < row.length; i++) {
+						var locLat = (row[i].locationLat);
+						var locLng = row[i].locationLng;
+						
+						var Loc = {lat:locLat, lng:locLng};
+						
+						var marker = new google.maps.Marker({position:Loc,map:map});
+						
+						}
+				 }
+				 
+		
+	
         	  <%
-        	  double [] lat = {37.487837,37.499837};
-        	  double [] lng = {126.932153,126.952153};
+       	  double [] lat  = {37.487837,37.499837};
+       	  double [] lng = {126.932153,126.952153};
         	  %>
         	  
-       	var Loc = {lat: <%=lat[0]%>, lng: <%=lng[0]%>};
+      	var Loc = {lat: <%=lat[0]%>, lng: <%=lng[0]%>};
      	var Loc2 = {lat: <%=lat[1]%>, lng: <%=lng[1]%>};
    		var marker = new google.maps.Marker({position:Loc,map:map});
-		var marker = new google.maps.Marker({position:Loc2,map:map});
+		var marker2 = new google.maps.Marker({position:Loc2,map:map});
 
 
         	var Mname = "품격미용실 2호점"
@@ -93,17 +107,18 @@
             '</div>'+
             '</div>';
         	  // 상세정보창으로 사용자의 추정위치를 센터로 잡아줌
-            
-            infoWindow.open(map);
-            map.setCenter(pos);
            
+          
+        	infoWindow.open(map);
+            map.setCenter(pos);
+           <%--
             infowindow = new google.maps.InfoWindow({
     		    content: contentString
     		  });
             marker.addListener('click', function() {
-    		  	
     		    infowindow.open(map, marker);
     		  });
+    		  --%>
           }, 
           // 사용자의 정보를 못불러올 경우 
           function() {
