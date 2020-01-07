@@ -11,8 +11,16 @@
 <%= request.getParameter("lat")%><br>
 <%= request.getParameter("lng")%><br>
 
-    
+   <% LocDTO [] arr = (LocDTO [])request.getAttribute("shoplist"); %>
 	
-
+	<%
+	for(int i=0;i<arr.length; i++){
+		out.println(arr[i].getSh_name());
+		out.println(arr[i].getSh_location());
+		out.println("<br>");
+	}	
+	%>
+	
+ 
 </body>
 </html>
