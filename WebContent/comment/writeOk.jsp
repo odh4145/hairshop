@@ -4,14 +4,16 @@
 	int cnt = (Integer) request.getAttribute("result");
 %>
 
+
+
 <% if(cnt == 0){ %>
 	<script>
-		alert("등록 실패!!!!!");
+		alert("등록 실패, 다시 작성해주세요.");
 		history.back();
 	</script>
 <% } else { %>
 	<script>
-		alert("등록성공, 리스트를 출력합니다");
+		alert("후기글 등록성공, 리스트 페이지로 이동합니다.");
 		location.href = "list.do";
 	</script>
 <% }  %>

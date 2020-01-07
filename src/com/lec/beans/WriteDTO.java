@@ -3,15 +3,14 @@ package com.lec.beans;
 public class WriteDTO {
 	
 	private int co_uid; //co_uid
-//	private int co_star; //co_star
-	private String co_star; //co_star
+	private int co_star; //co_star
 	private int bo_uid; //bo_uid
 	private String co_content; // co_content
 	private String co_name; // co_name
-	private String co_regDate; // co_regdate
-	private String dName; //de_name
-	private String boService; //bo_service
-	
+	private String co_regdate; // co_regdate
+	private String co_title; //co_title
+//	private String de_name; //de_name
+//	private String bo_service; //bo_service
 	
 	// 기본생성자
 	public WriteDTO() {	
@@ -20,16 +19,17 @@ public class WriteDTO {
 	}
 	
 	// 매개변수 받는 생성자
-	public WriteDTO(int co_uid, String co_star, String co_content, String co_name, int bo_uid, String co_regDate, String dName, String boService) {
+	public WriteDTO(int co_uid, int bo_uid, int co_star, String co_name, String co_title, String co_content,  String co_regdate) {
 		super();
 		this.co_uid = co_uid;
 		this.co_star = co_star;
 		this.co_content = co_content;
 		this.co_name = co_name;
 		this.bo_uid = bo_uid;
-		this.co_regDate = co_regDate;
-		this.dName = dName;
-		this.boService =boService;
+		this.co_regdate = co_regdate;
+		this.co_title = co_title;
+//		this.de_name = de_name;
+//		this.bo_service =bo_service;
 		System.out.println("WriteDTO() 객체 생성");
 	}
 	
@@ -42,21 +42,14 @@ public class WriteDTO {
 		this.co_uid = co_uid;
 	}
 
-//	public int getco_star() {
-//		return co_star;
-//	}
-//
-//	public void setco_star(int co_star) {
-//		this.co_star = co_star;
-//	}
-	public String getco_star() {
+	public int getco_star() {
 		return co_star;
 	}
 
-	public void setco_star(String co_star) {
+	public void setco_star(int co_star) {
 		this.co_star = co_star;
 	}
-
+	
 	
 	public String getco_content() {
 		return co_content;
@@ -81,28 +74,36 @@ public class WriteDTO {
 		this.bo_uid=bo_uid;
 	}
 
-	public String getco_regDate() {
-		return co_regDate;
+	public String getco_regdate() {
+		return co_regdate;
 	}
 
-	public void setco_regDate(String co_regDate) {
-		this.co_regDate = co_regDate;
+	public void setco_regdate(String co_regdate) {
+		this.co_regdate = co_regdate;
 	}
-	public String getDName() {
-		return dName;
-	}
-
-	public void setDName(String dName) {
-		this.dName = dName;
-	}
-	public String getBoService() {
-		return boService;
+	
+	public String getco_title() {
+		return co_title;
 	}
 
-	public void setBoService(String boService) {
-		this.boService = boService;
+	public void setco_title(String co_title) {
+		this.co_title = co_title;
 	}
-
+	
+//	public String getde_name() {
+//		return de_name;
+//	}
+//
+//	public void setde_name(String de_name) {
+//		this.de_name = de_name;
+//	}
+//	public String getbo_service() {
+//		return bo_service;
+//	}
+//
+//	public void setbo_service(String bo_service) {
+//		this.bo_service = bo_service;
+//	}
 
 }
 
