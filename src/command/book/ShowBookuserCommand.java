@@ -16,9 +16,12 @@ public class ShowBookuserCommand implements Command_k{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		int use_uid = Integer.parseInt(request.getParameter("use_uid"));
 		BookUserDAO dao = new BookUserDAO();
 		BookUserDTO[] arr = null;
+		//TODO 왜...??
+		String use1 = request.getParameter("use_uid");
+		System.out.println(use1);
+		int use_uid = Integer.parseInt(request.getParameter("use_uid"));
 
 		try {
 			arr=dao.select_by_use_uid(use_uid);

@@ -54,17 +54,19 @@ public class bookController extends HttpServlet {
 		
 		// 1. command 객체 수행
 		switch(com) {
-			case "/user/check.book":
-//				System.out.println("debug용");
+			case "/usertest.book":
+				System.out.println("debug용");
 				command = new ShowBookuserCommand();
 				command.execute(request, response);
-				viewPage = "Book_show_user.jsp";
+				viewPage = "/book/usertest.jsp";
 				break;
 		}
-		
+		System.out.println("switch case통과");
 		if(viewPage != null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response);
+			//http://localhost:8080/hairshop/usertest.book?use_uid=1
+			//http://localhost:8080/hairshop/info/storeInfo.bbq?sh_uid=1
 		}
 	}
 }
