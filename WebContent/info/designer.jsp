@@ -18,9 +18,10 @@
 </head>
 
 <script>
-function chkSubmit(){
-	frm = document.forms["'frm + <%=${i }%> +''"];	
-	
+function chkSubmit(name){
+	var name = $(this).parent("form").attr("name");
+	alert(name);
+	frm = document.forms[name];		
 	if(de_name == "" && de_position == "" && de_career == "" && de_major == ""){
 		alert("모든 칸을 입력해주세요.");
 		return false;
@@ -59,18 +60,19 @@ function chkSubmit(){
 			<!-- 디자이너 목록 -->
 				<div class="information">
 
-					<c:forEach var="i" items="${designer }" step="1">
-						<form name="'frm + ${i } +'" action="designerOk.bbq" method="post" onsubmit="return chkSubmit()" 
+					<c:forEach var="dto" varStatus="status" items="${designer }">
+						<form name="frm${status.count }" action="designerOk.bbq" method="post" onsubmit="return chkSubmit()" 
 								enctype="Multipart/form-data">
-						<ul class="designer">
-							<li><input type="hidden" name="de_uid" value="${i.de_uid }"/></li>
-							<li>이름 <input type="text" name="de_name" value="${i.de_name }"/></li>
-							<li>직책 <input type="text" name="de_position" value="${i.de_position }"/></li>
-							<li>경력 <input type="text" name="de_carrer" value="${i.de_career }"/></li>
-							<li>전공 <input type="text" name="de_major" value="${i.de_major }"></li>
-							<li><input id="insert_dpic" type="file" name="de_picture" size=40></li>
-							<li><input id="update_d" type="submit" value="수정하기"/></li>
-						</ul>
+							<ul class="designer">
+								<li><img src="${dto.de_picture }" alt="designer"></li>
+								<li><input type="hidden" name="de_uid" value="${dto.de_uid }"/></li>
+								<li>이름 <input type="text" name="de_name" value="${dto.de_name }"/></li>
+								<li>직책 <input type="text" name="de_position" value="${dto.de_position }"/></li>
+								<li>경력 <input type="text" name="de_carrer" value="${dto.de_career }"/></li>
+								<li>전공 <input type="text" name="de_major" value="${dto.de_major }"></li>
+								<li><input class="insert_dpic" type="file" name="de_picture" size=40></li>
+								<li><input class="update_d" type="submit" value="수정하기"/></li>
+							</ul>
 						</form>					
 					</c:forEach>
 				</div>				
@@ -85,8 +87,7 @@ function chkSubmit(){
 
 
 	<!-- javascript 링크 -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="../js/public.js" type="text/javascript"></script>
 </body>
 </html>

@@ -10,6 +10,7 @@
 }
 .designer img{
 	width:150px;
+	height:150px;
 	border-radius:50%;
 }
 .designer input{
@@ -18,13 +19,13 @@
 	margin-bottom:10px;
 }
 
-#insert_dpic{
-	width:200px;
+.insert_dpic{
+	width:200px !important;
 }
 
-#update_d{
+.update_d{
 	margin:0 auto;
-	width:200px;
+	width:200px !important;
 	height:30px;
 	font-weight:800;
 	background:#313f67;
