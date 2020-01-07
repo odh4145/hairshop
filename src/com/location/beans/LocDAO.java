@@ -51,6 +51,8 @@ public LocDTO[] createArray(ResultSet rs) throws SQLException{
 		String sh_name = rs.getString("sh_name");
 		String sh_telephone = rs.getString("sh_telephone");
 		String sh_location = rs.getString("sh_location");
+		String sh_location_lat = rs.getString("sh_location_lat");
+		String sh_location_lng = rs.getString("sh_location_lng");
 		String sh_hello = rs.getString("sh_hello");
 		String sh_picture1 = rs.getString("sh_picture1");
 		String sh_picture2 = rs.getString("sh_picture2");
@@ -62,7 +64,8 @@ public LocDTO[] createArray(ResultSet rs) throws SQLException{
 		int sh_endtime = rs.getInt("sh_endtime");
 		
 		LocDTO dto = new LocDTO(sh_uid, sh_name, sh_telephone, 
-				sh_location, sh_hello, sh_picture1, sh_picture2, sh_picture3,
+				sh_location, sh_location_lat,
+				sh_location_lng, sh_hello, sh_picture1, sh_picture2, sh_picture3,
 				sh_dayoff1, sh_dayoff2, sh_starttime, sh_endtime);
 		
 		list.add(dto);

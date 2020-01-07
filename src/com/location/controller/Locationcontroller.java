@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import command.loc.AjaxListCommand;
 import command.loc.Command;
 import command.loc.MyLocationCommand;
 
@@ -56,11 +57,16 @@ public class Locationcontroller extends HttpServlet {
 		// 1. 커맨드 객체 수행
 		switch(com) {
 		
-		case "/aaa.loc":
+		case "/shop.loc": // Ajax용 컨트롤
 			command = new MyLocationCommand();
-			command.execute(request, response); 
-			viewPage = "location/aaa.jsp";
+			command.execute(request, response);
+			// shoplist받아와서
+			command = new AjaxListCommand();
+			command.execute(request, response);
+			// ajax로 쏴주기
 			break;
+			
+			
 		case "/location/Mylocation.loc":
 			
 			
