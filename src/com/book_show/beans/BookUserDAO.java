@@ -60,33 +60,23 @@ public class BookUserDAO implements K {
 			String bo_comment = rs.getString("bo_comment");
 			String ser_name = rs.getString("ser_name");
 			String de_name = rs.getString("de_name");
-			String de_position = rs.getString("de_position");
-			String de_major = rs.getString("de_major");
 			String de_picture = rs.getString("de_picture");
-			String use_id = rs.getString("use_id");
-			String use_pw = rs.getString("use_pw");
-			String use_name = rs.getString("use_name");
-			String use_phoneNum = rs.getString("use_phoneNum");
+			String sh_name = rs.getString("sh_name");
 			int bo_uid = rs.getInt("bo_uid");
 			int bo_stat = rs.getInt("bo_stat");
-			int use_uid = rs.getInt("use_uid");
 			int de_uid = rs.getInt("de_uid");
-			int ser_uid = rs.getInt("ser_uid");
 			String ser_time = rs.getString("ser_time");
 			int ser_price = rs.getInt("ser_price");
 			int sh_uid = rs.getInt("sh_uid");
-			int de_career = rs.getInt("de_career");
-			int num_identify = rs.getInt("num_identify");
 
-			Date d_time = rs.getDate("bo_time");
-			Time t_time = rs.getTime("bo_time");
-			String bo_time = new SimpleDateFormat("yyyy-MM-dd").format(d_time) + " "
-					+ new SimpleDateFormat("hh:mm:ss").format(t_time);
+			Date date_time = rs.getDate("bo_time");
+			Time time_time = rs.getTime("bo_time");
+			String bo_time = new SimpleDateFormat("yyyy-MM-dd").format(date_time) + " "
+					+ new SimpleDateFormat("hh:mm:ss").format(time_time);
 
-			BookUserDTO dto = new BookUserDTO(bo_uid, bo_service, bo_stat, bo_time, bo_comment, 
-					de_uid, sh_uid, de_name, de_position, de_career, de_major, de_picture,
-					use_uid, use_id, use_pw, use_name, 
-					use_phoneNum, num_identify, ser_uid, ser_name, ser_price, ser_time);
+			BookUserDTO dto = new BookUserDTO(bo_uid, bo_service, bo_stat,
+					bo_time, bo_comment, de_uid, sh_uid, de_name, de_picture,
+					sh_name, ser_name, ser_price, ser_time);
 			list.add(dto);
 		}
 		int size = list.size();
@@ -112,4 +102,6 @@ public class BookUserDAO implements K {
 
 			return arr;
 		};
+		
+	// 예약에서 매장 정보 
 }

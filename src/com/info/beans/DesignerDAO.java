@@ -121,9 +121,9 @@ public class DesignerDAO {
 		return arr;
 	}
 
-	// 매장정보 수정하기
+	// 디자이너정보 수정하기
 	public int update(int de_uid, String de_name, String de_position, String de_career, String de_major,
-			String de_picture, int sh_uid) throws SQLException {
+			String de_picture) throws SQLException {
 		int cnt = 0;
 		try {
 			pstmt = conn.prepareStatement(infoInterface.DESIGNER_UPDATE);

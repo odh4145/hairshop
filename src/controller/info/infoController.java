@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import command.info.Command;
 import command.info.DesignerListCommand;
+import command.info.DesignerUpdateCommand;
 import command.info.ServiceListCommand;
 import command.info.ShopCommand;
 
@@ -58,6 +59,18 @@ public class infoController extends HttpServlet {
 				command = new ServiceListCommand();
 				command.execute(request, response);
 				viewPage = "storeInfo.jsp";
+				break;
+				
+			case "/info/designer.bbq":
+				command = new DesignerListCommand();
+				command.execute(request, response);
+				viewPage = "designer.jsp";
+				break;
+				
+			case "/info/designerOk.bbq":
+				command = new DesignerUpdateCommand();
+				command.execute(request, response);
+				viewPage = "designerOk.jsp";
 				break;
 		}
 		
