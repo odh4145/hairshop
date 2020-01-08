@@ -1,14 +1,14 @@
-SET SESSION FOREIGN_KEY_CHECKS=0;
+﻿SET SESSION FOREIGN_KEY_CHECKS=0;
 
 /* Drop Tables */
 
-DROP TABLE IF EXISTS REPLY;
-DROP TABLE IF EXISTS COMMENT;
-DROP TABLE IF EXISTS BOOK;
-DROP TABLE IF EXISTS DESIGNER;
-DROP TABLE IF EXISTS SERVICE;
-DROP TABLE IF EXISTS SHOP;
-DROP TABLE IF EXISTS USER;
+DROP TABLE REPLY;
+DROP TABLE COMMENT;
+DROP TABLE BOOK;
+DROP TABLE DESIGNER;
+DROP TABLE SERVICE;
+DROP TABLE SHOP;
+DROP TABLE USER;
 
 
 
@@ -45,12 +45,12 @@ CREATE TABLE DESIGNER
 (
 	de_uid int NOT NULL AUTO_INCREMENT,
 	de_name varchar(40) NOT NULL,
+	de_position varchar(20) NOT NULL DEFAULT '디자이너',
 	de_career int NOT NULL,
 	de_major varchar(40) NOT NULL,
-	de_pictuer varchar(40),
+	de_picture varchar(40),
 	sh_uid int NOT NULL,
-	PRIMARY KEY (de_uid),
-	UNIQUE (sh_uid)
+	PRIMARY KEY (de_uid)
 );
 
 
@@ -187,18 +187,34 @@ INSERT INTO SHOP(
 	sh_pw,
 	sh_no_id,
 	sh_name,
-	sh_telephone
+	sh_telephone,
+	sh_location,
+	sh_hello
 )
-VALUES('store02', '1234', 1111111112, '매장용', '07011111112');
+VALUES('store01', '1234', 1111111111, '매장용', '070-1111-1111', '서울시 강남구 역삼동 1',
+'저희 매장을 찾아주셔서 감사합니다. 항상 좋은 서비스로 보답하겠습니다.');
+
+INSERT INTO DESIGNER
+(
+	de_name,
+	de_position,
+	de_career,
+	de_major,
+	de_picture,
+	sh_uid
+)
+VALUES('디자이너1', '점장님', 15, '염색', '1', 1);
+
 
 INSERT INTO DESIGNER
 (
 	de_name,
 	de_career,
 	de_major,
+	de_picture,
 	sh_uid
 )
-VALUES('디자이너1', 5, '염색', 1);
+VALUES('디자이너2', 3, '커트', '1', 1);
 
 INSERT INTO SERVICE
 (
@@ -209,6 +225,7 @@ INSERT INTO SERVICE
 )
 VALUES('염색', 100000, 30000, 1);
 
+<<<<<<< HEAD
 -- DELETE FROM user WHERE use_uid = ;
 -- DELETE FROM shop WHERE sh_uid = 2;
 
@@ -230,4 +247,95 @@ select
 	(select count(*) from shop where sh_telephone = 'store01')
 ;
 
+
+INSERT INTO SHOP(
+	sh_id,
+	sh_pw,
+	sh_no_id,
+	sh_name,
+	sh_telephone,
+	sh_location,
+	sh_location_lat,
+	sh_location_lng
+)
+VALUES('store03', '1234', 33333333333, '매장', '07011111111','보라매동 969-20','37.5434924','127.0733933');
+
+INSERT INTO SHOP(
+	sh_id,
+	sh_pw,
+	sh_no_id,
+	sh_name,
+	sh_telephone,
+	sh_location,
+	sh_location_lat,
+	sh_location_lng
+)
+VALUES('store04', '1234', 4444444444, '매장', '07011111111','봉천로7길','37.490259','126.916320');
+
+INSERT INTO SERVICE
+(
+	ser_name,
+	ser_price,
+	ser_time,
+	sh_uid
+)
+VALUES('커트', 30000, 10000, 1);
+select * from shop;
+select * from service;
+select * from designer;
+select * from user;
+insert into book (
+bo_service, bo_stat, bo_time, bo_comment, use_uid, de_uid, ser_uid
+) values ('test_01', 1, now(), 'bo_comment_test_01', 1, 1, 1) ;
+
+
+select * from `user`;
+/*testdata_book*/
+insert into book 
+(
+	bo_service,
+	bo_stat,
+	bo_time,
+	bo_comment,
+	use_uid,
+	de_uid,
+	ser_uid
+)
+values('test 서비스', 1, now(), 'test comment', 1, 1, 1);
+insert into book 
+(
+	bo_service,
+	bo_stat,
+	bo_time,
+	bo_comment,
+	use_uid,
+	de_uid,
+	ser_uid
+)
+values('test 서비스2', 2, now(), 'test comment2', 1, 1, 1);
+insert into book 
+(
+	bo_service,
+	bo_stat,
+	bo_time,
+	bo_comment,
+	use_uid,
+	de_uid,
+	ser_uid
+)
+values('test 서비스3', 3, now(), 'test comment3', 1, 1, 1);
+
+
+select * from book;
+SELECT * FROM DESIGNER WHERE sh_uid=1;
+select * from book b natural join shop where b.use_uid = 1;
+select * from book b natural join designer d natural join user u natural join service s where b.use_uid = 1 ;
+select * from book b natural join designer d natural join shop s  natural join service c where b.use_uid =1;
+/* 왜 안뜨는지 모르겠지만 따로 뺴서 해야하나 확인할것 TODO*/
+select * from book b 
+join designer d on b.de_uid = d.de_uid
+join user u on b.use_uid = u.use_id
+join service s on b.ser_uid = s.ser_uid
+join shop sh on d.sh_uid = sh.sh_uid;
+/*de_picture가 null로 들어가니 쿼리문에서 실행 문제가 생김*/
 

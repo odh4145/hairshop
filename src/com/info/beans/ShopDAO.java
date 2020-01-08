@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import com.info.beans.*;
 
 public class ShopDAO {
 	Connection conn;
@@ -20,7 +19,7 @@ public class ShopDAO {
 		try {
 			Class.forName(infoInterface.DRIVER);
 			conn = DriverManager.getConnection(infoInterface.URL, infoInterface.USERID, infoInterface.USERPW);
-			System.out.println("ShppDAO 객체 생성, 데이터베이스 연결");
+			System.out.println("ShopDAO 객체 생성, 데이터베이스 연결");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
