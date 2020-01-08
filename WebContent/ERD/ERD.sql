@@ -20,7 +20,7 @@ CREATE TABLE BOOK
 	bo_uid int NOT NULL AUTO_INCREMENT,
 	bo_service varchar(80) NOT NULL,
 	bo_stat int NOT NULL DEFAULT 1,CHECK(bo_stat>=1 and bo_stat<=3),
-	bo_time datetime NOT NULL,
+	bo_time datetime NOT NULL default now(),
 	bo_comment varchar(80),
 	use_uid int NOT NULL,
 	de_uid int NOT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE COMMENT
 (
 	co_uid int NOT NULL AUTO_INCREMENT,
 	co_star int NOT NULL,
-	co_content text,
+	co_content text NOT NULL,
 	co_name varchar(40) NOT NULL,
 	bo_uid int NOT NULL,
 	co_regdate datetime NOT NULL DEFAULT now(),
@@ -57,7 +57,7 @@ CREATE TABLE DESIGNER
 CREATE TABLE REPLY
 (
 	re_uid int NOT NULL AUTO_INCREMENT,
-	re_content text,
+	re_content text NOT NULL,
 	co_uid int NOT NULL,
 	re_regdate datetime NOT NULL DEFAULT now(),
 	PRIMARY KEY (re_uid)
@@ -82,15 +82,14 @@ CREATE TABLE SHOP
 	sh_pw varchar(15) NOT NULL,
 	sh_no_id double NOT NULL,
 	sh_name varchar(20) NOT NULL,
-	sh_telephone varchar(11) NOT NULL,
+	sh_telephone varchar(30) NOT NULL,
 	sh_location varchar(80),
 	sh_location_lat varchar(40),
 	sh_location_lng varchar(40),
+	sh_hello varchar(200),
 	sh_picture1 varchar(40),
 	sh_picture2 varchar(40),
 	sh_picture3 varchar(40),
-	sh_picture4 varchar(40),
-	sh_picture5 varchar(40),
 	sh_dayoff1 int CHECK (sh_dayoff1 >=1 and  sh_dayoff1 <= 7),
 	sh_dayoff2 int CHECK(sh_dayoff2>= 1 AND sh_dayoff2<=7),
 	sh_starttime int DEFAULT 9,
@@ -174,8 +173,6 @@ ALTER TABLE BOOK
 	ON DELETE RESTRICT
 ;
 
-
-
 /** Sample Data **/
 INSERT INTO USER(
 	use_id,
@@ -192,7 +189,7 @@ INSERT INTO SHOP(
 	sh_name,
 	sh_telephone
 )
-VALUES('store01', '1234', 1111111111, '매장용', '07011111111');
+VALUES('store02', '1234', 1111111112, '매장용', '07011111112');
 
 INSERT INTO DESIGNER
 (
@@ -211,3 +208,26 @@ INSERT INTO SERVICE
 	sh_uid
 )
 VALUES('염색', 100000, 30000, 1);
+
+-- DELETE FROM user WHERE use_uid = ;
+-- DELETE FROM shop WHERE sh_uid = 2;
+
+select * from user;
+select * from shop;
+
+
+-- 특정 id 로 회원 가입을 하려 할때
+-- user 의  use_id  이어서도 안되고
+-- ship 의  sh_id 이어서도 암됨
+
+select
+	(select count(*) from user where use_id = 'store01'),
+	(select count(*) from shop where sh_id = 'store01')
+;
+
+select
+	(select count(*) from user where use_phoneNum = '01000000000'),
+	(select count(*) from shop where sh_telephone = 'store01')
+;
+
+

@@ -68,7 +68,7 @@ function chkShopSubmit(){
 					<br><br>
 				</form>
 				
-				<a href="join_shop.jsp">아직 회원이 아니신가요?</a>
+				<a href="join_shop.bbq">아직 회원이 아니신가요?</a>
 				<br><br>
 				
 			</div>
