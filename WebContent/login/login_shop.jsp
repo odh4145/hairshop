@@ -5,12 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>매장 회원가입</title>
+<title>매장 로그인</title>
 <link rel="icon" href="img/favicon.png">
 
 <!-- css파일 link -->
 <link href="../css/menu.css" rel="stylesheet" type="text/css">
-<link href="../css/join.css" rel="stylesheet" type="text/css">
+<link href="../css/sub.css" rel="stylesheet" type="text/css">
+<link href="../css/login.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -21,11 +22,6 @@ function chkShopSubmit(){
 	
 	var sh_id = frm["sh_id"].value.trim();
 	var sh_pw = frm["sh_pw"].value.trim();
-	var sh_no_id = frm["sh_no_id"].value.trim();
-	var sh_name = frm["sh_name"].value.trim();
-	var sh_telephoneNum = frm["sh_telephoneNum"].value.trim();
-	var sh_location = frm["sh_location"].value.trim();
-	
 	
 	if(sh_id == ""){
 		alert("아이디를 입력해주세요");
@@ -35,26 +31,6 @@ function chkShopSubmit(){
 	if(sh_pw == ""){
 		alert("비밀번호를 입력해주세요");
 		frm["sh_pw"].focus();
-		return false;
-	}
-	if(sh_no_id == ""){
-		alert("사업자 번호를 입력해주세요");
-		frm["sh_no_id"].focus();
-		return false;
-	}	
-	if(sh_name == ""){
-		alert("매장 이름을 입력해주세요");
-		frm["sh_name"].focus();
-		return false;
-	}
-	if(sh_telephoneNum == ""){
-		alert("매장 전화번호를 입력해주세요");
-		frm["sh_telephoneNum"].focus();
-		return false;
-	}
-	if(sh_location == ""){
-		alert("매장 주소를 입력해주세요");
-		frm["sh_location"].focus();
 		return false;
 	}
 	
@@ -78,33 +54,24 @@ function chkShopSubmit(){
 <section>
 	<div class="content">
 		<!-- 상세페이지 제목 -->
-		<h2 id="content_title">매장 회원가입</h2>
-		
-	
-		<!-- 회원가입 -->
-			<div id="join_shop">
-			
-				<form name="frm_shop" action="join_shop_ok.jsp" method="post" onsubmit="return chkShopSubmit()">
+		<h2 id="content_title">매장 로그인</h2>
+
+		<!-- 로그인 -->
+			<div id="login_shop">
 				
+				<form name="frm_shop" action="login_shop_ok.jsp" method="post" onsubmit="return chkShopSubmit()">
 					<input id="sh_id" type="text" name="sh_id" placeholder="아이디">
 					<br><br>
 					<input id="sh_pw" type="password" name="sh_pw" placeholder="비밀번호">
 					<br><br>
-					<input id="sh_no_id" type="text" name="sh_no_id" placeholder="사업자 번호">
+					<input type="submit" id="btn" value="로그인"/>
 					<br><br>
-					<input id="sh_name" type="text" name="sh_name" placeholder="매장 이름">
-					<br><br>
-					<input id="sh_telephoneNum" type="text" name="sh_telephoneNum" placeholder="매장 전화번호">
-					<br><br>
-					<input id="sh_location" type="text" name="sh_location" placeholder="매장 주소">
-					<br><br>
-					<input type="submit" id="btn" value="가입하기"/>
-					<br><br>
-					
 				</form>
 				
+				<a href="join_shop.bbq">아직 회원이 아니신가요?</a>
+				<br><br>
+				
 			</div>
-		
 		
 		
 		<!-- 화살표버튼 -->
