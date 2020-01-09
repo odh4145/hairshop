@@ -1,4 +1,4 @@
-package command.changeUserInfo;
+package command;
 
 import java.sql.SQLException;
 

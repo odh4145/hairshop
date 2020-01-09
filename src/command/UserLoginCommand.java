@@ -1,4 +1,4 @@
-package command.login;
+package command;
 
 import java.sql.SQLException;
 

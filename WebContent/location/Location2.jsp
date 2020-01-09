@@ -38,9 +38,9 @@ th,td {
 			<ul id="menu_list">
 				<li><a href="Location2.jsp">내주변</a></li>
 				<li><a href="#">지역별매장</a></li>
-				<li><a href="#">마이페이지</a></li>
+				<li><a href="info/storeInfo.bbq">마이페이지</a></li>
 			</ul>
-			<li id="login"><a href="#">로그아웃</a></li>
+			<li id="login"><a href="login/login_user.bbq">로그인</a></li>
 		</ul>
 	</header>
 

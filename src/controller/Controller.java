@@ -14,15 +14,16 @@ import command.Command;
 import command.DeleteCommand;
 import command.DesignerListCommand;
 import command.DesignerOkCommand;
+import command.JoinCommand;
 import command.ListCommand;
 import command.MyLocationCommand;
-import command.ReViewCommand;
-import command.ReWriteCommand;
 import command.SelectCommand;
 import command.ServiceListCommand;
 import command.ShopCommand;
+import command.ShopLoginCommand;
 import command.ShowBookuserCommand;
 import command.UpdateCommand;
+import command.UserLoginCommand;
 import command.ViewCommand;
 import command.WriteCommand;
 
@@ -68,6 +69,26 @@ public class Controller extends HttpServlet {
 			viewPage = "/index.jsp";
 			break;
 //////////////////////////////////////////////////////////// 손님 //////////////////////////////////////////////////////
+		// 손님-회원가입
+		case "/join/join_user.bbq":
+			viewPage = "join_user.jsp";
+			break;
+		case "/join/join_user_ok.bbq":
+			command = new JoinCommand();
+			command.execute(request, response);
+			viewPage = "join_user_ok.jsp";
+			break;
+			
+		// 손님-로그인
+		case "/login/login_user.bbq":
+			viewPage = "login_user.jsp";
+			break;
+		case "/login/login_user_ok.bbq":
+			command = new UserLoginCommand();
+			command.execute(request, response);
+			viewPage = "login_user_ok.jsp";
+			break;
+			
 		// 손님-예약내역
 		case "/usertest.bbq":
 			System.out.println("debug용");
@@ -88,49 +109,59 @@ public class Controller extends HttpServlet {
 			break;
 
 		// 손님-후기목록
-		case "/comment/list.do":
+		case "/comment/list.bbq":
 			command = new ListCommand();
 			command.execute(request, response);
 			viewPage = "/comment/list.jsp";
 			break;
 
 		// 손님-후기작성
-		case "/comment/write.do":
+		case "/comment/write.bbq":
 			viewPage = "/comment/write.jsp";
 			break;
-		case "/comment/writeOk.do":
+		case "/comment/writeOk.bbq":
 			command = new WriteCommand();
 			command.execute(request, response);
 			viewPage = "/comment/writeOk.jsp";
 			break;
 
 		// 손님-후기 상세
-		case "/comment/view.do":
+		case "/comment/view.bbq":
 			command = new ViewCommand();
 			command.execute(request, response);
 			viewPage = "/comment/view.jsp";
 			break;
 
 		// 손님-후기 수정
-		case "/comment/update.do":
+		case "/comment/update.bbq":
 			command = new SelectCommand();
 			command.execute(request, response);
 			viewPage = "/comment/update.jsp";
 			break;
-		case "/comment/updateOk.do":
+		case "/comment/updateOk.bbq":
 			command = new UpdateCommand();
 			command.execute(request, response);
 			viewPage = "/comment/updateOk.jsp";
 			break;
 
 		// 손님-후기 삭제
-		case "/comment/deleteOk.do":
+		case "/comment/deleteOk.bbq":
 			command = new DeleteCommand();
 			command.execute(request, response);
 			viewPage = "/comment/deleteOk.jsp";
 			break;
-			
+
 //////////////////////////////////////////////////////////// 매장 //////////////////////////////////////////////////////
+		// 매장-로그인
+		case "/login/login_shop.bbq":
+			viewPage = "login_shop.jsp";
+			break;
+		case "/login/login_shop_ok.bbq":
+			command = new ShopLoginCommand();
+			command.execute(request, response);
+			viewPage = "login_shop_ok.jsp";
+			break;
+			
 		// 매장-매장정보
 		case "/info/storeUpdate.bbq":
 			command = new ShopCommand();
@@ -155,7 +186,7 @@ public class Controller extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "designerOk.jsp";
 			break;
-								
+
 //////////////////////////////////////////////////////////// Ajax //////////////////////////////////////////////////////			
 		// Ajax용 컨트롤
 		case "/shop.bbq":
