@@ -9,7 +9,7 @@ $(function(){
 	    var scrollPosition = $(document).scrollTop();
 	    
 	    // 상단 메뉴 고정 및 탑버튼
-	    if (scrollPosition > 700) {	      
+	    if (scrollPosition > 70) {	      
 	      $('#content_title').addClass('scroll');
 	      $('#go_top').css('display', 'block');
 	      $('#go_top').addClass('show');

@@ -10,9 +10,7 @@
 
 <!-- css파일 link -->
 <link href="../css/menu.css" rel="stylesheet" type="text/css">
-<!-- 마이페이지 아닌분들은 sub.css 지우세요 -->
-<link href="../css/sub.css" rel="stylesheet" type="text/css">
-
+<link href="../css/chooseArea.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -36,25 +34,33 @@
 <section>
 	<div class="content">
 		<!-- 상세페이지 제목 -->
-		<h2 id="content_title">마이페이지 예약내역</h2>
-		
-		<h2 id="content_title">디자이너관리</h2>
-			<!---------------------마이페이지아닌 분들은 class=clear 지우세요 ------------->
-			<div class="box clear">
-				<!------------- 세부메뉴 ----------마이페이지아닌 분들은 세부메뉴 지우세요------------->
-				<div class="submenu">
-					<h4><a>매장정보</a></h4>
-					<h4 class="selected"><a>디자이너관리</a></h4>
-					<h4><a>개인정보수정</a></h4>
-				</div>
-		
-				<!------------- ----------class="inner box" 지우세요------------->
-				<div class="inner box">
-				<!---------------------- Todo ---------------------->
-				<!---------------------- Todo ---------------------->
-				<!---------------------- Todo ---------------------->
-				</div>
+		<h2 id="content_title">지역별매장</h2>
+		<div class="innerbox">
+			<div class="choose">
+				<a class="where" href="#">서울특별시</a>
+				<a class="where" href="#">광주광역시</a>
+				<a class="where" href="#">대구광역시</a>
+				<a class="where" href="#">대전광역시</a>
+				<a class="where" href="#">부산광역시</a>
+				<a class="where" href="#">울산광역시</a>
+				<a class="where" href="#">인천광역시</a>
+			</div>
+			<hr id="line">
+			<div class="choose">
+				<a class="where" href="#">강원도</a>
+				<a class="where" href="#">경기도</a>
+				<a class="where" href="#">경상남도</a>
+				<a class="where" href="#">경상북도</a>
+				<a class="where" href="#">전라남도</a>
+				<a class="where" href="#">전라북도</a>
+				<a class="where" href="#">충청남도</a>
+				<a class="where" href="#">충청북도</a>
+			</div>
 		</div>
+		
+		
+
+		
 		<!-- 화살표버튼 -->
 		<div id="go_top">
 			<a><i class="fas fa-arrow-circle-up"></i></a>

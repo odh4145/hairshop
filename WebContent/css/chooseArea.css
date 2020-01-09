@@ -1,0 +1,32 @@
+.innerbox{
+	padding:50px;
+}
+.choose{
+	width:100%;
+	overflow: hidden;
+}
+
+.where{
+	float:left;
+	display:block;
+	border:1px solid #eee;
+	border-top:3px solid #313f67;
+	text-align:center;
+	width:230px;
+	height:155px;
+	margin:20px;
+	font-size:30px;
+	line-height:155px;
+	color:#313f67;
+}
+
+.where:hover{
+	background: #313f67;
+	color:white;
+}
+
+#line{
+	width:1000px;
+	margin:40px auto;
+	border:1px solid #eee;
+}
