@@ -102,10 +102,10 @@ public LocDTO[] selectByLoc(String loc_lat,String loc_lng) throws SQLException{
 	
 	try {
 		pstmt = conn.prepareStatement(L.SQL_WRITE_SELECT_BY_LOC);
-		pstmt.setDouble(1, d_lat-0.2);
-		pstmt.setDouble(2, d_lat+0.2);
-		pstmt.setDouble(3, d_lng-0.2);
-		pstmt.setDouble(4, d_lng+0.2);
+		pstmt.setDouble(1, d_lat-0.08);
+		pstmt.setDouble(2, d_lat+0.08);
+		pstmt.setDouble(3, d_lng-0.08);
+		pstmt.setDouble(4, d_lng+0.08);
 		rs = pstmt.executeQuery();
 		arr = createArray(rs);
 		

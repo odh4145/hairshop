@@ -236,7 +236,9 @@ INSERT INTO SHOP(
 	sh_location_lat,
 	sh_location_lng
 )
-VALUES('store03', '1234', 33333333333, '매장', '07011111111','보라매동 969-20','37.5434924','127.0733933');
+VALUES('store03', '1234', 33333333333, '건대좌표', '07011111111','보라매동 969-20','37.5434924','127.0733933');
+
+
 
 INSERT INTO SHOP(
 	sh_id,
@@ -248,7 +250,50 @@ INSERT INTO SHOP(
 	sh_location_lat,
 	sh_location_lng
 )
-VALUES('store04', '1234', 4444444444, '매장', '07011111111','봉천로7길','37.490259','126.916320');
+VALUES('store04', '1234', 4444444444, '신림좌표', '07011111111','봉천로7길','37.490259','126.916320');
+
+
+
+INSERT INTO SHOP(
+	sh_id,
+	sh_pw,
+	sh_no_id,
+	sh_name,
+	sh_telephone,
+	sh_location,
+	sh_location_lat,
+	sh_location_lng
+)
+VALUES('store05', '1234', 55555555, '신림좌표', '07011111111','봉천로7길','37.487159','126.932628');
+
+
+INSERT INTO SHOP(
+	sh_id,
+	sh_pw,
+	sh_no_id,
+	sh_name,
+	sh_telephone,
+	sh_location,
+	sh_location_lat,
+	sh_location_lng
+)
+VALUES('store06', '1234', 66666666666, '신림좌표', '07011111111','봉천로7길','37.491858','126.927779');
+
+INSERT INTO SHOP(
+	sh_id,
+	sh_pw,
+	sh_no_id,
+	sh_name,
+	sh_telephone,
+	sh_location,
+	sh_location_lat,
+	sh_location_lng
+)
+VALUES('store12', '1234', 71231117, '역삼좌표', '07011111111','봉천로7길','37.511016','127.034426'),
+('store08', '1234', 888888888, '역삼좌표', '07011111111','봉천로7길','37.521016','127.099426'),
+('store09', '1234', 99999999, '역삼좌표', '07011111111','봉천로7길','37.531016','127.032626'),
+('store10', '1234', 101010101, '역삼좌표', '07011111111','봉천로7길','37.525516','127.036626'),
+('store11', '1234', 111111112, '역삼좌표', '07011111111','봉천로7길','37.518816','127.039926');
 
 INSERT INTO SERVICE
 (
