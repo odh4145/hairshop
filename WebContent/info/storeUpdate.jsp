@@ -23,7 +23,7 @@
 
 <!-- css파일 link -->
 <link href="../css/menu.css" rel="stylesheet" type="text/css">
-<link href="../css/storeInfo.css" rel="stylesheet" type="text/css">
+<link href="../css/storeupdate.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -52,36 +52,39 @@
 				<img src="${info[0].sh_picture3 }" />
 			</div>
 			<div class="store_info">
-				<h2>${info[0].sh_name }</h2>
-				<div id="book_review">
-					<a style="border-right:1px solid #eee" href="#">
-						<i class="far fa-calendar-check"></i><br>예약
-					</a>
-					<a href="#"><i class="far fa-comment-dots"></i><br>리뷰</a>
-				</div>
+				<form name="frm" action="designerOk.bbq" method="post" onsubmit="return chkSubmit(this)">
 				
-				<!-- 매장 기본정보 -->
-				<div class="information">
-					<p>
-						<i class="fas fa-phone"></i>${info[0].sh_telephone }<br>
-						<i class="fas fa-map-marker-alt"></i>${info[0].sh_location }<br>
-						<i class="fas fa-clock"></i>
-						${info[0].sh_starttime }:00 - ${info[0].sh_endtime }:00<br>
-						${info[0].sh_hello }
-					</p>
-				</div>	
-				
-				<!-- 매장 가격정보 -->
-				<div class="information">
-					<h3>스타일 정보</h3>
-					<h4>경과시간은 예상일 뿐이며 매장상황에 따라 달라질 수 있습니다.</h4>
-					<c:forEach var="dto1" items="${service }">
-						<ul class="price_info">
-							<li>${dto1.ser_name }<br>${dto1.ser_price }원<br><span>${dto1.ser_time }시간</span></li>
-						</ul>
-					</c:forEach>	
-				</div>
-				
+					<h2>${info[0].sh_name }</h2>
+				<!-- 매장 기본정보 -->					
+					<ul class="information">
+						<li>번호 
+							<input type="text" name="sh_telephone" value="${info[0].sh_telephone }" /> 
+							<span>* 번호는 -포함하여 적어주세요.</span>
+						</li>
+						<li>주소 <input type="text" name="sh_location" value="${info[0].sh_location }" /></li>
+						<li>시간
+							<input class="time" type="text" name="sh_starttime" value="${info[0].sh_starttime }" /> - 
+							<input class="time" type="text" name="sh_endtime" value="${info[0].sh_endtime }" />
+						</li>
+						<li class="himessage">인사말<br>
+							<textarea name="sh_hello">${info[0].sh_hello }"
+							</textarea>
+						</li>
+					</ul>
+					
+					<!-- 매장 가격정보 -->
+					<div class="information">
+						<h3>스타일 정보</h3>
+						<h4>경과시간은 시간 단위로만 적어주세요.</h4>
+						<c:forEach var="dto1" items="${service }">
+							<ul class="price_info">
+								<li><span>이름</span><input type="text" name="ser_name" value="${dto1.ser_name }" /></li>
+								<li><span>가격</span><input type="text" name="ser_price" value="${dto1.ser_price }" /></li>
+								<li><span>시간</span><input class="time" type="text" name="ser_time" value="${dto1.ser_time }" /></li>
+							</ul>
+						</c:forEach>	
+					</div>									
+				</form>
 				<!-- 디자이너 목록 -->
 				<div class="information">
 					<h3>디자이너 정보</h3>
@@ -94,14 +97,13 @@
 						</ul>
 					</c:forEach>
 				</div>
-				
-			</div>			
-		</div>
+			</div>
+		</div>			
+	</div>
 		
-		<!-- 화살표버튼 -->
-		<div id="go_top">
-			<a><i class="fas fa-arrow-circle-up"></i></a>
-		</div>
+	<!-- 화살표버튼 -->
+	<div id="go_top">
+		<a><i class="fas fa-arrow-circle-up"></i></a>
 	</div>
 </section>
 
@@ -113,12 +115,3 @@
 	
 	</c:otherwise>
 </c:choose>
-
-
-
-
-
-
-
-
-

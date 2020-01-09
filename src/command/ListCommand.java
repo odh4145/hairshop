@@ -1,4 +1,4 @@
-package command.cmt;
+package command;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

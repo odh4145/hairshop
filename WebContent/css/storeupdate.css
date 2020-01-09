@@ -1,3 +1,11 @@
+input{
+	width:160px;
+	font-size:15px;
+}
+
+textarea{
+	width:400px;
+}
 .store_pic{
 	position:relative;
 	overflow:hidden;
@@ -71,26 +79,24 @@
 }
 
 .price_info{
-	margin-right:20px;
-	position:relative;
-	width:100px;
-	height:100px;
 	float:left;
-	border:2px solid #f6b798;
-	border-radius:50%;
-	text-align: center;
-	vertical-align: middle;
+	margin-right:40px;
+	border:1px solid #eee;
+	padding:15px;
 }
-.price_info span{
-	color:#bbb;
-	font-size:14px;
+.price_info input{
+	width:160px;
+	margin-bottom:10px;
 }
 .price_info li{
 	margin-top:10px;
 }
 
-.price_inf li:last-child, .designer li:last-child{
+.price_info li:last-child, .designer li:last-child{
 	margin-right:0;
+}
+.price_info span{
+	width:50px;
 }
 
 .designer{
@@ -109,3 +115,10 @@
 	font-weight:800;
 }
 
+.time{
+	width:72px;
+}
+
+.himessage{
+	width:500px;
+}

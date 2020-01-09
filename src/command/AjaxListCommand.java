@@ -1,4 +1,4 @@
-package command.loc;
+package command;
 
 import java.io.IOException;
 

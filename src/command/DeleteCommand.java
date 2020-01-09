@@ -1,24 +1,24 @@
-package command.reply;
+package command;
 
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.lec.beans.ReplyDAO;
+import com.lec.beans.WriteDAO;
 
-public class ReDeleteCommand implements Command, command.cmt.Command {
+public class DeleteCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		int cnt = 0;
-		ReplyDAO daos = new ReplyDAO();
+		WriteDAO dao = new WriteDAO();
 		
 		//입력한 값을 받아오기
-		int re_uid = Integer.parseInt(request.getParameter("re_uid"));
+		int co_uid = Integer.parseInt(request.getParameter("co_uid"));
 		
 		try {			
-			cnt = daos.deleteByUid(re_uid);
+			cnt = dao.deleteByUid(co_uid);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

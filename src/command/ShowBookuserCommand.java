@@ -1,4 +1,4 @@
-package command.book;
+package command;
 
 import java.sql.SQLException;
 
@@ -7,12 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.book_show.beans.BookUserDAO;
 import com.book_show.beans.BookUserDTO;
-import com.info.beans.BookDAO;
-import com.info.beans.BookDTO;
-import com.info.beans.Command_k;
 
 
-public class ShowBookuserCommand implements Command_k{
+public class ShowBookuserCommand implements Command{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {

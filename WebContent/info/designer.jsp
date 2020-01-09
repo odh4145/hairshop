@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -18,16 +18,23 @@
 </head>
 
 <script>
-function chkSubmit(name){
-	var name = $(this).parent("form").attr("name");
-	alert(name);
-	frm = document.forms[name];		
-	if(de_name == "" && de_position == "" && de_career == "" && de_major == ""){
-		alert("모든 칸을 입력해주세요.");
-		return false;
-	}	
-	return true;
-}
+	function chkSubmit(frm) {
+		//	var name = $(this).parent("form").attr("name");
+		//	alert(name);
+
+		var de_uid = frm.de_uid.value.trim();
+		var de_name = frm.de_name.value.trim();
+		var de_position = frm.de_position.value.trim();
+		var de_career = frm.de_career.value.trim();
+		var de_major = frm.de_major.value.trim();
+
+		if (de_name == "" && de_position == "" && de_career == ""
+				&& de_major == "") {
+			alert("모든 칸을 입력해주세요.");
+			return false;
+		}
+		return true;
+	}
 </script>
 
 <body>
@@ -47,37 +54,34 @@ function chkSubmit(name){
 		<div class="content">
 			<!-- 상세페이지 제목 -->
 			<h2 id="content_title">디자이너관리</h2>
-
-			<!------------- 세부메뉴 ----------마이페이지아닌 분들은 세부메뉴 지우세요------------->
-			<div class="submenu inner">
-				<h4><a>매장정보</a></h4>
-				<h4 class="selected"><a>디자이너관리</a></h4>
-				<h4><a>개인정보수정</a></h4>
-			</div>
-
-			<!------------- 세부메뉴 ----------class="inner" 지우세요------------->
-			<div class="inner">
-			<!-- 디자이너 목록 -->
-				<div class="information">
-
+			<div class="box clear">
+				<!------------- 세부메뉴 ----------마이페이지아닌 분들은 세부메뉴 지우세요------------->
+				<div class="submenu">
+					<h4><a>매장정보</a></h4>
+					<h4 class="selected"><a>디자이너관리</a></h4>
+					<h4><a>개인정보수정</a></h4>
+				</div>
+	
+				<!------------- 세부메뉴 ----------class="inner" 지우세요------------->
+				<div class="inner">
+					<!-- 디자이너 목록 -->
 					<c:forEach var="dto" varStatus="status" items="${designer }">
-						<form name="frm${status.count }" action="designerOk.bbq" method="post" onsubmit="return chkSubmit()" 
-								enctype="Multipart/form-data">
+						<form name="frm${status.count }" action="designerOk.bbq" method="post" onsubmit="return chkSubmit(this)"
+							enctype="Multipart/form-data">
 							<ul class="designer">
-								<li><img src="${dto.de_picture }" alt="designer"></li>
-								<li><input type="hidden" name="de_uid" value="${dto.de_uid }"/></li>
-								<li>이름 <input type="text" name="de_name" value="${dto.de_name }"/></li>
-								<li>직책 <input type="text" name="de_position" value="${dto.de_position }"/></li>
-								<li>경력 <input type="text" name="de_carrer" value="${dto.de_career }"/></li>
+								<li id="imgbox"><img src="${dto.de_picture }"></li>
+								<li><input type="hidden" name="de_uid" value="${dto.de_uid }" /></li>
+								<li>이름 <input type="text" name="de_name" value="${dto.de_name }" /></li>
+								<li>직책 <input type="text" name="de_position" value="${dto.de_position }" /></li>
+								<li>경력 <input type="text" name="de_career" value="${dto.de_career }" /></li>
 								<li>전공 <input type="text" name="de_major" value="${dto.de_major }"></li>
 								<li><input class="insert_dpic" type="file" name="de_picture" size=40></li>
-								<li><input class="update_d" type="submit" value="수정하기"/></li>
+								<li><input class="update_d" type="submit" value="수정하기" /></li>
 							</ul>
-						</form>					
+						</form>
 					</c:forEach>
-				</div>				
+				</div>
 			</div>
-
 			<!-- 화살표버튼 -->
 			<div id="go_top">
 				<a><i class="fas fa-arrow-circle-up"></i></a>
@@ -87,7 +91,8 @@ function chkSubmit(name){
 
 
 	<!-- javascript 링크 -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="../js/public.js" type="text/javascript"></script>
 </body>
 </html>
