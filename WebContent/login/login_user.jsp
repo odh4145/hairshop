@@ -11,7 +11,6 @@
 <!-- css파일 link -->
 <link href="../css/menu.css" rel="stylesheet" type="text/css">
 <link href="../css/sub.css" rel="stylesheet" type="text/css">
-<link href="../css/login.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -59,7 +58,7 @@ function chkUserSubmit(){
 		<!-- 로그인 -->
 			<div id="login_user">
 				
-				<form name="frm_user" action="login_user_ok.jsp" method="post" onsubmit="return chkUserSubmit()">
+				<form name="frm_user" action="login_user_ok.bbqLoginUser" method="post" onsubmit="return chkUserSubmit()">
 					<input id="use_id" type="text" name="use_id" placeholder="아이디">
 					<br><br>
 					<input id="use_pw" type="password" name="use_pw" placeholder="비밀번호">
@@ -68,7 +67,7 @@ function chkUserSubmit(){
 					<br><br>
 				</form>
 				
-				<a href="join_user.jsp">아직 회원이 아니신가요?</a>
+				<a href="../join/join_user.bbqJoin">아직 회원이 아니신가요?</a>
 				<br><br>
 				
 			</div>
@@ -87,3 +86,5 @@ function chkUserSubmit(){
 <script src="js/public.js" type="text/javascript"></script>
 </body>
 </html>
+
+<!-- https://m.blog.naver.com/tnakekd/220256651672 -->

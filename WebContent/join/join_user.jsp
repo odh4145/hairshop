@@ -58,20 +58,20 @@ function chkUserSubmit(){
 			<li><a href="#">지역별매장</a></li>
 			<li><a href="#">마이페이지</a></li>
 		</ul>	
-		<li id="login" ><a href="#">로그아웃</a></li>
+		<li id="login" ><a href="#">로그인</a></li>
 	</ul>
 </header>
 
 <section>
 	<div class="content">
 		<!-- 상세페이지 제목 -->
-		<h2 id="content_title">손님 회원가입</h2>
+		<h2 id="content_title">손님용 회원가입</h2>
 		
 	
 		<!-- 회원가입 -->
 			<div id="join_user">
 			
-				<form name="frm_user" action="join_user_ok.jsp" method="post" onsubmit="return chkUserSubmit()">
+				<form name="frm_user" action="join_user_ok.bbqJoin" method="post" onsubmit="return chkUserSubmit()">
 				
 					<input id="use_id" type="text" name="use_id" placeholder="아이디">
 					<br><br>
@@ -79,7 +79,7 @@ function chkUserSubmit(){
 					<br><br>
 					<input id="use_name" type="text" name="use_name" placeholder="이름">
 					<br><br>
-					<input id="phone_num" type="text" name="use_phoneNum" placeholder="휴대폰 번호">
+					<input id="use_phoneNum" type="text" name="use_phoneNum" placeholder="휴대폰 번호">
 					<br><br>
 					<input type="submit" id="btn" value="가입하기"/>
 					<br><br>

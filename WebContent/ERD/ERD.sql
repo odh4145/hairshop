@@ -2,13 +2,13 @@
 
 /* Drop Tables */
 
-DROP TABLE IF EXISTS REPLY;
-DROP TABLE IF EXISTS COMMENT;
-DROP TABLE IF EXISTS BOOK;
-DROP TABLE IF EXISTS DESIGNER;
-DROP TABLE IF EXISTS SERVICE;
-DROP TABLE IF EXISTS SHOP;
-DROP TABLE IF EXISTS USER;
+DROP TABLE REPLY;
+DROP TABLE COMMENT;
+DROP TABLE BOOK;
+DROP TABLE DESIGNER;
+DROP TABLE SERVICE;
+DROP TABLE SHOP;
+DROP TABLE USER;
 
 
 
@@ -205,6 +205,7 @@ INSERT INTO DESIGNER
 )
 VALUES('디자이너1', '점장님', 15, '염색', '1', 1);
 
+
 INSERT INTO DESIGNER
 (
 	de_name,
@@ -224,6 +225,27 @@ INSERT INTO SERVICE
 )
 VALUES('염색', 100000, 30000, 1);
 
+<<<<<<< HEAD
+-- DELETE FROM user WHERE use_uid = ;
+-- DELETE FROM shop WHERE sh_uid = 2;
+
+select * from user;
+select * from shop;
+
+
+-- 특정 id 로 회원 가입을 하려 할때
+-- user 의  use_id  이어서도 안되고
+-- ship 의  sh_id 이어서도 암됨
+
+select
+	(select count(*) from user where use_id = 'store01'),
+	(select count(*) from shop where sh_id = 'store01')
+;
+
+select
+	(select count(*) from user where use_phoneNum = '01000000000'),
+	(select count(*) from shop where sh_telephone = 'store01')
+;
 
 
 INSERT INTO SHOP(
@@ -261,7 +283,7 @@ VALUES('커트', 30000, 10000, 1);
 select * from shop;
 select * from service;
 select * from designer;
-select * from `user`;
+select * from user;
 insert into book (
 bo_service, bo_stat, bo_time, bo_comment, use_uid, de_uid, ser_uid
 ) values ('test_01', 1, now(), 'bo_comment_test_01', 1, 1, 1) ;
@@ -316,6 +338,11 @@ join designer d on b.de_uid = d.de_uid
 join user u on b.use_uid = u.use_id
 join service s on b.ser_uid = s.ser_uid
 join shop sh on d.sh_uid = sh.sh_uid;
+<<<<<<< HEAD
 /*de_picture가 null로 들어가니 쿼리문에서 실행 문제가 생김*/
 
 select * from designer;
+=======
+/*de_picture가 null로 들어가니 쿼리문에서 실행 문제가 생김*/
+
+>>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
