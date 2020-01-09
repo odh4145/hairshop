@@ -52,7 +52,7 @@ function chkUserSubmit(){
 <body>
 <header>
 	<ul id="top_menu">
-		<li id="logo"><a href="index.html">Booking<span>HairShop</span></a></li>
+		<li id="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
 		<ul id="menu_list">
 			<li><a href="#">내주변</a></li>
 			<li><a href="#">지역별매장</a></li>
@@ -71,7 +71,7 @@ function chkUserSubmit(){
 		<!-- 회원가입 -->
 			<div id="join_user">
 			
-				<form name="frm_user" action="join_user_ok.bbqJoin" method="post" onsubmit="return chkUserSubmit()">
+				<form name="frm_user" action="join_user_ok.bbq" method="post" onsubmit="return chkUserSubmit()">
 				
 					<input id="use_id" type="text" name="use_id" placeholder="아이디">
 					<br><br>

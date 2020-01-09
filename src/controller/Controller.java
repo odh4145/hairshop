@@ -78,7 +78,7 @@ public class Controller extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "join_user_ok.jsp";
 			break;
-			
+
 		// 손님-로그인
 		case "/login/login_user.bbq":
 			viewPage = "login_user.jsp";
@@ -88,7 +88,12 @@ public class Controller extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "login_user_ok.jsp";
 			break;
-			
+
+		// 손님-주변매장
+		case "/location/Location2.bbq":
+			viewPage = "Location2.jsp";
+			break;
+
 		// 손님-예약내역
 		case "/usertest.bbq":
 			System.out.println("debug용");
@@ -161,7 +166,7 @@ public class Controller extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "login_shop_ok.jsp";
 			break;
-			
+
 		// 매장-매장정보
 		case "/info/storeUpdate.bbq":
 			command = new ShopCommand();

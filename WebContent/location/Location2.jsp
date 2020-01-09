@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -34,13 +36,18 @@ th,td {
 <body>
 	<header>
 		<ul id="top_menu">
-			<li id="logo"><a href="index.jsp">Booking<span>HairShop</span></a></li>
+			<li id="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
 			<ul id="menu_list">
 				<li><a href="Location2.jsp">내주변</a></li>
 				<li><a href="#">지역별매장</a></li>
-				<li><a href="info/storeInfo.bbq">마이페이지</a></li>
+				<li><a href="../info/storeInfo.bbq">마이페이지</a></li>
 			</ul>
-			<li id="login"><a href="login/login_user.bbq">로그인</a></li>
+			<c:if test="${sessionScope.user == null }">
+			<li id="login" ><a href="../login/login_user.bbq">로그인</a></li>
+			</c:if>
+			<c:if test="${sessionScope.user != null }">
+			<li id="login" ><a href="../logout/Userlogout.bbq">로그아웃</a></li>
+			</c:if>
 		</ul>
 	</header>
 

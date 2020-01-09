@@ -42,11 +42,11 @@ function chkUserSubmit(){
 <body>
 <header>
 	<ul id="top_menu">
-		<li id="logo"><a href="../index.jsp">Booking<span>HairShop</span></a></li>
+		<li id="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
 		<ul id="menu_list">
-			<li><a href="../info/storeInfo.bbq?sh_uid=<%=session.getAttribute("shop") %>">내주변</a></li>
+			<li><a href="../location/Location2.bbq %>">내주변</a></li>
 			<li><a href="#">지역별매장</a></li>
-			<li><a href="../changeinfo/changeUserInfo.jsp">마이페이지</a></li>
+			<li><a href="../changeinfo/changeUserInfo.bbq">마이페이지</a></li>
 		</ul>	
 		<c:if test="${sessionScope.user == null }">
 		<li id="login" ><a href="login_user.bbqLoginUser">로그인</a></li>
@@ -70,7 +70,7 @@ function chkUserSubmit(){
 		<!-- 로그인 -->
 			<div id="login_user">
 				
-				<form name="frm_user" action="login_user_ok.bbqLoginUser" method="post" onsubmit="return chkUserSubmit()">
+				<form name="frm_user" action="login_user_ok.bbq" method="post" onsubmit="return chkUserSubmit()">
 					<input id="use_id" type="text" name="use_id" placeholder="아이디">
 					<br><br>
 					<input id="use_pw" type="password" name="use_pw" placeholder="비밀번호">
@@ -79,7 +79,7 @@ function chkUserSubmit(){
 					<br><br>
 				</form>
 				
-				<a href="../join/join_user.bbqJoin">아직 회원이 아니신가요?</a>
+				<a href="../join/join_user.bbq">아직 회원이 아니신가요?</a>
 				<br><br>
 				
 			</div>

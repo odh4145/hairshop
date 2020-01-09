@@ -2,7 +2,9 @@
     pageEncoding="UTF-8"%>
 
 <% session.invalidate();%>
+
+<%=var com = null;%>
 <script>
 	alert("로그아웃");
-	location.href = "../login/login_user.bbqLoginUser";
+	location.href="
 </script>
