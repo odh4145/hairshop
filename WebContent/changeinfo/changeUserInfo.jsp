@@ -70,7 +70,7 @@ frm = document.forms["frm_chk_user_pw"];
 		
 		<c:choose>
 			<c:when test="${sessionScope.user != null }">
-				<form name="frm_chk_user_pw" action="chk_user_pw" method="post" onsubmit="return chkUserPw()">
+				<form name="frm_chk_user_pw" action="changeUserInfo_ok.jsp" method="post" onsubmit="return chkUserPw()">
 					<input id="use_pw" type="password" name="use_pw" placeholder="현재 비밀번호">
 					<br><br>
 					<input id="use_pw2" type="password" name="use_pw2" placeholder="새 비밀번호">

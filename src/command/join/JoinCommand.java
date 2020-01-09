@@ -54,7 +54,7 @@ public class JoinCommand implements Command {
 		} else if(cnt2 == 0) {
 			request.setAttribute("join_user", 0);
 		} else {
-			request.setAttribute("join_user", cnt3);
+			request.setAttribute("join_user", 1);
 		}
 		
 		//request.setAttribute("join_user", cnt);

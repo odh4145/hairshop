@@ -17,7 +17,7 @@
 			history.back();
 		</script>
 	</c:when>
-	<c:otherwise>
+	<c:when test="${join_user == 1}">
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -34,13 +34,13 @@
 <body>
 <header>
 	<ul id="top_menu">
-		<li id="logo"><a href="index.jsp">Booking<span>HairShop</span></a></li>
+		<li id="logo"><a href="../index.jsp">Booking<span>HairShop</span></a></li>
 		<ul id="menu_list">
 			<li><a href="#">내주변</a></li>
 			<li><a href="#">지역별매장</a></li>
 			<li><a href="#">마이페이지</a></li>
 		</ul>	
-		<li id="login" ><a href="#">로그아웃</a></li>
+		<li id="login" ><a href="../login/login_user.bbqLoginUser">로그인</a></li>
 	</ul>
 </header>
 
@@ -64,7 +64,7 @@
 <script src="js/public.js" type="text/javascript"></script>
 </body>
 </html>		
-	</c:otherwise>
+	</c:when>
 </c:choose>
 
 

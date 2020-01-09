@@ -383,3 +383,18 @@ SELECT * FROM USER WHERE use_id='test01';
 -- select
 -- 	(select count() from user where use_phoneNum = '01000000000'),
 -- 	(select count() from shop where sh_telephone = 'store01');
+
+select * from user where use_id='test01';
+
+
+UPDATE [테이블] SET [열] = '변경할값' WHERE [조건]
+
+
+uid >> 2
+uid2인사람의 비밀번호 바꾸기 
+
+-- update user set use_pw = '?' where use_uid = '?';
+
+select * from user where use_uid=2;
+	
+update user set use_pw = ? where use_uid = ?
