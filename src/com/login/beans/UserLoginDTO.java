@@ -1,23 +1,28 @@
 package com.login.beans;
 
-public class LoginDTO {
+public class UserLoginDTO {
 	private int use_uid;
 	private String use_id;
 	private String use_pw;
+	private String use_name;
+	//private String use_phoneNum;
 	
 	
 	// 기본 생성자
-	public LoginDTO() {
+	public UserLoginDTO() {
 		super();
 	}
 
 	// 매개변수 받는 생성자
-	public LoginDTO(int use_uid, String use_id, String use_pw) {
+	public UserLoginDTO(int use_uid, String use_id, String use_pw, String use_name/*, String use_phoneNum*/) {
 		super();
 		this.use_uid = use_uid;
 		this.use_id = use_id;
 		this.use_pw = use_pw;
+		this.use_name = use_name;
+		//this.use_phoneNum = use_phoneNum;
 	}
+	
 
 	// getter / setter
 	public int getUse_uid() {
@@ -44,11 +49,29 @@ public class LoginDTO {
 		this.use_pw = use_pw;
 	}
 
+	public String getUse_name() {
+		return use_name;
+	}
+
+	public void setUse_name(String use_name) {
+		this.use_name = use_name;
+	}
+
+//	public String getUse_phoneNum() {
+//		return use_phoneNum;
+//	}
+//
+//	public void setUse_phoneNum(String use_phoneNum) {
+//		this.use_phoneNum = use_phoneNum;
+//	}
+
 	// 디버깅용
 	@Override
 	public String toString() {
-		return "LoginDTO ]" + use_uid + " : " + use_id + " : " + use_pw;
+		return "UserLoginDTO ]" + use_uid + " : " + use_id + " : " + use_pw + " : " + use_name/* + " : " + use_phoneNum*/;
 	}
+	
+
 	
 	
 	

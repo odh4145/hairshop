@@ -1,11 +1,6 @@
 package controller.login;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,16 +8,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import command.login.Command;
-import command.login.LoginCommand;
+import command.login.ShopLoginCommand;
 
-@WebServlet("*.bbqLoginUser")
-public class LoginController extends HttpServlet {
+@WebServlet("*.bbqLoginShop")
+public class ShopLoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-    public LoginController() {
+       
+    public ShopLoginController() {
         super();
     }
 
@@ -52,29 +46,48 @@ public class LoginController extends HttpServlet {
 		System.out.println("conPath: " + conPath);
 		System.out.println("com: " + com);
 		
-		
 		// 1. command 객체 수행
 		switch(com) {
-		case "/login/login_user.bbqLoginUser":
-			viewPage = "login_user.jsp";
+		case "/login/login_shop.bbqLoginShop":
+			viewPage = "login_shop.jsp";
 			break;
-		case "/login/login_user_ok.bbqLoginUser":
-			command = new LoginCommand();
+		case "/login/login_shop_ok.bbqLoginShop":
+			command = new ShopLoginCommand();
 			command.execute(request, response);
-			viewPage = "login_user_ok.jsp";
+			viewPage = "login_shop_ok.jsp";
 			break;
 		}
-				
+		
+		
 		// 2.View(*.jsp) 선택
-				
+		
 		// 위에서 결졍된 view 에 forward 해줌
 		if(viewPage != null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response);
 		}
-		
-		
-				
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
 }

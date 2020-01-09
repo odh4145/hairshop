@@ -1,17 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "java.sql.*" %>
-<%
-	request.setCharacterEncoding("utf-8");  // 한글 인코딩, 받아올때 꼭!
-%>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insert title here</title>
-</head>
-<body>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    
+<c:choose>
+	<c:when test="${login_shop == -1 }">
+		<script>
+			alert("로그인 실패!! (없는 아이디)");
+			history.back();
+		</script>
+	</c:when>
+	
+	<c:when test="${login_shop == 0 }">
+		<script>
+			alert("로그인 실패!! (비밀번호 틀림)");
+			history.back();
+			
+		</script>
+	</c:when>
+    
+    <c:when test="${login_shop == 1 }">
+		<script>
+			alert("로그인 성공");
+			location.href = "login_shop.bbqLoginShop";
+		</script>
+	</c:when>    
+</c:choose>
 
-</body>
-</html>
+
+
+
