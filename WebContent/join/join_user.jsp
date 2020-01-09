@@ -5,13 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>손님 로그인</title>
+<title>손님 회원가입</title>
 <link rel="icon" href="img/favicon.png">
 
 <!-- css파일 link -->
 <link href="../css/menu.css" rel="stylesheet" type="text/css">
-<link href="../css/sub.css" rel="stylesheet" type="text/css">
-<link href="../css/login.css" rel="stylesheet" type="text/css">
+<link href="../css/join.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -22,6 +21,8 @@ function chkUserSubmit(){
 	
 	var use_id = frm["use_id"].value.trim();
 	var use_pw = frm["use_pw"].value.trim();
+	var use_name = frm["use_name"].value.trim();
+	var use_phoneNum = frm["use_phoneNum"].value.trim();
 	
 	if(use_id == ""){
 		alert("아이디를 입력해주세요");
@@ -31,6 +32,16 @@ function chkUserSubmit(){
 	if(use_pw == ""){
 		alert("비밀번호를 입력해주세요");
 		frm["use_pw"].focus();
+		return false;
+	}
+	if(use_name == ""){
+		alert("이름을 입력해주세요");
+		frm["use_name"].focus();
+		return false;
+	}
+	if(use_phoneNum == ""){
+		alert("휴대폰 번호를 입력해주세요");
+		frm["use_phoneNum"].focus();
 		return false;
 	}
 	
@@ -47,31 +58,36 @@ function chkUserSubmit(){
 			<li><a href="#">지역별매장</a></li>
 			<li><a href="#">마이페이지</a></li>
 		</ul>	
-		<li id="login" ><a href="#">로그아웃</a></li>
+		<li id="login" ><a href="#">로그인</a></li>
 	</ul>
 </header>
 
 <section>
 	<div class="content">
 		<!-- 상세페이지 제목 -->
-		<h2 id="content_title">손님 로그인</h2>
+		<h2 id="content_title">손님용 회원가입</h2>
 		
-		<!-- 로그인 -->
-			<div id="login_user">
+	
+		<!-- 회원가입 -->
+			<div id="join_user">
+			
+				<form name="frm_user" action="join_user_ok.bbqJoin" method="post" onsubmit="return chkUserSubmit()">
 				
-				<form name="frm_user" action="login_user_ok.jsp" method="post" onsubmit="return chkUserSubmit()">
 					<input id="use_id" type="text" name="use_id" placeholder="아이디">
 					<br><br>
 					<input id="use_pw" type="password" name="use_pw" placeholder="비밀번호">
 					<br><br>
-					<input type="submit" id="btn" value="로그인"/>
+					<input id="use_name" type="text" name="use_name" placeholder="이름">
 					<br><br>
+					<input id="use_phoneNum" type="text" name="use_phoneNum" placeholder="휴대폰 번호">
+					<br><br>
+					<input type="submit" id="btn" value="가입하기"/>
+					<br><br>
+					
 				</form>
 				
-				<a href="join_user.jsp">아직 회원이 아니신가요?</a>
-				<br><br>
-				
 			</div>
+		
 		
 		
 		<!-- 화살표버튼 -->

@@ -1,14 +1,14 @@
-﻿SET SESSION FOREIGN_KEY_CHECKS=0;
+SET SESSION FOREIGN_KEY_CHECKS=0;
 
 /* Drop Tables */
 
-DROP TABLE REPLY;
-DROP TABLE COMMENT;
-DROP TABLE BOOK;
-DROP TABLE DESIGNER;
-DROP TABLE SERVICE;
-DROP TABLE SHOP;
-DROP TABLE USER;
+DROP TABLE IF EXISTS REPLY;
+DROP TABLE IF EXISTS COMMENT;
+DROP TABLE IF EXISTS BOOK;
+DROP TABLE IF EXISTS DESIGNER;
+DROP TABLE IF EXISTS SERVICE;
+DROP TABLE IF EXISTS SHOP;
+DROP TABLE IF EXISTS USER;
 
 
 
@@ -361,3 +361,40 @@ join user u on b.use_uid = u.use_id
 join service s on b.ser_uid = s.ser_uid
 join shop sh on d.sh_uid = sh.sh_uid;
 /*de_picture가 null로 들어가니 쿼리문에서 실행 문제가 생김*/
+
+select * from user;
+
+select * from shop;
+
+select * from user where user.use_id = 'test01';
+
+SELECT * FROM USER WHERE use_id='test01';
+
+-- delete from user where use_uid = 3;
+
+-- 특정 id 로 회원 가입을 하려 할때
+-- user 의  use_id  이어서도 안되고
+-- ship 의  sh_id 이어서도 암됨
+
+-- select
+-- 	(select count() from user where use_id = 'store01'),
+-- 	(select count() from shop where sh_id = 'store01');
+
+-- select
+-- 	(select count() from user where use_phoneNum = '01000000000'),
+-- 	(select count() from shop where sh_telephone = 'store01');
+
+select * from user where use_id='test01';
+
+
+UPDATE [테이블] SET [열] = '변경할값' WHERE [조건]
+
+
+uid >> 2
+uid2인사람의 비밀번호 바꾸기 
+
+-- update user set use_pw = '?' where use_uid = '?';
+
+select * from user where use_uid=2;
+	
+update user set use_pw = ? where use_uid = ?

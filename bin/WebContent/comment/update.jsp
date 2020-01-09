@@ -38,6 +38,65 @@ function chkSubmit(){
 }
 </script>
 <body>
+
+
+<%--내용 과 제목만 수정 가능. submit 하기전에 검증 --%>
+<form name="frm" action="updateOk.do" 
+	method="post" onsubmit="return chkSubmit()">
+	
+<table border ="1">
+	<caption><h2>후기 수정</h2></caption>
+<input type="hidden" name="co_uid" value="<%= co_uid%>"/>	
+		<tr>
+			<th>작성자</th>
+			<td align = "center">
+			    <%= co_name %>
+			</td>
+		</tr>
+		<tr>
+		<th>예약 번호</th>
+			<td align = "center">
+		      <%= bo_uid%><br>
+		</td>
+		</tr>
+		<tr>
+		<th>제목</th>
+			<td align = "center">
+		      <%= co_title%><br>
+		</td>
+		</tr>
+		<th>별점</th>
+			<td align = "center">
+			<input type="number" name="co_star" size = "50" value="<%= co_star%>" required><br>
+			</td>
+		</tr>
+		<tr>
+		<th>후기 내용</th>
+			<td colspan = "2" align = "center">
+				<textarea name = "board_content" rows = "20" cols = "80" required>${dto.content }</textarea>
+			</td>			
+		</tr>
+		<tr>
+			<td colspan = "2" align = "center">
+				<input type = "submit" value = "수정 완료">
+				<input type = "reset" value = "초기화">
+			</td>
+		</tr>
+		<tr>
+		<td colspan = "2" align = "center">
+		<button onclick="history.back()">이전으로</button>
+        <button onclick="location.href = 'list.do'">목록보기</button>
+        </td>
+        </tr>
+	</table>
+</form>
+</body>
+</html>
+
+
+
+	
+=======
 <h2>수정</h2>
 <%--내용 과 제목만 수정 가능. submit 하기전에 검증 --%>
 <form name="frm" action="updateOk.do" 
@@ -63,6 +122,7 @@ function chkSubmit(){
 
 
 
+>>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
 
 
 
