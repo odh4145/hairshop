@@ -39,6 +39,7 @@ function chkSubmit(){
 </script>
 <body>
 
+
 <%--내용 과 제목만 수정 가능. submit 하기전에 검증 --%>
 <form name="frm" action="updateOk.do" 
 	method="post" onsubmit="return chkSubmit()">
@@ -95,6 +96,33 @@ function chkSubmit(){
 
 
 	
+=======
+<h2>수정</h2>
+<%--내용 과 제목만 수정 가능. submit 하기전에 검증 --%>
+<form name="frm" action="updateOk.do" 
+	method="post" onsubmit="return chkSubmit()">
+<input type="hidden" name="co_uid" value="<%= co_uid%>"/>	
+작성자 : <%= co_name %><br>  <%-- 작성자 이름은 변경 불가 --%>
+제목 : <%= co_title%><br>
+별점:
+<input type="number" name="co_star" value="<%= co_star%>"><br>
+내용 :
+<textarea name="co_content"><%= co_content %></textarea>
+<br><br>
+<input type="submit" value="수정"/>
+</form>
+
+<button onclick="history.back()">이전으로</button>
+<button onclick="location.href = 'list.do'">목록보기</button>
+
+</body>
+</html>
+
+
+
+
+
+>>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
 
 
 

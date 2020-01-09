@@ -7,8 +7,8 @@
 %>
 <%
 	int co_uid = arr[0].getco_uid();
-	int bo_uid = arr[0].getbo_uid();
-	int co_star =arr[0].getco_star();
+    int co_star = arr[0].getco_star();
+    int bo_uid = arr[0].getbo_uid();
 	String co_name = arr[0].getco_name();
 	String co_title = arr[0].getco_title();
 	String co_content = arr[0].getco_content();
@@ -19,82 +19,58 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>수정 <%= co_title %></title>
+
 </head>
 <script>
 // form 검증
 function chkSubmit(){
 	frm = document.forms["frm"];
 	
-	var co_content = frm["co_content"].value.trim();
+	var co_title = frm["co_title"].value.trim();
+	var co_content =frm["co_content"].value.trim();
 	
-	if(co_content == ""){
+	if(co_title == ""){
+		alert("제목은 반드시 작성해야 합니다");
+		frm["co_title"].focus();
+		return false;
+	}
+	
+	else if(co_content== ""){
 		alert("내용은 반드시 작성해야 합니다");
 		frm["co_content"].focus();
-		return false;	
+		return false;
 	}
 	
 	return true;
 }
 </script>
 <body>
-
+<h2>수정</h2>
 <%--내용 과 제목만 수정 가능. submit 하기전에 검증 --%>
 <form name="frm" action="updateOk.do" 
 	method="post" onsubmit="return chkSubmit()">
-	
-<table border ="1">
-	<caption><h2>후기 수정</h2></caption>
 <input type="hidden" name="co_uid" value="<%= co_uid%>"/>	
-		<tr>
-			<th>작성자</th>
-			<td align = "center">
-			    <%= co_name %>
-			</td>
-		</tr>
-		<tr>
-		<th>예약 번호</th>
-			<td align = "center">
-		      <%= bo_uid%><br>
-		</td>
-		</tr>
-		<tr>
-		<th>제목</th>
-			<td align = "center">
-		      <%= co_title%><br>
-		</td>
-		</tr>
-		<th>별점</th>
-			<td align = "center">
-			<input type="number" name="co_star" size = "50" value="<%= co_star%>" required><br>
-			</td>
-		</tr>
-		<tr>
-		<th>후기 내용</th>
-			<td colspan = "2" align = "center">
-				<textarea name = "board_content" rows = "20" cols = "80" required>${dto.content }</textarea>
-			</td>			
-		</tr>
-		<tr>
-			<td colspan = "2" align = "center">
-				<input type = "submit" value = "수정 완료">
-				<input type = "reset" value = "초기화">
-			</td>
-		</tr>
-		<tr>
-		<td colspan = "2" align = "center">
-		<button onclick="history.back()">이전으로</button>
-        <button onclick="location.href = 'list.do'">목록보기</button>
-        </td>
-        </tr>
-	</table>
+작성자 : <%= co_name %><br>  <%-- 작성자 이름은 변경 불가 --%>
+예약번호: <%= bo_uid %><br>
+별점 : <%= co_star %><br>
+제목 : 
+<input type="text" name="co_title" value="<%= co_title%>"><br>
+내용 :
+<textarea name="co_content"><%= co_content %></textarea>
+<br><br>
+<input type="submit" value="수정"/>
 </form>
+
+<button onclick="history.back()">이전으로</button>
+<button onclick="location.href = 'list.do'">목록보기</button>
+
 </body>
 </html>
 
 
 
-	
+
+
 
 
 
