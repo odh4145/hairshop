@@ -1,0 +1,30 @@
+$(function(){ 
+	//페이지 시작 시 맨 위로
+	($(function(){
+        $('html, body').animate({scrollTop : $("body").offset().top});
+    }));
+	
+	// 스크롤 위치 받아오기
+	$(window).scroll(function() {
+	    var scrollPosition = $(window).scrollTop();
+	    
+	    // 상단 메뉴 고정 및 탑버튼
+	    if (scrollPosition > 90) {	      
+	      $('#content_title').addClass('scroll');
+	      $('#go_top').css('display', 'block');
+	      $('#go_top').addClass('show');
+	    } else{
+	      $('#content_title').removeClass('scroll');
+	      $('#go_top').css('display', 'none');
+	      $('#go_top').removeClass('show');
+	    }
+	  });
+	
+	// 탑버튼 클릭 시 맨 위로 이동
+	$('#go_top').click(function() {
+		$('html, body').animate({scrollTop : $("body").offset().top});
+	});
+
+	
+	
+});

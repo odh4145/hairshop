@@ -1,4 +1,4 @@
-package controller.info;
+package controller;
 
 import java.io.IOException;
 
@@ -16,10 +16,10 @@ import command.info.ServiceListCommand;
 import command.info.ShopCommand;
 
 @WebServlet("*.bbq")
-public class infoController extends HttpServlet {
+public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public infoController() {
+    public Controller() {
         super();
     }
 

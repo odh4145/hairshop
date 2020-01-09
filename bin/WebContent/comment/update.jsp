@@ -7,8 +7,8 @@
 %>
 <%
 	int co_uid = arr[0].getco_uid();
-    int co_star = arr[0].getco_star();
-    int bo_uid = arr[0].getbo_uid();
+	int bo_uid = arr[0].getbo_uid();
+	int co_star =arr[0].getco_star();
 	String co_name = arr[0].getco_name();
 	String co_title = arr[0].getco_title();
 	String co_content = arr[0].getco_content();
@@ -19,26 +19,19 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-
+<title>수정 <%= co_title %></title>
 </head>
 <script>
 // form 검증
 function chkSubmit(){
 	frm = document.forms["frm"];
 	
-	var co_title = frm["co_title"].value.trim();
-	var co_content =frm["co_content"].value.trim();
+	var co_content = frm["co_content"].value.trim();
 	
-	if(co_title == ""){
-		alert("제목은 반드시 작성해야 합니다");
-		frm["co_title"].focus();
-		return false;
-	}
-	
-	else if(co_content== ""){
+	if(co_content == ""){
 		alert("내용은 반드시 작성해야 합니다");
 		frm["co_content"].focus();
-		return false;
+		return false;	
 	}
 	
 	return true;
@@ -51,10 +44,9 @@ function chkSubmit(){
 	method="post" onsubmit="return chkSubmit()">
 <input type="hidden" name="co_uid" value="<%= co_uid%>"/>	
 작성자 : <%= co_name %><br>  <%-- 작성자 이름은 변경 불가 --%>
-예약번호: <%= bo_uid %><br>
-별점 : <%= co_star %><br>
-제목 : 
-<input type="text" name="co_title" value="<%= co_title%>"><br>
+제목 : <%= co_title%><br>
+별점:
+<input type="number" name="co_star" value="<%= co_star%>"><br>
 내용 :
 <textarea name="co_content"><%= co_content %></textarea>
 <br><br>
