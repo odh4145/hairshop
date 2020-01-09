@@ -30,11 +30,19 @@
 		<h2 id="content_title">유저 아이디 와야 할 곳</h2>
 		<c:forEach var="book" items = "${book }">
 			<div>
-			<p>예약시간 : ${book. bo_time}</p>
-			<p>디자이너 이름 : ${book. de_name}</p>
-			<p>가격 : ${book. ser_price}</p>
-			<p>예상 시간 : ${book. ser_time}</p>
-			<p class="test">예약 현황 : ${book. bo_stat}</p>
+			<p>예약시간 : ${book.bo_time}</p>
+			<p>디자이너 이름 : ${book.de_name}</p>
+			<p>가격 : ${book.ser_price}</p>
+			<p>예상 시간 : ${book.ser_time}</p>
+			<c:if test="${book.bo_stat == 1 }">
+				<p class="test">승인 전 예약입니다.</p>
+			</c:if>
+			<c:if test="${book.bo_stat == 2 }">
+				<p class="test">승인 완료된 예약입니다.</p>
+			</c:if>
+			<c:if test="${book.bo_stat == 3 }">
+				<p class="test">이미 지난 예약입니다.</p>
+			</c:if>
 			</div>
 			<hr>
 		</c:forEach>

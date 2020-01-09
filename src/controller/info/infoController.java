@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import command.info.Command;
 import command.info.DesignerListCommand;
-import command.info.DesignerUpdateCommand;
+import command.info.DesignerOkCommand;
 import command.info.ServiceListCommand;
 import command.info.ShopCommand;
 
@@ -51,6 +51,7 @@ public class infoController extends HttpServlet {
 		
 		// 1. command 객체 수행
 		switch(com) {
+			//손님-매장정보
 			case "/info/storeInfo.bbq":
 				command = new ShopCommand();
 				command.execute(request, response);
@@ -61,14 +62,27 @@ public class infoController extends HttpServlet {
 				viewPage = "storeInfo.jsp";
 				break;
 				
+			//손님-매장정보
+			case "/info/storeUpdate.bbq":
+				command = new ShopCommand();
+				command.execute(request, response);
+				command = new DesignerListCommand();
+				command.execute(request, response);
+				command = new ServiceListCommand();
+				command.execute(request, response);
+				viewPage = "storeUpdate.jsp";
+				break;
+				
+			//매장-디자이너관리
 			case "/info/designer.bbq":
 				command = new DesignerListCommand();
 				command.execute(request, response);
 				viewPage = "designer.jsp";
 				break;
 				
+			//매장-디자이너관리업데이트
 			case "/info/designerOk.bbq":
-				command = new DesignerUpdateCommand();
+				command = new DesignerOkCommand();
 				command.execute(request, response);
 				viewPage = "designerOk.jsp";
 				break;

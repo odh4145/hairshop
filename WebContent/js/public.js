@@ -6,10 +6,10 @@ $(function(){
 	
 	// 스크롤 위치 받아오기
 	$(window).scroll(function() {
-	    var scrollPosition = $(window).scrollTop();
+	    var scrollPosition = $(document).scrollTop();
 	    
 	    // 상단 메뉴 고정 및 탑버튼
-	    if (scrollPosition > 90) {	      
+	    if (scrollPosition > 700) {	      
 	      $('#content_title').addClass('scroll');
 	      $('#go_top').css('display', 'block');
 	      $('#go_top').addClass('show');

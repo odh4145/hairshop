@@ -47,12 +47,12 @@ public interface infoInterface {
 			"DELETE FROM DESIGNER WHERE de_uid = ?";
 
 	public static final String DESIGNER_UPDATE =
-			"UPDATE DESIGNER SET"
+			"UPDATE DESIGNER SET "
 			+ "de_name = ?,"
 			+ "de_position = ?,"
 			+ "de_career = ?,"
 			+ "de_major = ?,"
-			+ "de_picture = ? "
+			+ "de_picture = ?"
 			+ "WHERE de_uid = ?";
 	
 	// 시술목록

@@ -48,7 +48,7 @@ CREATE TABLE DESIGNER
 	de_position varchar(20) NOT NULL DEFAULT '디자이너',
 	de_career int NOT NULL,
 	de_major varchar(40) NOT NULL,
-	de_picture varchar(40),
+	de_picture varchar(500),
 	sh_uid int NOT NULL,
 	PRIMARY KEY (de_uid)
 );
@@ -87,9 +87,9 @@ CREATE TABLE SHOP
 	sh_location_lat varchar(40),
 	sh_location_lng varchar(40),
 	sh_hello varchar(200),
-	sh_picture1 varchar(40),
-	sh_picture2 varchar(40),
-	sh_picture3 varchar(40),
+	sh_picture1 varchar(500),
+	sh_picture2 varchar(500),
+	sh_picture3 varchar(500),
 	sh_dayoff1 int CHECK (sh_dayoff1 >=1 and  sh_dayoff1 <= 7),
 	sh_dayoff2 int CHECK(sh_dayoff2>= 1 AND sh_dayoff2<=7),
 	sh_starttime int DEFAULT 9,
@@ -306,6 +306,7 @@ values('test 서비스3', 3, now(), 'test comment3', 1, 1, 1);
 
 select * from book;
 SELECT * FROM DESIGNER WHERE sh_uid=1;
+
 select * from book b natural join shop where b.use_uid = 1;
 select * from book b natural join designer d natural join user u natural join service s where b.use_uid = 1 ;
 select * from book b natural join designer d natural join shop s  natural join service c where b.use_uid =1;
@@ -316,3 +317,5 @@ join user u on b.use_uid = u.use_id
 join service s on b.ser_uid = s.ser_uid
 join shop sh on d.sh_uid = sh.sh_uid;
 /*de_picture가 null로 들어가니 쿼리문에서 실행 문제가 생김*/
+
+select * from designer;
