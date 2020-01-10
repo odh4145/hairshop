@@ -194,9 +194,22 @@ public class Controller extends HttpServlet {
 			viewPage = "storeUpdate.jsp";
 			break;
 			
+<<<<<<< HEAD
 		// 매장-사진목록
 		case "/info/storepicList.bbq":
 			command = new ShopCommand();
+=======
+		// 매장-매장정보 수정
+		case "/info/storeInfoUpdate.bbq":
+			command = new StoreInfoUpdateCommand();
+			command.execute(request, response);
+			viewPage = "storeInfoUpdate.jsp";
+			break;
+
+		// 매장-디자이너 관리
+		case "/info/designer.bbq":
+			command = new DesignerListCommand();
+>>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
 			command.execute(request, response);
 			viewPage = "storepicList.jsp";
 			break;
@@ -211,6 +224,7 @@ public class Controller extends HttpServlet {
 		// 매장-디자이너 수정
 		case "/info/designerUpdate.bbq":
 			command = new DesignerUpdateCommand();
+			System.out.println("디자이너 업데이트 커맨드 만들기 성공");
 			command.execute(request, response);
 			viewPage = "designerUpdate.jsp";
 			break;
