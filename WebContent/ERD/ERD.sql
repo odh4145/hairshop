@@ -49,7 +49,7 @@ CREATE TABLE DESIGNER
 	de_position varchar(20) NOT NULL DEFAULT '디자이너',
 	de_career int NOT NULL,
 	de_major varchar(40) NOT NULL,
-	de_picture varchar(40),
+	de_picture varchar(500),
 	sh_uid int NOT NULL,
 	PRIMARY KEY (de_uid)
 );
@@ -69,8 +69,8 @@ CREATE TABLE SERVICE
 (
 	ser_uid int NOT NULL AUTO_INCREMENT,
 	ser_name varchar(40) NOT NULL,
-	ser_price int,
-	ser_time time NOT NULL,
+	ser_price int NOT NULL,
+	ser_time int NOT NULL,
 	sh_uid int NOT NULL,
 	PRIMARY KEY (ser_uid)
 );
@@ -88,11 +88,9 @@ CREATE TABLE SHOP
 	sh_location_lat varchar(40),
 	sh_location_lng varchar(40),
 	sh_hello varchar(200),
-	sh_picture1 varchar(40),
-	sh_picture2 varchar(40),
-	sh_picture3 varchar(40),
-	sh_dayoff1 int CHECK (sh_dayoff1 >=1 and  sh_dayoff1 <= 7),
-	sh_dayoff2 int CHECK(sh_dayoff2>= 1 AND sh_dayoff2<=7),
+	sh_picture1 varchar(500),
+	sh_picture2 varchar(500),
+	sh_picture3 varchar(500),
 	sh_starttime int DEFAULT 9,
 	sh_endtime int DEFAULT 21,
 	num_identify int DEFAULT 2,
@@ -309,6 +307,7 @@ select * from shop;
 select * from service;
 select * from designer;
 select * from user;
+
 insert into book (
 bo_service, bo_stat, bo_time, bo_comment, use_uid, de_uid, ser_uid
 ) values ('test_01', 1, now(), 'bo_comment_test_01', 1, 1, 1) ;

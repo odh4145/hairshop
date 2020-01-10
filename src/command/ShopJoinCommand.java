@@ -58,5 +58,7 @@ public class ShopJoinCommand implements Command {
 		}
 		*/
 	}
+	
+	
 
 }

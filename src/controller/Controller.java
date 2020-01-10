@@ -14,13 +14,9 @@ import command.ChangeUserInfoCommand;
 import command.Command;
 import command.DeleteCommand;
 import command.DesignerListCommand;
-<<<<<<< HEAD
-import command.DesignerOkCommand;
 import command.UserJoinCommand;
-=======
 import command.DesignerUpdateCommand;
-import command.JoinCommand;
->>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
+import command.UserJoinCommand;
 import command.ListCommand;
 import command.MyLocationCommand;
 import command.SelectCommand;
