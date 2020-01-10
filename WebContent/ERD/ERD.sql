@@ -91,8 +91,6 @@ CREATE TABLE SHOP
 	sh_picture1 varchar(500),
 	sh_picture2 varchar(500),
 	sh_picture3 varchar(500),
-	sh_dayoff1 int CHECK (sh_dayoff1 >=1 and  sh_dayoff1 <= 7),
-	sh_dayoff2 int CHECK(sh_dayoff2>= 1 AND sh_dayoff2<=7),
 	sh_starttime int DEFAULT 9,
 	sh_endtime int DEFAULT 21,
 	num_identify int DEFAULT 2,
