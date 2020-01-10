@@ -37,7 +37,7 @@
 		<h2 id="content_title">지역별매장</h2>
 		<div class="innerbox">
 			<div class="choose">
-				<a class="where" href="#">서울특별시</a>
+				<a class="where" href="chooseDetailArea.jsp">서울특별시</a>
 				<a class="where" href="#">광주광역시</a>
 				<a class="where" href="#">대구광역시</a>
 				<a class="where" href="#">대전광역시</a>

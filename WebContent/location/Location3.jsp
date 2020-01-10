@@ -14,8 +14,6 @@
 <link rel="icon" href="../img/favicon.png">
 <!-- css파일 link -->
 <link href="../css/menu.css" rel="stylesheet" type="text/css">
-<!-- 마이페이지 아닌분들은 sub.css 지우세요 -->
-<link href="../css/sub.css" rel="stylesheet" type="text/css">
 <!-- 지도 스타일 지정 -->
 
 <style>
@@ -45,7 +43,7 @@
 			<!-- 상세페이지 제목 -->
 			<h2 id="content_title">내주변</h2>
 
-
+			<div class="inner">
 
 			<div id="map"></div>
 
@@ -161,6 +159,7 @@
 			<div id="go_top">
 				<a><i class="fas fa-arrow-circle-up"></i></a>
 			</div>
+		</div>
 		</div>
 	</section>
 
