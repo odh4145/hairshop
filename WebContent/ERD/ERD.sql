@@ -23,8 +23,7 @@ CREATE TABLE BOOK
 	bo_time datetime NOT NULL default now(),
 	bo_comment varchar(80),
 	use_uid int NOT NULL,
-	de_uid int NOT NULL,
-	ser_uid int NOT NULL,
+	sh_uid int NOT NULL,
 	PRIMARY KEY (bo_uid)
 );
 
@@ -135,16 +134,8 @@ ALTER TABLE REPLY
 
 
 ALTER TABLE BOOK
-	ADD FOREIGN KEY (de_uid)
-	REFERENCES DESIGNER (de_uid)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
-ALTER TABLE BOOK
-	ADD FOREIGN KEY (ser_uid)
-	REFERENCES SERVICE (ser_uid)
+	ADD FOREIGN KEY (sh_uid)
+	REFERENCES SHOP (sh_uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -172,6 +163,7 @@ ALTER TABLE BOOK
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
+
 
 /** Sample Data **/
 INSERT INTO USER(
@@ -398,3 +390,4 @@ uid2인사람의 비밀번호 바꾸기
 select * from user where use_uid=2;
 	
 update user set use_pw = ? where use_uid = ?
+
