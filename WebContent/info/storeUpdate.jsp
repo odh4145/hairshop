@@ -67,6 +67,7 @@
 				<form name="frm" action="storeInfoUpdate.bbq" method="post" onsubmit="return infoSubmit(this)">					
 					<ul class="information">
 					<h3>기본정보</h3>
+						<input type="hidden" name="sh_uid" value="${info[0].sh_uid }">
 						<li>번호 
 							<input type="text" name="sh_telephone" value="${info[0].sh_telephone }" /> 
 							<span>* 번호는 - 포함하여 적어주세요.</span>
@@ -92,7 +93,7 @@
 						<form class="prfrm" name="prfrm${status }" action="serviceUpdate.bbq" method="post" onsubmit="return priceSubmit(this)">		
 							<ul class="price_info">
 								<input type="hidden" name="sh_uid" value="${dto1.sh_uid}"/>
-								<input type="hidden" name="ser_uid" value="${dto1.ser_uid}"/>
+								<li><input type="checkbox" name="ser_uid" value="${dto1.ser_uid}"></li>
 								<li>이름 <input type="text" name="ser_name" value="${dto1.ser_name }" /></li>
 								<li>가격 <input type="text" name="ser_price" value="${dto1.ser_price }" /></li>
 								<li>시간 <input class="time" type="text" name="ser_time" value="${dto1.ser_time }" /></li>
@@ -104,7 +105,7 @@
 					<input class="add_delete update" type="button" id="add" value="추가"
 						onClick="location.href='serviceAdd.bbq?sh_uid=${info[0].sh_uid}'" />
 					<input class="add_delete update" type="button" id="delete" value="삭제"
-						onClick="prfrmDelete()" />
+						onClick="checkSer_name"  />
 				</div>									
 				
 				<!-- 디자이너 목록 -->
