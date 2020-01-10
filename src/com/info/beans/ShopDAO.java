@@ -80,24 +80,20 @@ public class ShopDAO {
 	}
 	
 	// 매장정보 수정하기
-	public int update(int sh_uid, String sh_name, String sh_telephone, String sh_location, 
+	public int infoupdate(int sh_uid, String sh_name, String sh_telephone, String sh_location, 
 				String sh_hello, String sh_picture1, String sh_picture2, String sh_picture3,
 				int sh_dayoff1, int sh_dayoff2, int sh_starttime, int sh_endtime) throws SQLException{
 		int cnt = 0;
 		try {
-			pstmt = conn.prepareStatement(infoInterface.STORE_UPDATE);
-			pstmt.setString(1, sh_name);
-			pstmt.setString(2, sh_telephone);
-			pstmt.setString(3, sh_location);
-			pstmt.setString(4, sh_hello);
-			pstmt.setString(5, sh_picture1);
-			pstmt.setString(6, sh_picture2);
-			pstmt.setString(7, sh_picture3);
-			pstmt.setInt(8, sh_dayoff1);
-			pstmt.setInt(9, sh_dayoff2);
-			pstmt.setInt(10, sh_starttime);
-			pstmt.setInt(11, sh_endtime);
-			pstmt.setInt(12, sh_uid);
+			pstmt = conn.prepareStatement(infoInterface.STORE_INFO_UPDATE);
+			pstmt.setString(1, sh_telephone);
+			pstmt.setString(2, sh_location);
+			pstmt.setString(3, sh_hello);
+			pstmt.setInt(4, sh_dayoff1);
+			pstmt.setInt(5, sh_dayoff2);
+			pstmt.setInt(6, sh_starttime);
+			pstmt.setInt(7, sh_endtime);
+			pstmt.setInt(8, sh_uid);
 			cnt = pstmt.executeUpdate();
 		} finally {
 			close();

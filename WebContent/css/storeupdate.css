@@ -6,6 +6,7 @@ input{
 
 form{
 	position:relative;
+	width:100%;
 }
 
 textarea{
@@ -18,13 +19,13 @@ textarea{
 }
 .store_pic img{
 	float:left;
-	width:400px;
-	height:350px;
+	width:340px;
+	height:300px;
 }
 
 .store_info{
 	position:relative;
-	width:1100px;
+	width:980px;
 	top:-50px;
 	background:white;
 	margin:0 auto;
@@ -42,7 +43,6 @@ textarea{
 
 .information{
 	overflow:hidden;
-	width:1000px;
 	margin:0 auto;
 	border-top:1px solid #f2f2f2;
 	padding:15px;
@@ -76,13 +76,12 @@ textarea{
 
 .price_info{
 	float:left;
-	margin:20px 40px 20px 0;
-	margin-right:40px;
+	margin:20px 20px 20px 0;
 	border:1px solid #eee;
 	padding:15px;
 }
 .price_info input{
-	width:160px;
+	width:130px;
 	margin-bottom:10px;
 }
 
@@ -126,7 +125,7 @@ textarea{
 }
 
 .p_btn{
-	width:95px !important;
+	width:180px !important;
 	text-align:center;
 	border:1px solid #f6b798;
 	background:white;
@@ -157,10 +156,18 @@ textarea{
 	font-weight: 800;
 	cursor: pointer;
 	position: absolute;
-	right:0;
+	right:15px;
 	bottom:15px;
 }
 .update:hover{
 	color:#313f67;
 	background: white;
+}
+
+.add_delete{
+	width:70px;
+}
+
+#add{
+	right:100px;
 }

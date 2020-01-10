@@ -10,15 +10,11 @@ public interface infoInterface {
 	public static final String STORE_SELECT_BY_UID = 
 			"SELECT * FROM SHOP WHERE sh_uid=?";
 	
-	public static final String STORE_UPDATE = 
+	public static final String STORE_INFO_UPDATE = 
 			"UPDATE SHOP SET"
-			+ "sh_name = ?,"
 			+ "sh_telephone = ?,"
 			+ "sh_location = ?,"
 			+ "sh_hello = ?,"
-			+ "sh_picture1 = ?,"
-			+ "sh_picture2 = ?,"
-			+ "sh_picture3 = ?,"
 			+ "sh_dayoff1 = ?,"
 			+ "sh_dayoff2 = ?,"
 			+ "sh_starttime = ?,"
@@ -47,7 +43,7 @@ public interface infoInterface {
 			"DELETE FROM DESIGNER WHERE de_uid = ?";
 
 	public static final String DESIGNER_UPDATE =
-			"UPDATE DESIGNER SET"
+			"UPDATE DESIGNER SET "
 			+ "de_name = ?, "
 			+ "de_position = ?, "
 			+ "de_career = ?, "
@@ -69,7 +65,7 @@ public interface infoInterface {
 			"SELECT * FROM SERVICE WHERE sh_uid=?";
 		
 	public static final String SERVICE_DELETE = 
-			"DELETE FROM SERVICE WHERE ser_uid = ?";
+			"DELETE FROM SERVICE WHERE ser_uid = ? and sh_uid = ?";
 
 	public static final String SERVICE_UPDATE =
 			"UPDATE SERVICE SET "
