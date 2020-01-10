@@ -31,9 +31,9 @@ public interface infoInterface {
 	// 디자이너 
 	public static final String DESIGNER_INSERT = 
 			"INSERT INTO DESIGNER"
-			+ "(de_name, de_position, de_career, de_major, de_picture, sh_uid)"
+			+ "(de_name, de_position, de_career, de_major, sh_uid)"
 			+ "VALUES"
-			+ "(?, ?, ?, ?, ?, ?)";
+			+ "(?, ?, ?, ?, ?)";
 	
 	// 선택된 디자이너의 정보를 보기 위해
 	public static final String DESIGNER_SELECT_BY_UID = 

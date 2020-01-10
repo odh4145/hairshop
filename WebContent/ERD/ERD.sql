@@ -222,7 +222,7 @@ INSERT INTO SERVICE
 	ser_time,
 	sh_uid
 )
-VALUES('염색', 100000, 30000, 1);
+VALUES('염색', 100000, 3, 1);
 
 
 
@@ -302,16 +302,11 @@ INSERT INTO SERVICE
 	ser_time,
 	sh_uid
 )
-VALUES('커트', 30000, 10000, 1);
+VALUES('커트', 30000, 1, 1);
 select * from shop;
 select * from service;
 select * from designer;
 select * from user;
-
-insert into book (
-bo_service, bo_stat, bo_time, bo_comment, use_uid, de_uid, ser_uid
-) values ('test_01', 1, now(), 'bo_comment_test_01', 1, 1, 1) ;
-
 
 select * from `user`;
 /*testdata_book*/
@@ -511,7 +506,7 @@ uid2인사람의 비밀번호 바꾸기
 
 -- update user set use_pw = '?' where use_uid = '?';
 
-select * from user where use_uid=2;
+select * from service;
 	
 update user set use_pw = ? where use_uid = ?
 

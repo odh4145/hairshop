@@ -15,6 +15,7 @@
 <!-- css파일 link -->
 <link href="../css/menu.css" rel="stylesheet" type="text/css">
 <link href="../css/sub.css" rel="stylesheet" type="text/css">
+<link href="../css/storepicList.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -38,13 +39,29 @@
 		<div class="box clear">
 			<!------------- 세부메뉴 ----------마이페이지아닌 분들은 세부메뉴 지우세요------------->
 			<div class="submenu">
-				<h4 class="selected"><a href="storeUpdate.bbq?sh_uid=${param.sh_uid }">매장정보변경</a></h4>
-				<h4><a>매장사진관리</a></h4>
+				<h4><a href="storeUpdate.bbq?sh_uid=${param.sh_uid }">매장정보변경</a></h4>
+				<h4 class="selected"><a>매장사진관리</a></h4>
 				<h4><a>개인정보수정</a></h4>
 			</div>
 	
 			<!------------- 세부메뉴 ----------class="inner" 지우세요------------->
 			<div class="inner">
+				<form name="picfrm" erctype="Multipart/form-data" action="storepicUpdate.bbq" method="post">					
+					<input type="hidden" value="${info[0].sh_uid }"/>
+					<ul class="pic_box">
+						<li><img src="${info[0].sh_picture1 }"></li>
+						<li><input class="insert_dpic" type="file" name="sh_picture1" size=40></li>
+					</ul>				
+					<ul class="pic_box">
+						<li><img src="${info[0].sh_picture1 }"></li>
+						<li><input class="insert_dpic" type="file" name="sh_picture2" size=40></li>
+					</ul>				
+					<ul class="pic_box">
+						<li><img src="${info[0].sh_picture3 }"></li>
+						<li><input class="insert_dpic" type="file" name="sh_picture3" size=40></li>
+					</ul>	
+					<input class="update" type="submit" value="수정하기" />		
+				</form>
 			</div>
 		</div>			
 	</div>

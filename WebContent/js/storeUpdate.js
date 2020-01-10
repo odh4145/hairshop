@@ -14,24 +14,4 @@ $(function() {
 		return true;
 	}
 
-	// 스타일정보수정
-	function priceSubmit(prfrm) {
-
-		var ser_name = prfrm.ser_name.value.trim();
-		var ser_price = prfrm.ser_price.value.trim();
-		var ser_time = prfrm.ser_time.value.trim();
-
-		if (ser_name == "" && ser_price == "" && ser_time == "") {
-			alert("빈 칸이 존재합니다.");
-			return false;
-		}
-		return true;
-	}
-	
-	function checkSer_name(){
-		$("input[name=이름]:checked").each(function() {
-			var ser_uid = $(this).val(); 
-			});
-
-	}
 });

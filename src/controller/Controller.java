@@ -14,6 +14,8 @@ import command.Command;
 import command.DeleteBookshopCommand;
 import command.DeleteBookuserCommand;
 import command.DeleteCommand;
+import command.DesignerAddCommand;
+import command.DesignerDeleteCommand;
 import command.DesignerListCommand;
 import command.DesignerUpdateCommand;
 import command.JoinCommand;
@@ -191,12 +193,19 @@ public class Controller extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "storeUpdate.jsp";
 			break;
-
-		// 매장-디자이너 관리
-		case "/info/designer.bbq":
-			command = new DesignerListCommand();
+			
+		// 매장-사진목록
+		case "/info/storepicList.bbq":
+			command = new ShopCommand();
 			command.execute(request, response);
-			viewPage = "designer.jsp";
+			viewPage = "storepicList.jsp";
+			break;
+
+		// 매장-디자이너 추가
+		case "/info/designerAdd.bbq":
+			command = new DesignerAddCommand();
+			command.execute(request, response);
+			viewPage = "designerAdd.jsp";
 			break;
 
 		// 매장-디자이너 수정
@@ -204,6 +213,13 @@ public class Controller extends HttpServlet {
 			command = new DesignerUpdateCommand();
 			command.execute(request, response);
 			viewPage = "designerUpdate.jsp";
+			break;
+
+		// 매장-디자이너 삭제
+		case "/info/designerDelete.bbq":
+			command = new DesignerDeleteCommand();
+			command.execute(request, response);
+			viewPage = "designerDelete.jsp";
 			break;
 
 		// 매장-서비스 추가
