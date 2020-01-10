@@ -18,18 +18,20 @@ import command.JoinCommand;
 import command.ListCommand;
 import command.MyLocationCommand;
 import command.SelectCommand;
-import command.ServiceAddCommand;
-import command.ServiceDeleteCommand;
 import command.ServiceListCommand;
 import command.ServiceUpdateCommand;
 import command.ShopCommand;
 import command.ShopLoginCommand;
 import command.ShowBookuserCommand;
-import command.StoreInfoUpdateCommand;
 import command.UpdateCommand;
 import command.UserLoginCommand;
 import command.ViewCommand;
 import command.WriteCommand;
+import command.DeleteBookshopCommand;
+import command.DeleteBookuserCommand;
+import command.ShowBookshopCommand;
+import command.ServiceAddCommand;
+import command.ServiceDeleteCommand;
 
 @WebServlet("*.bbq")
 public class Controller extends HttpServlet {
@@ -181,13 +183,6 @@ public class Controller extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "storeUpdate.jsp";
 			break;
-			
-		// 매장-매장정보 수정
-		case "/info/storeInfoUpdate.bbq":
-			command = new StoreInfoUpdateCommand();
-			command.execute(request, response);
-			viewPage = "storeInfoUpdate.jsp";
-			break;
 
 		// 매장-디자이너 관리
 		case "/info/designer.bbq":
@@ -199,7 +194,6 @@ public class Controller extends HttpServlet {
 		// 매장-디자이너 수정
 		case "/info/designerUpdate.bbq":
 			command = new DesignerUpdateCommand();
-			System.out.println("디자이너 업데이트 커맨드 만들기 성공");
 			command.execute(request, response);
 			viewPage = "designerUpdate.jsp";
 			break;
@@ -210,14 +204,14 @@ public class Controller extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "serviceAdd.jsp";
 			break;
-
+			
 		// 매장-서비스 수정
 		case "/info/serviceUpdate.bbq":
 			command = new ServiceUpdateCommand();
 			command.execute(request, response);
 			viewPage = "serviceUpdate.jsp";
 			break;
-
+			
 		// 매장-서비스 삭제
 		case "/info/serviceDelete.bbq":
 			command = new ServiceDeleteCommand();
@@ -235,6 +229,46 @@ public class Controller extends HttpServlet {
 			command.execute(request, response);
 			// ajax로 쏴주기
 			break;
+///////////////////////////////////////////////////BOOK////////////////////////////////////////////////////////////////
+		case "/book/user.bbq":
+			System.out.println("debug용");
+			command = new ShowBookuserCommand();
+			command.execute(request, response);
+			viewPage = "/book/usertest.jsp";
+			break;
+		
+		case "/book/delete.book.bbq":
+			System.out.println("debug용");
+			System.out.println("bo_uid 의 값은 : " + request.getParameter("bo_uid"));
+			command = new DeleteBookuserCommand();
+			command.execute(request, response);
+			viewPage = "/book/deleteOk.jsp";
+			break;
+		
+		case "/book/shopdeleteOk.book":
+			System.out.println("bo_uid 의 값은 : " + request.getParameter("bo_uid"));
+			//TODO
+			command = new DeleteBookuserCommand();
+			command.execute(request, response);
+			viewPage = "/book/deleteOk.jsp";
+			break;
+		
+		case "/book/shop.book":
+			System.out.println("debug용 shop");
+			command = new ShowBookshopCommand();
+			command.execute(request, response);
+			System.out.println("테스트용 shoptest.book컨트롤러");
+			viewPage = "/book/shoptest.jsp";
+			break;	
+			
+		case "book/shopdelete.book":
+			System.out.println("매장용 삭제 페이지 연결");
+			command = new DeleteBookshopCommand();
+			command.execute(request, response);
+			//TODO
+			viewPage = "/book/.jsp";
+			break;
+			
 		}
 
 		if (viewPage != null) {
