@@ -9,8 +9,6 @@ public class ShopDTO {
 	private String sh_picture1;
 	private String sh_picture2;
 	private String sh_picture3;
-	private int sh_dayoff1;
-	private int sh_dayoff2;
 	private int sh_starttime;
 	private int sh_endtime;
 	
@@ -21,9 +19,8 @@ public class ShopDTO {
 	}
 	
 	// 매개변수 받는 생성자
-	public ShopDTO(int sh_uid, String sh_name, String sh_telephone, String sh_location, 
-			String sh_hello, String sh_picture1, String sh_picture2, String sh_picture3, 
-			int sh_dayoff1, int sh_dayoff2, int sh_starttime, int sh_endtime) {
+	public ShopDTO(int sh_uid, String sh_name, String sh_telephone, String sh_location, String sh_hello, 
+				String sh_picture1, String sh_picture2, String sh_picture3, int sh_starttime, int sh_endtime) {
 		super();
 		this.sh_uid = sh_uid;
 		this.sh_name = sh_name;
@@ -33,8 +30,6 @@ public class ShopDTO {
 		this.sh_picture1 = sh_picture1;
 		this.sh_picture2 = sh_picture2;
 		this.sh_picture3 = sh_picture3;
-		this.sh_dayoff1 = sh_dayoff1;
-		this.sh_dayoff2 = sh_dayoff2;
 		this.sh_starttime = sh_starttime;
 		this.sh_endtime = sh_endtime;
 		System.out.println("sh_uid : " + this.sh_uid + " 객체 생성");
@@ -104,22 +99,6 @@ public class ShopDTO {
 		this.sh_picture3 = sh_picture3;
 	}
 
-	public int getSh_dayoff1() {
-		return sh_dayoff1;
-	}
-
-	public void setSh_dayoff1(int sh_dayoff1) {
-		this.sh_dayoff1 = sh_dayoff1;
-	}
-
-	public int getSh_dayoff2() {
-		return sh_dayoff2;
-	}
-
-	public void setSh_dayoff2(int sh_dayoff2) {
-		this.sh_dayoff2 = sh_dayoff2;
-	}
-
 	public int getSh_starttime() {
 		return sh_starttime;
 	}
@@ -141,8 +120,7 @@ public class ShopDTO {
 	public String toString() {
 		return "ShopDTO ] " + sh_uid + ":" + sh_name + ":" + sh_telephone + ":" +  
 				sh_picture1 + ":" + sh_picture2 + ":" + sh_picture3 +  ":" + 
-				sh_location + ":" + sh_hello + ":" + sh_dayoff1 + ":" +  
-				sh_dayoff2 + ":" + sh_starttime + ":" + sh_endtime;
+				sh_location + ":" + sh_hello + ":" + ":" + sh_starttime + ":" + sh_endtime;
 	}
 	
 }

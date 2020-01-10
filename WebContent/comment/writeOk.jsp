@@ -4,8 +4,6 @@
 	int cnt = (Integer) request.getAttribute("result");
 %>
 
-
-
 <% if(cnt == 0){ %>
 	<script>
 		alert("등록 실패, 다시 작성해주세요.");

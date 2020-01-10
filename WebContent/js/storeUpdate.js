@@ -28,10 +28,10 @@ $(function() {
 		return true;
 	}
 	
-	// 스타일정보삭제
-	function prfrmDelete() {
-		$(".price_info").last().getAttribute("name");
-		alert("name");
-		location.href = "serviceDelete.bbq?ser_uid="+"name";
+	function checkSer_name(){
+		$("input[name=이름]:checked").each(function() {
+			var ser_uid = $(this).val(); 
+			});
+
 	}
 });

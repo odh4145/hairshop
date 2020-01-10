@@ -5,25 +5,25 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.info.beans.ServiceDAO;
+import com.info.beans.ShopDAO;
 
 public class StoreInfoUpdateCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		int cnt = 0;
-		ServiceDAO dao = new ServiceDAO();
+		ShopDAO dao = new ShopDAO();
 		
-		int ser_uid = Integer.parseInt(request.getParameter("ser_uid"));
-		String ser_name = request.getParameter("ser_name");
-		int ser_price = Integer.parseInt(request.getParameter("ser_price"));
-		int ser_time = Integer.parseInt(request.getParameter("ser_time"));		
+		String sh_telephone = request.getParameter("sh_telephone");
+		String sh_location = request.getParameter("sh_location");
+		String sh_hello = request.getParameter("sh_hello");
+		int sh_starttime = Integer.parseInt(request.getParameter("sh_starttime"));		
+		int sh_endtime = Integer.parseInt(request.getParameter("sh_endtime"));
 		int sh_uid = Integer.parseInt(request.getParameter("sh_uid"));
 
 		try {
-			cnt = dao.update(ser_uid, ser_name, ser_price, ser_time, sh_uid);
-			dao.toString();
-			request.setAttribute("service", cnt);
+			cnt = dao.infoupdate(sh_uid, sh_telephone, sh_location, sh_hello, sh_starttime, sh_endtime);
+			request.setAttribute("info", cnt);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

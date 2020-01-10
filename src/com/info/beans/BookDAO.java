@@ -51,19 +51,18 @@ public class BookDAO implements K {
 
 		while (rs.next()) {
 			int bo_uid = rs.getInt("bo_uid");
-			String service = rs.getString("bo_service");
-			int stat = rs.getInt("bo_stat");
-			String comment = rs.getString("bo_comment");
+			int sh_uid = rs.getInt("sh_uid");
+			int bo_stat = rs.getInt("bo_stat");
+			String bo_comment = rs.getString("bo_comment");
+			String bo_service = rs.getString("bo_service");
 			int use_uid = rs.getInt("use_uid");
-			int de_uid = rs.getInt("de_uid");
-			int ser_uid = rs.getInt("ser_uid");
 
 			Date d_time = rs.getDate("bo_time");
 			Time t_time = rs.getTime("bo_time");
-			String time = new SimpleDateFormat("yyyy-MM-dd").format(d_time) + " "
+			String bo_time = new SimpleDateFormat("yyyy-MM-dd").format(d_time) + " "
 					+ new SimpleDateFormat("hh:mm:ss").format(t_time);
 
-			BookDTO dto = new BookDTO(bo_uid, service, stat, time, comment, use_uid, de_uid, ser_uid);
+			BookDTO dto = new BookDTO(bo_uid, bo_service, bo_stat, bo_time, bo_comment, use_uid, sh_uid);
 			list.add(dto);
 		}
 		int size = list.size();
@@ -74,32 +73,28 @@ public class BookDAO implements K {
 	}
 
 	public int insert(BookDTO dto) throws SQLException {
-
-		String service = dto.getBo_service();
-		int stat = dto.getBo_stat();
-		String time = dto.getBo_time();
-		String comment = dto.getBo_comment();
+		int bo_uid = dto.getBo_uid();
+		String bo_service = dto.getBo_service();
+		int bo_stat = dto.getBo_stat();
+		String bo_time = dto.getBo_time();
+		String bo_comment = dto.getBo_comment();
 		int use_uid = dto.getUse_uid();
-		int de_uid = dto.getDe_uid();
-		int ser_uid = dto.getSer_uid();
+		int sh_uid = dto.getSh_uid();
 
-		return this.insert(service, stat, time, comment, use_uid, de_uid, ser_uid);
+		return this.insert(bo_uid, bo_service, bo_stat, bo_time, bo_comment, use_uid, sh_uid);
 	}
 
 	// 예약하기
-	public int insert(String service, int stat, String time, String comment, int use_uid, int de_uid, int ser_uid)
+	public int insert(int bo_uid, String bo_service, int bo_stat, String bo_time, String bo_comment, int use_uid, int sh_uid)
 			throws SQLException {
 		int cnt = 0;
-
 		try {
 			pstmt = conn.prepareStatement(K.SQL_BOOK_INSERT);
-			pstmt.setString(1, service);
-			pstmt.setInt(2, stat);
-			pstmt.setString(3, time); // TODO
-			pstmt.setString(4, comment);
-			pstmt.setInt(5, use_uid);
-			pstmt.setInt(6, de_uid);
-			pstmt.setInt(7, ser_uid);
+			pstmt.setString(1, bo_service);
+			pstmt.setString(2, bo_time);
+			pstmt.setInt(3, bo_stat);
+			pstmt.setInt(4, use_uid);
+			pstmt.setInt(5, sh_uid);
 			cnt = pstmt.executeUpdate();
 		} finally {
 			close();
@@ -107,28 +102,7 @@ public class BookDAO implements K {
 		return cnt;
 	}
 
-	
-
-	// 예약확인하기(shop)
-	// TODO
-	public BookDTO[] select_by_shop(int sh_uid) throws SQLException {
-		BookDTO[] arr = null;
-
-		try {
-			for (int i = 0; i < arr.length; i++) {
-				pstmt = conn.prepareStatement(K.SQL_BOOK_JOIN_);
-				pstmt.setInt(1, arr[i].getUse_uid());
-				rs = pstmt.executeQuery();
-			}
-		} finally {
-			close();
-		}
-
-		return arr;
-	};
-
 	// 예약 STAT 변경하기
-	// TODO SQL확인할것 돌아는 가는데 정확한지 
 	public int update(int bo_stat, int sh_uid) throws SQLException {
 		int cnt = 0;
 		try {
@@ -142,4 +116,18 @@ public class BookDAO implements K {
 
 		return cnt;
 	};
+	
+	//예약 취소하기
+		public int delete(int bo_uid) throws SQLException {
+			int cnt = 0;
+			try {
+				pstmt = conn.prepareStatement(K.SQL_BOOK_DELETE_BO_UID);
+				pstmt.setInt(1, bo_uid);
+				cnt = pstmt.executeUpdate();
+			} finally {
+				close();
+			}
+
+			return cnt;
+		};
 }

@@ -2,9 +2,9 @@ SET SESSION FOREIGN_KEY_CHECKS=0;
 
 /* Drop Tables */
 
+DROP TABLE IF EXISTS BOOK;
 DROP TABLE IF EXISTS REPLY;
 DROP TABLE IF EXISTS COMMENT;
-DROP TABLE IF EXISTS BOOK;
 DROP TABLE IF EXISTS DESIGNER;
 DROP TABLE IF EXISTS SERVICE;
 DROP TABLE IF EXISTS SHOP;
@@ -34,8 +34,10 @@ CREATE TABLE COMMENT
 	co_star int NOT NULL,
 	co_content text NOT NULL,
 	co_name varchar(40) NOT NULL,
-	bo_uid int NOT NULL,
 	co_regdate datetime NOT NULL DEFAULT now(),
+	use_uid int NOT NULL,
+	sh_uid int NOT NULL,
+	co_title varchar(20) NOT NULL,
 	PRIMARY KEY (co_uid)
 );
 
@@ -89,8 +91,6 @@ CREATE TABLE SHOP
 	sh_picture1 varchar(500),
 	sh_picture2 varchar(500),
 	sh_picture3 varchar(500),
-	sh_dayoff1 int CHECK (sh_dayoff1 >=1 and  sh_dayoff1 <= 7),
-	sh_dayoff2 int CHECK(sh_dayoff2>= 1 AND sh_dayoff2<=7),
 	sh_starttime int DEFAULT 9,
 	sh_endtime int DEFAULT 21,
 	num_identify int DEFAULT 2,
@@ -102,8 +102,8 @@ CREATE TABLE SHOP
 
 CREATE TABLE USER
 (
-	use_uid int NOT NULL AUTO_INCREMENT,
 	use_id varchar(40) NOT NULL,
+	use_uid int NOT NULL AUTO_INCREMENT,
 	use_pw varchar(15) NOT NULL,
 	use_name varchar(40) NOT NULL,
 	use_phoneNum varchar(11) NOT NULL,
@@ -117,14 +117,6 @@ CREATE TABLE USER
 
 /* Create Foreign Keys */
 
-ALTER TABLE COMMENT
-	ADD FOREIGN KEY (bo_uid)
-	REFERENCES BOOK (bo_uid)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
 ALTER TABLE REPLY
 	ADD FOREIGN KEY (co_uid)
 	REFERENCES COMMENT (co_uid)
@@ -134,6 +126,14 @@ ALTER TABLE REPLY
 
 
 ALTER TABLE BOOK
+	ADD FOREIGN KEY (sh_uid)
+	REFERENCES SHOP (sh_uid)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE COMMENT
 	ADD FOREIGN KEY (sh_uid)
 	REFERENCES SHOP (sh_uid)
 	ON UPDATE RESTRICT
@@ -158,6 +158,14 @@ ALTER TABLE SERVICE
 
 
 ALTER TABLE BOOK
+	ADD FOREIGN KEY (use_uid)
+	REFERENCES USER (use_uid)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE COMMENT
 	ADD FOREIGN KEY (use_uid)
 	REFERENCES USER (use_uid)
 	ON UPDATE RESTRICT
@@ -307,53 +315,168 @@ bo_service, bo_stat, bo_time, bo_comment, use_uid, de_uid, ser_uid
 
 select * from `user`;
 /*testdata_book*/
-insert into book 
-(
+insert into book (
 	bo_service,
 	bo_stat,
-	bo_time,
 	bo_comment,
 	use_uid,
-	de_uid,
-	ser_uid
+	sh_uid
 )
-values('test 서비스', 1, now(), 'test comment', 1, 1, 1);
-insert into book 
-(
+values(
+	'test01_service',
+	1,
+	'취소사유01',
+	1,
+	1
+);
+insert into book (
 	bo_service,
 	bo_stat,
-	bo_time,
 	bo_comment,
 	use_uid,
-	de_uid,
-	ser_uid
+	sh_uid
 )
-values('test 서비스2', 2, now(), 'test comment2', 1, 1, 1);
-insert into book 
-(
+values(
+	'test02_service',
+	1,
+	'취소사유02',
+	1,
+	2
+);
+insert into book (
 	bo_service,
 	bo_stat,
-	bo_time,
 	bo_comment,
 	use_uid,
-	de_uid,
-	ser_uid
+	sh_uid
 )
-values('test 서비스3', 3, now(), 'test comment3', 1, 1, 1);
+values(
+	'test03_service',
+	2,
+	'취소사유01',
+	2,
+	2
+);
+insert into book (
+	bo_service,
+	bo_stat,
+	bo_comment,
+	use_uid,
+	sh_uid
+)
+values(
+	'test01_service',
+	1,
+	'취소사유01',
+	1,
+	2
+);
+insert into book (
+	bo_service,
+	bo_stat,
+	bo_comment,
+	use_uid,
+	sh_uid
+)
+values(
+	'test01_service',
+	1,
+	'취소사유01',
+	1,
+	1
+);
+insert into book (
+	bo_service,
+	bo_stat,
+	bo_comment,
+	use_uid,
+	sh_uid
+)
+values(
+	'test01_service',
+	2,
+	'취소사유01',
+	1,
+	1
+);
+insert into book (
+	bo_service,
+	bo_stat,
+	bo_comment,
+	use_uid,
+	sh_uid
+)
+values(
+	'test01_service',
+	3,
+	'취소사유01',
+	1,
+	1
+);
+insert into book (
+	bo_service,
+	bo_stat,
+	bo_comment,
+	use_uid,
+	sh_uid
+)
+values(
+	'test01_service',
+	3,
+	'취소사유01',
+	1,
+	1
+);
+insert into book (
+	bo_service,
+	bo_stat,
+	bo_comment,
+	use_uid,
+	sh_uid
+)
+values(
+	'test04_service',
+	2,
+	'취소사유01',
+	1,
+	1
+);
+insert into book (
+	bo_service,
+	bo_stat,
+	bo_comment,
+	use_uid,
+	sh_uid
+)
+values(
+	'test01_service',
+	1,
+	'취소사유01',
+	1,
+	1
+);
+
+INSERT INTO USER(
+	use_id,
+	use_pw,
+	use_name,
+	use_phoneNum
+)
+VALUES('test03', '1234', '손님용2', '01000000002');
+
+select * from user;
+select * from shop;
 
 
+select * from book where use_uid = 1;
+select * from book natural join shop where use_uid = 1;
 select * from book;
+
+select * from shop;
+
+
 SELECT * FROM DESIGNER WHERE sh_uid=1;
 select * from book b natural join shop where b.use_uid = 1;
-select * from book b natural join designer d natural join user u natural join service s where b.use_uid = 1 ;
-select * from book b natural join designer d natural join shop s  natural join service c where b.use_uid =1;
-/* 왜 안뜨는지 모르겠지만 따로 뺴서 해야하나 확인할것 TODO*/
-select * from book b 
-join designer d on b.de_uid = d.de_uid
-join user u on b.use_uid = u.use_id
-join service s on b.ser_uid = s.ser_uid
-join shop sh on d.sh_uid = sh.sh_uid;
-/*de_picture가 null로 들어가니 쿼리문에서 실행 문제가 생김*/
 
 select * from user;
 
@@ -380,9 +503,9 @@ SELECT * FROM USER WHERE use_id='test01';
 select * from user where use_id='test01';
 
 
-UPDATE [테이블] SET [열] = '변경할값' WHERE [조건]
-
-
+-- UPDATE [테이블] SET [열] = '변경할값' WHERE [조건]
+SELECT * FROM BOOK WHERE use_uid = 1 ORDER BY bo_time desc;
+select * from book where sh_uid = 1;
 uid >> 2
 uid2인사람의 비밀번호 바꾸기 
 

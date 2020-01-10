@@ -73,7 +73,7 @@ public class DesignerUpdateCommand implements Command {
 		
 		try {
 			cnt = dao.update(de_uid, de_name, de_position, de_career, de_major, de_picture);
-			request.setAttribute("designer", cnt);
+			request.setAttribute("info", cnt);
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
