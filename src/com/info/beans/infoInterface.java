@@ -48,10 +48,10 @@ public interface infoInterface {
 
 	public static final String DESIGNER_UPDATE =
 			"UPDATE DESIGNER SET"
-			+ "de_name = ?,"
-			+ "de_position = ?,"
-			+ "de_career = ?,"
-			+ "de_major = ?,"
+			+ "de_name = ?, "
+			+ "de_position = ?, "
+			+ "de_career = ?, "
+			+ "de_major = ?, "
 			+ "de_picture = ? "
 			+ "WHERE de_uid = ?";
 	
@@ -72,11 +72,12 @@ public interface infoInterface {
 			"DELETE FROM SERVICE WHERE ser_uid = ?";
 
 	public static final String SERVICE_UPDATE =
-			"UPDATE SERVICE SET"
-			+ "ser_name = ?,"
-			+ "ser_price = ?,"
-			+ "ser_time = ? "
-			+ "WHERE de_uid = ?";
+			"UPDATE SERVICE SET "
+			+ "ser_name = ?, "
+			+ "ser_price = ?, "
+			+ "ser_time = ?, "
+			+ "sh_uid = ? "
+			+ "WHERE ser_uid = ?";
 }
 
 

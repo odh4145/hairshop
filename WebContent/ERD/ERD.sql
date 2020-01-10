@@ -68,8 +68,8 @@ CREATE TABLE SERVICE
 (
 	ser_uid int NOT NULL AUTO_INCREMENT,
 	ser_name varchar(40) NOT NULL,
-	ser_price int,
-	ser_time time NOT NULL,
+	ser_price int NOT NULL,
+	ser_time int NOT NULL,
 	sh_uid int NOT NULL,
 	PRIMARY KEY (ser_uid)
 );
@@ -172,6 +172,7 @@ ALTER TABLE BOOK
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
+
 
 /** Sample Data **/
 INSERT INTO USER(
@@ -398,3 +399,13 @@ uid2인사람의 비밀번호 바꾸기
 select * from user where use_uid=2;
 	
 update user set use_pw = ? where use_uid = ?
+
+UPDATE SERVICE SET
+ser_name = '111', 
+ser_price = 1111, 
+ser_time = 1111, 
+sh_uid = 1 
+WHERE ser_uid = 1;
+
+
+select * from service;
