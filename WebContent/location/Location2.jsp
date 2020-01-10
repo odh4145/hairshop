@@ -102,7 +102,7 @@ th,td {
 				var userlat = pos.lat;
 				var userlng = pos.lng;
 				
-				var url = "http://localhost:8082/hairshop/shop.loc?lat="
+				var url = "http://localhost:8082/hairshop/shop.bbq?lat="
 						+ userlat + "&lng=" + userlng;
 
 				$.ajax({

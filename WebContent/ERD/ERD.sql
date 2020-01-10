@@ -2,9 +2,9 @@ SET SESSION FOREIGN_KEY_CHECKS=0;
 
 /* Drop Tables */
 
+DROP TABLE IF EXISTS BOOK;
 DROP TABLE IF EXISTS REPLY;
 DROP TABLE IF EXISTS COMMENT;
-DROP TABLE IF EXISTS BOOK;
 DROP TABLE IF EXISTS DESIGNER;
 DROP TABLE IF EXISTS SERVICE;
 DROP TABLE IF EXISTS SHOP;
@@ -23,8 +23,7 @@ CREATE TABLE BOOK
 	bo_time datetime NOT NULL default now(),
 	bo_comment varchar(80),
 	use_uid int NOT NULL,
-	de_uid int NOT NULL,
-	ser_uid int NOT NULL,
+	sh_uid int NOT NULL,
 	PRIMARY KEY (bo_uid)
 );
 
@@ -35,8 +34,10 @@ CREATE TABLE COMMENT
 	co_star int NOT NULL,
 	co_content text NOT NULL,
 	co_name varchar(40) NOT NULL,
-	bo_uid int NOT NULL,
 	co_regdate datetime NOT NULL DEFAULT now(),
+	use_uid int NOT NULL,
+	sh_uid int NOT NULL,
+	co_title varchar(20) NOT NULL,
 	PRIMARY KEY (co_uid)
 );
 
@@ -103,8 +104,8 @@ CREATE TABLE SHOP
 
 CREATE TABLE USER
 (
-	use_uid int NOT NULL AUTO_INCREMENT,
 	use_id varchar(40) NOT NULL,
+	use_uid int NOT NULL AUTO_INCREMENT,
 	use_pw varchar(15) NOT NULL,
 	use_name varchar(40) NOT NULL,
 	use_phoneNum varchar(11) NOT NULL,
@@ -118,14 +119,6 @@ CREATE TABLE USER
 
 /* Create Foreign Keys */
 
-ALTER TABLE COMMENT
-	ADD FOREIGN KEY (bo_uid)
-	REFERENCES BOOK (bo_uid)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
 ALTER TABLE REPLY
 	ADD FOREIGN KEY (co_uid)
 	REFERENCES COMMENT (co_uid)
@@ -135,16 +128,16 @@ ALTER TABLE REPLY
 
 
 ALTER TABLE BOOK
-	ADD FOREIGN KEY (de_uid)
-	REFERENCES DESIGNER (de_uid)
+	ADD FOREIGN KEY (sh_uid)
+	REFERENCES SHOP (sh_uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
 
 
-ALTER TABLE BOOK
-	ADD FOREIGN KEY (ser_uid)
-	REFERENCES SERVICE (ser_uid)
+ALTER TABLE COMMENT
+	ADD FOREIGN KEY (sh_uid)
+	REFERENCES SHOP (sh_uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -172,6 +165,15 @@ ALTER TABLE BOOK
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
+
+
+ALTER TABLE COMMENT
+	ADD FOREIGN KEY (use_uid)
+	REFERENCES USER (use_uid)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
 
 /** Sample Data **/
 INSERT INTO USER(
@@ -397,4 +399,9 @@ select * from shop;
 
 -- select * from user where use_uid=2;
 	
+<<<<<<< HEAD
 -- update user set use_pw = ? where use_uid = ?
+=======
+update user set use_pw = ? where use_uid = ?
+
+>>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git

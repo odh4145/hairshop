@@ -14,12 +14,18 @@ import command.ChangeUserInfoCommand;
 import command.Command;
 import command.DeleteCommand;
 import command.DesignerListCommand;
+<<<<<<< HEAD
 import command.DesignerOkCommand;
 import command.UserJoinCommand;
+=======
+import command.DesignerUpdateCommand;
+import command.JoinCommand;
+>>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
 import command.ListCommand;
 import command.MyLocationCommand;
 import command.SelectCommand;
 import command.ServiceListCommand;
+import command.ServiceUpdateCommand;
 import command.ShopCommand;
 import command.ShopLoginCommand;
 import command.ShowBookuserCommand;
@@ -27,6 +33,8 @@ import command.UpdateCommand;
 import command.UserLoginCommand;
 import command.ViewCommand;
 import command.WriteCommand;
+import command.ServiceAddCommand;
+import command.ServiceDeleteCommand;
 
 @WebServlet("*.bbq")
 public class Controller extends HttpServlet {
@@ -211,10 +219,31 @@ public class Controller extends HttpServlet {
 			break;
 
 		// 매장-디자이너 수정
-		case "/info/designerOk.bbq":
-			command = new DesignerOkCommand();
+		case "/info/designerUpdate.bbq":
+			command = new DesignerUpdateCommand();
 			command.execute(request, response);
-			viewPage = "designerOk.jsp";
+			viewPage = "designerUpdate.jsp";
+			break;
+
+		// 매장-서비스 추가
+		case "/info/serviceAdd.bbq":
+			command = new ServiceAddCommand();
+			command.execute(request, response);
+			viewPage = "serviceAdd.jsp";
+			break;
+			
+		// 매장-서비스 수정
+		case "/info/serviceUpdate.bbq":
+			command = new ServiceUpdateCommand();
+			command.execute(request, response);
+			viewPage = "serviceUpdate.jsp";
+			break;
+			
+		// 매장-서비스 삭제
+		case "/info/serviceDelete.bbq":
+			command = new ServiceDeleteCommand();
+			command.execute(request, response);
+			viewPage = "serviceDelete.jsp";
 			break;
 
 //////////////////////////////////////////////////////////// Ajax //////////////////////////////////////////////////////			

@@ -51,40 +51,54 @@
 				<img src="${info[0].sh_picture2 }" />
 				<img src="${info[0].sh_picture3 }" />
 			</div>
-			<div class="store_info">
-				<form name="frm" action="designerOk.bbq" method="post" onsubmit="return chkSubmit(this)">
+			<div class="store_info">			
+				<h2>${info[0].sh_name }</h2>
 				
-					<h2>${info[0].sh_name }</h2>
-				<!-- 매장 기본정보 -->					
+				<!-- 매장 기본정보 -->
+				<form name="frm" action="storeUpdateOk.bbq" method="post" onsubmit="return infoSubmit(this)">					
 					<ul class="information">
+					<h3>기본정보</h3>
 						<li>번호 
 							<input type="text" name="sh_telephone" value="${info[0].sh_telephone }" /> 
-							<span>* 번호는 -포함하여 적어주세요.</span>
+							<span>* 번호는 - 포함하여 적어주세요.</span>
 						</li>
-						<li>주소 <input type="text" name="sh_location" value="${info[0].sh_location }" /></li>
+						<li>주소 <input class="address" type="text" name="sh_location" value="${info[0].sh_location }" /></li>
 						<li>시간
 							<input class="time" type="text" name="sh_starttime" value="${info[0].sh_starttime }" /> - 
 							<input class="time" type="text" name="sh_endtime" value="${info[0].sh_endtime }" />
 						</li>
-						<li class="himessage">인사말<br>
-							<textarea name="sh_hello">${info[0].sh_hello }"
+						<li>인사말<br>
+							<textarea class="himessage" name="sh_hello">${info[0].sh_hello }"
 							</textarea>
 						</li>
-					</ul>
+						<input class="update" type="submit" value="기본정보수정" />
+					</ul>				
+				</form>
 					
-					<!-- 매장 가격정보 -->
-					<div class="information">
-						<h3>스타일 정보</h3>
-						<h4>경과시간은 시간 단위로만 적어주세요.</h4>
+				<!-- 매장 가격정보 -->
+				<div class="information">
+					<h3>스타일 정보</h3>
+					<h4>경과시간은 시간 단위로만 적어주세요. ex) 1시간이면 1이라고 입력</h4>
+					<form name="frm${status.count }" action="serviceUpdate.bbq" method="post" onsubmit="return priceSubmit(this)">
 						<c:forEach var="dto1" items="${service }">
 							<ul class="price_info">
-								<li><span>이름</span><input type="text" name="ser_name" value="${dto1.ser_name }" /></li>
-								<li><span>가격</span><input type="text" name="ser_price" value="${dto1.ser_price }" /></li>
-								<li><span>시간</span><input class="time" type="text" name="ser_time" value="${dto1.ser_time }" /></li>
+								<input type="hidden" name="sh_uid" value="${dto1.sh_uid}"/>
+								<input type="hidden" name="ser_uid" value="${dto1.ser_uid}"/>
+								<li>이름 <input type="text" name="ser_name" value="${dto1.ser_name }" /></li>
+								<li>가격 <input type="text" name="ser_price" value="${dto1.ser_price }" /></li>
+								<li>시간 <input class="time" type="text" name="ser_time" value="${dto1.ser_time }" /></li>
+								<li class="btnbox">
+									<input class="p_btn" type="submit" value="수정" />
+									<input class="p_btn" id="go_delete" type="button" value="삭제" 
+										onClick="location.href='serviceDelete.bbq?ser_uid=${dto1.ser_uid}'" />
+								</li>
 							</ul>
-						</c:forEach>	
-					</div>									
-				</form>
+						</c:forEach>			
+					</form>
+					<input class="update" type="button" id="add" value="추가하기"
+						onClick="location.href='serviceAdd.bbq?sh_uid=${info[0].sh_uid}'" />
+				</div>									
+				
 				<!-- 디자이너 목록 -->
 				<div class="information">
 					<h3>디자이너 정보</h3>
@@ -110,6 +124,7 @@
 <!-- javascript 링크 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="../js/public.js" type="text/javascript"></script>
+<script src="../js/storeUpdate.js" type="text/javascript"></script>
 </body>
 </html>
 	

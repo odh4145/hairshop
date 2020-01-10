@@ -36,12 +36,14 @@ public class ShopJoinCommand implements Command {
 			sh_location.trim().length() > 0 && sh_detailAddress.trim().length() > 0) {
 			
 			System.out.println("Parameter 검증 완료");
+			/*
 			try {
 				
-				cnt =  dao.ShopJoin(sh_id, sh_pw, sh_no_id, sh_name, sh_telephone, sh_location, sh_location_lat, sh_location_lng)
+				cnt =  dao.ShopJoin(sh_id, sh_pw, sh_no_id, sh_name, sh_telephone, sh_location, sh_location_lat, sh_location_lng);
 			} catch(SQLException e) {
 				e.printStackTrace();
 			}
+			*/
 		} else {
 			System.out.println("회원가입 실패");
 		}

@@ -46,7 +46,12 @@
 				<li><a href="#">예약관리</a></li>
 				<li><a href="#">마이페이지</a></li>
 			</ul>
-			<li id="login"><a href="#">로그아웃</a></li>
+			<c:if test="${sessionScope.user == null }">
+				<li id="login" ><a href="../login/login_user.bbq">로그인</a></li>
+			</c:if>
+			<c:if test="${sessionScope.user != null }">
+				<li id="login" ><a href="../logout/Userlogout.bbq">로그아웃</a></li>
+			</c:if>
 		</ul>
 	</header>
 
@@ -57,7 +62,7 @@
 			<div class="box clear">
 				<!------------- 세부메뉴 ----------마이페이지아닌 분들은 세부메뉴 지우세요------------->
 				<div class="submenu">
-					<h4><a>매장정보</a></h4>
+					<h4><a href="storeUpdate.bbq?sh_uid=${param.sh_uid }">매장정보</a></h4>
 					<h4 class="selected"><a>디자이너관리</a></h4>
 					<h4><a>개인정보수정</a></h4>
 				</div>
@@ -66,7 +71,7 @@
 				<div class="inner">
 					<!-- 디자이너 목록 -->
 					<c:forEach var="dto" varStatus="status" items="${designer }">
-						<form name="frm${status.count }" action="designerOk.bbq" method="post" onsubmit="return chkSubmit(this)"
+						<form name="frm${status.count }" action="designerUpdate.bbq" method="post" onsubmit="return chkSubmit(this)"
 							enctype="Multipart/form-data">
 							<ul class="designer">
 								<li id="imgbox"><img src="${dto.de_picture }"></li>

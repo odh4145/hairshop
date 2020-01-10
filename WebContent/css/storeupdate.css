@@ -1,6 +1,11 @@
 input{
 	width:160px;
 	font-size:15px;
+	padding:5px;
+}
+
+form{
+	position:relative;
 }
 
 textarea{
@@ -35,24 +40,6 @@ textarea{
 	text-align: center;
 }
 
-#book_review{
-	text-align: center;
-	width:201px;
-	margin:0 auto 30px auto;
-	overflow:hidden;
-}
-#book_review a{
-	color:#f6b798;
-	width:100px;
-	float:left;
-	font-size:15px;
-	font-weight:600;
-}
-#book_review i{
-	font-size: 35px;
-	margin-bottom:5px;
-}
-
 .information{
 	overflow:hidden;
 	width:1000px;
@@ -61,9 +48,11 @@ textarea{
 	padding:15px;
 	color:#666;
 	font-size:17px;
+	position: relative;
 }
 .information h3{
 	font-size:20px;
+	color:#f6b798;
 }
 .information h4{
 	font-size: 15px;
@@ -77,9 +66,17 @@ textarea{
 .information p i{
 	margin-right:10px;
 }
+.information li{
+	margin-top:10px;
+}
+.information span{
+	color:tomato;
+	font-size:14px;
+}
 
 .price_info{
 	float:left;
+	margin:20px 40px 20px 0;
 	margin-right:40px;
 	border:1px solid #eee;
 	padding:15px;
@@ -88,9 +85,7 @@ textarea{
 	width:160px;
 	margin-bottom:10px;
 }
-.price_info li{
-	margin-top:10px;
-}
+
 
 .price_info li:last-child, .designer li:last-child{
 	margin-right:0;
@@ -116,9 +111,56 @@ textarea{
 }
 
 .time{
-	width:72px;
+	width:30px;
+}
+
+.address{
+	width:460px;
 }
 
 .himessage{
 	width:500px;
+	height:100px;
+	font-size:15px;
+	padding:5px;
+}
+
+.p_btn{
+	width:95px !important;
+	text-align:center;
+	border:1px solid #f6b798;
+	background:white;
+	color:#f6b798;
+	padding:5px;
+	font-weight: 800;
+	cursor: pointer;
+	float:left;
+}
+.p_btn:hover{
+	background:#f6b798;
+	color:white;
+}
+.btnbox{
+	overflow:hidden;
+}
+
+#go_delete{
+	margin-left:20px;
+}
+.update{
+	width:150px;
+	text-align:center;
+	background:#313f67;
+	border:1px solid #313f67;
+	color:white;
+	padding:5px;
+	font-weight: 800;
+	cursor: pointer;
+	position: absolute;
+	right:0;
+	bottom:15px;
+}
+.update:hover{
+	color:#313f67;
+	background: white;
 }
