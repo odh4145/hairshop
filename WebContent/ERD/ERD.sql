@@ -400,3 +400,4 @@ uid2인사람의 비밀번호 바꾸기
 select * from user where use_uid=2;
 	
 update user set use_pw = ? where use_uid = ?
+
