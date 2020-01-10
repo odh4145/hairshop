@@ -1,5 +1,5 @@
 $(function() {
-	//기본정보수정
+	// 기본정보수정
 	function infoSubmit(frm) {
 		var sh_telephone = frm.sh_telephone.value.trim();
 		var sh_location = frm.sh_location.value.trim();
@@ -13,17 +13,25 @@ $(function() {
 		}
 		return true;
 	}
-	
-	//스타일정보수정
-	function priceSubmit(frm) {
-		var ser_name = frm.ser_name.value.trim();
-		var ser_price = frm.ser_price.value.trim();
-		var ser_time = frm.ser_time.value.trim();
+
+	// 스타일정보수정
+	function priceSubmit(prfrm) {
+
+		var ser_name = prfrm.ser_name.value.trim();
+		var ser_price = prfrm.ser_price.value.trim();
+		var ser_time = prfrm.ser_time.value.trim();
 
 		if (ser_name == "" && ser_price == "" && ser_time == "") {
 			alert("빈 칸이 존재합니다.");
 			return false;
 		}
 		return true;
+	}
+	
+	// 스타일정보삭제
+	function prfrmDelete() {
+		$(".price_info").last().getAttribute("name");
+		alert("name");
+		location.href = "serviceDelete.bbq?ser_uid="+"name";
 	}
 });
