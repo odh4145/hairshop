@@ -10,11 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.AjaxListCommand;
+import command.ChangeUserInfoCommand;
 import command.Command;
 import command.DeleteCommand;
 import command.DesignerListCommand;
 import command.DesignerOkCommand;
-import command.JoinCommand;
+import command.UserJoinCommand;
 import command.ListCommand;
 import command.MyLocationCommand;
 import command.SelectCommand;
@@ -63,6 +64,7 @@ public class Controller extends HttpServlet {
 		System.out.println("uri : " + uri);
 		System.out.println("conPath : " + conPath);
 		System.out.println("com : " + com);
+		System.out.println("------------------------------");
 
 		switch (com) {
 		case "/index.bbq":
@@ -74,7 +76,7 @@ public class Controller extends HttpServlet {
 			viewPage = "join_user.jsp";
 			break;
 		case "/join/join_user_ok.bbq":
-			command = new JoinCommand();
+			command = new UserJoinCommand();
 			command.execute(request, response);
 			viewPage = "join_user_ok.jsp";
 			break;
@@ -87,6 +89,11 @@ public class Controller extends HttpServlet {
 			command = new UserLoginCommand();
 			command.execute(request, response);
 			viewPage = "login_user_ok.jsp";
+			break;
+			
+		// 손님-로그아웃
+		case "/logout/Userlogout.bbq":
+			viewPage = "/logout/Userlogout.jsp";
 			break;
 
 		// 손님-주변매장
@@ -155,8 +162,26 @@ public class Controller extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "/comment/deleteOk.jsp";
 			break;
+			
+		// 손님 - 개인정보 변경
+		case "/changeinfo/changeUserInfo.bbq":
+			viewPage = "/changeinfo/changeUserInfo.jsp";
+			break;
+		case "/changeinfo/changeUserInfo_ok.bbq":
+			command = new ChangeUserInfoCommand();
+			command.execute(request, response);
+			viewPage = "/changeinfo/changeUserInfo_ok.jsp";
+			break;
 
 //////////////////////////////////////////////////////////// 매장 //////////////////////////////////////////////////////
+		// 매장-회원가입
+		case "/join/join_shop.bbq":
+			viewPage = "join_shop.jsp";
+			break;
+		case "/join/join_shop_ok.bbq":
+			viewPage = "join_shop_ok.jsp";
+			break;
+			
 		// 매장-로그인
 		case "/login/login_shop.bbq":
 			viewPage = "login_shop.jsp";

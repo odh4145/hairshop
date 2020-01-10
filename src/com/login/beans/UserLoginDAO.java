@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpSession;
 
 public class UserLoginDAO {
 	Connection conn;

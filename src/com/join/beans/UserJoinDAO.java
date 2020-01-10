@@ -8,17 +8,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class JoinDAO {
+public class UserJoinDAO {
 	Connection conn;
 	PreparedStatement pstmt;
 	Statement stmt;
 	ResultSet rs;
 	
 	
-	public JoinDAO() {
+	public UserJoinDAO() {
 		try {
-			Class.forName(joinInterface.DRIVER);
-			conn = DriverManager.getConnection(joinInterface.URL, joinInterface.USERID, joinInterface.USERPW);
+			Class.forName(UserJoinInterface.DRIVER);
+			conn = DriverManager.getConnection(UserJoinInterface.URL, UserJoinInterface.USERID, UserJoinInterface.USERPW);
 			System.out.println("JoinDAO 객체 생성, 데이터베이스 연결");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -39,7 +39,7 @@ public class JoinDAO {
 	// 손님 회원가입
 	// 아이디, 비밀번호, 이름, 휴대폰번호
 	// INSERT
-	public int insert(JoinDTO dto) throws SQLException {
+	public int insert(UserJoinDTO dto) throws SQLException {
 		String use_id = dto.getUse_id();
 		String use_pw = dto.getUse_pw();
 		String use_name = dto.getUse_name();
@@ -52,7 +52,7 @@ public class JoinDAO {
 		int cnt = 0;
 		
 		try {
-			pstmt = conn.prepareStatement(joinInterface.JOIN_USER_INSERT);
+			pstmt = conn.prepareStatement(UserJoinInterface.JOIN_USER_INSERT);
 			pstmt.setString(1, use_id);
 			pstmt.setString(2, use_pw);
 			pstmt.setString(3, use_name);
@@ -77,7 +77,7 @@ public class JoinDAO {
 		int b = 0;
 		
 		try {
-			pstmt = conn.prepareStatement(joinInterface.JOIN_CHECK_ID);
+			pstmt = conn.prepareStatement(UserJoinInterface.JOIN_CHECK_ID);
 			pstmt.setString(1, use_id);
 			pstmt.setString(2, use_id);
 			rs = pstmt.executeQuery();
@@ -109,7 +109,7 @@ public class JoinDAO {
 		int b = 0;
 		
 		try {
-			pstmt = conn.prepareStatement(joinInterface.JOIN_CHECK_PHONENUM);
+			pstmt = conn.prepareStatement(UserJoinInterface.JOIN_CHECK_PHONENUM);
 			pstmt.setString(1, use_phoneNum);
 			pstmt.setString(2, use_phoneNum);
 			rs = pstmt.executeQuery();
