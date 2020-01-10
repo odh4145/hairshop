@@ -1,4 +1,6 @@
 $(function(){ 
+	$('#go_top').css('display', 'none');
+	
 	//페이지 시작 시 맨 위로
 	($(function(){
         $('html, body').animate({scrollTop : $("body").offset().top});

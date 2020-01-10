@@ -12,8 +12,6 @@
 <link rel="icon" href="../img/favicon.png">
 <!-- css파일 link -->
 <link href="../css/menu.css" rel="stylesheet" type="text/css">
-<!-- 마이페이지 아닌분들은 sub.css 지우세요 -->
-<link href="../css/sub.css" rel="stylesheet" type="text/css">
 <!-- 지도 스타일 지정 -->
 
 <style>
@@ -55,36 +53,32 @@ th,td {
 		<div class="content">
 			<!-- 상세페이지 제목 -->
 			<h2 id="content_title">내주변</h2>
-
-
-
-			<div id="map"></div>
-
-			<script>
-				var map;
-				var locations = new Array();
-				var pos;
-				function initMap() {
-					map = new google.maps.Map(document.getElementById('map'), {
-						center : pos,
-						zoom : 15
+			<div class="inner">
+				<div id="map"></div>
+				<script>
+					var map;
+					var labels = new Array();
+					var locations = new Array();
+					var pos;
+					function initMap() {
+						map = new google.maps.Map(document.getElementById('map'), {
+							center : pos,
+							zoom : 15
+						});
+										
+					var markers = locations.map(function(location, i) {
+						console.log(location);
+						return new google.maps.Marker({
+							position: location,
+							label: labels[i % labels.length]
+						});
 					});
-					
-				var labels = '123456789';
-					
-				var markers = locations.map(function(location, i) {
-					console.log(location);
-					return new google.maps.Marker({
-						position: location,
-						label: labels[i % labels.length]
-					});
-				});
-		
-				var markerCluster = new MarkerClusterer(map, markers,
-				            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'}
-				 	);
-				    
-				} // end initMap()
+			
+					var markerCluster = new MarkerClusterer(map, markers,
+					            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'}
+					 	);
+					    
+					} // end initMap()
 				
 			
 				
@@ -145,8 +139,10 @@ th,td {
 						);
 						console.log(locations[i]);
 						
-						
-					}
+						labels.push(
+								row[i].name
+						);
+						}
 					
 					//이형식으로는 마커가 되는데
 					//locations = [
@@ -158,12 +154,7 @@ th,td {
 					
 				});// 위치 받아오기 종료?
 
-		
-				
-			
-		
-				
-			</script>
+</script>
 			<br>
 			<div>
 				<table id="shoplist"></table>
@@ -173,7 +164,8 @@ th,td {
 				<a><i class="fas fa-arrow-circle-up"></i></a>
 			</div>
 		</div>
-	</section>
+	</div>
+</section>
 
 
 	<!-- javascript 링크 -->
