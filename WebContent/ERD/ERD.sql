@@ -23,8 +23,7 @@ CREATE TABLE BOOK
 	bo_time datetime NOT NULL default now(),
 	bo_comment varchar(80),
 	use_uid int NOT NULL,
-	de_uid int NOT NULL,
-	ser_uid int NOT NULL,
+	sh_uid int NOT NULL,
 	PRIMARY KEY (bo_uid)
 );
 
@@ -68,8 +67,8 @@ CREATE TABLE SERVICE
 (
 	ser_uid int NOT NULL AUTO_INCREMENT,
 	ser_name varchar(40) NOT NULL,
-	ser_price int NOT NULL,
-	ser_time int NOT NULL,
+	ser_price int,
+	ser_time time NOT NULL,
 	sh_uid int NOT NULL,
 	PRIMARY KEY (ser_uid)
 );
@@ -135,16 +134,8 @@ ALTER TABLE REPLY
 
 
 ALTER TABLE BOOK
-	ADD FOREIGN KEY (de_uid)
-	REFERENCES DESIGNER (de_uid)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
-ALTER TABLE BOOK
-	ADD FOREIGN KEY (ser_uid)
-	REFERENCES SERVICE (ser_uid)
+	ADD FOREIGN KEY (sh_uid)
+	REFERENCES SHOP (sh_uid)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -400,12 +391,3 @@ select * from user where use_uid=2;
 	
 update user set use_pw = ? where use_uid = ?
 
-UPDATE SERVICE SET
-ser_name = '111', 
-ser_price = 1111, 
-ser_time = 1111, 
-sh_uid = 1 
-WHERE ser_uid = 1;
-
-
-select * from service;
