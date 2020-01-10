@@ -23,7 +23,7 @@ public class StoreInfoUpdateCommand implements Command {
 
 		try {
 			cnt = dao.infoupdate(sh_uid, sh_telephone, sh_location, sh_hello, sh_starttime, sh_endtime);
-			request.setAttribute("service", cnt);
+			request.setAttribute("info", cnt);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -14,7 +14,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.oreilly.servlet.multipart.FileRenamePolicy;
 
-public class DesignerUpdateCommand implements Command {
+public class DesignerDeleteCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
@@ -22,9 +22,6 @@ public class DesignerUpdateCommand implements Command {
 		// 실제 저장되는 물리적인 경로 확인하기
 		ServletContext context = request.getServletContext();
 		String saveDirectory = context.getRealPath("upload");
-		System.out.println("업로드 경로: " + saveDirectory);
-
-		String fileSystemName = null; // 실제 저장되는 파일 이름
 
 		int maxPostSize = 5 * 1024 * 1024; // POST 받기, 최대 5M byte
 		String encoding = "utf-8"; // response 인코딩
@@ -35,45 +32,20 @@ public class DesignerUpdateCommand implements Command {
 		// MultipartRequest 객체 생성, 이미 저장되었다.
 		try {
 			multi = new MultipartRequest(request, saveDirectory, maxPostSize, encoding, policy);
-
-			// 2. File 추출
-			File file = multi.getFile("de_picture");
-			if (file != null) {
-				// 이미지 파일 다루기
-				BufferedImage bi = ImageIO.read(file);
-				if (bi == null) {
-					System.out.println("이미지 파일이 아닙니다.");
-				}
-				bi.flush();
-			}
 		} catch (Exception e) {
 			System.out.println("파일처리 예외 발생");
 		}
-		
-		// <input type="file"> 의 name 가져오기
 
-		// 실제 업로딩 된 파일 이름 (FileRenamePolicy 적용후)
-		fileSystemName = multi.getFilesystemName("de_picture");
-		System.out.println("파일시스템 이름: " + fileSystemName);
 
-		// 파일 url, 나중에 link url 을 response 해줘야 한다
-		String fullpath = saveDirectory + "\\" + fileSystemName;
-		
-		
 		int de_uid = Integer.parseInt(multi.getParameter("de_uid"));
-		String de_name = multi.getParameter("de_name");
-		String de_position = multi.getParameter("de_position");
-		int de_career = Integer.parseInt(multi.getParameter("de_career"));
-		String de_major = multi.getParameter("de_major");
-		String de_picture = fullpath;
-		
+
 		DesignerDAO dao = new DesignerDAO();
 		int cnt = 0;
-		
+
 		try {
-			cnt = dao.update(de_uid, de_name, de_position, de_career, de_major, de_picture);
+			cnt = dao.delete(de_uid);
 			request.setAttribute("designer", cnt);
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}

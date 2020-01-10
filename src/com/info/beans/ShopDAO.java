@@ -76,24 +76,40 @@ public class ShopDAO {
 		return arr;
 	}
 	
-	// 매장정보 수정하기
-	public int infoupdate(int sh_uid, String sh_telephone, String sh_location, String sh_hello, 
-						int sh_starttime, int sh_endtime) throws SQLException{
+	// 매장사진 수정하기
+	public int infoupdate(int sh_uid, String sh_picture1, String sh_picture2, String sh_picture3) throws SQLException{
 		int cnt = 0;
 		try {
-			pstmt = conn.prepareStatement(infoInterface.STORE_INFO_UPDATE);
-			pstmt.setString(1, sh_telephone);
-			pstmt.setString(2, sh_location);
-			pstmt.setString(3, sh_hello);
-			pstmt.setInt(4, sh_starttime);
-			pstmt.setInt(5, sh_endtime);
-			pstmt.setInt(6, sh_uid);
+			pstmt = conn.prepareStatement(infoInterface.STORE_PIC_UPDATE);
+			pstmt.setString(1, sh_picture1);
+			pstmt.setString(2, sh_picture2);
+			pstmt.setString(3, sh_picture3);
+			pstmt.setInt(4, sh_uid);
 			cnt = pstmt.executeUpdate();
 		} finally {
 			close();
 		}
 		return cnt;
 	}
+	
+	// 매장정보 수정하기
+		public int infoupdate(int sh_uid, String sh_telephone, String sh_location, String sh_hello, 
+							int sh_starttime, int sh_endtime) throws SQLException{
+			int cnt = 0;
+			try {
+				pstmt = conn.prepareStatement(infoInterface.STORE_INFO_UPDATE);
+				pstmt.setString(1, sh_telephone);
+				pstmt.setString(2, sh_location);
+				pstmt.setString(3, sh_hello);
+				pstmt.setInt(4, sh_starttime);
+				pstmt.setInt(5, sh_endtime);
+				pstmt.setInt(6, sh_uid);
+				cnt = pstmt.executeUpdate();
+			} finally {
+				close();
+			}
+			return cnt;
+		}
 } // end class
 
 

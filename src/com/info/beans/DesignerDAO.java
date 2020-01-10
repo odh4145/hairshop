@@ -47,7 +47,7 @@ public class DesignerDAO {
 			int de_uid = rs.getInt("de_uid");
 			String de_name = rs.getString("de_name");
 			String de_position = rs.getString("de_position");
-			String de_career = rs.getString("de_career");
+			int de_career = rs.getInt("de_career");
 			String de_major = rs.getString("de_major");
 			String de_picture = rs.getString("de_picture");
 			int sh_uid = rs.getInt("sh_uid");
@@ -66,25 +66,23 @@ public class DesignerDAO {
 	public int insert(DesignerDTO dto) throws SQLException {
 		String de_name = dto.getDe_name();
 		String de_position = dto.getDe_position();
-		String de_career = dto.getDe_career();
+		int de_career = dto.getDe_career();
 		String de_major = dto.getDe_major();
-		String de_picture = dto.getDe_picture();
 		int sh_uid = dto.getSh_uid();
-		return this.insert(de_name, de_position, de_career, de_major, de_picture, sh_uid);
+		return this.insert(de_name, de_position, de_career, de_major, sh_uid);
 	}
 
-	public int insert(String de_name, String de_position, String de_career, String de_major, String de_picture,
-			int sh_uid) throws SQLException {
+	public int insert(String de_name, String de_position, int de_career, String de_major, int sh_uid) 
+			throws SQLException {
 		int cnt = 0;
 
 		try {
 			pstmt = conn.prepareStatement(infoInterface.DESIGNER_INSERT);
 			pstmt.setString(1, de_name);
 			pstmt.setString(2, de_position);
-			pstmt.setString(3, de_career);
+			pstmt.setInt(3, de_career);
 			pstmt.setString(4, de_major);
-			pstmt.setString(5, de_picture);
-			pstmt.setInt(6, sh_uid);
+			pstmt.setInt(5, sh_uid);
 			cnt = pstmt.executeUpdate();
 		} finally {
 			close();
@@ -122,14 +120,14 @@ public class DesignerDAO {
 	}
 
 	// 디자이너정보 수정하기
-	public int update(int de_uid, String de_name, String de_position, String de_career, String de_major,
+	public int update(int de_uid, String de_name, String de_position, int de_career, String de_major,
 			String de_picture) throws SQLException {
 		int cnt = 0;
 		try {
 			pstmt = conn.prepareStatement(infoInterface.DESIGNER_UPDATE);
 			pstmt.setString(1, de_name);
 			pstmt.setString(2, de_position);
-			pstmt.setString(3, de_career);
+			pstmt.setInt(3, de_career);
 			pstmt.setString(4, de_major);
 			pstmt.setString(5, de_picture);
 			pstmt.setInt(6, de_uid);

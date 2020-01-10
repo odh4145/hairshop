@@ -12,6 +12,44 @@ form{
 textarea{
 	width:400px;
 }
+.submenu{
+	border-top:1px solid #eee;
+	margin:0 30px;
+	width:115px;
+	float:left !important;
+}
+.submenu h4{
+	font-size:17px;
+	font-weight:100;
+	color:#bbb;
+	padding:5px;
+	border-bottom:1px solid #eee;
+}
+.submenu a:hover{
+	color:#313f67;
+	font-weight:600;
+}
+
+.box{
+	overflow:hidden;
+	width:100%;
+	margin-top:30px;
+}
+
+.selected{
+	color:#313f67 !important;
+	font-weight:600 !important;
+}
+
+.info{
+	margin-bottom:30px;
+}
+.inner{
+	width:965px;
+	overflow:hidden;
+	float:right;
+}
+
 .store_pic{
 	position:relative;
 	overflow:hidden;
@@ -19,13 +57,13 @@ textarea{
 }
 .store_pic img{
 	float:left;
-	width:340px;
-	height:300px;
+	width:320px;
+	height:280px;
 }
 
 .store_info{
 	position:relative;
-	width:980px;
+	width:900px;
 	top:-50px;
 	background:white;
 	margin:0 auto;
@@ -46,6 +84,7 @@ textarea{
 	margin:0 auto;
 	border-top:1px solid #f2f2f2;
 	padding:15px;
+	padding-left:20px;
 	color:#666;
 	font-size:17px;
 	position: relative;
@@ -58,7 +97,6 @@ textarea{
 	font-size: 15px;
 	color:#bbb;
 	font-weight:400;
-	margin-bottom:20px;
 }
 .information p {
 	line-height: 40px;
@@ -74,40 +112,26 @@ textarea{
 	font-size:14px;
 }
 
-.price_info{
+.service_info{
 	float:left;
-	margin:20px 20px 20px 0;
+	margin:20px;
 	border:1px solid #eee;
 	padding:15px;
 }
-.price_info input{
+.service_info input{
 	width:130px;
 	margin-bottom:10px;
 }
 
 
-.price_info li:last-child, .designer li:last-child{
+.service_info li:last-child, .designer li:last-child{
 	margin-right:0;
 }
-.price_info span{
+.service_info span{
 	width:50px;
 }
 
-.designer{
-	float:left;
-	margin:20px 30px 0 0;
-	text-align:center;
-}
 
-.designer img{
-	width:150px;
-	height:150px;
-	border-radius:50%;
-}
-
-.designer_name{
-	font-weight:800;
-}
 
 .time{
 	width:30px;
@@ -125,7 +149,7 @@ textarea{
 }
 
 .p_btn{
-	width:180px !important;
+	width:80px !important;
 	text-align:center;
 	border:1px solid #f6b798;
 	background:white;
@@ -139,8 +163,12 @@ textarea{
 	background:#f6b798;
 	color:white;
 }
+.d_btn{
+	width:95px !important;
+}
 .btnbox{
 	overflow:hidden;
+	margin-top:5px;
 }
 
 #go_delete{
@@ -158,16 +186,36 @@ textarea{
 	position: absolute;
 	right:15px;
 	bottom:15px;
+	border-radius: 20px;
 }
 .update:hover{
 	color:#313f67;
 	background: white;
 }
 
-.add_delete{
-	width:70px;
+.designer{
+	float:left;
+	margin:20px;
+	border:1px solid #eee;
+	padding:15px;
+}
+.designer img{
+	width:150px;
+	height:150px;
+	border-radius:50%;
+}
+.designer input{
+	font-size:15px;
+	width:155px;
+	margin-bottom:10px;
+	padding:5px;
 }
 
-#add{
-	right:100px;
+.insert_dpic{
+	width:200px !important;
+}
+
+#imgbox{
+	width:150px;
+	margin:0 auto;
 }
