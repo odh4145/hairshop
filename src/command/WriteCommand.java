@@ -17,7 +17,6 @@ public class WriteCommand implements Command {
 		// 입력한 값 받아오기
 	
 		int co_star = (Integer.parseInt(request.getParameter("co_star")));
-//		int bo_uid = Integer.parseInt(request.getParameter("bo_uid"));
 		String co_title = request.getParameter("co_title");
 		String co_name = request.getParameter("co_name");
 		String co_content = request.getParameter("co_content");
@@ -28,7 +27,6 @@ public class WriteCommand implements Command {
 		{
 			try {
 				cnt = dao.insert(co_star, co_name, co_title, co_content);
-//				cnt = dao.insert(bo_uid,co_star, co_name, co_title, co_content);
 			} catch(SQLException e) {
 				e.printStackTrace();
 			}
