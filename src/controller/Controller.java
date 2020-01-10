@@ -33,6 +33,9 @@ import command.UpdateCommand;
 import command.UserLoginCommand;
 import command.ViewCommand;
 import command.WriteCommand;
+import command.DeleteBookshopCommand;
+import command.DeleteBookuserCommand;
+import command.ShowBookshopCommand;
 import command.ServiceAddCommand;
 import command.ServiceDeleteCommand;
 
@@ -256,6 +259,46 @@ public class Controller extends HttpServlet {
 			command.execute(request, response);
 			// ajax로 쏴주기
 			break;
+///////////////////////////////////////////////////BOOK////////////////////////////////////////////////////////////////
+		case "/book/user.bbq":
+			System.out.println("debug용");
+			command = new ShowBookuserCommand();
+			command.execute(request, response);
+			viewPage = "/book/usertest.jsp";
+			break;
+		
+		case "/book/delete.book.bbq":
+			System.out.println("debug용");
+			System.out.println("bo_uid 의 값은 : " + request.getParameter("bo_uid"));
+			command = new DeleteBookuserCommand();
+			command.execute(request, response);
+			viewPage = "/book/deleteOk.jsp";
+			break;
+		
+		case "/book/shopdeleteOk.book":
+			System.out.println("bo_uid 의 값은 : " + request.getParameter("bo_uid"));
+			//TODO
+			command = new DeleteBookuserCommand();
+			command.execute(request, response);
+			viewPage = "/book/deleteOk.jsp";
+			break;
+		
+		case "/book/shop.book":
+			System.out.println("debug용 shop");
+			command = new ShowBookshopCommand();
+			command.execute(request, response);
+			System.out.println("테스트용 shoptest.book컨트롤러");
+			viewPage = "/book/shoptest.jsp";
+			break;	
+			
+		case "book/shopdelete.book":
+			System.out.println("매장용 삭제 페이지 연결");
+			command = new DeleteBookshopCommand();
+			command.execute(request, response);
+			//TODO
+			viewPage = "/book/.jsp";
+			break;
+			
 		}
 
 		if (viewPage != null) {
