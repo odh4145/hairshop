@@ -40,7 +40,7 @@ th,td {
 	$(function() {
 		$("#speed").selectmenu();
 
-		$("#files").selectmenu();
+		
 
 		$("#number").selectmenu().selectmenu("menuWidget").addClass("overflow");
 
@@ -50,7 +50,8 @@ th,td {
  --%>
 </head>
 
-<body>
+
+ <body onload="initialize()">
 	<header>
 		<ul id="top_menu">
 			<li id="logo"><a href="index.jsp">Booking<span>HairShop</span></a></li>
@@ -74,7 +75,8 @@ th,td {
 					<form action="#">
 						<fieldset>
 							<div class="sel_menu">
-								<label for="speed">지역</label> <select name="speed" id="speed">
+								<label for="speed">지역</label> 
+								<select name="speed" id="speed">
 									<option selected="selected">서울특별시</option>
 									<option>광주광역시</option>
 									<option>대구광역시</option>
@@ -93,7 +95,8 @@ th,td {
 								</select>
 							</div>
 							<div class="sel_menu m2">
-								<label for="files">상세 지역</label> <select name="files" id="files">
+								<label for="files">상세 지역</label> 
+								<select name="files" id="files" onchange=codeAddress(this.value)>
 									<option disabled selected>상세지역</option>
 									<optgroup label="ㄱ">
 										<option id="address">강북구</option>
@@ -142,33 +145,61 @@ th,td {
 				<div id="map"></div>
 			
 				<script>
+				var geocoder;
+			    var map;
+				var labels = new Array();
+				var locations = new Array();
+				var pos;
+				
+			    function initialize() {
+			      geocoder = new google.maps.Geocoder();
+			      var latlng = new google.maps.LatLng(37.5325896, 126.9900429);
+			      // 초기 지도값은 서울이 한눈에 보이는 그정도 ? 
+			      var mapOptions = {
+			        zoom: 11,
+			        center: latlng
+			      }
+			      map = new google.maps.Map(document.getElementById('map'), mapOptions);
+			      
+			  	var markers = locations.map(function(location, i) {
+					console.log(location);
+					return new google.maps.Marker({
+						position : location,
+						label : labels[i % labels.length]
+					});
+				});
+
+				var markerCluster = new MarkerClusterer(
+						map,
+						markers,
+						{
+							imagePath : 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+						});
+
+			      
+			    } // 맵 리로딩 하는 펑션
+			    
+			    
+			    
+			    
+			   function codeAddress(a) {
+			      var address = a;
+			      alert(address);
+			      geocoder.geocode( { 'address': address}, function(results, status) {
+			        if (status == 'OK') {
+			          map.setCenter(results[0].geometry.location);
+			          map.setZoom(13);
+			        } else {
+			          alert('Geocode was not successful for the following reason: ' + status);
+			        }
+			      });
+			    };
 					var map;
-					var labels = new Array();
-					var locations = new Array();
-					var pos;
-					function initMap() {
-						map = new google.maps.Map(document
-								.getElementById('map'), {
-							center : pos,
-							zoom : 13
-						});
+				
 
-						var markers = locations.map(function(location, i) {
-							console.log(location);
-							return new google.maps.Marker({
-								position : location,
-								label : labels[i % labels.length]
-							});
-						});
 
-						var markerCluster = new MarkerClusterer(
-								map,
-								markers,
-								{
-									imagePath : 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
-								});
-
-					} // end initMap()
+					
+				
 
 					///////////////////위는 지도관련(마커포함)/////////////아래는 사용자 위치 및 주변매장 불러오기////////////////////////////////////////
 
@@ -276,7 +307,7 @@ th,td {
 	<script src="../js/public.js" type="text/javascript"></script>
 	<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFDCbB-7P2BDLp9LuwLHHp7e-yHfrq438&callback=initMap"
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFDCbB-7P2BDLp9LuwLHHp7e-yHfrq438"
 		async defer></script>
 </body>
 </html>

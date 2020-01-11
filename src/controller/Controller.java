@@ -11,27 +11,28 @@ import javax.servlet.http.HttpServletResponse;
 
 import command.AjaxListCommand;
 import command.Command;
+import command.DeleteBookshopCommand;
+import command.DeleteBookuserCommand;
 import command.DeleteCommand;
 import command.DesignerListCommand;
 import command.DesignerUpdateCommand;
 import command.JoinCommand;
 import command.ListCommand;
+import command.LocationCommand;
 import command.MyLocationCommand;
 import command.SelectCommand;
+import command.ServiceAddCommand;
+import command.ServiceDeleteCommand;
 import command.ServiceListCommand;
 import command.ServiceUpdateCommand;
 import command.ShopCommand;
 import command.ShopLoginCommand;
+import command.ShowBookshopCommand;
 import command.ShowBookuserCommand;
 import command.UpdateCommand;
 import command.UserLoginCommand;
 import command.ViewCommand;
 import command.WriteCommand;
-import command.DeleteBookshopCommand;
-import command.DeleteBookuserCommand;
-import command.ShowBookshopCommand;
-import command.ServiceAddCommand;
-import command.ServiceDeleteCommand;
 
 @WebServlet("*.bbq")
 public class Controller extends HttpServlet {
@@ -223,6 +224,15 @@ public class Controller extends HttpServlet {
 		// Ajax용 컨트롤
 		case "/shop.bbq":
 			command = new MyLocationCommand();
+			command.execute(request, response);
+			// shoplist받아와서
+			command = new AjaxListCommand();
+			command.execute(request, response);
+			// ajax로 쏴주기
+			break;
+			
+		case "/shopSelect.bbq":
+			command = new LocationCommand();
 			command.execute(request, response);
 			// shoplist받아와서
 			command = new AjaxListCommand();

@@ -63,7 +63,7 @@ th,td {
 					function initMap() {
 						map = new google.maps.Map(document.getElementById('map'), {
 							center : pos,
-							zoom : 15
+							zoom : 13
 						});
 										
 					var markers = locations.map(function(location, i) {

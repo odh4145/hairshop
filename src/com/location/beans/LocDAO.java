@@ -94,7 +94,7 @@ public LocDTO[] select() throws SQLException {
 }
 
 
-//주변의 가게 정보 받아오기 
+//주변의 가게 정보 받아오기   
 public LocDTO[] selectByLoc(String loc_lat,String loc_lng) throws SQLException{
 	LocDTO[] arr = null;
 	double d_lng = Double.parseDouble(loc_lng);
@@ -112,17 +112,24 @@ public LocDTO[] selectByLoc(String loc_lat,String loc_lng) throws SQLException{
 		
 	}finally {
 		close();
-	}
-	
-	
+	}	
 	return arr;
 }
 
-// 내위치 받아오기 
+//주변의 가게 정보 받아오기 지도초기화시 전체 나타내는용
 
-
-
-
+public LocDTO[] selectAllShop() throws SQLException{
+	LocDTO[] arr = null;
+	
+	try {
+		pstmt = conn.prepareStatement(L.SQL_Location_SELECT);
+		rs = pstmt.executeQuery();
+		arr = createArray(rs);
+	}finally {
+		close();
+	}	
+	return arr;
+}
 
 
 }// end Class
