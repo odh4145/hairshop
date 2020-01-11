@@ -19,7 +19,7 @@ public class ChangeDAO {
 		try {
 			Class.forName(changeUserInterface.DRIVER);
 			conn = DriverManager.getConnection(changeUserInterface.URL, changeUserInterface.USERID, changeUserInterface.USERPW);
-			System.out.println("JoinDAO 객체 생성, 데이터베이스 연결");
+			System.out.println("ChangeDAO 객체 생성, 데이터베이스 연결");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -51,6 +51,7 @@ public class ChangeDAO {
 			pstmt.setInt(1, use_uid);
 			rs = pstmt.executeQuery();
 			System.out.println("쿼리문 실행");
+			System.out.println("select * from user where use_uid="+use_uid+";");
 			arr = createArray(rs);
 			
 		} finally {
@@ -78,6 +79,25 @@ public class ChangeDAO {
 		return arr;
 	}
 	
+	public int ChangePw(int use_uid, String use_pw) throws SQLException {
+		int cnt = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(changeUserInterface.CHANGE_USER_PW);
+			pstmt.setString(1, use_pw);
+			pstmt.setInt(2, use_uid);
+			System.out.println("비밀번호 변경");
+			
+			System.out.println("update user set use_pw = "+ use_pw +" where use_uid =" + use_uid + ";");
+			
+			cnt = pstmt.executeUpdate();
+			
+		} finally {
+			close();
+		}
+		
+		return cnt;
+	}
 	
 	
 	

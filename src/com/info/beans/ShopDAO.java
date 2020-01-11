@@ -48,14 +48,11 @@ public class ShopDAO {
 			String sh_picture1 = rs.getString("sh_picture1");
 			String sh_picture2 = rs.getString("sh_picture2");
 			String sh_picture3 = rs.getString("sh_picture3");
-			int sh_dayoff1 = rs.getInt("sh_dayoff1");
-			int sh_dayoff2 = rs.getInt("sh_dayoff2");
 			int sh_starttime = rs.getInt("sh_starttime");
 			int sh_endtime = rs.getInt("sh_endtime");
 			
-			ShopDTO dto = new ShopDTO(sh_uid, sh_name, sh_telephone, 
-					sh_location, sh_hello, sh_picture1, sh_picture2, sh_picture3,
-					sh_dayoff1, sh_dayoff2, sh_starttime, sh_endtime);
+			ShopDTO dto = new ShopDTO(sh_uid, sh_name, sh_telephone, sh_location, sh_hello, 
+						sh_picture1, sh_picture2, sh_picture3, sh_starttime, sh_endtime);
 			list.add(dto);			
 		}
 		
@@ -79,31 +76,40 @@ public class ShopDAO {
 		return arr;
 	}
 	
-	// 매장정보 수정하기
-	public int update(int sh_uid, String sh_name, String sh_telephone, String sh_location, 
-				String sh_hello, String sh_picture1, String sh_picture2, String sh_picture3,
-				int sh_dayoff1, int sh_dayoff2, int sh_starttime, int sh_endtime) throws SQLException{
+	// 매장사진 수정하기
+	public int infoupdate(int sh_uid, String sh_picture1, String sh_picture2, String sh_picture3) throws SQLException{
 		int cnt = 0;
 		try {
-			pstmt = conn.prepareStatement(infoInterface.STORE_UPDATE);
-			pstmt.setString(1, sh_name);
-			pstmt.setString(2, sh_telephone);
-			pstmt.setString(3, sh_location);
-			pstmt.setString(4, sh_hello);
-			pstmt.setString(5, sh_picture1);
-			pstmt.setString(6, sh_picture2);
-			pstmt.setString(7, sh_picture3);
-			pstmt.setInt(8, sh_dayoff1);
-			pstmt.setInt(9, sh_dayoff2);
-			pstmt.setInt(10, sh_starttime);
-			pstmt.setInt(11, sh_endtime);
-			pstmt.setInt(12, sh_uid);
+			pstmt = conn.prepareStatement(infoInterface.STORE_PIC_UPDATE);
+			pstmt.setString(1, sh_picture1);
+			pstmt.setString(2, sh_picture2);
+			pstmt.setString(3, sh_picture3);
+			pstmt.setInt(4, sh_uid);
 			cnt = pstmt.executeUpdate();
 		} finally {
 			close();
 		}
 		return cnt;
 	}
+	
+	// 매장정보 수정하기
+		public int infoupdate(int sh_uid, String sh_telephone, String sh_location, String sh_hello, 
+							int sh_starttime, int sh_endtime) throws SQLException{
+			int cnt = 0;
+			try {
+				pstmt = conn.prepareStatement(infoInterface.STORE_INFO_UPDATE);
+				pstmt.setString(1, sh_telephone);
+				pstmt.setString(2, sh_location);
+				pstmt.setString(3, sh_hello);
+				pstmt.setInt(4, sh_starttime);
+				pstmt.setInt(5, sh_endtime);
+				pstmt.setInt(6, sh_uid);
+				cnt = pstmt.executeUpdate();
+			} finally {
+				close();
+			}
+			return cnt;
+		}
 } // end class
 
 

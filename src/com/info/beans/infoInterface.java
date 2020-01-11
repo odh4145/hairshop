@@ -10,44 +10,47 @@ public interface infoInterface {
 	public static final String STORE_SELECT_BY_UID = 
 			"SELECT * FROM SHOP WHERE sh_uid=?";
 	
-	public static final String STORE_UPDATE = 
-			"UPDATE SHOP SET"
-			+ "sh_name = ?,"
+	// 매장기본정보 수정
+	public static final String STORE_INFO_UPDATE = 
+			"UPDATE SHOP SET "
 			+ "sh_telephone = ?,"
 			+ "sh_location = ?,"
 			+ "sh_hello = ?,"
-			+ "sh_picture1 = ?,"
-			+ "sh_picture2 = ?,"
-			+ "sh_picture3 = ?,"
-			+ "sh_dayoff1 = ?,"
-			+ "sh_dayoff2 = ?,"
 			+ "sh_starttime = ?,"
 			+ "sh_endtime = ? "
 			+ "WHERE sh_uid = ?";
 	
+	// 매장사진 수정
+		public static final String STORE_PIC_UPDATE = 
+				"UPDATE SHOP SET "
+				+ "sh_picture1 = ?,"
+				+ "sh_picture2 = ?,"
+				+ "sh_picture3 = ? "
+				+ "WHERE sh_uid = ?";
+	
 	// 디자이너 
 	public static final String DESIGNER_INSERT = 
 			"INSERT INTO DESIGNER"
-			+ "(de_name, de_position, de_career, de_major, de_picture, sh_uid)"
+			+ "(de_name, de_position, de_career, de_major, sh_uid)"
 			+ "VALUES"
-			+ "(?, ?, ?, ?, ?, ?)";
+			+ "(?, ?, ?, ?, ?)";
 	
 	// 선택된 디자이너의 정보를 보기 위해
 	public static final String DESIGNER_SELECT_BY_UID = 
-			"SELECT * FROM DESIGNER WHERE de_uid=?";
+			"SELECT * FROM DESIGNER WHERE de_uid= ?";
 	
 	// 매장별 디자이너 목록 보기위해
 	public static final String DESIGNER_SELECT_BY_SH_UID = 
-			"SELECT * FROM DESIGNER WHERE sh_uid=?";
+			"SELECT * FROM DESIGNER WHERE sh_uid= ?";
 	
 	public static final String DESIGNER_SELECT_PICTURE = 
-			"SELECT de_picture FROM DESIGNER WHERE de_uid=?";
+			"SELECT de_picture FROM DESIGNER WHERE de_uid= ?";
 	
 	public static final String DESIGNER_DELETE = 
 			"DELETE FROM DESIGNER WHERE de_uid = ?";
 
 	public static final String DESIGNER_UPDATE =
-			"UPDATE DESIGNER SET"
+			"UPDATE DESIGNER SET "
 			+ "de_name = ?, "
 			+ "de_position = ?, "
 			+ "de_career = ?, "
@@ -63,13 +66,13 @@ public interface infoInterface {
 			+ "(?, ?, ?, ?)";
 	
 	public static final String SERVICE_SELECT_BY_UID =
-			"SELECT * FROM SERVICE WHERE ser_uid=?";
+			"SELECT * FROM SERVICE WHERE ser_uid= ?";
 		
 	public static final String SERVICE_SELECT_BY_SH_UID = 
-			"SELECT * FROM SERVICE WHERE sh_uid=?";
+			"SELECT * FROM SERVICE WHERE sh_uid= ?";
 		
 	public static final String SERVICE_DELETE = 
-			"DELETE FROM SERVICE WHERE ser_uid = ?";
+			"DELETE FROM SERVICE WHERE ser_uid = ? and sh_uid = ?";
 
 	public static final String SERVICE_UPDATE =
 			"UPDATE SERVICE SET "

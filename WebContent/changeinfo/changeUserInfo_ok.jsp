@@ -5,21 +5,12 @@
 
 <c:choose>
 	
-	<c:when test="${change_user_info == -1 }">
+	<c:when test="${change_user_info == 0 }">
 		<script>
 			alert("비밀번호 변경 실패!!(현재 비밀번호 틀림)");
 			history.back();
 		</script>
 	</c:when>
-
-<!-- 
-	<c:when test="${change_user_info == 0 }">
-		<script>
-			alert("회원가입 실패!!(아이디 중복)");
-			history.back();
-		</script>
-	</c:when>
- -->
 	
 	<c:when test="${change_user_info == 1 }">
 			<% session.invalidate();%>
