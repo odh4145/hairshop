@@ -37,6 +37,15 @@ function chkUserSubmit(){
 	
 	return true;
 }
+
+</script>
+
+<script>
+function logout(){
+    setTimeout(function(){
+        location.reload();
+    }, 1000);
+}
 </script>
 
 <body>
@@ -44,15 +53,15 @@ function chkUserSubmit(){
 	<ul id="top_menu">
 		<li id="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
 		<ul id="menu_list">
-			<li><a href="../location/Location2.bbq %>">내주변</a></li>
+			<li><a href="../location/Location2.bbq">내주변</a></li>
 			<li><a href="#">지역별매장</a></li>
 			<li><a href="../changeinfo/changeUserInfo.bbq">마이페이지</a></li>
 		</ul>	
 		<c:if test="${sessionScope.user == null }">
-		<li id="login" ><a href="login_user.bbqLoginUser">로그인</a></li>
+		<li id="login" ><a href="login_user.bbq">로그인</a></li>
 		</c:if>
 		<c:if test="${sessionScope.user != null }">
-		<li id="login" ><a href="../logout/Userlogout.jsp">로그아웃</a></li>
+		<li id="login"><a href="../logout/Userlogout.bbq">로그아웃</a></li>
 		</c:if>
 	</ul>
 </header>

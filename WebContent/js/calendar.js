@@ -91,8 +91,8 @@ function controller(target) {
 }
 
 $(function(){ 
-	$('td.date-cell').click(function(){
-		$('td.date-cell').removeClass('click_date');
+	$('tbody td').click(function(){
+		$('tbody td').removeClass('click_date');
 		$(this).addClass('click_date');
 	});
 	

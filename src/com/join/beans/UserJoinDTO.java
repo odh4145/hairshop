@@ -1,6 +1,6 @@
 package com.join.beans;
 
-public class JoinDTO {
+public class UserJoinDTO {
 	private int use_uid;
 	private String use_id;
 	private String use_pw;
@@ -9,20 +9,20 @@ public class JoinDTO {
 	
 	
 	// 기본생성자
-	public JoinDTO() {
+	public UserJoinDTO() {
 		super();
 		System.out.println("JoinDTO() 객체 생성");
 	}
 
 	// 매개변수 받는 생성자
-	public JoinDTO(int use_uid, String use_id, String use_pw, String use_name, String use_phoneNum) {
+	public UserJoinDTO(int use_uid, String use_id, String use_pw, String use_name, String use_phoneNum) {
 		super();
 		this.use_uid = use_uid;
 		this.use_id = use_id;
 		this.use_pw = use_pw;
 		this.use_name = use_name;
 		this.use_phoneNum = use_phoneNum;
-		System.out.println("JoinDTO(use_uid, use_id, use_pw, use_name, use_phoneNum) 객체 생성");
+		System.out.println("UserJoinDTO(use_uid, use_id, use_pw, use_name, use_phoneNum) 객체 생성");
 	}
 
 	// getter / setter

@@ -47,11 +47,11 @@ frm = document.forms["frm_chk_user_pw"];
 			<li><a href="#">지역별매장</a></li>
 			<li><a href="#">마이페이지</a></li>
 		</ul>	
-		<c:if test="${sessionScope.shop == null }">
-		<li id="login" ><a href="login_shop.bbqLoginShop">로그인</a></li>
+		<c:if test="${sessionScope.user == null }">
+		<li id="login" ><a href="../login/login_user.bbq">로그인</a></li>
 		</c:if>
-		<c:if test="${sessionScope.shop != null }">
-		<li id="login" ><a href="../logout/Shoplogout.jsp">로그아웃</a></li>
+		<c:if test="${sessionScope.user != null }">
+		<li id="login" ><a href="../logout/Userlogout.bbq">로그아웃</a></li>
 		</c:if>
 	</ul>
 </header>
@@ -70,7 +70,7 @@ frm = document.forms["frm_chk_user_pw"];
 		
 		<c:choose>
 			<c:when test="${sessionScope.user != null }">
-				<form name="frm_chk_user_pw" action="changeUserInfo_ok.jsp" method="post" onsubmit="return chkUserPw()">
+				<form name="frm_chk_user_pw" action="changeUserInfo_ok.bbq" method="post" onsubmit="return chkUserPw()">
 					<input id="use_pw" type="password" name="use_pw" placeholder="현재 비밀번호">
 					<br><br>
 					<input id="use_pw2" type="password" name="use_pw2" placeholder="새 비밀번호">
@@ -83,7 +83,7 @@ frm = document.forms["frm_chk_user_pw"];
 			<c:when test="${sessionScope.user == null }">
 				<script>
 					alert("로그인 해야함")
-					location.href = "../login/login_user.bbqLoginUser";
+					location.href = "../login/login_user.bbq";
 				</script>
 			</c:when>
 		</c:choose>

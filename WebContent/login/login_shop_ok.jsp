@@ -22,7 +22,7 @@
     <c:when test="${login_shop == 1 }">
 		<script>
 			alert("로그인 성공");
-			location.href = "login_shop.bbqLoginShop";
+			location.href = "login_shop.bbq";
 		</script>
 	</c:when>    
 </c:choose>

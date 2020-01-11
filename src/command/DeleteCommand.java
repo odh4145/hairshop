@@ -17,6 +17,8 @@ public class DeleteCommand implements Command {
 		//입력한 값을 받아오기
 		int co_uid = Integer.parseInt(request.getParameter("co_uid"));
 		
+		
+		
 		try {			
 			cnt = dao.deleteByUid(co_uid);
 		} catch (SQLException e) {
@@ -27,6 +29,7 @@ public class DeleteCommand implements Command {
 		
 	} // end execute()
 } // end Command
+
 
 
 

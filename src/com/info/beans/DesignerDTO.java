@@ -4,7 +4,7 @@ public class DesignerDTO {
 	private int de_uid;
 	private String de_name;
 	private String de_position;
-	private String de_career;
+	private int de_career;
 	private String de_major;
 	private String de_picture;
 	private int sh_uid;
@@ -17,7 +17,7 @@ public class DesignerDTO {
 	
 	// 매개변수 받는 생성자
 	public DesignerDTO(int de_uid, String de_name, String de_position,
-			String de_career, String de_major, String de_picture, int sh_uid) {
+			int de_career, String de_major, String de_picture, int sh_uid) {
 		super();
 		this.de_uid = de_uid;
 		this.de_name = de_name;
@@ -53,11 +53,11 @@ public class DesignerDTO {
 		this.de_position = de_position;
 	}
 
-	public String getDe_career() {
+	public int getDe_career() {
 		return de_career;
 	}
 
-	public void setDe_career(String de_career) {
+	public void setDe_career(int de_career) {
 		this.de_career = de_career;
 	}
 

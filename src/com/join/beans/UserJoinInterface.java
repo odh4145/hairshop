@@ -1,6 +1,6 @@
 package com.join.beans;
 
-public interface joinInterface {
+public interface UserJoinInterface {
 	public static final String DRIVER = "org.mariadb.jdbc.Driver";
 	public static final String URL = "jdbc:mariadb://localhost:3306/mydb";
 	public static final String USERID = "myuser";

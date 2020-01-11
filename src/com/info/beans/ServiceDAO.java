@@ -141,6 +141,7 @@ public class ServiceDAO {
 		try {
 			pstmt = conn.prepareStatement(infoInterface.SERVICE_DELETE);
 			pstmt.setInt(1, ser_uid);
+			pstmt.setInt(2, sh_uid);
 			cnt = pstmt.executeUpdate();
 		} finally {
 			close();
