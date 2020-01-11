@@ -467,7 +467,10 @@ VALUES('test03', '1234', '손님용2', '01000000002');
 
 select * from user;
 select * from shop;
+select * from book;
+select * from shop;
 
+select * from shop s join service ser join book b where b.sh_uid = s.sh_uid and ser.sh_uid = s.sh_uid;
 
 select * from book where use_uid = 1;
 select * from book natural join shop where use_uid = 1;
