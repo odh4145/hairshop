@@ -14,24 +14,7 @@
 <link href="../css/menu.css" rel="stylesheet" type="text/css">
 <!-- 마이페이지 아닌분들은 sub.css 지우세요 -->
 <link href="../css/sub.css" rel="stylesheet" type="text/css">
-<script type="text/javascript">
-var bDisplay = true;
-function doDisplay(){
-	alert('예약을 취소하기 위해선 사유를 입력해 주셔야 합니다');
-	var con = document.getElementById("DIV_K");
-	if(con.style.display=='none'){
-		con.style.display = 'block';
-	}else{
-		con.style.display = 'none';
-	}
-}
 
-function openwindow(url){
-    window.open(url,'','scrollbars=no,width=500,height=500');
-    elementId=id;
-
-}
-</script>
 </head>
 
 <body>
@@ -67,28 +50,27 @@ function openwindow(url){
 
 			<!------------- 세부메뉴 ----------class="inner" 지우세요------------->
 			<div class="inner">
-			<h3>넘어왔는지 확인용 테스트 문구</h3>
 				<c:forEach var="book_sh" items="${book_sh }">
 					<div>
 						<p>예약시간 : ${book_sh.bo_time}</p>
-						<p>디자이너 이름 : ${book_sh.de_name}</p>
 						<p>시술 이름 : ${book_sh.bo_service}</p>
 						<c:if test="${book_sh.bo_stat == 1 }">
 							<p class="test">승인 전 예약입니다.</p>
-							<!-- todo승인 update-->
-							<form action="bookupdate_shop">
-								<input type=submit value="승인"/>
-								<!-- TODO -->
-								<input type=button onClick="location.href='bookShopRadio.html'" value="승인"/>
-								<input type=button onClick="openwindow('bookShopRadio.html')" value='취소하기'/>
+							<form action="bookShopRadio.jsp">
 								<input type="hidden" name="bo_uid" value="${book_sh.bo_uid }">
 								<input type="hidden" name="sh_uid" value="${book_sh.sh_uid }">
-								<hr>
+								<input type="submit" value='취소하기'/>
 							</form>
+							<form action="shopupdate.book.bbq">
+								<input type="hidden" name="bo_uid" value="${book_sh.bo_uid }">
+								<input type="hidden" name="sh_uid" value="${book_sh.sh_uid }">
+								<input type="submit" value='승인'/>
+							</form>
+								<hr>
 						</c:if>
 						<c:if test="${book_sh.bo_stat == 2 }">
 							<p class="test">승인 완료된 예약입니다.</p>
-							
+							<hr>
 						</c:if>
 						<c:if test="${book_sh.bo_stat == 3 }">
 							<p class="test">이미 지난 예약입니다.</p>

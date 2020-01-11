@@ -1,14 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>취소를 하시기 위해 이유를 입력해 주셔야 합니다.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>취소 페이지</title>
 </head>
 <body>
-<input type="checkbox" name="delete" value="사유1"> 이유1
-<input type="checkbox" name="delete" value="사유2"> 이유2
-<input type="checkbox" name="delete" value="사유3"> 기타사유
+<% 
+try{	
+	//문제가 생기면 체크박스에 체크를 안하고 줬을 경우가 있으므로 NumberFormatException이 발생할 수 있다.
+	int result = Integer.parseInt(request.getParameter("result"));
+
+}catch(NumberFormatException e){
+	out.println("<script>");
+	out.println("alert('취소사유가 최소한 하나는 필요합니다');");
+	out.println("history.back();");
+	out.println("</script>");
+}
+%>
+<form id="pass" action="shopdelete.book.bbq" method="post">
+
+<%-- <input type="hidden" name="cancel" value="<%=request.getParameter("result") %>"> --%>
+<input type="hidden" name="bo_uid" value="<%=request.getParameter("bo_uid") %>">
+<input type="hidden" name="sh_uid" value="<%=request.getParameter("sh_uid") %>">
+</form> 
 </body>
 </html>
