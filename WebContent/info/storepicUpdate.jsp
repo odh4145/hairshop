@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:choose>
-	<c:when test="${service == 0 }"> 
+	<c:when test="${info == 0 }">
 		<script>
 			alert("수정실패");
 			history.back();
@@ -12,7 +12,7 @@
 	<c:otherwise>
 		<script>
 			alert("수정되었습니다.");
-			location.href = "storeUpdate.bbq?sh_uid=${param.sh_uid}";
+			location.href = "storepicList.bbq?sh_uid=${param.sh_uid}";
 		</script>
 	</c:otherwise>
 </c:choose>

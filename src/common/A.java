@@ -15,13 +15,11 @@ public interface A {
 	//(리스트)
 	public static final String SQL_WRITE_SELECT = 
 			"select * from comment where sh_uid = ? order by co_uid";
-//			"SELECT * FROM comment,book,designer ORDER BY co_uid DESC ";
-//			"SELECT * FROM comment ORDER BY co_uid DESC";
-	
+
 	//(view 상세)
 	public static final String SQL_WRITE_SELECT_BY_UID = 
 			// sql에 있다 
-			"SELECT * FROM ((comment c join `user` u) join book b) join shop s
+			"SELECT * FROM ((comment c join user u) join book b) join shop s
 			where c.use_uid = u.use_uid and u.use_uid = b.use_uid and s.sh_uid = c.sh_uid and c.co_uid =?";
 	
 	public static final String SQL_WRITE_DELETE_BY_UID = 

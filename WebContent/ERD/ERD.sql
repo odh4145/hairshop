@@ -49,7 +49,7 @@ CREATE TABLE DESIGNER
 	de_position varchar(20) NOT NULL DEFAULT '디자이너',
 	de_career int NOT NULL,
 	de_major varchar(40) NOT NULL,
-	de_picture varchar(40),
+	de_picture varchar(500),
 	sh_uid int NOT NULL,
 	PRIMARY KEY (de_uid)
 );
@@ -69,8 +69,8 @@ CREATE TABLE SERVICE
 (
 	ser_uid int NOT NULL AUTO_INCREMENT,
 	ser_name varchar(40) NOT NULL,
-	ser_price int,
-	ser_time time NOT NULL,
+	ser_price int NOT NULL,
+	ser_time int NOT NULL,
 	sh_uid int NOT NULL,
 	PRIMARY KEY (ser_uid)
 );
@@ -88,11 +88,9 @@ CREATE TABLE SHOP
 	sh_location_lat varchar(40),
 	sh_location_lng varchar(40),
 	sh_hello varchar(200),
-	sh_picture1 varchar(40),
-	sh_picture2 varchar(40),
-	sh_picture3 varchar(40),
-	sh_dayoff1 int CHECK (sh_dayoff1 >=1 and  sh_dayoff1 <= 7),
-	sh_dayoff2 int CHECK(sh_dayoff2>= 1 AND sh_dayoff2<=7),
+	sh_picture1 varchar(500),
+	sh_picture2 varchar(500),
+	sh_picture3 varchar(500),
 	sh_starttime int DEFAULT 9,
 	sh_endtime int DEFAULT 21,
 	num_identify int DEFAULT 2,
@@ -193,7 +191,7 @@ INSERT INTO SHOP(
 	sh_location,
 	sh_hello
 )
-VALUES('store01', '1234', 1111111111, '매장용', '070-1111-1111', '서울시 강남구 역삼동 1',
+VALUES('store01', '1234', 1111111111, '매장용', '07011111111', '서울시 강남구 역삼동 1',
 '저희 매장을 찾아주셔서 감사합니다. 항상 좋은 서비스로 보답하겠습니다.');
 
 INSERT INTO DESIGNER
@@ -224,7 +222,7 @@ INSERT INTO SERVICE
 	ser_time,
 	sh_uid
 )
-VALUES('염색', 100000, 30000, 1);
+VALUES('염색', 100000, 3, 1);
 
 
 
@@ -238,7 +236,7 @@ INSERT INTO SHOP(
 	sh_location_lat,
 	sh_location_lng
 )
-VALUES('store03', '1234', 33333333333, '건대좌표', '07011111111','보라매동 969-20','37.5434924','127.0733933');
+VALUES('store03', '1234', 3333333333, '건대좌표', '07011111111','보라매동 969-20','37.5434924','127.0733933');
 
 
 
@@ -266,7 +264,7 @@ INSERT INTO SHOP(
 	sh_location_lat,
 	sh_location_lng
 )
-VALUES('store05', '1234', 55555555, '신림좌표', '07011111111','봉천로7길','37.487159','126.932628');
+VALUES('store05', '1234', 5555555555, '신림좌표', '07011111111','봉천로7길','37.487159','126.932628');
 
 
 INSERT INTO SHOP(
@@ -291,9 +289,9 @@ INSERT INTO SHOP(
 	sh_location_lat,
 	sh_location_lng
 )
-VALUES('store12', '1234', 71231117, '역삼좌표', '07011111111','봉천로7길','37.511016','127.034426'),
+VALUES('store7', '1234', 7777777777, '역삼좌표', '07011111111','봉천로7길','37.511016','127.034426'),
 ('store08', '1234', 888888888, '역삼좌표', '07011111111','봉천로7길','37.521016','127.099426'),
-('store09', '1234', 99999999, '역삼좌표', '07011111111','봉천로7길','37.531016','127.032626'),
+('store09', '1234', 9999999999, '역삼좌표', '07011111111','봉천로7길','37.531016','127.032626'),
 ('store10', '1234', 101010101, '역삼좌표', '07011111111','봉천로7길','37.525516','127.036626'),
 ('store11', '1234', 111111112, '역삼좌표', '07011111111','봉천로7길','37.518816','127.039926');
 
@@ -304,15 +302,11 @@ INSERT INTO SERVICE
 	ser_time,
 	sh_uid
 )
-VALUES('커트', 30000, 10000, 1);
+VALUES('커트', 30000, 1, 1);
 select * from shop;
 select * from service;
 select * from designer;
 select * from user;
-insert into book (
-bo_service, bo_stat, bo_time, bo_comment, use_uid, de_uid, ser_uid
-) values ('test_01', 1, now(), 'bo_comment_test_01', 1, 1, 1) ;
-
 
 select * from `user`;
 /*testdata_book*/
@@ -467,7 +461,10 @@ VALUES('test03', '1234', '손님용2', '01000000002');
 
 select * from user;
 select * from shop;
+select * from book;
+select * from shop;
 
+select * from shop s join service ser join book b where b.sh_uid = s.sh_uid and ser.sh_uid = s.sh_uid;
 
 select * from book where use_uid = 1;
 select * from book natural join shop where use_uid = 1;
@@ -483,9 +480,9 @@ select * from user;
 
 select * from shop;
 
-select * from user where user.use_id = 'test01';
+-- select * from user where user.use_id = 'test01';
 
-SELECT * FROM USER WHERE use_id='test01';
+-- SELECT * FROM USER WHERE use_id='test01';
 
 -- delete from user where use_uid = 3;
 
@@ -501,18 +498,33 @@ SELECT * FROM USER WHERE use_id='test01';
 -- 	(select count() from user where use_phoneNum = '01000000000'),
 -- 	(select count() from shop where sh_telephone = 'store01');
 
-select * from user where use_id='test01';
+-- select * from user where use_id='test01';
 
 
 -- UPDATE [테이블] SET [열] = '변경할값' WHERE [조건]
+<<<<<<< HEAD
+
+
+-- uid >> 2
+-- uid2인사람의 비밀번호 바꾸기 
+=======
 SELECT * FROM BOOK WHERE use_uid = 1 ORDER BY bo_time desc;
 select * from book where sh_uid = 1;
 uid >> 2
 uid2인사람의 비밀번호 바꾸기 
+>>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
 
 -- update user set use_pw = '?' where use_uid = '?';
 
-select * from user where use_uid=2;
+<<<<<<< HEAD
+-- select * from user where use_uid=2;
+=======
+select * from service;
+>>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
 	
+<<<<<<< HEAD
+-- update user set use_pw = ? where use_uid = ?
+=======
 update user set use_pw = ? where use_uid = ?
 
+>>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git

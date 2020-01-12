@@ -12,7 +12,7 @@
 	<c:otherwise>
 		<script>
 			alert("수정되었습니다.");
-			location.href = "designer.bbq?sh_uid=1";
+			location.href = "storeUpdate.bbq?sh_uid=1";
 		</script>
 	</c:otherwise>
 </c:choose>

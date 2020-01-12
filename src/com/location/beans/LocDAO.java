@@ -58,15 +58,14 @@ public LocDTO[] createArray(ResultSet rs) throws SQLException{
 		String sh_picture2 = rs.getString("sh_picture2");
 		String sh_picture3 = rs.getString("sh_picture3");
 		
-		int sh_dayoff1 = rs.getInt("sh_dayoff1");
-		int sh_dayoff2 = rs.getInt("sh_dayoff2");
+	
 		int sh_starttime = rs.getInt("sh_starttime");
 		int sh_endtime = rs.getInt("sh_endtime");
 		
 		LocDTO dto = new LocDTO(sh_uid, sh_name, sh_telephone, 
 				sh_location, sh_location_lat,
 				sh_location_lng, sh_hello, sh_picture1, sh_picture2, sh_picture3,
-				sh_dayoff1, sh_dayoff2, sh_starttime, sh_endtime);
+				 sh_starttime, sh_endtime);
 		
 		list.add(dto);
 		
@@ -94,7 +93,7 @@ public LocDTO[] select() throws SQLException {
 }
 
 
-//주변의 가게 정보 받아오기 
+//주변의 가게 정보 받아오기   
 public LocDTO[] selectByLoc(String loc_lat,String loc_lng) throws SQLException{
 	LocDTO[] arr = null;
 	double d_lng = Double.parseDouble(loc_lng);
@@ -112,17 +111,24 @@ public LocDTO[] selectByLoc(String loc_lat,String loc_lng) throws SQLException{
 		
 	}finally {
 		close();
-	}
-	
-	
+	}	
 	return arr;
 }
 
-// 내위치 받아오기 
+//주변의 가게 정보 받아오기 지도초기화시 전체 나타내는용
 
-
-
-
+public LocDTO[] selectAllShop() throws SQLException{
+	LocDTO[] arr = null;
+	
+	try {
+		pstmt = conn.prepareStatement(L.SQL_Location_SELECT);
+		rs = pstmt.executeQuery();
+		arr = createArray(rs);
+	}finally {
+		close();
+	}	
+	return arr;
+}
 
 
 }// end Class

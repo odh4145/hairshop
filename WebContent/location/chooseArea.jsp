@@ -18,8 +18,8 @@
 	<ul id="top_menu">
 		<li id="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
 		<ul id="menu_list">
-			<li><a href="#">내주변</a></li>
-			<li><a href="#">지역별매장</a></li>
+			<li><a href="Location2.bbq">내주변</a></li>
+			<li><a href="chooseArea.bbq">지역별매장</a></li>
 			<li><a href="#">마이페이지</a></li>
 		</ul>	
 		<c:if test="${sessionScope.user == null }">
@@ -37,7 +37,7 @@
 		<h2 id="content_title">지역별매장</h2>
 		<div class="innerbox">
 			<div class="choose">
-				<a class="where" href="chooseDetailArea.jsp">서울특별시</a>
+				<a class="where" href="chooseDetailArea2.jsp">서울특별시</a>
 				<a class="where" href="#">광주광역시</a>
 				<a class="where" href="#">대구광역시</a>
 				<a class="where" href="#">대전광역시</a>
