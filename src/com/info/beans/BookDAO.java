@@ -102,21 +102,6 @@ public class BookDAO implements K {
 		return cnt;
 	}
 
-	// 예약 STAT 변경하기
-	public int update(int bo_stat, int sh_uid) throws SQLException {
-		int cnt = 0;
-		try {
-			pstmt = conn.prepareStatement(K.SQL_BOOK_UPDATE_STAT_BY_SH_UID);
-			pstmt.setInt(1, bo_stat);
-			pstmt.setInt(2, sh_uid);
-			cnt = pstmt.executeUpdate();
-		} finally {
-			close();
-		}
-
-		return cnt;
-	};
-	
 	//예약 취소하기
 		public int delete(int bo_uid) throws SQLException {
 			int cnt = 0;
@@ -130,4 +115,20 @@ public class BookDAO implements K {
 
 			return cnt;
 		};
+	
+	// 예약 bo_comment 변경하기
+	/*
+	 * public int updateBo_comment(String bo_comment, int bo_uid) throws
+	 * SQLException{ int cnt = 0; try { pstmt =
+	 * conn.prepareStatement(K.SQL_BOOK_UPDATE_BO_COMMENT); pstmt.setString(1,
+	 * bo_comment); pstmt.setInt(2, bo_uid); cnt = pstmt.executeUpdate(); } finally
+	 * { close(); }
+	 * 
+	 * return cnt;
+	 * 
+	 * };
+	 */
 }
+
+
+

@@ -34,6 +34,7 @@ import command.ShopLoginCommand;
 import command.ShowBookshopCommand;
 import command.ShowBookuserCommand;
 import command.StoreInfoUpdateCommand;
+import command.UpdateBookShopCommand;
 import command.UpdateCommand;
 import command.UserLoginCommand;
 import command.ViewCommand;
@@ -221,13 +222,11 @@ public class Controller extends HttpServlet {
 			viewPage = "storeUpdate.jsp";
 			break;
 			
-<<<<<<< HEAD
 		// 매장-사진목록
 		case "/info/storepicList.bbq":
 			command = new ShopCommand();
-=======
 		// 매장-매장정보 수정
-		case "/info/storeInfoUpdate.bbq":
+//		case "/info/storeInfoUpdate.bbq":
 			command = new StoreInfoUpdateCommand();
 			command.execute(request, response);
 			viewPage = "storeInfoUpdate.jsp";
@@ -236,7 +235,6 @@ public class Controller extends HttpServlet {
 		// 매장-디자이너 관리
 		case "/info/designer.bbq":
 			command = new DesignerListCommand();
->>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
 			command.execute(request, response);
 			viewPage = "storepicList.jsp";
 			break;
@@ -304,47 +302,43 @@ public class Controller extends HttpServlet {
 			// ajax로 쏴주기
 			break;
 ///////////////////////////////////////////////////BOOK////////////////////////////////////////////////////////////////
+		//예약 내역 확인--> user입장
 		case "/book/user.bbq":
 			System.out.println("debug용");
 			command = new ShowBookuserCommand();
 			command.execute(request, response);
 			viewPage = "/book/usertest.jsp";
 			break;
-
+		//예약 삭제--> user입장	
 		case "/book/delete.book.bbq":
-			System.out.println("debug용");
-			System.out.println("bo_uid 의 값은 : " + request.getParameter("bo_uid"));
 			command = new DeleteBookuserCommand();
 			command.execute(request, response);
 			viewPage = "/book/deleteOk.jsp";
 			break;
-
-		case "/book/shopdeleteOk.book":
-			System.out.println("bo_uid 의 값은 : " + request.getParameter("bo_uid"));
-			// TODO
-			command = new DeleteBookuserCommand();
-			command.execute(request, response);
-			viewPage = "/book/deleteOk.jsp";
-			break;
-
-		case "/book/shop.book":
+		//예약 확인--> 매장입장
+		case "/book/shop.bbq":
 			System.out.println("debug용 shop");
 			command = new ShowBookshopCommand();
 			command.execute(request, response);
 			System.out.println("테스트용 shoptest.book컨트롤러");
 			viewPage = "/book/shoptest.jsp";
 			break;
-
-		case "book/shopdelete.book":
-			System.out.println("매장용 삭제 페이지 연결");
+		//예약 삭제 --> 매장입장
+		case "/book/shopdelete.book.bbq":
+			System.out.println("매장용 book삭제");
 			command = new DeleteBookshopCommand();
 			command.execute(request, response);
-			// TODO
-			viewPage = "/book/.jsp";
+			viewPage = "/book/deletebookshop.jsp";
 			break;
-
-		}
-
+		//예약 stat변경 --> 매장입장
+		case "/book/shopupdate.book.bbq":
+			System.out.println("매장용 book삭제");
+			command = new UpdateBookShopCommand();
+			command.execute(request, response);
+			viewPage = "/book/updateOk.jsp";
+			break;
+			}
+		
 		if (viewPage != null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response);
