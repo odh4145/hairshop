@@ -31,6 +31,7 @@ import command.ShopLoginCommand;
 import command.ShowBookshopCommand;
 import command.ShowBookuserCommand;
 import command.StoreInfoUpdateCommand;
+import command.StorepicUpdateCommand;
 import command.UpdateCommand;
 import command.UserLoginCommand;
 import command.ViewCommand;
@@ -122,13 +123,6 @@ public class Controller extends HttpServlet {
 			viewPage = "storeInfo.jsp";
 			break;
 
-		// 매장-매장정보 수정
-		case "/info/storeInfoUpdate.bbq":
-			command = new StoreInfoUpdateCommand();
-			command.execute(request, response);
-			viewPage = "storeInfoUpdate.jsp";
-			break;
-
 		// 손님-후기목록
 		case "/comment/list.bbq":
 			command = new ListCommand();
@@ -193,25 +187,26 @@ public class Controller extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "storeUpdate.jsp";
 			break;
-			
-<<<<<<< HEAD
+
 		// 매장-사진목록
 		case "/info/storepicList.bbq":
 			command = new ShopCommand();
-=======
+			command.execute(request, response);
+			viewPage = "storepicList.jsp";
+			break;
+			
+		// 매장-사진수정
+		case "/info/storepicUpdate.bbq":
+			command = new StorepicUpdateCommand();
+			command.execute(request, response);
+			viewPage = "storepicUpdate.jsp";
+			break;
+
 		// 매장-매장정보 수정
 		case "/info/storeInfoUpdate.bbq":
 			command = new StoreInfoUpdateCommand();
 			command.execute(request, response);
 			viewPage = "storeInfoUpdate.jsp";
-			break;
-
-		// 매장-디자이너 관리
-		case "/info/designer.bbq":
-			command = new DesignerListCommand();
->>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
-			command.execute(request, response);
-			viewPage = "storepicList.jsp";
 			break;
 
 		// 매장-디자이너 추가

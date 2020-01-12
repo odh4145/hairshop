@@ -77,7 +77,7 @@ public class ShopDAO {
 	}
 	
 	// 매장사진 수정하기
-	public int infoupdate(int sh_uid, String sh_picture1, String sh_picture2, String sh_picture3) throws SQLException{
+	public int infopicupdate(int sh_uid, String sh_picture1, String sh_picture2, String sh_picture3) throws SQLException{
 		int cnt = 0;
 		try {
 			pstmt = conn.prepareStatement(infoInterface.STORE_PIC_UPDATE);
