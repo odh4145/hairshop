@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.AjaxListCommand;
+import command.BookingCommand;
 import command.ChangeUserInfoCommand;
 import command.Command;
 import command.DeleteBookshopCommand;
@@ -18,9 +19,7 @@ import command.DeleteCommand;
 import command.DesignerAddCommand;
 import command.DesignerDeleteCommand;
 import command.DesignerListCommand;
-import command.UserJoinCommand;
 import command.DesignerUpdateCommand;
-import command.UserJoinCommand;
 import command.ListCommand;
 import command.LocationCommand;
 import command.MyLocationCommand;
@@ -34,8 +33,10 @@ import command.ShopLoginCommand;
 import command.ShowBookshopCommand;
 import command.ShowBookuserCommand;
 import command.StoreInfoUpdateCommand;
+import command.StorepicUpdateCommand;
 import command.UpdateBookShopCommand;
 import command.UpdateCommand;
+import command.UserJoinCommand;
 import command.UserLoginCommand;
 import command.ViewCommand;
 import command.WriteCommand;
@@ -102,7 +103,7 @@ public class Controller extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "login_user_ok.jsp";
 			break;
-			
+
 		// 손님-로그아웃
 		case "/logout/Userlogout.bbq":
 			viewPage = "/logout/Userlogout.jsp";
@@ -112,11 +113,31 @@ public class Controller extends HttpServlet {
 		case "/location/Location2.bbq":
 			viewPage = "Location2.jsp";
 			break;
+			
+		// 손님-예약하기
+		case "/info/booking.bbq":
+			command = new ShopCommand();
+			command.execute(request, response);
+			command = new DesignerListCommand();
+			command.execute(request, response);
+			command = new ServiceListCommand();
+			command.execute(request, response);
+			viewPage = "booking.jsp";
+			break;
+		case "/info/bookingOk.bbq":
+			command = new BookingCommand();
+			command.execute(request, response);
+			viewPage = "bookingOk.jsp";
+			break;
 
 		// 손님-예약내역
 		case "/usertest.bbq":
 			System.out.println("debug용");
-			command = new ShowBookuserCommand();
+			command = new ShopCommand();
+			command.execute(request, response);
+			command = new DesignerListCommand();
+			command.execute(request, response);
+			command = new ServiceListCommand();
 			command.execute(request, response);
 			viewPage = "/book/usertest.jsp";
 			break;
@@ -130,13 +151,6 @@ public class Controller extends HttpServlet {
 			command = new ServiceListCommand();
 			command.execute(request, response);
 			viewPage = "storeInfo.jsp";
-			break;
-
-		// 매장-매장정보 수정
-		case "/info/storeInfoUpdate.bbq":
-			command = new StoreInfoUpdateCommand();
-			command.execute(request, response);
-			viewPage = "storeInfoUpdate.jsp";
 			break;
 
 		// 손님-후기목록
@@ -181,7 +195,7 @@ public class Controller extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "/comment/deleteOk.jsp";
 			break;
-			
+
 		// 손님 - 개인정보 변경
 		case "/changeinfo/changeUserInfo.bbq":
 			viewPage = "/changeinfo/changeUserInfo.jsp";
@@ -200,7 +214,7 @@ public class Controller extends HttpServlet {
 		case "/join/join_shop_ok.bbq":
 			viewPage = "join_shop_ok.jsp";
 			break;
-			
+
 		// 매장-로그인
 		case "/login/login_shop.bbq":
 			viewPage = "login_shop.jsp";
@@ -221,22 +235,26 @@ public class Controller extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "storeUpdate.jsp";
 			break;
-			
-		// 매장-사진목록
-		case "/info/storepicList.bbq":
-			command = new ShopCommand();
-		// 매장-매장정보 수정
-//		case "/info/storeInfoUpdate.bbq":
+
+		// 매장-기본정보변경
+		case "/info/storeInfoUpdate.bbq":
 			command = new StoreInfoUpdateCommand();
 			command.execute(request, response);
 			viewPage = "storeInfoUpdate.jsp";
 			break;
 
-		// 매장-디자이너 관리
-		case "/info/designer.bbq":
-			command = new DesignerListCommand();
+		// 매장-사진목록
+		case "/info/storepicList.bbq":
+			command = new ShopCommand();
 			command.execute(request, response);
 			viewPage = "storepicList.jsp";
+			break;
+
+		// 매장-사진변경
+		case "/info/storepicUpdate.bbq":
+			command = new StorepicUpdateCommand();
+			command.execute(request, response);
+			viewPage = "storepicUpdate.jsp";
 			break;
 
 		// 매장-디자이너 추가
@@ -292,8 +310,8 @@ public class Controller extends HttpServlet {
 			command.execute(request, response);
 			// ajax로 쏴주기
 			break;
-			
-			// 전체 매장 정보 한번에 Load  <지역별 매장 클릭시 >
+
+		// 전체 매장 정보 한번에 Load <지역별 매장 클릭시 >
 		case "/shopSelect.bbq":
 			command = new LocationCommand();
 			command.execute(request, response);
@@ -302,29 +320,28 @@ public class Controller extends HttpServlet {
 			command.execute(request, response);
 			// ajax로 쏴주기
 			break;
-			
+
 ////////////////////////////////////////////////////////////매장 //////////////////////////////////////////////////////			
 
 		case "/location/chooseArea.bbq":
 			viewPage = "/location/chooseArea.jsp";
 			break;
-			
-			
+
 ///////////////////////////////////////////////////BOOK////////////////////////////////////////////////////////////////
-		//예약 내역 확인--> user입장
+		// 예약 내역 확인--> user입장
 		case "/book/user.bbq":
 			System.out.println("debug용");
 			command = new ShowBookuserCommand();
 			command.execute(request, response);
 			viewPage = "/book/usertest.jsp";
 			break;
-		//예약 삭제--> user입장	
+		// 예약 삭제--> user입장
 		case "/book/delete.book.bbq":
 			command = new DeleteBookuserCommand();
 			command.execute(request, response);
 			viewPage = "/book/deleteOk.jsp";
 			break;
-		//예약 확인--> 매장입장
+		// 예약 확인--> 매장입장
 		case "/book/shop.bbq":
 			System.out.println("debug용 shop");
 			command = new ShowBookshopCommand();
@@ -332,22 +349,22 @@ public class Controller extends HttpServlet {
 			System.out.println("테스트용 shoptest.book컨트롤러");
 			viewPage = "/book/shoptest.jsp";
 			break;
-		//예약 삭제 --> 매장입장
+		// 예약 삭제 --> 매장입장
 		case "/book/shopdelete.book.bbq":
 			System.out.println("매장용 book삭제");
 			command = new DeleteBookshopCommand();
 			command.execute(request, response);
 			viewPage = "/book/deletebookshop.jsp";
 			break;
-		//예약 stat변경 --> 매장입장
+		// 예약 stat변경 --> 매장입장
 		case "/book/shopupdate.book.bbq":
 			System.out.println("매장용 book삭제");
 			command = new UpdateBookShopCommand();
 			command.execute(request, response);
 			viewPage = "/book/updateOk.jsp";
 			break;
-			}
-		
+		}
+
 		if (viewPage != null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response);

@@ -20,7 +20,7 @@ CREATE TABLE BOOK
 	bo_uid int NOT NULL AUTO_INCREMENT,
 	bo_service varchar(80) NOT NULL,
 	bo_stat int NOT NULL DEFAULT 1,CHECK(bo_stat>=1 and bo_stat<=3),
-	bo_time datetime NOT NULL default now(),
+	bo_time datetime NOT NULL,
 	bo_comment varchar(80),
 	use_uid int NOT NULL,
 	sh_uid int NOT NULL,
@@ -308,148 +308,31 @@ select * from service;
 select * from designer;
 select * from user;
 
-select * from `user`;
+select * from user;
 /*testdata_book*/
 insert into book (
 	bo_service,
-	bo_stat,
-	bo_comment,
+	bo_time,
 	use_uid,
 	sh_uid
 )
-values(
-	'test01_service',
-	1,
-	'취소사유01',
-	1,
-	1
-);
+values('test01_service', '2020-01-12 12:00:00', 1, 1);
+
 insert into book (
 	bo_service,
-	bo_stat,
-	bo_comment,
+	bo_time,
 	use_uid,
 	sh_uid
 )
-values(
-	'test02_service',
-	1,
-	'취소사유02',
-	1,
-	2
-);
+values('test02_service', '2020-01-12 12:00:00', 2, 1);
+
 insert into book (
 	bo_service,
-	bo_stat,
-	bo_comment,
+	bo_time,
 	use_uid,
 	sh_uid
 )
-values(
-	'test03_service',
-	2,
-	'취소사유01',
-	2,
-	2
-);
-insert into book (
-	bo_service,
-	bo_stat,
-	bo_comment,
-	use_uid,
-	sh_uid
-)
-values(
-	'test01_service',
-	1,
-	'취소사유01',
-	1,
-	2
-);
-insert into book (
-	bo_service,
-	bo_stat,
-	bo_comment,
-	use_uid,
-	sh_uid
-)
-values(
-	'test01_service',
-	1,
-	'취소사유01',
-	1,
-	1
-);
-insert into book (
-	bo_service,
-	bo_stat,
-	bo_comment,
-	use_uid,
-	sh_uid
-)
-values(
-	'test01_service',
-	2,
-	'취소사유01',
-	1,
-	1
-);
-insert into book (
-	bo_service,
-	bo_stat,
-	bo_comment,
-	use_uid,
-	sh_uid
-)
-values(
-	'test01_service',
-	3,
-	'취소사유01',
-	1,
-	1
-);
-insert into book (
-	bo_service,
-	bo_stat,
-	bo_comment,
-	use_uid,
-	sh_uid
-)
-values(
-	'test01_service',
-	3,
-	'취소사유01',
-	1,
-	1
-);
-insert into book (
-	bo_service,
-	bo_stat,
-	bo_comment,
-	use_uid,
-	sh_uid
-)
-values(
-	'test04_service',
-	2,
-	'취소사유01',
-	1,
-	1
-);
-insert into book (
-	bo_service,
-	bo_stat,
-	bo_comment,
-	use_uid,
-	sh_uid
-)
-values(
-	'test01_service',
-	1,
-	'취소사유01',
-	1,
-	1
-);
+values('test03_service', '2020-01-12 12:00:00', 2, 1);
 
 INSERT INTO USER(
 	use_id,
@@ -459,72 +342,4 @@ INSERT INTO USER(
 )
 VALUES('test03', '1234', '손님용2', '01000000002');
 
-select * from user;
-select * from shop;
 select * from book;
-select * from shop;
-
-select * from shop s join service ser join book b where b.sh_uid = s.sh_uid and ser.sh_uid = s.sh_uid;
-
-select * from book where use_uid = 1;
-select * from book natural join shop where use_uid = 1;
-select * from book;
-
-select * from shop;
-
-
-SELECT * FROM DESIGNER WHERE sh_uid=1;
-select * from book b natural join shop where b.use_uid = 1;
-
-select * from user;
-
-select * from shop;
-
--- select * from user where user.use_id = 'test01';
-
--- SELECT * FROM USER WHERE use_id='test01';
-
--- delete from user where use_uid = 3;
-
--- 특정 id 로 회원 가입을 하려 할때
--- user 의  use_id  이어서도 안되고
--- ship 의  sh_id 이어서도 암됨
-
--- select
--- 	(select count() from user where use_id = 'store01'),
--- 	(select count() from shop where sh_id = 'store01');
-
--- select
--- 	(select count() from user where use_phoneNum = '01000000000'),
--- 	(select count() from shop where sh_telephone = 'store01');
-
--- select * from user where use_id='test01';
-
-
--- UPDATE [테이블] SET [열] = '변경할값' WHERE [조건]
-<<<<<<< HEAD
-
-
--- uid >> 2
--- uid2인사람의 비밀번호 바꾸기 
-=======
-SELECT * FROM BOOK WHERE use_uid = 1 ORDER BY bo_time desc;
-select * from book where sh_uid = 1;
-uid >> 2
-uid2인사람의 비밀번호 바꾸기 
->>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
-
--- update user set use_pw = '?' where use_uid = '?';
-
-<<<<<<< HEAD
--- select * from user where use_uid=2;
-=======
-select * from service;
->>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
-	
-<<<<<<< HEAD
--- update user set use_pw = ? where use_uid = ?
-=======
-update user set use_pw = ? where use_uid = ?
-
->>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git

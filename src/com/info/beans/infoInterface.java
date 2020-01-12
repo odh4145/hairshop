@@ -81,6 +81,13 @@ public interface infoInterface {
 			+ "ser_time = ?, "
 			+ "sh_uid = ? "
 			+ "WHERE ser_uid = ?";
+	
+	//예약하기
+	public static final String BOOKING_INSERT =
+			"INSERT INTO BOOK"
+			+ "(bo_service, bo_time, use_uid, sh_uid)"
+			+ "VALUES"
+			+ "(?, ?, ?, ?)";
 }
 
 

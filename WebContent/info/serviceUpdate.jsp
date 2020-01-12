@@ -11,7 +11,7 @@
 	</c:when>
 	<c:otherwise>
 		<script>
-			alert("수정되었습니다.");
+			alert("서비스 정보가 수정되었습니다.");
 			location.href = "storeUpdate.bbq?sh_uid=${param.sh_uid}";
 		</script>
 	</c:otherwise>

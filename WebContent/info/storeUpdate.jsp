@@ -26,6 +26,21 @@
 <link href="../css/storeupdate.css" rel="stylesheet" type="text/css">
 </head>
 
+<script>
+function infoSubmit(frm) {
+	var sh_telephone = frm.sh_telephone.value.trim();
+	var sh_location = frm.sh_location.value.trim();
+	var sh_starttime = frm.sh_starttime.value.trim();
+	var sh_endtime = frm.sh_endtime.value.trim();
+
+	if (sh_telephone == "" && sh_location == "" && sh_starttime == ""
+			&& sh_endtime == "") {
+		alert("빈 칸이 존재합니다.");
+		return false;
+	}
+	return true;
+}
+</script>
 <body>
 <header>
 	<ul id="top_menu">
@@ -146,7 +161,6 @@
 <!-- javascript 링크 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="../js/public.js" type="text/javascript"></script>
-<script src="../js/storeUpdate.js" type="text/javascript"></script>
 </body>
 </html>
 	

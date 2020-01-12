@@ -30,6 +30,8 @@ public interface K {
 	public static final String SQL_BOOK_DELETE_BO_UID=
 			"DELETE FROM BOOK WHERE bo_uid = ?";
 	// 매장이 취소시 bo_comment update
+
+	
 	/*
 	 * public static final String SQL_BOOK_UPDATE_BO_COMMENT=
 	 * "UPDATE book SET bo_comment = ? WHERE bo_uid = ?";
