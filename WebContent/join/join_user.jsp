@@ -13,6 +13,7 @@
 
 <!-- css파일 link -->
 <link href="../css/menu.css" rel="stylesheet" type="text/css">
+<link href="../css/join.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -70,6 +71,8 @@ function chkUserSubmit(){
 	</ul>
 </header>
 
+
+
 <section>
 	
 	
@@ -88,30 +91,13 @@ function chkUserSubmit(){
 				</ul>	
 			</form>
 				
-<<<<<<< HEAD
-=======
-					<input id="use_id" type="text" name="use_id" placeholder="아이디">
-					<br><br>
-					<input id="use_pw" type="password" name="use_pw" placeholder="비밀번호">
-					<br><br>
-					<input id="use_name" type="text" name="use_name" placeholder="이름">
-					<br><br>
-					<input id="use_phoneNum" type="text" name="use_phoneNum" placeholder="휴대폰 번호">
-					<br><br>
-					<input type="submit" id="btn" value="가입하기">
-					<br><br>
-					
-				</form>
+
 				
-			</div>
+	</div>
 		
 		
 		
-		<!-- 화살표버튼 -->
-		<div id="go_top">
-			<a><i class="fas fa-arrow-circle-up"></i></a>
->>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
-		</div>
+	
 
 </section>
 
