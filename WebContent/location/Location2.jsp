@@ -37,7 +37,7 @@ th,td {
 			<li id="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
 			<ul id="menu_list">
 				<li><a href="Location2.bbq">내주변</a></li>
-				<li><a href="#">지역별매장</a></li>
+				<li><a href="chooseArea.bbq">지역별매장</a></li>
 				<li><a href="../changeinfo/changeUserInfo.bbq">마이페이지</a></li>
 			</ul>
 			<c:if test="${sessionScope.user == null }">

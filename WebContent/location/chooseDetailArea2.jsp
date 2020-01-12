@@ -54,10 +54,10 @@ th,td {
  <body onload="initialize()">
 	<header>
 		<ul id="top_menu">
-			<li id="logo"><a href="index.jsp">Booking<span>HairShop</span></a></li>
+			<li id="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
 			<ul id="menu_list">
-				<li><a href=#">내주변</a></li>
-				<li><a href="#">지역별매장</a></li>
+				<li><a href="Location2.bbq">내주변</a></li>
+				<li><a href="chooseArea.bbq">지역별매장</a></li>
 				<li><a href="#">마이페이지</a></li>
 			</ul>
 			<li id="login"><a href="#">로그아웃</a></li>

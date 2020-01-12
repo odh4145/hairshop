@@ -293,6 +293,7 @@ public class Controller extends HttpServlet {
 			// ajax로 쏴주기
 			break;
 			
+			// 전체 매장 정보 한번에 Load  <지역별 매장 클릭시 >
 		case "/shopSelect.bbq":
 			command = new LocationCommand();
 			command.execute(request, response);
@@ -301,6 +302,14 @@ public class Controller extends HttpServlet {
 			command.execute(request, response);
 			// ajax로 쏴주기
 			break;
+			
+////////////////////////////////////////////////////////////매장 //////////////////////////////////////////////////////			
+
+		case "/location/chooseArea.bbq":
+			viewPage = "/location/chooseArea.jsp";
+			break;
+			
+			
 ///////////////////////////////////////////////////BOOK////////////////////////////////////////////////////////////////
 		//예약 내역 확인--> user입장
 		case "/book/user.bbq":
