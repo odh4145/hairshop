@@ -86,12 +86,11 @@ public class BookShopDAO implements K {
 	};
 	
 	//stat 변경하기
-	public int update_stat (int sh_uid, int stat) throws SQLException{
+	public int update_stat (int bo_uid) throws SQLException{
 		int cnt = 0;
 		try {
 			pstmt = conn.prepareStatement(K.SQL_BOOK_UPDATE_STAT_BY_SH_UID);
-			pstmt.setInt(1, stat);
-			pstmt.setInt(2, sh_uid);
+			pstmt.setInt(1, bo_uid);
 			cnt = pstmt.executeUpdate();
 		} finally {
 			close();

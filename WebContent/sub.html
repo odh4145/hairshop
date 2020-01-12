@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<<<<<<< HEAD
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+=======
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 	
 <!------ html 시작 ------>
+>>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -25,8 +31,22 @@
 			<li><a href=#">후기</a></li>
 			<li><a href="#">예약내역</a></li>
 			<li><a href="#">마이페이지</a></li>
+<<<<<<< HEAD
+		</ul>
+	
+		<!-- 로그인 상황에 따른 버튼 변경 -->	
+			<c:if test="${sessionScope.user == null }">
+			<li id="login" ><a href="../login/login_user.bbq">로그인</a></li>
+			</c:if>
+			<c:if test="${sessionScope.user != null }">
+			<li id="login" ><a href="../logout/Userlogout.bbq">로그아웃</a></li>
+			</c:if>
+		<!-- 로그인 상황에 따른 버튼 변경 -->
+			
+=======
 		</ul>	
 		<li id="login" ><a href="#">로그아웃</a></li>
+>>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
 	</ul>
 </header>
 
