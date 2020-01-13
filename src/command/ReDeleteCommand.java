@@ -5,24 +5,23 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.lec.beans.WriteDAO;
+import com.lec.beans.ReplyDAO;
 
-public class DeleteCommand implements Command {
+public class ReDeleteCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		int cnt = 0; 
-		WriteDAO dao = new WriteDAO();
-		int uid = Integer.parseInt(request.getParameter("uid"));
+		ReplyDAO dao = new ReplyDAO();
+		int re_uid = Integer.parseInt(request.getParameter("re_uid"));
 		
 			try {
-				cnt = dao.deleteByUid(uid);
+				cnt = dao.RedeleteByUid(re_uid);
 				
 			}catch(SQLException e) {
 				e.printStackTrace();
 			}
-						System.out.println("ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ"+cnt);
-		request.setAttribute("deleteOk", cnt);
+		request.setAttribute("RedeleteOk", cnt);
 		
 	}
 

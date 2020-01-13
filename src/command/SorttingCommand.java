@@ -8,13 +8,15 @@ import javax.servlet.http.HttpServletResponse;
 import com.lec.beans.WriteDAO;
 import com.lec.beans.WriteDTO;
 
-public class ListCommand implements Command {
+public class SorttingCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
 		WriteDAO dao = new WriteDAO();
 		WriteDTO[] arr = null;
-
+		String text = request.getParameter("text");
+		
 		// 페이징 관련 세팅값들
 		// 현재 페이지 나타내기 (디폴트 1page)
 		int page = 1;
@@ -51,9 +53,9 @@ public class ListCommand implements Command {
 			int fromRow = (page - 1) * pageRows;
 
 			dao = new WriteDAO(); // 위에서 dao close()됫으니까 새로만들어서 한번더 동작시킴
-
-			arr = dao.selectFromRow(fromRow, pageRows);
-
+			
+			arr = dao.selectByTitle(fromRow, pageRows, text);
+			
 			request.setAttribute("list", arr);
 			request.setAttribute("page", page);
 			request.setAttribute("totalPage", totalPage);
@@ -64,6 +66,7 @@ public class ListCommand implements Command {
 			e.printStackTrace();
 		}
 
+	
 	}
 
 }

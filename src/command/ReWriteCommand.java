@@ -6,33 +6,35 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lec.beans.ReplyDAO;
-import com.lec.beans.WriteDAO;
-public class ReWriteCommand implements Command {
 
+public class ReWriteCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		int cnt = 0;
+		int cnt = 0; 
 		ReplyDAO dao = new ReplyDAO();
 		
-		// 입력한 값 받아오기
-	
+		int co_uid = Integer.parseInt(request.getParameter("uid"));
 		String re_content = request.getParameter("re_content");
-		
-		// parameter 유효성 검증
-//		if(co_name != null && co_content != null && 
-//				co_name.trim().length() > 0 && co_content.trim().length() > 0) 
-		{
+		int use_uid = Integer.parseInt(request.getParameter("use_uid"));
+		// Parameter 유효성 검증
+		if (use_uid==1) {
+			
 			try {
-				cnt = dao.insert(re_content);
-			} catch(SQLException e) {
+				cnt = dao.Reinsert(co_uid, re_content);
+				
+			}catch(SQLException e) {
 				e.printStackTrace();
 			}
+				
+		}else {
+			System.out.println("로그인 미구현으로 인한 use_uid가 1이 아니면 답글 못달아 ~");
+			cnt = 2; 
 		}
-		request.setAttribute("result", cnt);
-
+		
+		request.setAttribute("Reresult", cnt);
+		request.setAttribute("co_uid", co_uid);
+		
 	}
-	
 
 }
-

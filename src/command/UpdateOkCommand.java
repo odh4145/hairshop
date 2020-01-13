@@ -7,23 +7,33 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.lec.beans.WriteDAO;
 
-public class DeleteCommand implements Command {
+public class UpdateOkCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		int cnt = 0; 
 		WriteDAO dao = new WriteDAO();
-		int uid = Integer.parseInt(request.getParameter("uid"));
 		
+		int uid = Integer.parseInt(request.getParameter("uid"));
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		
+		// Parameter 유효성 검증
+		if ( title != null && title.trim().length()>0) {
+			
 			try {
-				cnt = dao.deleteByUid(uid);
+				cnt = dao.update(uid, title, content);
 				
 			}catch(SQLException e) {
 				e.printStackTrace();
 			}
-						System.out.println("ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ"+cnt);
-		request.setAttribute("deleteOk", cnt);
+				
+		}
+		
+		request.setAttribute("updateOk", cnt);
+		
 		
 	}
+	
 
 }
