@@ -31,8 +31,8 @@
 	<ul id="top_menu">
 		<li id="logo"><a href="index.jsp">Booking<span>HairShop</span></a></li>
 		<ul id="menu_list">
-			<li><a href=#">내주변</a></li>
-			<li><a href="#">지역별매장</a></li>
+			<li><a href="../location/Location2.bbq">내주변</a></li>
+			<li><a href="../location/chooseArea.bbq">지역별매장</a></li>
 			<li><a href="#">마이페이지</a></li>
 		</ul>	
 		<li id="login" ><a href="#">로그아웃</a></li>
@@ -54,10 +54,10 @@
 			<div class="store_info">
 				<h2>${info[0].sh_name }</h2>
 				<div id="book_review">
-					<a style="border-right:1px solid #eee" href="#">
+					<a style="border-right:1px solid #eee" href="booking.bbq/sh_uid=${info[0].sh_uid }">
 						<i class="far fa-calendar-check"></i><br>예약
 					</a>
-					<a href="#"><i class="far fa-comment-dots"></i><br>리뷰</a>
+					<a href="../jm/list.bbq?sh_uid=${info[0].sh_uid }"><i class="far fa-comment-dots"></i><br>리뷰</a>
 				</div>
 				
 				<!-- 매장 기본정보 -->

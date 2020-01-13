@@ -13,4 +13,20 @@ public interface ShopJoinInterface {
 			+ "sh_location_lat, sh_location_lng)"
 			+ "VALUES"
 			+ " (?, ?, ?, ?, ?, ?, ?, ?)";
+	
+	public static final String SHOP_JOIN_CHECK_ID = 
+			"SELECT "
+			+ "	(SELECT count(*) from user where use_id = ?), " 
+			+ "	(SELECT count(*) from shop where sh_id = ?)";
+
+	public static final String SHOP_JOIN_CHECK_SH_NO_ID = 
+			"select count(*) from shop where sh_no_id = ?";
+	
+	public static final String JOIN_CHECK_SH_TELEPHONE = 
+			"SELECT "
+			+ " (select count(*) from user where use_phoneNum = ?), "  
+			+ "	(select count(*) from shop where sh_telephone = ?)";
+	
+	public static final String FIND_SHOP_LOCATION = 
+			"select * from shop where sh_id = ?";
 }

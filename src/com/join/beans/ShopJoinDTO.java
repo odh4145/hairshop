@@ -18,7 +18,7 @@ public class ShopJoinDTO {
 	
 	// 매개변수 받는 생성자
 	public ShopJoinDTO(int sh_uid, String sh_id, String sh_pw, String sh_no_id,
-			String sh_name, String sh_telephone, String sh_location, 
+			String sh_name, String sh_telephone, String sh_location,
 			String sh_location_lat, String sh_location_lng) {
 		super();
 		this.sh_uid = sh_uid;
@@ -105,6 +105,8 @@ public class ShopJoinDTO {
 		this.sh_location_lng = sh_location_lng;
 	}
 	
+	
+
 	// 디버깅용
 	@Override
 	public String toString() {
@@ -112,6 +114,8 @@ public class ShopJoinDTO {
 				+ sh_no_id + " : " + sh_name + " : " + sh_telephone + " : " 
 				+ sh_location + " : " + sh_location_lat + " : " + sh_location_lng;
 	}
+
+	
 
 	
 	

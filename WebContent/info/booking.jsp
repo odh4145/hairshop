@@ -108,8 +108,8 @@ function sub() {
 		<ul id="top_menu">
 			<li id="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
 			<ul id="menu_list">
-				<li><a href=#">내주변</a></li>
-				<li><a href="#">지역별매장</a></li>
+				<li><a href="../location/Location2.bbq">내주변</a></li>
+				<li><a href="../location/chooseArea.bbq">지역별매장</a></li>
 				<li><a href="#">마이페이지</a></li>
 			</ul>
 			<!-- 로그인 상황에 따른 버튼 변경 -->

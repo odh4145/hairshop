@@ -20,7 +20,8 @@
 		<ul id="menu_list">
 			<li><a href="Location2.bbq">내주변</a></li>
 			<li><a href="chooseArea.bbq">지역별매장</a></li>
-			<li><a href="#">마이페이지</a></li>
+			<!-- 로그인하세요, 값넘기기 -->
+			<li><a href="../book/usertest.bbq?use_uid=">마이페이지</a></li>
 		</ul>	
 		<c:if test="${sessionScope.user == null }">
 			<li id="login" ><a href="../login/login_user.bbq">로그인</a></li>
