@@ -19,7 +19,7 @@ public interface K {
 			"SELECT * FROM BOOK WHERE bo_uid = ?";
 	// UPDATE --> stat (매장)
 	public static final String SQL_BOOK_UPDATE_STAT_BY_SH_UID=
-			"UPDATE BOOK SET STAT = ? WHERE sh_uid = ?";
+			"UPDATE BOOK SET bo_stat = 2 WHERE bo_uid = ?";
 	// sh_uid로 book 확인
 	public static final String SQL_BOOK_SELECT_BY_SHOP=
 			"SELECT * FROM book WHERE sh_uid = ?;";
@@ -29,7 +29,12 @@ public interface K {
 	//DELETE
 	public static final String SQL_BOOK_DELETE_BO_UID=
 			"DELETE FROM BOOK WHERE bo_uid = ?";
+	// 매장이 취소시 bo_comment update
+
 	
-	
+	/*
+	 * public static final String SQL_BOOK_UPDATE_BO_COMMENT=
+	 * "UPDATE book SET bo_comment = ? WHERE bo_uid = ?";
+	 */
 	
 }

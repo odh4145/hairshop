@@ -1,16 +1,18 @@
 package com.info.beans;
 
+import java.sql.Timestamp;
+
 import common.K;
 
 public class BookDTO implements K {
 	private int bo_uid; 
 	private String bo_service;
 	private int bo_stat; 
-	private String bo_time;
+	private Timestamp bo_time;
 	private String bo_comment;
 	private int use_uid; 
 	private int sh_uid;
-	public BookDTO(int bo_uid, String bo_service, int bo_stat, String bo_time, String bo_comment, int use_uid,
+	public BookDTO(int bo_uid, String bo_service, int bo_stat, Timestamp bo_time, String bo_comment, int use_uid,
 			int sh_uid) {
 		super();
 		this.bo_uid = bo_uid;
@@ -42,10 +44,10 @@ public class BookDTO implements K {
 	public void setBo_stat(int bo_stat) {
 		this.bo_stat = bo_stat;
 	}
-	public String getBo_time() {
+	public Timestamp getBo_time() {
 		return bo_time;
 	}
-	public void setBo_time(String bo_time) {
+	public void setBo_time(Timestamp bo_time) {
 		this.bo_time = bo_time;
 	}
 	public String getBo_comment() {

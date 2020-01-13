@@ -13,6 +13,7 @@
 
 <!-- css파일 link -->
 <link href="../css/menu.css" rel="stylesheet" type="text/css">
+<link href="../css/join.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -70,44 +71,38 @@ function chkUserSubmit(){
 	</ul>
 </header>
 
+
+
 <section>
-	<div class="content">
-		<!-- 상세페이지 제목 -->
-		<h2 id="content_title">손님용 회원가입</h2>
-		
+	
 	
 		<!-- 회원가입 -->
 			<div id="join_user">
+			<h3>Sign Up</h3>
 			
+		<hr>
 				<form name="frm_user" action="join_user_ok.bbq" method="post" onsubmit="return chkUserSubmit()">
+				<ul>
+					<li><input id="use_id" type="text" name="use_id" placeholder="ID"></li>
+					<li><input id="use_pw" type="password" name="use_pw" placeholder="PASSWORD"></li>
+					<li><input id="use_name" type="text" name="use_name" placeholder="NAME"></li>
+					<li><input id="use_phoneNum" type="text" name="use_phoneNum" placeholder="PHONE NUMBER"></li>
+					<li><input type="submit" id="btn" value="Sign Up"/></li>
+				</ul>	
+			</form>
 				
-					<input id="use_id" type="text" name="use_id" placeholder="아이디">
-					<br><br>
-					<input id="use_pw" type="password" name="use_pw" placeholder="비밀번호">
-					<br><br>
-					<input id="use_name" type="text" name="use_name" placeholder="이름">
-					<br><br>
-					<input id="use_phoneNum" type="text" name="use_phoneNum" placeholder="휴대폰 번호">
-					<br><br>
-					<input type="submit" id="btn" value="가입하기">
-					<br><br>
-					
-				</form>
+
 				
-			</div>
-		
-		
-		
-		<!-- 화살표버튼 -->
-		<div id="go_top">
-			<a><i class="fas fa-arrow-circle-up"></i></a>
-		</div>
 	</div>
+		
+		
+		
+	
+
 </section>
 
 
 <!-- javascript 링크 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="js/public.js" type="text/javascript"></script>
 </body>
 </html>

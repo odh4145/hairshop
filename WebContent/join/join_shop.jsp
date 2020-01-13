@@ -13,7 +13,7 @@
 
 <!-- css파일 link -->
 <link href="../css/menu.css" rel="stylesheet" type="text/css">
-
+<link href="../css/join.css" rel="stylesheet" type="text/css">
 </head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -196,27 +196,26 @@ function parseJSON(jsonObj){
 	</ul>
 </header>
 
+
+
+
 <section>
-	<div class="content">
-		<!-- 상세페이지 제목 -->
-		<h2 id="content_title">매장용 회원가입</h2>
-		
+
 		<!-- 회원가입  -->
 			<div id="join_shop">
+			<h3>Sign Up</h3>
+				
+			<hr>
 				
 				<form name="frm_shop" action="join_shop_ok.bbq" method="post" onsubmit="return chkShopSubmit()">
 				
-					<input id="sh_id" type="text" name="sh_id" placeholder="아이디">
-					<br><br>
-					<input id="sh_pw" type="password" name="sh_pw" placeholder="비밀번호">
-					<br><br>
-					<input id="sh_no_id" type="text" name="sh_no_id" placeholder="사업자 번호">
-					<br><br>
-					<input id="sh_name" type="text" name="sh_name" placeholder="매장 이름">
-					<br><br>
-					<input id="sh_telephone" type="text" name="sh_telephone" placeholder="매장 전화번호">
-					<br><br>
+					<input id="sh_id" type="text" name="sh_id" placeholder="ID"><br>
+					<input id="sh_pw" type="password" name="sh_pw" placeholder="PASSWORD"><br>
+					<input id="sh_no_id" type="text" name="sh_no_id" placeholder="BUSINESS NUMBER"><br>
+					<input id="sh_name" type="text" name="sh_name" placeholder="STORE NAME"><br>
+					<input id="sh_telephone" type="text" name="sh_telephone" placeholder="PHONE"><br>
 					
+<<<<<<< HEAD
 					<input id="sh_postcode" type="text" name="sh_postcode" placeholder="우편번호">
 					<input type="button" onclick="sh_execDaumPostcode()" value="주소 찾기"><br>
 					<input id="sh_location" type="text" name="sh_location" placeholder="도로명주소">
@@ -225,24 +224,22 @@ function parseJSON(jsonObj){
 					<input id="sh_location_lat" type="hidden" name="sh_location_lat" placeholder="위도">
 					<input id="sh_location_lng" type="hidden" name="sh_location_lng" placeholder="경도">
 					
+=======
+					<input id="sh_postcode" type="text" placeholder="POST CODE"> 
+					<input id="btn2" type="button" onclick="sh_execDaumPostcode()" value="FIND"><br>
+					<input id="sh_location" type="text"  placeholder="ADDRESS LINE 1">
+					<input id="sh_detailAddress" type="text"  placeholder="ADDRESS LINE 2">
+>>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
 					
-					<br><br>
-					<input type="submit" id="btn" value="가입하기">
-					<br><br>
+					<input type="submit" id="btn" value="Sign Up">
 				
 				</form>
-				
-		</div>
-		<!-- 화살표버튼 -->
-		<div id="go_top">
-			<a><i class="fas fa-arrow-circle-up"></i></a>
-		</div>
+		
 	</div>
 </section>
 
 
 <!-- javascript 링크 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="../js/public.js" type="text/javascript"></script>
 </body>
 </html>

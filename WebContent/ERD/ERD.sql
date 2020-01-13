@@ -20,7 +20,7 @@ CREATE TABLE BOOK
 	bo_uid int NOT NULL AUTO_INCREMENT,
 	bo_service varchar(80) NOT NULL,
 	bo_stat int NOT NULL DEFAULT 1,CHECK(bo_stat>=1 and bo_stat<=3),
-	bo_time datetime NOT NULL default now(),
+	bo_time datetime NOT NULL,
 	bo_comment varchar(80),
 	use_uid int NOT NULL,
 	sh_uid int NOT NULL,
@@ -308,148 +308,31 @@ select * from service;
 select * from designer;
 select * from user;
 
-select * from `user`;
+select * from user;
 /*testdata_book*/
 insert into book (
 	bo_service,
-	bo_stat,
-	bo_comment,
+	bo_time,
 	use_uid,
 	sh_uid
 )
-values(
-	'test01_service',
-	1,
-	'취소사유01',
-	1,
-	1
-);
+values('test01_service', '2020-01-12 12:00:00', 1, 1);
+
 insert into book (
 	bo_service,
-	bo_stat,
-	bo_comment,
+	bo_time,
 	use_uid,
 	sh_uid
 )
-values(
-	'test02_service',
-	1,
-	'취소사유02',
-	1,
-	2
-);
+values('test02_service', '2020-01-12 12:00:00', 2, 1);
+
 insert into book (
 	bo_service,
-	bo_stat,
-	bo_comment,
+	bo_time,
 	use_uid,
 	sh_uid
 )
-values(
-	'test03_service',
-	2,
-	'취소사유01',
-	2,
-	2
-);
-insert into book (
-	bo_service,
-	bo_stat,
-	bo_comment,
-	use_uid,
-	sh_uid
-)
-values(
-	'test01_service',
-	1,
-	'취소사유01',
-	1,
-	2
-);
-insert into book (
-	bo_service,
-	bo_stat,
-	bo_comment,
-	use_uid,
-	sh_uid
-)
-values(
-	'test01_service',
-	1,
-	'취소사유01',
-	1,
-	1
-);
-insert into book (
-	bo_service,
-	bo_stat,
-	bo_comment,
-	use_uid,
-	sh_uid
-)
-values(
-	'test01_service',
-	2,
-	'취소사유01',
-	1,
-	1
-);
-insert into book (
-	bo_service,
-	bo_stat,
-	bo_comment,
-	use_uid,
-	sh_uid
-)
-values(
-	'test01_service',
-	3,
-	'취소사유01',
-	1,
-	1
-);
-insert into book (
-	bo_service,
-	bo_stat,
-	bo_comment,
-	use_uid,
-	sh_uid
-)
-values(
-	'test01_service',
-	3,
-	'취소사유01',
-	1,
-	1
-);
-insert into book (
-	bo_service,
-	bo_stat,
-	bo_comment,
-	use_uid,
-	sh_uid
-)
-values(
-	'test04_service',
-	2,
-	'취소사유01',
-	1,
-	1
-);
-insert into book (
-	bo_service,
-	bo_stat,
-	bo_comment,
-	use_uid,
-	sh_uid
-)
-values(
-	'test01_service',
-	1,
-	'취소사유01',
-	1,
-	1
-);
+values('test03_service', '2020-01-12 12:00:00', 2, 1);
 
 INSERT INTO USER(
 	use_id,
@@ -459,6 +342,7 @@ INSERT INTO USER(
 )
 VALUES('test03', '1234', '손님용2', '01000000002');
 
+<<<<<<< HEAD
 select * from user;
 select * from shop;
 
@@ -533,4 +417,7 @@ select * from service;
 =======
 update user set use_pw = ? where use_uid = ?
 
+>>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
+=======
+select * from book;
 >>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git

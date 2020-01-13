@@ -3,16 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:choose>
-	<c:when test="${info == 0 }">
+	<c:when test="${designer == 0 }">
 		<script>
-			alert("수정실패");
+			alert("삭제실패");
 			history.back();
 		</script>
 	</c:when>
 	<c:otherwise>
 		<script>
-			alert("매장사진이 수정되었습니다.");
-			location.href = "storepicList.bbq?sh_uid=${param.sh_uid}";
+			alert("삭제되었습니다.");
+			location.href = "storeUpdate.bbq?sh_uid=1";
 		</script>
 	</c:otherwise>
 </c:choose>

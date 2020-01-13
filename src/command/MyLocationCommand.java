@@ -20,8 +20,8 @@ public class MyLocationCommand implements Command {
 			String loc_lat = (request.getParameter("lat"));  
 			String loc_lng = (request.getParameter("lng"));
 			
-			System.out.println("고객 lat"+loc_lat);
-			System.out.println("고객 lng"+loc_lng);
+			System.out.println(" lat"+loc_lat);
+			System.out.println(" lng"+loc_lng);
 			try {
 				arr = dao.selectByLoc(loc_lat, loc_lng); 
 				request.setAttribute("shoplist", arr);

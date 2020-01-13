@@ -18,7 +18,6 @@ import command.DeleteCommand;
 import command.DesignerAddCommand;
 import command.DesignerDeleteCommand;
 import command.DesignerListCommand;
-import command.UserJoinCommand;
 import command.DesignerUpdateCommand;
 import command.UserJoinCommand;
 import command.ListCommand;

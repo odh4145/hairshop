@@ -14,6 +14,7 @@
 <link href="../css/menu.css" rel="stylesheet" type="text/css">
 <!-- 마이페이지 아닌분들은 sub.css 지우세요 -->
 <link href="../css/sub.css" rel="stylesheet" type="text/css">
+<link href="../css/changeUserInfo.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -68,37 +69,29 @@ frm = document.forms["frm_chk_user_pw"];
 			<h4><a>개인정보수정</a></h4>
 		</div>
 		
-		<c:choose>
-			<c:when test="${sessionScope.user != null }">
+
+<!-- 여기 코드 추가 -->
+		
+		<div id="changeinfo" >
+		<h3>개인정보수정</h3>
+		<hr>
 				<form name="frm_chk_user_pw" action="changeUserInfo_ok.bbq" method="post" onsubmit="return chkUserPw()">
-					<input id="use_pw" type="password" name="use_pw" placeholder="현재 비밀번호">
-					<br><br>
-					<input id="use_pw2" type="password" name="use_pw2" placeholder="새 비밀번호">
-					<br><br>
-					<input type="submit" id="btn" value="변경하기"/>
-					<br><br>				
+		       <ul>
+					<li><input id="use_pw" type="password" name="use_pw" placeholder="CURRENT PASSWORD"></li>
+					<li><input id="use_pw2" type="password" name="use_pw2" placeholder="NEW PASSWORD"></li>
+					<li><input type="submit" id="btn" value="Change"/></li>
+			  </ul>
 				</form>
-			</c:when>
 			
-			<c:when test="${sessionScope.user == null }">
-				<script>
-					alert("로그인 해야함")
-					location.href = "../login/login_user.bbq";
-				</script>
-			</c:when>
-		</c:choose>
+			</div>
 		
+<!-- 여기 코드 추가 -->
 		
-		<!-- 화살표버튼 -->
-		<div id="go_top">
-			<a><i class="fas fa-arrow-circle-up"></i></a>
-		</div>
 	</div>
 </section>
 
 
 <!-- javascript 링크 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="../js/public.js" type="text/javascript"></script>
 </body>
 </html>
