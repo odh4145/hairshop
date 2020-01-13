@@ -215,21 +215,16 @@ function parseJSON(jsonObj){
 					<input id="sh_name" type="text" name="sh_name" placeholder="STORE NAME"><br>
 					<input id="sh_telephone" type="text" name="sh_telephone" placeholder="PHONE"><br>
 					
-<<<<<<< HEAD
-					<input id="sh_postcode" type="text" name="sh_postcode" placeholder="우편번호">
-					<input type="button" onclick="sh_execDaumPostcode()" value="주소 찾기"><br>
-					<input id="sh_location" type="text" name="sh_location" placeholder="도로명주소">
-					<input id="sh_detailAddress" type="text" name="sh_detailAddress" placeholder="상세주소">
-					<input id="chklocation" type="button" value="주소 입력 확인"><br>
+					<input id="sh_postcode" type="text" name="sh_postcode" placeholder="POST CODE"> 
+					<input id="btn2" type="button" onclick="sh_execDaumPostcode()" value="FIND"><br>
+					
+					<input id="sh_location" type="text" name="sh_location" placeholder="ADDRESS LINE 1"><br>
+					<input id="sh_detailAddress" type="text"  name="sh_detailAddress"  placeholder="ADDRESS LINE 2"><br>
+					
 					<input id="sh_location_lat" type="hidden" name="sh_location_lat" placeholder="위도">
 					<input id="sh_location_lng" type="hidden" name="sh_location_lng" placeholder="경도">
 					
-=======
-					<input id="sh_postcode" type="text" placeholder="POST CODE"> 
-					<input id="btn2" type="button" onclick="sh_execDaumPostcode()" value="FIND"><br>
-					<input id="sh_location" type="text"  placeholder="ADDRESS LINE 1">
-					<input id="sh_detailAddress" type="text"  placeholder="ADDRESS LINE 2">
->>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
+					<input id="chklocation" type="button" value="Address Check "><br>
 					
 					<input type="submit" id="btn" value="Sign Up">
 				
@@ -241,5 +236,7 @@ function parseJSON(jsonObj){
 
 <!-- javascript 링크 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="../js/public.js" type="text/javascript"></script>
+
 </body>
 </html>

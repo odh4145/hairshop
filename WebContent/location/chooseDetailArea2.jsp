@@ -58,7 +58,7 @@ th,td {
 			<ul id="menu_list">
 				<li><a href="Location2.bbq">내주변</a></li>
 				<li><a href="chooseArea.bbq">지역별매장</a></li>
-				<li><a href="#">마이페이지</a></li>
+				<li><a href="../book/user.bbq">마이페이지</a></li>
 			</ul>
 			<li id="login"><a href="#">로그아웃</a></li>
 		</ul>
@@ -67,7 +67,7 @@ th,td {
 	<section>
 		<div class="content">
 			<!-- 상세페이지 제목 -->
-			<h2 id="content_title">지역별매장 - "서울"</h2>
+			<h2 id="content_title">지역별매장 - 서울</h2>
 
 			<!---------------------- content ---------------------->
 			<div class="inner">
