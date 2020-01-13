@@ -19,7 +19,6 @@ public class ShowBookuserCommand implements Command{
 		BookUserDAO dao = new BookUserDAO();
 		BookUserDTO[] arr = null;
 		String use1 = request.getParameter("use_uid");
-		System.out.println(use1);
 		int use_uid = Integer.parseInt(request.getParameter("use_uid"));
 
 		try {

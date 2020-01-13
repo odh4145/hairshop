@@ -20,10 +20,11 @@ try{
 }
 %>
 <form id="pass" action="shopdelete.book.bbq" method="post">
-
-<%-- <input type="hidden" name="cancel" value="<%=request.getParameter("result") %>"> --%>
-<input type="hidden" name="bo_uid" value="<%=request.getParameter("bo_uid") %>">
-<input type="hidden" name="sh_uid" value="<%=request.getParameter("sh_uid") %>">
+	<input type="hidden" name="bo_uid" value="<%=request.getParameter("bo_uid") %>">
+	<input type="hidden" name="sh_uid" value="<%=request.getParameter("sh_uid") %>">
+<script type="text/javascript">
+this.document.getElementById("pass").submit();
+</script>
 </form> 
 </body>
 </html>

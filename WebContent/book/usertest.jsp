@@ -68,12 +68,12 @@
 						
 						<c:if test="${book.bo_stat == 2 }">
 							<p class="test">승인 완료된 예약입니다.</p>
-							<button onclick="../jm/write.bbq?sh_uid=${book.sh_uid}">후기 남기러 가기</button>
 							<hr>
 						</c:if>
 						
 						<c:if test="${book.bo_stat == 3 }">
-							<p class="test">이미 지난 예약입니다.</p>
+							<p class="test">지난 예약입니다.</p>
+							<button onclick="../jm/write.bbq?sh_uid=${book.sh_uid}">후기 남기러 가기</button>
 							<hr>
 						</c:if>
 					</div>
