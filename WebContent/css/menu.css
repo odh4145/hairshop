@@ -62,17 +62,19 @@ header{
 	border-bottom:2px solid #313f67;
 }
 
-#logo{
+.logo{
 	margin-left:10px !important;
-}
-#logo a{
-	display:block;
-	width:100%;
 	color:#313f67;
 	font-size:20px;
 }
+.logo a{
+	color:#313f67;
+	font-size:20px;
+	display:block;
+	width:100%;
+}
 
-#logo span{
+.logo span{
 	font-weight:800;
 }
 
@@ -103,7 +105,7 @@ header{
 /* 섹션 */
 section{
 	background: #fcfcfc;
-	min-height:700px;
+	min-height:920px;
 }
 
 .content{
@@ -151,4 +153,64 @@ section{
 
 .inner{
 	padding:30px;
+}
+
+.mobile{
+	padding-top:5px;
+	width:100%;
+	position: relative;
+	height:40px;
+	display:hidden;
+}
+
+#btn_menu{
+	position:absolute;
+	right:0;
+	color:#313f67;
+	font-size:25px;
+	padding:10px;
+	top:-6px;
+}
+
+.mo_menu{
+	display:block;
+	position:absolute;
+	width:100px;
+	right:0;
+	top:46px;
+}
+.mo_menu li{
+	background: white;
+	color:#313f67;
+	height:30px;
+	font-size:16px;
+	padding:10px;
+	text-align: center;
+}
+.mo_menu li:hover{
+	background: #313f67;
+	color:white;
+	font-wieght:500;
+}
+.hidden{
+	display:none;
+}
+/* tablet */
+@media screen and (min-width:769px) and (max-width:991px){
+	section{
+		background: #fcfcfc;
+		min-height:800px;
+	}
+	#top_menu{width:inherit;}
+	#menu_list li{margin-left:100px;}
+}
+
+/* mobile */
+@media screen and (max-width:768px){
+	#menu_list, .pc, #top_menu{display:none !important;}
+	section{min-height:800px;}
+	.mobile{
+		display:block;
+	}
+	
 }

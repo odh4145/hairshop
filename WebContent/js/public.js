@@ -1,5 +1,6 @@
 $(function(){ 
 	$('#go_top').css('display', 'none');
+	$('.mo_menu').css('display', 'none');
 	
 	//페이지 시작 시 맨 위로
 	($(function(){
@@ -26,7 +27,9 @@ $(function(){
 	$('#go_top').click(function() {
 		$('html, body').animate({scrollTop : $("body").offset().top});
 	});
-
 	
+	$('#btn_menu').click(function() {
+		$(".mo_menu").toggleClass("hidden");
+	});
 	
 });

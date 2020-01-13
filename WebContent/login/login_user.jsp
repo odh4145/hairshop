@@ -36,15 +36,6 @@
 
 		return true;
 	}
-<<<<<<< HEAD
-=======
-	if(use_pw == ""){
-		alert("비밀번호를 입력해주세요");
-		frm["use_pw"].focus();
-		return false;
-	}
-	
-	return true;
 }
 
 </script>
@@ -55,14 +46,12 @@ function logout(){
         location.reload();
     }, 1000);
 }
->>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
 </script>
 
 <body>
-<<<<<<< HEAD
-	<header>
+	<header class="pc">
 		<ul id="top_menu">
-			<li id="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
+			<li class="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
 			<ul id="menu_list">
 				<li><a href="../location/Location2.bbq %>">내주변</a></li>
 				<li><a href="#">지역별매장</a></li>
@@ -76,31 +65,20 @@ function logout(){
 			</c:if>
 		</ul>
 	</header>
-=======
-<header>
-	<ul id="top_menu">
-		<li id="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
-		<ul id="menu_list">
-			<li><a href="../location/Location2.bbq">내주변</a></li>
-			<li><a href="#">지역별매장</a></li>
-			<li><a href="../changeinfo/changeUserInfo.bbq">마이페이지</a></li>
-		</ul>	
-		<c:if test="${sessionScope.user == null }">
-		<li id="login" ><a href="login_user.bbq">로그인</a></li>
-		</c:if>
-		<c:if test="${sessionScope.user != null }">
-		<li id="login"><a href="../logout/Userlogout.bbq">로그아웃</a></li>
-		</c:if>
-	</ul>
-</header>
->>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
+	<header class="mobile">
+			<a class="logo">Booking<span>HairShop</span></a>
+			<a id="btn_menu"><i class="fas fa-ellipsis-h"></i></a>
+			<ul class="mo_menu hidden">
+				<li><a>내주변</a></li>
+				<li><a>지역별매장</a></li>
+				<li><a>마이페이지</a></li>
+			</ul>
+	</header>
+
 
 
 <c:choose>
 	<c:when test="${sessionScope.user == null }">
-
-
-
 
 	<section>
 
@@ -147,7 +125,7 @@ function logout(){
 </c:choose>
 
 	<!-- javascript 링크 -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="../js/public.js" type="text/javascript"></script>s
 </body>
 </html>
