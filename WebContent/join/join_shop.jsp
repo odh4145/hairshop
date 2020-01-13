@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -46,7 +46,7 @@
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('sh_postcode').value = data.zonecode;
-                document.getElementById("sh_location").value = roadAddr;
+                document.getElementById("sh_roadAddr").value = roadAddr;
                 
 
             }
@@ -65,8 +65,9 @@ function chkShopSubmit(){
 	var sh_name = frm['sh_name'].value.trim();
 	var sh_telephone = frm['sh_telephone'].value.trim();
 	var sh_postcode = frm['sh_postcode'].value.trim();
-	var sh_location = frm['sh_location'].value.trim();
+	var sh_roadAddr = frm['sh_roadAddr'].value.trim();
 	var sh_detailAddress = frm['sh_detailAddress'].value.trim();
+	var sh_location = frm['sh_roadAddr'].value.trim() + " " + frm['sh_detailAddress'].value.trim();
 	var sh_location_lat = frm['sh_location_lat'].value.trim();
 	
 	if(sh_id == ""){
@@ -99,9 +100,9 @@ function chkShopSubmit(){
 		frm["sh_postcode"].focus();
 		return false;
 	}
-	if(sh_location == ""){
+	if(sh_roadAddr == ""){
 		alert("도로명주소를 입력해주세요");
-		frm["sh_location"].focus();
+		frm["sh_roadAddr"].focus();
 		return false;
 	}
 	if(sh_detailAddress == ""){
@@ -122,12 +123,12 @@ $(document).ready(function(){
 		
 		frm = document.forms['frm_shop'];
 		
-		var sh_location = frm['sh_location'].value.trim();
+		var sh_roadAddr = frm['sh_roadAddr'].value.trim();
 		var sh_detailAddress = frm['sh_detailAddress'].value.trim();
 		
-		if(sh_location == ""){
+		if(sh_roadAddr == ""){
 			alert("도로명주소를 입력해주세요");
-			frm["sh_location"].focus();
+			frm["sh_roadAddr"].focus();
 			return false;
 		}
 		
@@ -137,7 +138,7 @@ $(document).ready(function(){
 			return false;
 		}
 		
-		var addr = frm['sh_location'].value.trim();
+		var addr = frm['sh_roadAddr'].value.trim();
 		
 		//alert(addr);
 		
@@ -153,7 +154,7 @@ $(document).ready(function(){
 			}
 		});
 		
-		var addr_ok = sh_location + ", " + sh_detailAddress;
+		var addr_ok = sh_roadAddr + ", " + sh_detailAddress;
 		alert("주소 : " + addr_ok + " 확인 완료")
 	});
 });
@@ -167,6 +168,13 @@ function parseJSON(jsonObj){
 	
 	document.getElementById('sh_location_lat').value = location_lat;
 	document.getElementById('sh_location_lng').value = location_lng;
+	
+	frm = document.forms['frm_shop'];
+	
+	var sh_roadAddr = frm['sh_roadAddr'].value.trim();
+	var sh_detailAddress = frm['sh_detailAddress'].value.trim();
+	
+	document.getElementById("sh_location").value = sh_roadAddr + " " + sh_detailAddress;
 }
 
 
@@ -215,21 +223,14 @@ function parseJSON(jsonObj){
 					<input id="sh_name" type="text" name="sh_name" placeholder="STORE NAME"><br>
 					<input id="sh_telephone" type="text" name="sh_telephone" placeholder="PHONE"><br>
 					
-<<<<<<< HEAD
-					<input id="sh_postcode" type="text" name="sh_postcode" placeholder="우편번호">
-					<input type="button" onclick="sh_execDaumPostcode()" value="주소 찾기"><br>
-					<input id="sh_location" type="text" name="sh_location" placeholder="도로명주소">
-					<input id="sh_detailAddress" type="text" name="sh_detailAddress" placeholder="상세주소">
+					<input id="sh_postcode" type="text" placeholder="POST CODE">
+					<input id="btn2" type="button" onclick="sh_execDaumPostcode()" value="FIND"><br>
+					<input id="sh_roadAddr" type="text" name="sh_roadAddr" placeholder="ADDRESS LINE 1">
+					<input id="sh_detailAddress" type="text" name="sh_detailAddress" placeholder="ADDRESS LINE 2">
+					<input id="sh_location" type="hidden" name="sh_location">
 					<input id="chklocation" type="button" value="주소 입력 확인"><br>
 					<input id="sh_location_lat" type="hidden" name="sh_location_lat" placeholder="위도">
 					<input id="sh_location_lng" type="hidden" name="sh_location_lng" placeholder="경도">
-					
-=======
-					<input id="sh_postcode" type="text" placeholder="POST CODE"> 
-					<input id="btn2" type="button" onclick="sh_execDaumPostcode()" value="FIND"><br>
-					<input id="sh_location" type="text"  placeholder="ADDRESS LINE 1">
-					<input id="sh_detailAddress" type="text"  placeholder="ADDRESS LINE 2">
->>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
 					
 					<input type="submit" id="btn" value="Sign Up">
 				
@@ -237,7 +238,14 @@ function parseJSON(jsonObj){
 		
 	</div>
 </section>
+<!-- 
 
+<input id="sh_postcode" type="text" name="sh_postcode" placeholder="우편번호">
+<input type="button" onclick="sh_execDaumPostcode()" value="주소 찾기"><br>
+<input id="sh_location" type="text" name="sh_location" placeholder="도로명주소">
+<input id="sh_detailAddress" type="text" name="sh_detailAddress" placeholder="상세주소">
+
+ -->
 
 <!-- javascript 링크 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

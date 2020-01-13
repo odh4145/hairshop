@@ -27,7 +27,6 @@ public class ShopJoinCommand implements Command {
 		String sh_name = request.getParameter("sh_name");
 		String sh_telephone = request.getParameter("sh_telephone");
 		String sh_location = request.getParameter("sh_location");
-		String sh_detailAddress = request.getParameter("sh_detailAddress");
 		String sh_location_lat = request.getParameter("sh_location_lat");
 		String sh_location_lng = request.getParameter("sh_location_lng");
 		
