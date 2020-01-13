@@ -342,4 +342,82 @@ INSERT INTO USER(
 )
 VALUES('test03', '1234', '손님용2', '01000000002');
 
+<<<<<<< HEAD
+select * from user;
+select * from shop;
+
+SELECT  * from shop where sh_id = 'store12';
+
+
+select * from book where use_uid = 1;
+select * from book natural join shop where use_uid = 1;
 select * from book;
+
+select * from shop;
+
+
+SELECT * FROM DESIGNER WHERE sh_uid=1;
+select * from book b natural join shop where b.use_uid = 1;
+
+select * from user;
+
+select * from shop;
+
+select count(*) from shop where sh_no_id = 1111111111;
+
+select * from shop where sh_id = 'store01';
+
+select * from comment;
+
+-- select * from user where user.use_id = 'test01';
+
+-- SELECT * FROM USER WHERE use_id='test01';
+
+-- delete from user where use_uid = 3;
+
+-- 특정 id 로 회원 가입을 하려 할때
+-- user 의  use_id  이어서도 안되고
+-- ship 의  sh_id 이어서도 암됨
+
+
+SELECT 
+	(SELECT count(*) from user where use_id = 'store01'), 
+	(SELECT count(*) from shop where sh_id = 'store01')
+
+-- select
+-- 	(select count() from user where use_phoneNum = '01000000000'),
+-- 	(select count() from shop where sh_telephone = 'store01');
+
+-- select * from user where use_id='test01';
+
+
+-- UPDATE [테이블] SET [열] = '변경할값' WHERE [조건]
+<<<<<<< HEAD
+
+
+-- uid >> 2
+-- uid2인사람의 비밀번호 바꾸기 
+=======
+SELECT * FROM BOOK WHERE use_uid = 1 ORDER BY bo_time desc;
+select * from book where sh_uid = 1;
+uid >> 2
+uid2인사람의 비밀번호 바꾸기 
+>>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
+
+-- update user set use_pw = '?' where use_uid = '?';
+
+<<<<<<< HEAD
+-- select * from user where use_uid=2;
+=======
+select * from service;
+>>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
+	
+<<<<<<< HEAD
+-- update user set use_pw = ? where use_uid = ?
+=======
+update user set use_pw = ? where use_uid = ?
+
+>>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
+=======
+select * from book;
+>>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
