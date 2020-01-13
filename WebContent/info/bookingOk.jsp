@@ -11,7 +11,7 @@
 	</c:when>
 	<c:otherwise>
 		<script>
-			alert("예약신청이 완료되었습니다.<br>매장에서 승인 완료가 되어야 예약이 확정됩니다.");
+			alert("예약신청이 완료되었습니다.\n매장에서 승인 완료가 되어야 예약이 확정됩니다.");
 			location.href = "/book/user.bbq?use_uid=";
 		</script>
 	</c:otherwise>
