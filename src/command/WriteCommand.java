@@ -11,32 +11,31 @@ public class WriteCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		int cnt = 0;
+		int cnt = 0; 
 		WriteDAO dao = new WriteDAO();
 		
-		// 입력한 값 받아오기
-	
-		int co_star = (Integer.parseInt(request.getParameter("co_star")));
-		String co_title = request.getParameter("co_title");
-		String co_name = request.getParameter("co_name");
-		String co_content = request.getParameter("co_content");
-		
-		// parameter 유효성 검증
-//		if(co_name != null && co_content != null && 
-//				co_name.trim().length() > 0 && co_content.trim().length() > 0) 
-		{
+		int use_uid = Integer.parseInt(request.getParameter("use_uid"));
+		int sh_uid = Integer.parseInt(request.getParameter("sh_uid"));
+		String name =request.getParameter("name");
+		String content = request.getParameter("content");
+		String title =request.getParameter("title");
+		int star = Integer.parseInt(request.getParameter("star"));
+		// Parameter 유효성 검증
+		if (name != null && title != null &&
+				name.trim().length() > 0 && title.trim().length()>0) {
+			
 			try {
-				cnt = dao.insert(co_star, co_name, co_title, co_content);
-			} catch(SQLException e) {
+				cnt = dao.insert(use_uid, sh_uid, title, star, content, name);
+				
+			}catch(SQLException e) {
 				e.printStackTrace();
 			}
+				
 		}
+		
 		request.setAttribute("result", cnt);
-
+		
+		
 	}
-	
 
 }
-
-
-

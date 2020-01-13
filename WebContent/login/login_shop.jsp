@@ -105,5 +105,6 @@ function chkShopSubmit(){
 	
 <!-- javascript 링크 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="../js/public.js" type="text/javascript"></script>
 </body>
 </html>

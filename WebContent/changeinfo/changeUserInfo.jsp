@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>지역별매장</title>
+<title>개인정보수정</title>
 <link rel="icon" href="../img/favicon.png">
 
 <!-- css파일 link -->
@@ -44,8 +44,8 @@ frm = document.forms["frm_chk_user_pw"];
 	<ul id="top_menu">
 		<li id="logo"><a href="../index.jsp">Booking<span>HairShop</span></a></li>
 		<ul id="menu_list">
-			<li><a href="#">내주변</a></li>
-			<li><a href="#">지역별매장</a></li>
+			<li><a href="../location/Location2.bbq">내주변</a></li>
+			<li><a href="../location/chooseArea.bbq">지역별매장</a></li>
 			<li><a href="#">마이페이지</a></li>
 		</ul>	
 		<c:if test="${sessionScope.user == null }">
@@ -64,13 +64,14 @@ frm = document.forms["frm_chk_user_pw"];
 		
 		<!------------- 세부메뉴 ----------마이페이지아닌 분들은 세부메뉴 지우세요------------->
 		<div class="submenu inner">
-			<h4 class="selected"><a>예약내역</a></h4>
+			<h4 class="selected"><a href="user.bbq?use_uid=">예약내역</a></h4>
 			<h4><a>내가 쓴 글</a></h4>
 			<h4><a>개인정보수정</a></h4>
 		</div>
 		
 
-<!-- 여기 코드 추가 -->
+<c:choose>
+			<c:when test="${sessionScope.user != null }">    
 		
 		<div id="changeinfo" >
 		<h3>개인정보수정</h3>
@@ -85,7 +86,15 @@ frm = document.forms["frm_chk_user_pw"];
 			
 			</div>
 		
-<!-- 여기 코드 추가 -->
+</c:when>
+			
+			<c:when test="${sessionScope.user == null }">
+				<script>
+					alert("로그인 해야함")
+					location.href = "../login/login_user.bbq";
+				</script>
+			</c:when>
+		</c:choose>
 		
 	</div>
 </section>
@@ -93,5 +102,6 @@ frm = document.forms["frm_chk_user_pw"];
 
 <!-- javascript 링크 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="../js/public.js" type="text/javascript"></script>
 </body>
 </html>

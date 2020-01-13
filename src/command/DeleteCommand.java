@@ -11,25 +11,19 @@ public class DeleteCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		int cnt = 0;
+		int cnt = 0; 
 		WriteDAO dao = new WriteDAO();
+		int uid = Integer.parseInt(request.getParameter("uid"));
 		
-		//입력한 값을 받아오기
-		int co_uid = Integer.parseInt(request.getParameter("co_uid"));
+			try {
+				cnt = dao.deleteByUid(uid);
+				
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+						System.out.println("ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ"+cnt);
+		request.setAttribute("deleteOk", cnt);
 		
-		
-		
-		try {			
-			cnt = dao.deleteByUid(co_uid);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		request.setAttribute("result", cnt);
-		
-	} // end execute()
-} // end Command
+	}
 
-
-
-
+}

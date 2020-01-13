@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>지역별매장</title>
+<title>예약내역</title>
 <link rel="icon" href="../img/favicon.png">
 
 <!-- css파일 link -->
@@ -22,8 +22,8 @@
 		<ul id="top_menu">
 			<li id="logo"><a href="index.jsp">Booking<span>HairShop</span></a></li>
 			<ul id="menu_list">
-				<li><a href="#">내주변</a></li>
-				<li><a href="#">지역별매장</a></li>
+				<li><a href="../location/Location2.bbq">내주변</a></li>
+			<li><a href="../location/chooseArea.bbq">지역별매장</a></li>
 				<li><a href="#">마이페이지</a></li>
 			</ul>
 			<li id="login"><a href="#">로그아웃</a></li>
@@ -38,13 +38,13 @@
 			<!------------- 세부메뉴 ----------마이페이지아닌 분들은 세부메뉴 지우세요------------->
 			<div class="submenu inner">
 				<h4 class="selected">
-					<a>예약내역</a>
+					<a href="user.bbq?use_uid=">예약내역</a>
 				</h4>
 				<h4>
-					<a>내가 쓴 글</a>
+					<a href="../jm/list.bbq?user_uid= ">내가 쓴 글</a>
 				</h4>
 				<h4>
-					<a>개인정보수정</a>
+					<a href="../changeinfo/changeUserInfo.bbq?use_uid= ">개인정보수정</a>
 				</h4>
 			</div>
 
@@ -68,7 +68,7 @@
 						
 						<c:if test="${book.bo_stat == 2 }">
 							<p class="test">승인 완료된 예약입니다.</p>
-							<button onclick="write.jsp">후기 남기러 가기</button>
+							<button onclick="../jm/write.bbq?sh_uid=${book.sh_uid}">후기 남기러 가기</button>
 							<hr>
 						</c:if>
 						

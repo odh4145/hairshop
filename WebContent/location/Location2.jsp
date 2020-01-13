@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>지역별매장</title>
+<title>내주변</title>
 <link rel="icon" href="../img/favicon.png">
 <!-- css파일 link -->
 <link href="../css/menu.css" rel="stylesheet" type="text/css">

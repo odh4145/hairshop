@@ -421,3 +421,9 @@ update user set use_pw = ? where use_uid = ?
 =======
 select * from book;
 >>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
+
+INSERT INTO comment(use_uid,sh_uid,co_name,co_title, co_star, co_content)
+SELECT use_uid,sh_uid,co_name,co_title, co_star, co_content from comment;
+
+
+-- 손님 페이지로 가면 손님 
