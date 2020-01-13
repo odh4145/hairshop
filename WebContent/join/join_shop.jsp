@@ -16,7 +16,7 @@
 
 </head>
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
@@ -67,6 +67,7 @@ function chkShopSubmit(){
 	var sh_postcode = frm['sh_postcode'].value.trim();
 	var sh_location = frm['sh_location'].value.trim();
 	var sh_detailAddress = frm['sh_detailAddress'].value.trim();
+	var sh_location_lat = frm['sh_location_lat'].value.trim();
 	
 	if(sh_id == ""){
 		alert("아이디를 입력해주세요");
@@ -108,9 +109,75 @@ function chkShopSubmit(){
 		frm["sh_detailAddress"].focus();
 		return false;
 	}
+	if(sh_location_lat == ""){
+		alert("주소 입력 확인을 눌러주세요");
+		return false;
+	}
+	
 }
 
+$(document).ready(function(){
+	
+	$("#chklocation").click(function(){
+		
+		frm = document.forms['frm_shop'];
+		
+		var sh_location = frm['sh_location'].value.trim();
+		var sh_detailAddress = frm['sh_detailAddress'].value.trim();
+		
+		if(sh_location == ""){
+			alert("도로명주소를 입력해주세요");
+			frm["sh_location"].focus();
+			return false;
+		}
+		
+		if(sh_detailAddress == ""){
+			alert("상세주소를 입력해주세요");
+			frm["sh_detailAddress"].focus();
+			return false;
+		}
+		
+		var addr = frm['sh_location'].value.trim();
+		
+		//alert(addr);
+		
+		var url = "https://maps.googleapis.com/maps/api/geocode/json?address="+ addr +"&key=AIzaSyCFDCbB-7P2BDLp9LuwLHHp7e-yHfrq438";
+		//alert(url);
+		
+		$.ajax({
+			url : url,
+			type : "GET",
+			cache : false,
+			success : function(data, status){
+				if(status == "success") parseJSON(data);
+			}
+		});
+		
+		var addr_ok = sh_location + ", " + sh_detailAddress;
+		alert("주소 : " + addr_ok + " 확인 완료")
+	});
+});
+
+function parseJSON(jsonObj){
+	var location_lat = jsonObj.results[0].geometry.location.lat;
+	var location_lng = jsonObj.results[0].geometry.location.lng;
+	
+//	alert(location_lat)
+//	alert(location_lng)
+	
+	document.getElementById('sh_location_lat').value = location_lat;
+	document.getElementById('sh_location_lng').value = location_lng;
+}
+
+
+
+
+
+
 </script>
+<script>
+</script>
+
 <body>
 <header>
 	<ul id="top_menu">
@@ -120,11 +187,11 @@ function chkShopSubmit(){
 			<li><a href="#">지역별매장</a></li>
 			<li><a href="#">마이페이지</a></li>
 		</ul>	
-		<c:if test="${sessionScope.shop == null }">
-			<li id="login" ><a href="../login/login_user.bbq">로그인</a></li>
+			<c:if test="${sessionScope.shop == null }">
+				<li id="login" ><a href="../login/login_user.bbq">로그인</a></li>
 			</c:if>
 			<c:if test="${sessionScope.shop != null }">
-			<li id="login" ><a href="../logout/Userlogout.bbq">로그아웃</a></li>
+				<li id="login" ><a href="../logout/Userlogout.bbq">로그아웃</a></li>
 		</c:if>
 	</ul>
 </header>
@@ -150,10 +217,14 @@ function chkShopSubmit(){
 					<input id="sh_telephone" type="text" name="sh_telephone" placeholder="매장 전화번호">
 					<br><br>
 					
-					<input id="sh_postcode" type="text" placeholder="우편번호">
+					<input id="sh_postcode" type="text" name="sh_postcode" placeholder="우편번호">
 					<input type="button" onclick="sh_execDaumPostcode()" value="주소 찾기"><br>
-					<input id="sh_location" type="text"  placeholder="도로명주소">
-					<input id="sh_detailAddress" type="text"  placeholder="상세주소">
+					<input id="sh_location" type="text" name="sh_location" placeholder="도로명주소">
+					<input id="sh_detailAddress" type="text" name="sh_detailAddress" placeholder="상세주소">
+					<input id="chklocation" type="button" value="주소 입력 확인"><br>
+					<input id="sh_location_lat" type="hidden" name="sh_location_lat" placeholder="위도">
+					<input id="sh_location_lng" type="hidden" name="sh_location_lng" placeholder="경도">
+					
 					
 					<br><br>
 					<input type="submit" id="btn" value="가입하기">

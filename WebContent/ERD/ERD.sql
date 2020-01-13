@@ -462,6 +462,8 @@ VALUES('test03', '1234', '손님용2', '01000000002');
 select * from user;
 select * from shop;
 
+SELECT  * from shop where sh_id = 'store12';
+
 
 select * from book where use_uid = 1;
 select * from book natural join shop where use_uid = 1;
@@ -477,6 +479,12 @@ select * from user;
 
 select * from shop;
 
+select count(*) from shop where sh_no_id = 1111111111;
+
+select * from shop where sh_id = 'store01';
+
+select * from comment;
+
 -- select * from user where user.use_id = 'test01';
 
 -- SELECT * FROM USER WHERE use_id='test01';
@@ -487,9 +495,10 @@ select * from shop;
 -- user 의  use_id  이어서도 안되고
 -- ship 의  sh_id 이어서도 암됨
 
--- select
--- 	(select count() from user where use_id = 'store01'),
--- 	(select count() from shop where sh_id = 'store01');
+
+SELECT 
+	(SELECT count(*) from user where use_id = 'store01'), 
+	(SELECT count(*) from shop where sh_id = 'store01')
 
 -- select
 -- 	(select count() from user where use_phoneNum = '01000000000'),

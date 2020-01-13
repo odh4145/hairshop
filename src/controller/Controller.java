@@ -29,6 +29,7 @@ import command.ServiceDeleteCommand;
 import command.ServiceListCommand;
 import command.ServiceUpdateCommand;
 import command.ShopCommand;
+import command.ShopJoinCommand;
 import command.ShopLoginCommand;
 import command.ShowBookshopCommand;
 import command.ShowBookuserCommand;
@@ -196,6 +197,8 @@ public class Controller extends HttpServlet {
 			viewPage = "join_shop.jsp";
 			break;
 		case "/join/join_shop_ok.bbq":
+			command = new ShopJoinCommand();
+			command.execute(request, response);
 			viewPage = "join_shop_ok.jsp";
 			break;
 			
@@ -220,25 +223,25 @@ public class Controller extends HttpServlet {
 			viewPage = "storeUpdate.jsp";
 			break;
 			
-<<<<<<< HEAD
-		// 매장-사진목록
-		case "/info/storepicList.bbq":
-			command = new ShopCommand();
-=======
-		// 매장-매장정보 수정
-		case "/info/storeInfoUpdate.bbq":
-			command = new StoreInfoUpdateCommand();
-			command.execute(request, response);
-			viewPage = "storeInfoUpdate.jsp";
-			break;
-
-		// 매장-디자이너 관리
-		case "/info/designer.bbq":
-			command = new DesignerListCommand();
->>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
-			command.execute(request, response);
-			viewPage = "storepicList.jsp";
-			break;
+//<<<<<<< HEAD
+//		// 매장-사진목록
+//		case "/info/storepicList.bbq":
+//			command = new ShopCommand();
+//=======
+//		// 매장-매장정보 수정
+//		case "/info/storeInfoUpdate.bbq":
+//			command = new StoreInfoUpdateCommand();
+//			command.execute(request, response);
+//			viewPage = "storeInfoUpdate.jsp";
+//			break;
+//
+//		// 매장-디자이너 관리
+//		case "/info/designer.bbq":
+//			command = new DesignerListCommand();
+//>>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
+//			command.execute(request, response);
+//			viewPage = "storepicList.jsp";
+//			break;
 
 		// 매장-디자이너 추가
 		case "/info/designerAdd.bbq":

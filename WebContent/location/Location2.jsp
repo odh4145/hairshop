@@ -31,7 +31,7 @@ th,td {
 </style>
 </head>
 
-<body onload="logout">
+<body>
 	<header>
 		<ul id="top_menu">
 			<li id="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>

@@ -13,7 +13,8 @@ public class UserJoinCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		int cnt1 = 0, cnt2 = 0, cnt3 = 0;
+		int cnt1 = 0, cnt2 = 0;
+		int cnt = 0;
 		UserJoinDAO dao = new UserJoinDAO();
 		UserJoinDTO [] arr = null;
 		
@@ -39,10 +40,9 @@ public class UserJoinCommand implements Command {
 					cnt2 = dao.chkNUM(use_phoneNum);
 					if(cnt2 == 1) {
 						dao = new UserJoinDAO();
-						cnt3 = dao.insert(use_id, use_pw, use_name, use_phoneNum);
-					}
-					
-				}
+						cnt = dao.insert(use_id, use_pw, use_name, use_phoneNum);
+					} // end if(cnt2)
+				} // end if(cnt1)
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -55,7 +55,7 @@ public class UserJoinCommand implements Command {
 		} else if(cnt2 == 0) {
 			request.setAttribute("join_user", 0);
 		} else {
-			request.setAttribute("join_user", cnt3);
+			request.setAttribute("join_user", cnt);
 		}
 		
 		//request.setAttribute("join_user", cnt);
