@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -18,15 +21,22 @@
 		<ul id="top_menu">
 			<li class="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
 			<ul id="menu_list">
-				<li><a href="../location/Location2.bbq %>">내주변</a></li>
-				<li><a href="#">지역별매장</a></li>
-				<li><a href="../changeinfo/changeUserInfo.bbq">마이페이지</a></li>
+				<li><a href="../location/Location2.bbq">내주변</a></li>
+				<li><a href="../location/chooseArea.bbq">지역별매장</a></li>
+				<c:choose>
+				<c:when test="${sessionScope.user != null }">
+				<li><a href="../book/user.bbq?use_uid=${sessionScope.user }">마이페이지</a></li>
+				</c:when>
+				<c:when test="${sessionScope.user == null }">
+				<li><a href="../book/user.bbq?use_uid=0">마이페이지</a></li>
+				</c:when>
+			</c:choose>
 			</ul>
 			<c:if test="${sessionScope.user == null }">
-				<li id="login"><a href="login_user.bbqLoginUser">로그인</a></li>
+				<li id="login"><a href="../login/login_user.bbq">로그인</a></li>
 			</c:if>
 			<c:if test="${sessionScope.user != null }">
-				<li id="login"><a href="../logout/Userlogout.jsp">로그아웃</a></li>
+				<li id="login"><a href="../logout/Userlogout.bbq">로그아웃</a></li>
 			</c:if>
 			<li><a id="btn_menu"><i class="fas fa-ellipsis-h"></i></a></li>
 		</ul>
@@ -49,7 +59,7 @@
 		<h2 id="content_title">지역별매장</h2>
 		<div class="innerbox">
 			<div class="choose">
-				<a class="where" href="chooseDetailArea2.jsp">서울특별시</a>
+				<a class="where" href="chooseDetailArea2.bbq">서울특별시</a>
 				<a class="where" href="#">광주광역시</a>
 				<a class="where" href="#">대구광역시</a>
 				<a class="where" href="#">대전광역시</a>

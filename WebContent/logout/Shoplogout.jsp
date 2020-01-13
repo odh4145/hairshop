@@ -4,5 +4,5 @@
 <% session.invalidate();%>
 <script>
 	alert("로그아웃");
-	history.go(-1);
+	location.href="../index.bbq";
 </script>

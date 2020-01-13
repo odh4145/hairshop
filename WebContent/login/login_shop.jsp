@@ -48,11 +48,11 @@ function chkShopSubmit(){
 				<li><a href="">예약내역</a></li>
 				<li><a href="">마이페이지</a></li>
 			</ul>
-			<c:if test="${sessionScope.user == null }">
-				<li id="login"><a href="login_user.bbqLoginUser">로그인</a></li>
+			<c:if test="${sessionScope.shop == null }">
+				<li id="login"><a href="../login/login_shop.bbq">로그인</a></li>
 			</c:if>
-			<c:if test="${sessionScope.user != null }">
-				<li id="login"><a href="../logout/Userlogout.jsp">로그아웃</a></li>
+			<c:if test="${sessionScope.shop != null }">
+				<li id="login"><a href="../logout/Shoplogout.bbq">로그아웃</a></li>
 			</c:if>
 			<li><a id="btn_menu"><i class="fas fa-ellipsis-h"></i></a></li>
 		</ul>
@@ -81,25 +81,25 @@ function chkShopSubmit(){
 			<div id="login_shop">
 				<h3>Sign In</h3>
 				<a id="login_p2"><i class="fas fa-cut"></i></a>
-				<form name="frm_shop" action="login_shop_ok.bbqLoginShop" method="post" onsubmit="return chkShopSubmit()">
+				<form name="frm_shop" action="login_shop_ok.bbq" method="post" onsubmit="return chkShopSubmit()">
 				<ul>
 					<li><input id="sh_id" type="text" name="sh_id" placeholder="ID"></li>
 					<li><input id="sh_pw" type="password" name="sh_pw" placeholder="PASSWORD"></li>
 					<li><input type="submit" id="btn" value="Sign In"/></li>
-					<li><a id= "join" href="../join/join_shop.jsp">Join</a></li>
+					<li><a id= "join" href="../join/join_shop.bbq">Join</a></li>
 				</ul>
 			</form>
 			
 		</div>
 			
-				
-			
 		</c:when>
-		
 		
 		<c:when test="${sessionScope.shop != null }">
-			<h3><%= session.getAttribute("shop") %> 님 로그인 성공</h3>
+			<script>
+				location.href="../book/shoptest.bbq";
+			</script>
 		</c:when>
+
 </c:choose>
 		
 		

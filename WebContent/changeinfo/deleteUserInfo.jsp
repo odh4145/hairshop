@@ -24,19 +24,12 @@ function chkUserPw(){
 frm = document.forms["frm_chk_user_pw"];
 	
 	var use_pw = frm["use_pw"].value.trim();
-	var use_pw2 = frm["use_pw2"].value.trim();
 	
 	if(use_pw == ""){
-		alert("현재 비밀번호를 입력해주세요");
+		alert("비밀번호를 입력해주세요");
 		frm["use_pw"].focus();
 		return false;
 	}
-	if(use_pw2 == ""){
-		alert("새 비밀번호를 입력해주세요");
-		frm["use_pw2"].focus();
-		return false;
-	}
-	return true;
 }
 </script>
 <body>
@@ -88,12 +81,10 @@ frm = document.forms["frm_chk_user_pw"];
 		<div id="changeinfo" >
 		<h3>개인정보수정</h3>
 		<hr>
-				<form name="frm_chk_user_pw" action="changeUserInfo_ok.bbq" method="post" onsubmit="return chkUserPw()">
+				<form name="frm_chk_user_pw" action="deleteUserInfo_ok.bbq" method="post" onsubmit="return chkUserPw()">
 		       <ul>
 					<li><input id="use_pw" type="password" name="use_pw" placeholder="CURRENT PASSWORD"></li>
-					<li><input id="use_pw2" type="password" name="use_pw2" placeholder="NEW PASSWORD"></li>
-					<li><input type="submit" id="btn" value="Change"/></li>
-					<li><a href="../changeinfo/deleteUserInfo.bbq">탈퇴하기</a>
+					<li><input type="submit" id="btn" value="탈퇴하기"/></li>
 			  </ul>
 				</form>
 			

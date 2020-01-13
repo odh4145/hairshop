@@ -35,16 +35,28 @@ th,td {
 <header>
 		<ul id="top_menu">
 			<li class="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
+			<ul id="mo_menu">
+         	<li><a>내주변</a></li>
+        	<li><a>지역별매장</a></li>
+       	  	<li><a>마이페이지</a></li>
+    	  	</ul>
 			<ul id="menu_list">
-				<li><a href="../location/Location2.bbq %>">내주변</a></li>
-				<li><a href="#">지역별매장</a></li>
-				<li><a href="../changeinfo/changeUserInfo.bbq">마이페이지</a></li>
+				<li><a href="../location/Location2.bbq">내주변</a></li>
+				<li><a href="../location/chooseArea.bbq">지역별매장</a></li>
+			<c:choose>
+				<c:when test="${sessionScope.user != null }">
+				<li><a href="../book/user.bbq?use_uid=${sessionScope.user }">마이페이지</a></li>
+				</c:when>
+				<c:when test="${sessionScope.user == null }">
+				<li><a href="../book/user.bbq?use_uid=0">마이페이지</a></li>
+				</c:when>
+			</c:choose>
 			</ul>
 			<c:if test="${sessionScope.user == null }">
-				<li id="login"><a href="login_user.bbqLoginUser">로그인</a></li>
+				<li id="login"><a href="../login/login_user.bbq">로그인</a></li>
 			</c:if>
 			<c:if test="${sessionScope.user != null }">
-				<li id="login"><a href="../logout/Userlogout.jsp">로그아웃</a></li>
+				<li id="login"><a href="../logout/Userlogout.bbq">로그아웃</a></li>
 			</c:if>
 			<li><a id="btn_menu"><i class="fas fa-ellipsis-h"></i></a></li>
 		</ul>
@@ -121,7 +133,7 @@ th,td {
 						};
 					}
 				});//end ajax
-
+				
 				function parseJSON(jsonObj) {
 					var row = jsonObj.datalist;
 					var i;
@@ -130,7 +142,7 @@ th,td {
 					var table = "<tr><th>매장명</th><th>매장위치</th><th>매장Lat</th><th>매장Lng</th></tr>";
 					for (i = 0; i < row.length; i++) {
 						table += "<tr>";
-						table += "<td><a herf=\"#\">" + row[i].name + "<a></td>";
+						table += "<td><a href='../info/storeInfo.bbq?sh_uid=" + row[i].sh_uid + "'>" + row[i].name + "</a></td>";
 						table += "<td>" + row[i].location + "</td>";
 						table += "<td>" + row[i].locationLat;
 						+"</td>";

@@ -243,21 +243,18 @@ function parseJSON(jsonObj){
 					<input id="sh_telephone" type="text" name="sh_telephone" placeholder="PHONE"><br>
 					
 					<input id="sh_postcode" type="text" placeholder="POST CODE">
-					<input id="btn2" type="button" onclick="sh_execDaumPostcode()" value="FIND"><br>
-					<input id="sh_roadAddr" type="text" name="sh_roadAddr" placeholder="ADDRESS LINE 1">
-					<input id="sh_detailAddress" type="text" name="sh_detailAddress" placeholder="ADDRESS LINE 2">
-					<input id="sh_location" type="hidden" name="sh_location">
-					<input id="chklocation" type="button" value="주소 입력 확인"><br>
-					<input id="sh_postcode" type="text" name="sh_postcode" placeholder="POST CODE"> 
-					<input id="btn2" type="button" onclick="sh_execDaumPostcode()" value="FIND"><br>
 					
-					<input id="sh_location" type="text" name="sh_add1" placeholder="ADDRESS LINE 1"><br>
-					<input id="sh_detailAddress" type="text"  name="sh_add2"  placeholder="ADDRESS LINE 2"><br>
+					<input id="btn2" type="button" onclick="sh_execDaumPostcode()" value="FIND"><br>
+					<input id="sh_roadAddr" type="text" name="sh_roadAddr" placeholder="ADDRESS LINE 1"><br>
+					<input id="sh_detailAddress" type="text" name="sh_detailAddress" placeholder="ADDRESS LINE 2"><br>
+					<input id="sh_location" type="hidden" name="sh_location">
+					<input id="chklocation" type="button" value="Address Check "><br>
+				
 					<input type="hidden" name="sh_location">
 					<input id="sh_location_lat" type="hidden" name="sh_location_lat" placeholder="위도">
 					<input id="sh_location_lng" type="hidden" name="sh_location_lng" placeholder="경도">
 
-					<input id="chklocation" type="button" value="Address Check "><br>
+					
 
 					<input type="submit" id="btn" value="Sign Up">
 				

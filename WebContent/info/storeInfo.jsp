@@ -32,8 +32,8 @@
 			<li class="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
 			<ul id="menu_list">
 				<li><a href="../location/Location2.bbq">내주변</a></li>
-				<li><a href="#">지역별매장</a></li>
-				<li><a href="../changeinfo/changeUserInfo.bbq">마이페이지</a></li>
+				<li><a href="../location/chooseArea.bbq">지역별매장</a></li>
+				<li><a href="../book/usertest.bbq">마이페이지</a></li>
 			</ul>
 			<c:if test="${sessionScope.user == null }">
 				<li id="login"><a href="login_user.bbqLoginUser">로그인</a></li>
@@ -71,7 +71,7 @@
 			<div class="store_info">
 				<h2>${info[0].sh_name }</h2>
 				<div id="book_review">
-					<a style="border-right:1px solid #eee" href="booking.bbq/sh_uid=${info[0].sh_uid }">
+					<a style="border-right:1px solid #eee" href="booking.bbq?sh_uid=${info[0].sh_uid }">
 						<i class="far fa-calendar-check"></i><br>예약
 					</a>
 					<a href="../jm/list.bbq?sh_uid=${info[0].sh_uid }"><i class="far fa-comment-dots"></i><br>리뷰</a>

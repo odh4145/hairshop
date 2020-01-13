@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -18,17 +19,29 @@
 </head>
 
 <body>
+
+
 	<header>
 		<ul id="top_menu">
-			<li id="logo"><a href="index.jsp">Booking<span>HairShop</span></a></li>
+			<li id="logo"><a href="../index.jsp">Booking<span>HairShop</span></a></li>
 			<ul id="menu_list">
 				<li><a href="../location/Location2.bbq">내주변</a></li>
 			<li><a href="../location/chooseArea.bbq">지역별매장</a></li>
-				<li><a href="#">마이페이지</a></li>
+				<li><a href="../book/user.bbq?use_uid=${sessionScope.user }">마이페이지</a></li>
 			</ul>
-			<li id="login"><a href="#">로그아웃</a></li>
+			<c:if test="${sessionScope.user == null }">
+				<li id="login"><a href="../login/login_user.bbq">로그인</a></li>
+			</c:if>
+			<c:if test="${sessionScope.user != null }">
+				<li id="login"><a href="../logout/Userlogout.bbq">로그아웃</a></li>
+			</c:if>
+			<li><a id="btn_menu"><i class="fas fa-ellipsis-h"></i></a></li>
 		</ul>
 	</header>
+
+	<c:choose>
+	
+	<c:when test="${sessionScope.user != null }">
 
 	<section>
 		<div class="content">
@@ -38,13 +51,13 @@
 			<!------------- 세부메뉴 ----------마이페이지아닌 분들은 세부메뉴 지우세요------------->
 			<div class="submenu inner">
 				<h4 class="selected">
-					<a href="user.bbq?use_uid=">예약내역</a>
+					<a href="../book/user.bbq?use_uid=${sessionScope.user }">예약내역</a>
 				</h4>
 				<h4>
-					<a href="../jm/list.bbq?user_uid= ">내가 쓴 글</a>
+					<a href="../jm/list.bbq?use_uid=${sessionScope.user }">내가 쓴 글</a>
 				</h4>
 				<h4>
-					<a href="../changeinfo/changeUserInfo.bbq?use_uid= ">개인정보수정</a>
+					<a href="../changeinfo/changeUserInfo.bbq?use_uid=${sessionScope.user }">개인정보수정</a>
 				</h4>
 			</div>
 
@@ -86,7 +99,18 @@
 			</div>
 		</div>
 	</section>
-
+	
+	</c:when>
+	
+	
+<c:when test="${sessionScope.user == null }">
+	<script>
+		alert("로그인 해야함")
+		location.href = "../login/login_user.bbq";
+	</script>
+</c:when>
+	
+	</c:choose>
 
 	<!-- javascript 링크 -->
 	<script

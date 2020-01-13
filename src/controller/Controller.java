@@ -16,6 +16,7 @@ import command.Command;
 import command.DeleteBookshopCommand;
 import command.DeleteBookuserCommand;
 import command.DeleteCommand;
+import command.DeleteUser;
 import command.DesignerAddCommand;
 import command.DesignerDeleteCommand;
 import command.DesignerListCommand;
@@ -113,7 +114,16 @@ public class Controller extends HttpServlet {
 
 		// 손님-주변매장
 		case "/location/Location2.bbq":
-			viewPage = "Location2.jsp";
+			viewPage = "/location/Location2.jsp";
+			break;
+			
+		// 손님-지역별 매장
+		case "/location/chooseArea.bbq":
+			viewPage = "/location/chooseArea.jsp";
+			break;
+			
+		case "/location/chooseDetailArea2.bbq":
+			viewPage = "/location/chooseDetailArea2.jsp";
 			break;
 
 		// 손님-예약하기
@@ -149,6 +159,11 @@ public class Controller extends HttpServlet {
 			command = new ServiceListCommand();
 			command.execute(request, response);
 			viewPage = "storeInfo.jsp";
+			break;
+			
+		// 손님-예약내역
+		case "/book/usertest.bbq":
+			viewPage = "/book/usertest.jsp";
 			break;
 
 		// 손님-후기목록
@@ -221,6 +236,16 @@ public class Controller extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "/changeinfo/changeUserInfo_ok.jsp";
 			break;
+			
+		// 손님-탈퇴하기
+		case "/changeinfo/deleteUserInfo.bbq":
+			viewPage = "deleteUserInfo.jsp";
+			break;
+		case "deleteUserInfo_ok.bbq":
+			command = new DeleteUser();
+			command.execute(request, response);
+			viewPage = "deleteUserInfo_ok.jsp";
+			break;
 
 //////////////////////////////////////////////////////////// 매장 //////////////////////////////////////////////////////
 		// 매장-회원가입
@@ -241,6 +266,11 @@ public class Controller extends HttpServlet {
 			command = new ShopLoginCommand();
 			command.execute(request, response);
 			viewPage = "login_shop_ok.jsp";
+			break;
+			
+		// 매장-로그아웃
+		case "/logout/Shoplogout.bbq":
+			viewPage = "/logout/Shoplogout.jsp";
 			break;
 
 		// 매장-매장정보
@@ -316,6 +346,11 @@ public class Controller extends HttpServlet {
 			command = new ServiceDeleteCommand();
 			command.execute(request, response);
 			viewPage = "serviceDelete.jsp";
+			break;
+			
+		// 매장-예약내역
+		case "/book/shoptest.bbq":
+			viewPage = "/book/shoptest.jsp";
 			break;
 
 //////////////////////////////////////////////////////////// Ajax //////////////////////////////////////////////////////			

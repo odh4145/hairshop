@@ -104,13 +104,18 @@ function sub() {
 </head>
 
 <body>
+
+	<c:choose>
+	
+	<c:when test="${sessionScope.user != null }">
+	
 	<header>
 		<ul id="top_menu">
 			<li class="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
 			<ul id="menu_list">
 				<li><a href="../location/Location2.bbq">내주변</a></li>
 				<li><a href="../locaion/chooseArea.bbq">지역별매장</a></li>
-				<li><a href="../changeinfo/changeUserInfo.bbq">마이페이지</a></li>
+				<li><a href="../book/usertest.bbq">마이페이지</a></li>
 			</ul>
 			<c:if test="${sessionScope.user == null }">
 				<li id="login"><a href="login_user.bbqLoginUser">로그인</a></li>
@@ -220,6 +225,17 @@ function sub() {
 		</div>
 		</div>
 	</section>
+	
+	</c:when>
+	
+	<c:when test="${sessionScope.user == null }">
+		<script>
+			alert("로그인 해야함")
+			location.href = "../login/login_user.bbq";
+		</script>
+	</c:when>
+	
+	</c:choose>
 
 <!-- javascript 링크 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
