@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.AjaxListCommand;
+import command.BookingCommand;
 import command.ChangeUserInfoCommand;
 import command.Command;
 import command.DeleteBookshopCommand;
@@ -34,6 +35,7 @@ import command.ShowBookshopCommand;
 import command.ShowBookuserCommand;
 import command.SorttingCommand;
 import command.StoreInfoUpdateCommand;
+import command.StorepicUpdateCommand;
 import command.UpdateCommand;
 import command.UpdateOkCommand;
 import command.UserJoinCommand;
@@ -103,7 +105,7 @@ public class Controller extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "login_user_ok.jsp";
 			break;
-			
+
 		// 손님-로그아웃
 		case "/logout/Userlogout.bbq":
 			viewPage = "/logout/Userlogout.jsp";
@@ -112,6 +114,22 @@ public class Controller extends HttpServlet {
 		// 손님-주변매장
 		case "/location/Location2.bbq":
 			viewPage = "Location2.jsp";
+			break;
+
+		// 손님-예약하기
+		case "/info/booking.bbq":
+			command = new ShopCommand();
+			command.execute(request, response);
+			command = new DesignerListCommand();
+			command.execute(request, response);
+			command = new ServiceListCommand();
+			command.execute(request, response);
+			viewPage = "booking.jsp";
+			break;
+		case "/info/bookingOk.bbq":
+			command = new BookingCommand();
+			command.execute(request, response);
+			viewPage = "bookingOk.jsp";
 			break;
 
 		// 손님-예약내역
@@ -133,75 +151,67 @@ public class Controller extends HttpServlet {
 			viewPage = "storeInfo.jsp";
 			break;
 
-		// 매장-매장정보 수정
-		case "/info/storeInfoUpdate.bbq":
-			command = new StoreInfoUpdateCommand();
-			command.execute(request, response);
-			viewPage = "storeInfoUpdate.jsp";
-			break;
-
 		// 손님-후기목록
 		case "/jm/list.bbq":
 			command = new ListCommand();
-			command.execute(request, response); 
+			command.execute(request, response);
 			viewPage = "/jm/list.jsp";
 			break;
-		
+
 		case "/jm/sortlist.bbq":
 			command = new SorttingCommand();
 			command.execute(request, response);
 			viewPage = "/jm/list.jsp";
 			break;
-			
+
 		// 손님-후기작성
-		case "/jm/write.bbq" :
+		case "/jm/write.bbq":
 			viewPage = "/jm/write.jsp";
 			break;
-		case "/jm/writeOk.bbq" :
+		case "/jm/writeOk.bbq":
 			command = new WriteCommand();
 			command.execute(request, response);
 			viewPage = "/jm/writeOk.jsp";
-			break;	
+			break;
 
 		// 손매-답글작성
-		case "/jm/reWrite.bbq" :
+		case "/jm/reWrite.bbq":
 			viewPage = "reWrite.jsp";
 			break;
-		case "/jm/reWriteOk.bbq" :
+		case "/jm/reWriteOk.bbq":
 			command = new ReWriteCommand();
 			command.execute(request, response);
 			viewPage = "reWriteOk.jsp";
-			break;	
-			
-			
+			break;
+
 		// 손님-후기 상세
-		case "/jm/view.bbq" :
+		case "/jm/view.bbq":
 			command = new ViewCommand();
 			command.execute(request, response);
 			command = new ReListCommand();
 			command.execute(request, response);
 			viewPage = "view.jsp";
 			break;
-			
+
 		// 손님-후기 수정
 		case "/jm/update.bbq":
 			command = new UpdateCommand();
 			command.execute(request, response);
 			viewPage = "update.jsp";
-			break;	
+			break;
 		case "/jm/updateOk.bbq":
 			command = new UpdateOkCommand();
 			command.execute(request, response);
 			viewPage = "updateOk.jsp";
 			break;
-			
+
 		// 손님-후기 삭제
 		case "/jm/deleteOk.bbq":
 			command = new DeleteCommand();
 			command.execute(request, response);
 			viewPage = "deleteOk.jsp";
 			break;
-			
+
 		// 손님 - 개인정보 변경
 		case "/changeinfo/changeUserInfo.bbq":
 			viewPage = "/changeinfo/changeUserInfo.jsp";
@@ -222,7 +232,7 @@ public class Controller extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "join_shop_ok.jsp";
 			break;
-			
+
 		// 매장-로그인
 		case "/login/login_shop.bbq":
 			viewPage = "login_shop.jsp";
@@ -243,27 +253,28 @@ public class Controller extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "storeUpdate.jsp";
 			break;
-			
-//<<<<<<< HEAD
-//		// 매장-사진목록
-//		case "/info/storepicList.bbq":
-//			command = new ShopCommand();
-//=======
-//		// 매장-매장정보 수정
-//		case "/info/storeInfoUpdate.bbq":
-//			command = new StoreInfoUpdateCommand();
-//			command.execute(request, response);
-//			viewPage = "storeInfoUpdate.jsp";
-//			break;
-//
-//		// 매장-디자이너 관리
-//		case "/info/designer.bbq":
-//			command = new DesignerListCommand();
-//>>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
-//			command.execute(request, response);
-//			viewPage = "storepicList.jsp";
-//			break;
 
+		// 매장-기본정보변경
+		case "/info/storeInfoUpdate.bbq":
+			command = new StoreInfoUpdateCommand();
+			command.execute(request, response);
+			viewPage = "storeInfoUpdate.jsp";
+			break;
+
+		// 매장-사진목록
+		case "/info/storepicList.bbq":
+			command = new ShopCommand();
+			command.execute(request, response);
+			viewPage = "storepicList.jsp";
+			break;
+			
+		// 매장-사진변경
+		case "/info/storepicUpdate.bbq":
+			command = new StorepicUpdateCommand();
+			command.execute(request, response);
+			viewPage = "storepicUpdate.jsp";
+			break;
+			
 		// 매장-디자이너 추가
 		case "/info/designerAdd.bbq":
 			command = new DesignerAddCommand();

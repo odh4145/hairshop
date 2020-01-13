@@ -144,26 +144,13 @@ section{
 	font-size:40px;
 }
 
-.show{
-	position:fixed;
-	bottom:20px;
-	right:20px;
-	
-}
-
 .inner{
 	padding:30px;
 }
 
-.mobile{
-	padding-top:5px;
-	width:100%;
-	position: relative;
-	height:40px;
-	display:hidden;
-}
-
+/* 모바일버튼 */
 #btn_menu{
+	display:none;
 	position:absolute;
 	right:0;
 	color:#313f67;
@@ -172,45 +159,54 @@ section{
 	top:-6px;
 }
 
-.mo_menu{
-	display:block;
+#mo_menu{
 	position:absolute;
-	width:100px;
 	right:0;
-	top:46px;
-}
-.mo_menu li{
-	background: white;
-	color:#313f67;
-	height:30px;
-	font-size:16px;
-	padding:10px;
-	text-align: center;
-}
-.mo_menu li:hover{
-	background: #313f67;
-	color:white;
-	font-wieght:500;
-}
-.hidden{
+	top:50px;
+	width:150px;
 	display:none;
 }
+#mo_menu li{
+	background: white;
+	color:#313f67;
+	font-size: 16px;
+	text-align: center;
+	padding:10px;
+}
+#mo_menu li:hover{
+	background: #e4e4e4;
+}
+
+#mo_sub{
+	display:none;
+}
+#mo_sub li{
+	background:#eee;
+}
+
 /* tablet */
 @media screen and (min-width:769px) and (max-width:991px){
 	section{
 		background: #fcfcfc;
-		min-height:800px;
+		height:100%;
 	}
-	#top_menu{width:inherit;}
+	.content{width:100%;}
+	#top_menu{width:100%;}
 	#menu_list li{margin-left:100px;}
 }
 
 /* mobile */
 @media screen and (max-width:768px){
-	#menu_list, .pc, #top_menu{display:none !important;}
-	section{min-height:800px;}
-	.mobile{
+	#login, #menu_list{
+		display:none;
+	}
+	.content{width:100%;}
+	#top_menu{width:100%;}
+	#btn_menu{
 		display:block;
 	}
-	
+	section{
+		background: #fcfcfc;
+		height:100%;
+	}
 }

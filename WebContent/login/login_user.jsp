@@ -17,29 +17,25 @@
 
 <!-- form 검증 -->
 <script>
-	function chkUserSubmit() {
-		frm = document.forms["frm_user"];
+function chkUserSubmit() {
+	frm = document.forms["frm_user"];
+	
+	var use_id = frm["use_id"].value.trim();
+	var use_pw = frm["use_pw"].value.trim();
 
-		var use_id = frm["use_id"].value.trim();
-		var use_pw = frm["use_pw"].value.trim();
-
-		if (use_id == "") {
-			alert("아이디를 입력해주세요");
-			frm["use_id"].focus();
-			return false;
-		}
-		if (use_pw == "") {
-			alert("비밀번호를 입력해주세요");
-			frm["use_pw"].focus();
-			return false;
-		}
-
-		return true;
+	if (use_id == "") {
+		alert("아이디를 입력해주세요");
+		frm["use_id"].focus();
+		return false;
 	}
-<<<<<<< HEAD
+	if (use_pw == "") {
+		alert("비밀번호를 입력해주세요");
+		frm["use_pw"].focus();
+		return false;
+	}
+	
+	return true;
 }
-=======
->>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
 
 </script>
 
@@ -48,16 +44,11 @@ function logout(){
     setTimeout(function(){
         location.reload();
     }, 1000);
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
 </script>
 
-<<<<<<< HEAD
 <body>
-	<header class="pc">
+	<header>
 		<ul id="top_menu">
 			<li class="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
 			<ul id="menu_list">
@@ -71,38 +62,21 @@ function logout(){
 			<c:if test="${sessionScope.user != null }">
 				<li id="login"><a href="../logout/Userlogout.jsp">로그아웃</a></li>
 			</c:if>
+			<li><a id="btn_menu"><i class="fas fa-ellipsis-h"></i></a></li>
 		</ul>
-	</header>
-	<header class="mobile">
-			<a class="logo">Booking<span>HairShop</span></a>
-			<a id="btn_menu"><i class="fas fa-ellipsis-h"></i></a>
-			<ul class="mo_menu hidden">
-				<li><a>내주변</a></li>
-				<li><a>지역별매장</a></li>
-				<li><a>마이페이지</a></li>
+		<ul id="mo_menu">
+			<li><a>내주변</a></li>
+			<li><a>지역별매장</a></li>
+			<li><a id="mypage">마이페이지</a></li>
+			<ul id="mo_sub">
+				<li>예약내역</li>
+				<li>내가쓴글</li>
+				<li>개인정보수정</li>
 			</ul>
-	</header>
-
-=======
+			<li><a>로그인</a></li>
+		</ul>
+	</header>	
 <body>
-
-<header>
-	<ul id="top_menu">
-		<li id="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
-		<ul id="menu_list">
-			<li><a href="../location/Location2.bbq">내주변</a></li>
-			<li><a href="#">지역별매장</a></li>
-			<li><a href="../changeinfo/changeUserInfo.bbq">마이페이지</a></li>
-		</ul>	
-		<c:if test="${sessionScope.user == null }">
-		<li id="login" ><a href="login_user.bbq">로그인</a></li>
-		</c:if>
-		<c:if test="${sessionScope.user != null }">
-		<li id="login"><a href="../logout/Userlogout.bbq">로그아웃</a></li>
-		</c:if>
-	</ul>
-</header>
->>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
 
 
 <c:choose>
@@ -152,14 +126,8 @@ function logout(){
 	</c:when>
 </c:choose>
 
-	<!-- javascript 링크 -->
-<<<<<<< HEAD
+<!-- javascript 링크 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="../js/public.js" type="text/javascript"></script>s
-=======
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<script src="../js/public.js" type="text/javascript"></script>
->>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
+<script src="../js/public.js" type="text/javascript"></script>
 </body>
 </html>

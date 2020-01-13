@@ -3,6 +3,7 @@ package command;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.sql.SQLException;
+import java.util.Enumeration;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
@@ -15,6 +16,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.oreilly.servlet.multipart.FileRenamePolicy;
 
 public class StorepicUpdateCommand implements Command {
+	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 
@@ -31,14 +33,18 @@ public class StorepicUpdateCommand implements Command {
 
 		MultipartRequest multi = null; // com.oreilly.servlet.MultipartRequest 임포트
 
-		// MultipartRequest 객체 생성, 이미 저장되었다.
+		
+		
 		try {
 			multi = new MultipartRequest(request, saveDirectory, maxPostSize, encoding, policy);
-
+			Enumeration names = null;
+			names = multi.getFileNames();
+			
+			while(names.hasMoreElements()){
+				String name = (String)names.nextElement();
+				
 			// 2. File 추출
-			for(int i=1; i<4; i++) {
-				File file = multi.getFile("sh_picture" + i);
-				System.out.println(file);
+				File file = multi.getFile(name);
 				if (file != null) {
 					// 이미지 파일 다루기
 					BufferedImage bi = ImageIO.read(file);

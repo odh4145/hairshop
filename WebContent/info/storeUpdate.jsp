@@ -43,16 +43,33 @@ function infoSubmit(frm) {
 </script>
 <body>
 <header>
-	<ul id="top_menu">
-		<li id="logo"><a href="index.bbq">Booking<span>HairShop</span></a></li>
-		<ul id="menu_list">
-			<li><a href=#">후기</a></li>
-			<li><a href="#">예약내역</a></li>
-			<li><a href="#">마이페이지</a></li>
-		</ul>	
-		<li id="login" ><a href="#">로그아웃</a></li>
-	</ul>
-</header>
+		<ul id="top_menu">
+			<li class="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
+			<ul id="menu_list">
+				<li><a href="">후기</a></li>
+				<li><a href="">예약내역</a></li>
+				<li><a href="">마이페이지</a></li>
+			</ul>
+			<c:if test="${sessionScope.user == null }">
+				<li id="login"><a href="login_user.bbqLoginUser">로그인</a></li>
+			</c:if>
+			<c:if test="${sessionScope.user != null }">
+				<li id="login"><a href="../logout/Userlogout.jsp">로그아웃</a></li>
+			</c:if>
+			<li><a id="btn_menu"><i class="fas fa-ellipsis-h"></i></a></li>
+		</ul>
+		<ul id="mo_menu">
+			<li><a>후기</a></li>
+			<li><a>예약내역</a></li>
+			<li><a id="mypage">마이페이지</a></li>
+			<ul id="mo_sub">
+				<li>매장정보변경</li>
+				<li>매장사진관리</li>
+				<li>개인정보수정</li>
+			</ul>
+			<li><a>로그인</a></li>
+		</ul>
+	</header>
 
 <section>
 		<div class="content">
