@@ -4,6 +4,6 @@
 <% session.invalidate(); %>
 
 <script>
-	alert("유저용 로그아웃");
+	alert("로그아웃");
 	history.go(-1);
 </script>

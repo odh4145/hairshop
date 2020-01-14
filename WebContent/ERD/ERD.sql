@@ -481,6 +481,9 @@ select * from book;
 
 select * from shop;
 
+select * from SERVICE;
+
+select * from designer;
 
 SELECT * FROM DESIGNER WHERE sh_uid=1;
 select * from book b natural join shop where b.use_uid = 1;

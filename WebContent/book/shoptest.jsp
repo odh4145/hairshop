@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<% session.getAttribute("shop"); %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -15,13 +14,18 @@
 </head>
 
 <body>
+
+<c:choose>
+
+<c:when test="${sessionScope.shop != null }">
+
 	<header>
 		<ul id="top_menu">
 			<li id="logo"><a href="../index.jsp">Booking<span>HairShop</span></a></li>
 			<ul id="menu_list">
 				<li><a href="#">후기</a></li>
-				<li><a href="../book/shoptest.bbq">예약내역</a></li>
-				<li><a href="#">마이페이지</a></li>
+				<li><a href="../book/shoptest.bbq?sh_uid=${sessionScope.shop }">예약내역</a></li>
+				<li><a href="../info/storeUpdate.bbq?sh_uid=${sessionScope.shop }">마이페이지</a></li>
 			</ul>
 			<c:if test="${sessionScope.shop == null }">
 				<li id="login"><a href="../login/login_shop.bbq">로그인</a></li>
@@ -111,6 +115,17 @@
 			</div>
 		</div>
 	</section>
+	
+</c:when>
+
+<c:when test="${sessionScope.shop == null }">
+	<script>
+		alert("로그인 해야함")
+		location.href = "../login/login_shop.bbq";
+	</script>
+</c:when>
+
+</c:choose>
 <script type="text/javascript">
 function categoryChange(e) {
 	alert(e.value)

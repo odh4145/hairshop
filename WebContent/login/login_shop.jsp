@@ -41,12 +41,20 @@ function chkShopSubmit(){
 
 <body>
 <header>
+
 		<ul id="top_menu">
 			<li class="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
 			<ul id="menu_list">
 				<li><a href="">후기</a></li>
-				<li><a href="">예약내역</a></li>
-				<li><a href="">마이페이지</a></li>
+				<li><a href="../book/shoptest.bbq?sh_uid=${sessionScope.shop }">예약내역</a></li>
+				<c:choose>
+				<c:when test="${sessionScope.shop != null }">
+				<li><a href="../info/storeUpdate.bbq?sh_uid=${sessionScope.shop }">마이페이지</a></li>
+				</c:when>
+				<c:when test="${sessionScope.shop == null }">
+				<li><a href="../info/storeUpdate.bbq?sh_uid=0">마이페이지</a></li>
+				</c:when>
+				</c:choose>
 			</ul>
 			<c:if test="${sessionScope.shop == null }">
 				<li id="login"><a href="../login/login_shop.bbq">로그인</a></li>
@@ -96,7 +104,7 @@ function chkShopSubmit(){
 		
 		<c:when test="${sessionScope.shop != null }">
 			<script>
-				location.href="../book/shoptest.bbq";
+				location.href="../book/shoptest.bbq?sh_uid=${sessionScope.shop }";
 			</script>
 		</c:when>
 
