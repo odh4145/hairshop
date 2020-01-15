@@ -1,67 +1,67 @@
 #changeinfo{
-	position:absolute;
-	top:50%; 
-	left:50%;
-	margin-left:-203px;
-	width:406px;
-	height:524px;
-	background: rgba(255,255,255,0.5);
-	border: 3px solid #fff;
-	border-radius: 10px;
-	width:400px;
-	
-	
+   position:absolute;
+   top:50%; 
+   left:50%;
+   margin-left:-203px;
+   width:406px;
+   height:524px;
+   background: rgba(255,255,255,0.5);
+   border: 3px solid #fff;
+   border-radius: 10px;
+   width:400px;
+   
+   
 }
 #changeinfo h3{
-	background:#f6f6f6;
-	font-size: 20px;
-	color: black;
-	text-align: center;
-	width:200px;
-	padding:10px 0;
-	font-weight: 100;
-	margin: 0 auto;
-	margin-top:-25px;
-	z-index:10;
-	border: 1px solid #f2f2ff;
-	border-radius:10px;
+   background:#f6f6f6;
+   font-size: 20px;
+   color: black;
+   text-align: center;
+   width:200px;
+   padding:10px 0;
+   font-weight: 100;
+   margin: 0 auto;
+   margin-top:-25px;
+   z-index:10;
+   border: 1px solid #f2f2ff;
+   border-radius:10px;
 
 }
 
 #changeinfo hr{
-	border: 0;
+   border: 0;
     border-top: 3px solid #e5e5e5;
     margin: 10px 20px;
 }
 
 
 #changeinfo ul{
-	width:224px;
-	margin: 0 auto;
+   width:224px;
+   margin: 0 auto;
 }
 
 #changeinfo li{
-	margin-bottom: 20px;
+   margin-bottom: 20px;
 }
 
 #changeinfo input{
-	width:200px;
-	padding: 10px; 
-	font-size: 15px;
-	border: 2px solid #e3e3e3;
- 	border-radius: 15px;
-	
+   width:200px;
+   padding: 10px; 
+   font-size: 15px;
+   border: 2px solid #e3e3e3;
+    border-radius: 15px;
+   
 }
 
 
 #btn{
-	width:224px !important;
-	background:#313f67;
-	color: white;
-	border: 1px solid #313f67;
-	
+   width:224px !important;
+   background:#313f67;
+   color: white;
+   border: 1px solid #313f67;
+   
 }
 #btn:hover{
-	background:#e3e3e3;
-	color:#313f67;
+   background:#e3e3e3;
+   color:#313f67;
 }

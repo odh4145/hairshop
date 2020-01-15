@@ -61,24 +61,21 @@ public class BookUserDAO implements K {
 			String sh_location = rs.getString("sh_location");
 			String bo_comment = rs.getString("bo_comment");
 			String sh_name = rs.getString("sh_name");
+			String use_name = rs.getString("use_name");
 			int bo_uid = rs.getInt("bo_uid");
 			int bo_stat = rs.getInt("bo_stat");
 			int sh_uid = rs.getInt("sh_uid");
 			int use_uid = rs.getInt("use_uid");
-
 			Date date_time = rs.getDate("bo_time");
 			Time time_time = rs.getTime("bo_time");
 			String bo_time = new SimpleDateFormat("yyyy-MM-dd").format(date_time) + " "
 					+ new SimpleDateFormat("hh:mm:ss").format(time_time);
-
-			BookUserDTO dto =new BookUserDTO(bo_service, bo_time, bo_comment, sh_telephone,
-					sh_location, sh_uid, bo_uid, use_uid, bo_stat, sh_name);
+			BookUserDTO dto =new BookUserDTO(bo_service, bo_time, bo_comment, sh_telephone, sh_location, sh_uid, bo_uid, use_uid, bo_stat, sh_name, use_name);
 			list.add(dto);
 		}
 		int size = list.size();
 		BookUserDTO[] arr = new BookUserDTO[size];
 		list.toArray(arr);
-
 		return arr;
 	}
 	
@@ -99,5 +96,65 @@ public class BookUserDAO implements K {
 			return arr;
 		};
 		
-	// 예약에서 매장 정보 
+	// 페이징용 dao
+	//총 몇개의 글이 있는지
+		public int countAll(int use_uid) throws SQLException{
+			int cnt = 0;
+			// 결과값이 1x1행렬값이니까 int로 반환 하면 됨
+			
+			try {
+				pstmt = conn.prepareStatement(K.SQL_COUNT_ALL);
+				pstmt.setInt(1, use_uid);
+				rs = pstmt.executeQuery();
+				rs.next(); // 첫번째 행으로 이동
+				cnt = rs.getInt(1); // 첫번째 컬럼
+				
+			}finally {
+				close();
+			}
+			return cnt;
+		}
+		// 몇번째 from 부터 몇개  rows를 select할것인지 정하기
+		public BookUserDTO [] selectFromRow(int use_uid ,int from, int rows) throws SQLException{
+			BookUserDTO [] arr = null;
+			
+			try {
+				pstmt = conn.prepareStatement(K.SQL_SELECT_FROM_ROW);
+				pstmt.setInt(1, use_uid);
+				pstmt.setInt(2, from);
+				pstmt.setInt(3, rows);
+				rs = pstmt.executeQuery();
+				arr = createArray(rs);
+			} finally {
+				close();
+			}
+			
+			return arr;
+		}	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
