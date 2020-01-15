@@ -244,22 +244,20 @@ th, td {
                         });//end ajax
 
                         function parseJSON(jsonObj) {
-                           var row = jsonObj.datalist;
-                           var i;
-                           var arrLat = new Array();
-                           var arrLng = new Array();
-                           
-                           var table = "<tr><th>사진</th><th>매장명</th><th>별점</th><th>매장위치</th><th>전화번호</th></tr>";
-                           for (i = 0; i < row.length; i++) {
-                              table += "<tr>";
-                              table += "<td>" + row[i].picture1 + "</td>";
-                              table += "<td><a href='../info/storeInfo.bbq?sh_uid=" + row[i].sh_uid + "'>" + row[i].name + "<a></td>";
-                              table += "<td>" + row[i].star + "</td>";
-                              table += "<td>" + row[i].location + "</td>";
-                              table += "<td>" + row[i].telephone +"</td>";
-                              table += "</tr>";
-                           }
-                           $("#shoplist").html(table);
+                        	var row = jsonObj.datalist;
+        					var i;
+        					var arrLat = new Array();
+        					var arrLng = new Array();
+        					var ul = "<div class='sh_list'>";
+        					for (i = 0; i < row.length; i++) {
+        						ul= "<a id='list_pic'><img src='" + row[i].picture1 + "'></a>";
+        						ul += "<ul id='list_info'><li>"+ row[i].name + "</li>";
+        						ul += "<li><span>★</span>" + row[i].star + "</li>";
+        						ul += "<li>" + row[i].location + "</li>";
+        						ul += "<li>" + row[i].telephone + "</li>";
+        						ul += "</ul></div>"
+        					}
+        					$("#shoplist").html(ul);
 
                            for (i = 0; i < row.length; i++) {
 
@@ -314,22 +312,20 @@ th, td {
                                  }
                               });
                               function parseJSON(jsonObj) {
-                                 var row = jsonObj.datalist;
-                                 var i;
-                                 var arrLat = new Array();
-                                 var arrLng = new Array();
-                                 
-                                 var table = "<tr><th>사진</th><th>매장명</th><th>별점</th><th>매장위치</th><th>전화번호</th></tr>";
-                                 for (i = 0; i < row.length; i++) {
-                                    table += "<tr>";
-                                    table += "<td>" + row[i].picture1 + "</td>";
-                                    table += "<td><a herf=\"#\">" + row[i].name + "<a></td>";
-                                    table += "<td>" + row[i].star + "</td>";
-                                    table += "<td>" + row[i].location + "</td>";
-                                    table += "<td>" + row[i].telephone +"</td>";
-                                    table += "</tr>";
-                                 }
-                                 $("#shoplist").html(table);
+                            	  var row = jsonObj.datalist;
+              					var i;
+              					var arrLat = new Array();
+              					var arrLng = new Array();
+              					var ul = "<div class='sh_list'>";
+              					for (i = 0; i < row.length; i++) {
+              						ul= "<a id='list_pic'><img src='" + row[i].picture1 + "'></a>";
+              						ul += "<ul id='list_info'><li>"+ row[i].name + "</li>";
+              						ul += "<li><span>★</span>" + row[i].star + "</li>";
+              						ul += "<li>" + row[i].location + "</li>";
+              						ul += "<li>" + row[i].telephone + "</li>";
+              						ul += "</ul></div>"
+              					}
+              					$("#shoplist").html(ul);
 
                               } //end parseJSON
                            

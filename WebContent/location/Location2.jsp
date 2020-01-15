@@ -8,11 +8,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>내 주변 매장</title>
+<title>내주변</title>
 <link rel="icon" href="../img/favicon.png">
 <!-- css파일 link -->
 <link href="../css/menu.css" rel="stylesheet" type="text/css">
 <!-- 지도 스타일 지정 -->
+<link href="../css/location.css" rel="stylesheet" type="text/css">
 
 <style>
 #map {
@@ -32,66 +33,39 @@ th,td {
 </head>
 
 <body>
-	<header>
+<header>
 		<ul id="top_menu">
 			<li class="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
 			<ul id="menu_list">
-				<li><a href="../location/Location2.bbq">내 주변 매장</a></li>
-				<li><a href="../location/chooseArea.bbq">지역별 매장</a></li>
-				<c:choose>
-					<c:when test="${sessionScope.user != null }">
-						<li><a href="../book/user.bbq?use_uid=${sessionScope.user }">마이페이지</a></li>
-					</c:when>
-					<c:when test="${sessionScope.user == null }">
-						<li><a href="../book/user.bbq?use_uid=0">마이페이지</a></li>
-					</c:when>				
-				</c:choose>				
+				<li><a href="../location/Location2.bbq %>">내주변</a></li>
+				<li><a href="#">지역별매장</a></li>
+				<li><a href="../changeinfo/changeUserInfo.bbq">마이페이지</a></li>
 			</ul>
 			<c:if test="${sessionScope.user == null }">
-				<li id="login"><a href="../login/login_user.bbq">로그인</a></li>
+				<li id="login"><a href="login_user.bbqLoginUser">로그인</a></li>
 			</c:if>
 			<c:if test="${sessionScope.user != null }">
-				<li id="login"><a href="../logout/Userlogout.bbq">로그아웃</a></li>
+				<li id="login"><a href="../logout/Userlogout.jsp">로그아웃</a></li>
 			</c:if>
 			<li><a id="btn_menu"><i class="fas fa-ellipsis-h"></i></a></li>
 		</ul>
-			<ul id="mo_menu">
-				<li><a href="../location/Location2.bbq">내 주변 매장</a></li>
-				<li><a href="../location/chooseArea.bbq">지역별 매장</a></li>
-				<li><a id="mypage">마이페이지</a></li>
-				<ul id="mo_sub">
-					<c:if test="${sessionScope.user != null }">
-						<li><a href="../book/user.bbq?use_uid=${sessionScope.user }">예약내역</a></li>
-					</c:if>				
-					<c:if test="${sessionScope.user == null }">
-						<li><a href="../book/user.bbq?use_uid=0">예약내역</a></li>
-					</c:if>				
-					<c:if test="${sessionScope.user != null }">
-						<li><a href="../jm/uselist.bbq?use_uid=${sessionScope.user }">내가 쓴 글</a></li>
-					</c:if>				
-					<c:if test="${sessionScope.user == null }">
-						<li><a href="../jm/uselist.bbq?use_uid=0">내가 쓴 글</a></li>
-					</c:if>				
-					<c:if test="${sessionScope.user != null }">
-						<li><a href="../changeinfo/changeUserInfo.bbq">개인정보수정</a></li>
-					</c:if>				
-					<c:if test="${sessionScope.user == null }">
-						<li><a href="../changeinfo/changeUserInfo.bbq">개인정보수정</a></li>
-					</c:if>				
-				</ul>
-			<c:if test="${sessionScope.user == null }">
-				<li><a href="../login/login_user.bbq">로그인</a></li>
-			</c:if>
-			<c:if test="${sessionScope.user != null }">
-				<li><a href="../logout/Userlogout.bbq">로그아웃</a></li>
-			</c:if>			
+		<ul id="mo_menu">
+			<li><a>내주변</a></li>
+			<li><a>지역별매장</a></li>
+			<li><a id="mypage">마이페이지</a></li>
+			<ul id="mo_sub">
+				<li>예약내역</li>
+				<li>내가쓴글</li>
+				<li>개인정보수정</li>
 			</ul>
-	</header>	
+			<li><a>로그인</a></li>
+		</ul>
+	</header>
 
 	<section>
 		<div class="content">
 			<!-- 상세페이지 제목 -->
-			<h2 id="content_title">내 주변 매장</h2>
+			<h2 id="content_title">내주변</h2>
 			<div class="inner">
 				<div id="map"></div>
 				<script>
@@ -148,26 +122,22 @@ th,td {
 						};
 					}
 				});//end ajax
-				
+
 				function parseJSON(jsonObj) {
 					var row = jsonObj.datalist;
 					var i;
 					var arrLat = new Array();
 					var arrLng = new Array();
-					var table = "<tr><th>매장명</th><th>매장위치</th><th>매장Lat</th><th>매장Lng</th></tr>";
+					var ul = "<div class='sh_list'>";
 					for (i = 0; i < row.length; i++) {
-						table += "<tr>";
-						table += "<td><a href='../info/storeInfo.bbq?sh_uid=" + row[i].sh_uid + "'>" + row[i].name + "</a></td>";
-						table += "<td>" + row[i].location + "</td>";
-						table += "<td>" + row[i].locationLat;
-						+"</td>";
-						table += "<td>" + row[i].locationLng;
-						+"</td>";
-						table += "</tr>";
-						arrLat[i] = row[i].locationLat;
-						arrLng[i] = row[i].locationLng;
+						ul= "<a id='list_pic'><img src='" + row[i].picture1 + "'></a>";
+						ul += "<ul id='list_info'><li>"+ row[i].name + "</li>";
+						ul += "<li><span>★</span>" + row[i].star + "</li>";
+						ul += "<li>" + row[i].location + "</li>";
+						ul += "<li>" + row[i].telephone + "</li>";
+						ul += "</ul></div>"
 					}
-					$("#shoplist").html(table);
+					$("#shoplist").html(ul);
 					// 여기안에는 데이터 값 남아있어 여기서 지지고 볶아야 할꺼같은데 !ㅏ!ㅜ!ㅟㅜㅏㅣㅁㄴ우리ㅏ
 					
 					for(i = 0; i < row.length; i++) {
@@ -195,8 +165,7 @@ th,td {
 
 </script>
 			<br>
-			<div>
-				<table id="shoplist"></table>
+			<div id="shoplist">
 			</div>
 			<!-- 화살표버튼 -->
 			<div id="go_top">
