@@ -26,6 +26,7 @@ public class BookDTO implements K {
 	public BookDTO() {
 		super();
 	}
+	
 	public int getBo_uid() {
 		return bo_uid;
 	}

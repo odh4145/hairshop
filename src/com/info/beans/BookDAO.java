@@ -67,6 +67,8 @@ public class BookDAO implements K {
 
 		return arr;
 	}
+	
+	
 
 	public int insert(BookDTO dto) throws SQLException {
 		String bo_service = dto.getBo_service();
@@ -107,6 +109,20 @@ public class BookDAO implements K {
 
 			return cnt;
 		};
+		
+	// 예약된 시간 찾기
+		public BookDTO[] searchBook(int sh_uid) throws SQLException {
+			BookDTO[] arr = null;
+			try {
+				pstmt = conn.prepareStatement(infoInterface.SEARCH_BOOKTIME);
+				pstmt.setInt(1, sh_uid);
+				rs = pstmt.executeQuery();
+				arr = createArray(rs);
+			} finally {
+				close();
+			}
+			return arr;
+		}
 	
 		// 예약 update_stat_by_time
 				public int update(int bo_uid) throws SQLException {

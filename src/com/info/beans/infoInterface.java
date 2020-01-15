@@ -88,6 +88,10 @@ public interface infoInterface {
 			+ "(bo_service, bo_time, use_uid, sh_uid)"
 			+ "VALUES"
 			+ "(?, ?, ?, ?)";
+	
+	//예약한 시간 가져오기
+	public static final String SEARCH_BOOKTIME = 
+			"SELECT * FROM book WHERE sh_uid = ?";
 }
 
 
