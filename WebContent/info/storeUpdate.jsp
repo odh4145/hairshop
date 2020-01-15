@@ -41,6 +41,104 @@ function infoSubmit(frm) {
 	return true;
 }
 </script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+    function sh_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var roadAddr = data.roadAddress; // 도로명 주소 변수
+                var extraRoadAddr = ''; // 참고 항목 변수
+
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraRoadAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraRoadAddr !== ''){
+                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                
+                document.getElementById("sh_roadAddr").value = roadAddr;
+                
+
+            }
+        }).open();
+    }
+</script>
+
+<script>
+$(document).ready(function(){
+	
+	$("#chklocation").click(function(){
+		
+		frm = document.forms['frm'];
+		
+		var sh_roadAddr = frm['sh_roadAddr'].value.trim();
+		var sh_detailAddress = frm['sh_detailAddress'].value.trim();
+		
+		if(sh_roadAddr == ""){
+			alert("도로명주소를 입력해주세요");
+			frm["sh_roadAddr"].focus();
+			return false;
+		}
+		
+		if(sh_detailAddress == ""){
+			alert("상세주소를 입력해주세요");
+			frm["sh_detailAddress"].focus();
+			return false;
+		}
+		
+		var addr = frm['sh_roadAddr'].value.trim();
+		
+		//alert(addr);
+		
+		var url = "https://maps.googleapis.com/maps/api/geocode/json?address="+ addr +"&key=AIzaSyCFDCbB-7P2BDLp9LuwLHHp7e-yHfrq438";
+		//alert(url);
+		
+		$.ajax({
+			url : url,
+			type : "GET",
+			cache : false,
+			success : function(data, status){
+				if(status == "success") parseJSON(data);
+			}
+		});
+		
+	});
+});
+
+function parseJSON(jsonObj){
+	var location_lat = jsonObj.results[0].geometry.location.lat;
+	var location_lng = jsonObj.results[0].geometry.location.lng;
+	
+//	alert(location_lat)
+//	alert(location_lng)
+	
+	document.getElementById('sh_location_lat').value = location_lat;
+	document.getElementById('sh_location_lng').value = location_lng;
+	
+	frm = document.forms['frm'];
+	
+	var sh_roadAddr = frm['sh_roadAddr'].value.trim();
+	var sh_detailAddress = frm['sh_detailAddress'].value.trim();
+	
+	document.getElementById("sh_location").value = sh_roadAddr + " " + sh_detailAddress;
+}
+</script>
 <body>
 	<header>
 		<ul id="top_menu">
@@ -130,7 +228,20 @@ function infoSubmit(frm) {
 							<input type="text" name="sh_telephone" value="${info[0].sh_telephone }" /> 
 							<span>* 번호는 - 포함하여 적어주세요.</span>
 						</li>
-						<li>주소 <input class="address" type="text" name="sh_location" value="${info[0].sh_location }" /></li>
+						<li>
+							주소 <br>
+							
+							<input class="address" id="sh_roadAddr" type="text" name="sh_roadAddr"  value="${info[0].sh_location } "><br>
+							<input id="btn2" type="button" onclick="sh_execDaumPostcode()" value="FIND">
+							<input id="sh_detailAddress" type="text" name="sh_detailAddress" placeholder="ADDRESS LINE 2"><br>
+							<input id="chklocation" type="button" value="Address Check "><br>
+				
+							<input id="sh_location" type="hidden" name="sh_location" value="${info[0].sh_location } ">
+							<input id="sh_location_lat" type="hidden" name="sh_location_lat" placeholder="위도"value="${info[0].sh_location_lat } ">
+							<input id="sh_location_lng" type="hidden" name="sh_location_lng" placeholder="경도"value="${info[0].sh_location_lng } ">
+							
+							
+						</li>
 						<li>시간
 							<input class="time" type="text" name="sh_starttime" value="${info[0].sh_starttime }" /> - 
 							<input class="time" type="text" name="sh_endtime" value="${info[0].sh_endtime }" />

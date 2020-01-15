@@ -100,36 +100,33 @@ frm = document.forms["frm_chk_user_pw"];
 	<div class="content">
 		<!-- 상세페이지 제목 -->
 		<h2 id="content_title">마이페이지 개인정보수정</h2>
-		
-		<!------------- 세부메뉴 ----------마이페이지아닌 분들은 세부메뉴 지우세요------------->
-		<div class="submenu inner">
-			<h4 class="selected">
-				<a href="../book/user.bbq?use_uid=${sessionScope.user }">예약내역</a>
-			</h4>
-			<h4>
-				<a href="../jm/uselist.bbq?use_uid=${sessionScope.user }">내가 쓴 글</a>
-			</h4>
-			<h4>
-				<a href="../changeinfo/changeUserInfo.bbq?use_uid=${sessionScope.user }">개인정보수정</a>
-			</h4>
-		</div>
-		
-
-<c:choose>
-			<c:when test="${sessionScope.user != null }">    
-		
-		<div id="changeinfo" >
-		<h3>개인정보수정</h3>
-		<hr>
-				<form name="frm_chk_user_pw" action="changeUserInfo_ok.bbq" method="post" onsubmit="return chkUserPw()">
-		       <ul>
-					<li><input id="use_pw" type="password" name="use_pw" placeholder="CURRENT PASSWORD"></li>
-					<li><input id="use_pw2" type="password" name="use_pw2" placeholder="NEW PASSWORD"></li>
-					<li><input type="submit" id="btn" value="Change"/></li>
-					<li><a href="../changeinfo/deleteUserInfo.bbq">탈퇴하기</a>
-			  </ul>
-				</form>
+		 <div class="box clear">
+            <!------------- 세부메뉴 ----------마이페이지아닌 분들은 세부메뉴 지우세요------------->
+            <div class="submenu">
+               <h4 class="selected"><a href="storeUpdate.bbq?sh_uid=${param.sh_uid }">매장정보변경</a></h4>
+               <h4><a>매장사진관리</a></h4>
+               <h4><a>개인정보수정</a></h4>
+            </div>
+      
+            <!------------- 세부메뉴 ----------class="inner" 지우세요------------->
+            <div class="inner">
+				<c:choose>
+				<c:when test="${sessionScope.user != null }">    
 			
+				<div id="changeinfo" >
+					<h3>개인정보수정</h3>
+					<hr>
+					<form name="frm_chk_user_pw" action="changeUserInfo_ok.bbq" method="post" onsubmit="return chkUserPw()">
+			       	<ul>
+						<li><input id="use_pw" type="password" name="use_pw" placeholder="CURRENT PASSWORD"></li>
+						<li><input id="use_pw2" type="password" name="use_pw2" placeholder="NEW PASSWORD"></li>
+						<li><input type="submit" id="btn" value="Change"/></li>
+						<li><a href="../changeinfo/deleteUserInfo.bbq">탈퇴하기</a>
+				  	</ul>
+					</form>
+			
+				</div>
+			</div>
 			</div>
 		
 </c:when>

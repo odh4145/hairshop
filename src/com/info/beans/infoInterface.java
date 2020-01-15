@@ -15,6 +15,8 @@ public interface infoInterface {
 			"UPDATE SHOP SET "
 			+ "sh_telephone = ?,"
 			+ "sh_location = ?,"
+			+ "sh_location_lat = ?,"
+			+ "sh_location_lng = ?,"
 			+ "sh_hello = ?,"
 			+ "sh_starttime = ?,"
 			+ "sh_endtime = ? "

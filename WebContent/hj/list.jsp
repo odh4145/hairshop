@@ -14,7 +14,9 @@
 
 %>
 
+<c:choose>
 
+<c:when test="${sessionScope.shop != null }">
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -139,6 +141,12 @@ table, th, td {
 						<input type="button" onclick="location.href='shlist.bbq?sh_uid=<%=sh_uid %>'" value="검색취소" />
 					</form>
 				</div>
+					<jsp:include page="pagination.jsp">
+						<jsp:param value="${writePages }" name="writePages" />
+						<jsp:param value="${totalPage }" name="totalPage" />
+						<jsp:param value="${page }" name="curPage" />
+						<jsp:param value="${sh_uid }" name="sh_uid" />
+					</jsp:include>
 			</div>
 	
 
@@ -158,24 +166,19 @@ table, th, td {
 
 
 
+</c:when>
+<c:when test="${sessionScope.shop == null }">
+<script>
+alert("로그인이 필요합니다").
+location.href="../login/login_shop.bbq";
+</script>
+</c:when>
+
+
+</c:choose>
 
 
 
-
-
-</head>
-<body>
-
-	
-	<jsp:include page="pagination.jsp">
-		<jsp:param value="${writePages }" name="writePages" />
-		<jsp:param value="${totalPage }" name="totalPage" />
-		<jsp:param value="${page }" name="curPage" />
-		<jsp:param value="${sh_uid }" name="sh_uid" />
-	</jsp:include>
-   
-</body>
-</html>
 
 
 

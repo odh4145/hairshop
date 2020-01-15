@@ -20,9 +20,11 @@ public class StoreInfoUpdateCommand implements Command {
 		int sh_starttime = Integer.parseInt(request.getParameter("sh_starttime"));		
 		int sh_endtime = Integer.parseInt(request.getParameter("sh_endtime"));
 		int sh_uid = Integer.parseInt(request.getParameter("sh_uid"));
+		String sh_location_lat = request.getParameter("sh_location_lat");
+		String sh_location_lng = request.getParameter("sh_location_lng");
 
 		try {
-			cnt = dao.infoupdate(sh_uid, sh_telephone, sh_location, sh_hello, sh_starttime, sh_endtime);
+			cnt = dao.infoupdate(sh_uid, sh_telephone, sh_location, sh_hello, sh_starttime, sh_endtime, sh_location_lat, sh_location_lng);
 			request.setAttribute("info", cnt);
 		} catch (SQLException e) {
 			e.printStackTrace();

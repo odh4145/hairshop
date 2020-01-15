@@ -11,6 +11,8 @@ public class ShopDTO {
 	private String sh_picture3;
 	private int sh_starttime;
 	private int sh_endtime;
+	private String sh_location_lat;
+	private String sh_location_lng;
 	
 	// 기본생성자
 	public ShopDTO() {	
@@ -20,7 +22,7 @@ public class ShopDTO {
 	
 	// 매개변수 받는 생성자
 	public ShopDTO(int sh_uid, String sh_name, String sh_telephone, String sh_location, String sh_hello, 
-				String sh_picture1, String sh_picture2, String sh_picture3, int sh_starttime, int sh_endtime) {
+				String sh_picture1, String sh_picture2, String sh_picture3, int sh_starttime, int sh_endtime, String sh_location_lat, String sh_location_lng) {
 		super();
 		this.sh_uid = sh_uid;
 		this.sh_name = sh_name;
@@ -32,6 +34,8 @@ public class ShopDTO {
 		this.sh_picture3 = sh_picture3;
 		this.sh_starttime = sh_starttime;
 		this.sh_endtime = sh_endtime;
+		this.sh_location_lat = sh_location_lat;
+		this.sh_location_lng = sh_location_lng;
 		System.out.println("sh_uid : " + this.sh_uid + " 객체 생성");
 	}
 	
@@ -115,12 +119,29 @@ public class ShopDTO {
 		this.sh_endtime = sh_endtime;
 	}
 
-	// 디버깅용
+	public String getSh_location_lat() {
+		return sh_location_lat;
+	}
+
+	public void setSh_location_lat(String sh_location_lat) {
+		this.sh_location_lat = sh_location_lat;
+	}
+
+	public String getSh_location_lng() {
+		return sh_location_lng;
+	}
+
+	public void setSh_location_lng(String sh_location_lng) {
+		this.sh_location_lng = sh_location_lng;
+	}
+
 	@Override
 	public String toString() {
-		return "ShopDTO ] " + sh_uid + ":" + sh_name + ":" + sh_telephone + ":" +  
-				sh_picture1 + ":" + sh_picture2 + ":" + sh_picture3 +  ":" + 
-				sh_location + ":" + sh_hello + ":" + ":" + sh_starttime + ":" + sh_endtime;
+		return "ShopDTO [sh_uid=" + sh_uid + ", sh_name=" + sh_name + ", sh_telephone=" + sh_telephone
+				+ ", sh_location=" + sh_location + ", sh_hello=" + sh_hello + ", sh_picture1=" + sh_picture1
+				+ ", sh_picture2=" + sh_picture2 + ", sh_picture3=" + sh_picture3 + ", sh_starttime=" + sh_starttime
+				+ ", sh_endtime=" + sh_endtime + ", sh_location_lat=" + sh_location_lat + ", sh_location_lng="
+				+ sh_location_lng + "]";
 	}
 	
 }

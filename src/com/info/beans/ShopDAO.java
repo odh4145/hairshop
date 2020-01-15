@@ -50,9 +50,11 @@ public class ShopDAO {
 			String sh_picture3 = rs.getString("sh_picture3");
 			int sh_starttime = rs.getInt("sh_starttime");
 			int sh_endtime = rs.getInt("sh_endtime");
+			String sh_location_lat = rs.getString("sh_location_lat");
+			String sh_location_lng = rs.getString("sh_location_lng");
 			
 			ShopDTO dto = new ShopDTO(sh_uid, sh_name, sh_telephone, sh_location, sh_hello, 
-						sh_picture1, sh_picture2, sh_picture3, sh_starttime, sh_endtime);
+						sh_picture1, sh_picture2, sh_picture3, sh_starttime, sh_endtime, sh_location_lat, sh_location_lng);
 			list.add(dto);			
 		}
 		
@@ -94,16 +96,18 @@ public class ShopDAO {
 	
 	// 매장정보 수정하기
 		public int infoupdate(int sh_uid, String sh_telephone, String sh_location, String sh_hello, 
-							int sh_starttime, int sh_endtime) throws SQLException{
+							int sh_starttime, int sh_endtime, String sh_location_lat, String sh_location_lng) throws SQLException{
 			int cnt = 0;
 			try {
 				pstmt = conn.prepareStatement(infoInterface.STORE_INFO_UPDATE);
 				pstmt.setString(1, sh_telephone);
 				pstmt.setString(2, sh_location);
-				pstmt.setString(3, sh_hello);
-				pstmt.setInt(4, sh_starttime);
-				pstmt.setInt(5, sh_endtime);
-				pstmt.setInt(6, sh_uid);
+				pstmt.setString(3, sh_location_lat);
+				pstmt.setString(4, sh_location_lng);
+				pstmt.setString(5, sh_hello);
+				pstmt.setInt(6, sh_starttime);
+				pstmt.setInt(7, sh_endtime);
+				pstmt.setInt(8, sh_uid);
 				cnt = pstmt.executeUpdate();
 			} finally {
 				close();

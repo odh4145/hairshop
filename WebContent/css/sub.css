@@ -1,47 +1,47 @@
 .submenu{
-	border-top:1px solid #eee;
-	margin:0 30px;
-	width:115px;
-	float:left !important;
+   border-top:1px solid #eee;
+   margin:0 30px;
+   width:115px;
+   float:left !important;
 }
 .submenu h4{
-	font-size:17px;
-	font-weight:100;
-	color:#bbb;
-	padding:5px;
-	border-bottom:1px solid #eee;
+   font-size:17px;
+   font-weight:100;
+   color:#bbb;
+   padding:5px;
+   border-bottom:1px solid #eee;
 }
 .submenu a:hover{
-	color:#313f67;
-	font-weight:600;
+   color:#313f67;
+   font-weight:600;
 }
 
 .box{
-	overflow:hidden;
-	width:100%;
-	margin-top:30px;
+   overflow:hidden;
+   width:100%;
+   margin-top:30px;
 }
 
 .selected{
-	color:#313f67 !important;
-	font-weight:600 !important;
+   color:#313f67 !important;
+   font-weight:600 !important;
 }
 
 .info{
-	margin-bottom:30px;
+   margin-bottom:30px;
 }
 .inner{
-	width:960px;
-	overflow:hidden;
-	float:right;
+   width:960px;
+   overflow:hidden;
+   float:right;
 }
 
 /* tablet */
 @media screen and (min-width:769px) and (max-width:991px){
-	.submenu{display:none;}
+   .submenu{display:none;}
 }
 
 /* mobile */
 @media screen and (max-width:768px){
-	.submenu{display:none;}
+   .submenu{display:none;}
 }
