@@ -40,33 +40,60 @@ function chkShopSubmit(){
 </script>
 
 <body>
-<header>
+	<header>
 		<ul id="top_menu">
-			<li class="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
+			<li id="logo"><a href="../index.jsp">Booking<span>HairShop</span></a></li>
 			<ul id="menu_list">
-				<li><a href="">후기</a></li>
-				<li><a href="">예약내역</a></li>
-				<li><a href="">마이페이지</a></li>
+				<li><a href="../hj/shlist.bbq?sh_uid=${sessionScope.shop }">후기</a></li>
+				<li><a href="../book/shop.bbq?sh_uid=${sessionScope.shop }">예약내역</a></li>
+				<c:choose>
+				<c:when test="${sessionScope.shop != null }">
+				<li><a href="../info/storeUpdate.bbq?sh_uid=${sessionScope.shop }">마이페이지</a></li>
+				</c:when>
+				<c:when test="${sessionScope.shop == null }">
+				<li><a href="../info/storeUpdate.bbq?sh_uid=0">마이페이지</a></li>
+				</c:when>
+				</c:choose>
 			</ul>
-			<c:if test="${sessionScope.user == null }">
-				<li id="login"><a href="login_user.bbqLoginUser">로그인</a></li>
+			<c:if test="${sessionScope.shop == null }">
+				<li id="login"><a href="../login/login_shop.bbq">로그인</a></li>
 			</c:if>
-			<c:if test="${sessionScope.user != null }">
-				<li id="login"><a href="../logout/Userlogout.jsp">로그아웃</a></li>
+			<c:if test="${sessionScope.shop != null }">
+				<li id="login"><a href="../logout/Shoplogout.bbq">로그아웃</a></li>
 			</c:if>
 			<li><a id="btn_menu"><i class="fas fa-ellipsis-h"></i></a></li>
 		</ul>
-		<ul id="mo_menu">
-			<li><a>후기</a></li>
-			<li><a>예약내역</a></li>
-			<li><a id="mypage">마이페이지</a></li>
-			<ul id="mo_sub">
-				<li>매장정보변경</li>
-				<li>매장사진관리</li>
-				<li>개인정보수정</li>
+			<ul id="mo_menu">
+				<li><a href="../hj/shlist.bbq?sh_uid=${sessionScope.shop }">후기</a></li>
+				<li><a href="../book/shop.bbq?sh_uid=${sessionScope.shop }">예약내역</a></li>
+				<li><a id="mypage">마이페이지</a></li>
+				<ul id="mo_sub">
+					<c:if test="${sessionScope.shop != null }">
+						<li><a href="../info/storeUpdate.bbq?sh_uid=${sessionScope.user }">매장정보 변경</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.shop == null }">
+						<li><a href="../info/storeUpdate.bbq?sh_uid=0">매장정보 변경</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.user != null }">
+						<li><a href="../info/storepicList.bbq?sh_uid=${sessionScope.shop }">매장 사진 관리</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.user == null }">
+						<li><a href="../info/storepicList.bbq?sh_uid=0">매장 사진 관리</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.user != null }">
+						<li><a href="">개인정보수정</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.user == null }">
+						<li><a href="">개인정보수정</a></li>
+					</c:if>				
+				</ul>
+			<c:if test="${sessionScope.shop == null }">
+				<li><a href="../login/login_shop.bbq">로그인</a></li>
+			</c:if>
+			<c:if test="${sessionScope.shop != null }">
+				<li><a href="../logout/Shoplogout.bbq">로그아웃</a></li>
+			</c:if>			
 			</ul>
-			<li><a>로그인</a></li>
-		</ul>
 	</header>
 
 
@@ -81,25 +108,25 @@ function chkShopSubmit(){
 			<div id="login_shop">
 				<h3>Sign In</h3>
 				<a id="login_p2"><i class="fas fa-cut"></i></a>
-				<form name="frm_shop" action="login_shop_ok.bbqLoginShop" method="post" onsubmit="return chkShopSubmit()">
+				<form name="frm_shop" action="login_shop_ok.bbq" method="post" onsubmit="return chkShopSubmit()">
 				<ul>
 					<li><input id="sh_id" type="text" name="sh_id" placeholder="ID"></li>
 					<li><input id="sh_pw" type="password" name="sh_pw" placeholder="PASSWORD"></li>
 					<li><input type="submit" id="btn" value="Sign In"/></li>
-					<li><a id= "join" href="../join/join_shop.jsp">Join</a></li>
+					<li><a id= "join" href="../join/join_shop.bbq">Join</a></li>
 				</ul>
 			</form>
 			
 		</div>
 			
-				
-			
 		</c:when>
-		
 		
 		<c:when test="${sessionScope.shop != null }">
-			<h3><%= session.getAttribute("shop") %> 님 로그인 성공</h3>
+			<script>
+				location.href="../book/shop.bbq?sh_uid=${sessionScope.shop }";
+			</script>
 		</c:when>
+
 </c:choose>
 		
 		

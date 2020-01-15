@@ -3,7 +3,9 @@
 
 <% session.invalidate(); %>
 
+<%-- reqiest ㅇ[ 딤겨있는url -> location.href --%>
+
 <script>
-	alert("유저용 로그아웃");
-	history.go(-1);
+	alert("로그아웃");
+	history.go(-1)
 </script>

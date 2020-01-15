@@ -199,13 +199,13 @@ function parseJSON(jsonObj){
 			<li class="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
 			<ul id="menu_list">
 				<li><a href="">후기</a></li>
-				<li><a href="">예약내역</a></li>
-				<li><a href="">마이페이지</a></li>
+				<li><a href="../book/shoptest.bbq?sh_uid=${sessionScope.shop }">예약내역</a></li>
+				<li><a href="../info/storeUpdate.bbq?sh_uid=${sessionScope.shop }">마이페이지</a></li>
 			</ul>
-			<c:if test="${sessionScope.user == null }">
+			<c:if test="${sessionScope.shop == null }">
 				<li id="login"><a href="login_user.bbqLoginUser">로그인</a></li>
 			</c:if>
-			<c:if test="${sessionScope.user != null }">
+			<c:if test="${sessionScope.shop != null }">
 				<li id="login"><a href="../logout/Userlogout.jsp">로그아웃</a></li>
 			</c:if>
 			<li><a id="btn_menu"><i class="fas fa-ellipsis-h"></i></a></li>
@@ -243,21 +243,18 @@ function parseJSON(jsonObj){
 					<input id="sh_telephone" type="text" name="sh_telephone" placeholder="PHONE"><br>
 					
 					<input id="sh_postcode" type="text" placeholder="POST CODE">
-					<input id="btn2" type="button" onclick="sh_execDaumPostcode()" value="FIND"><br>
-					<input id="sh_roadAddr" type="text" name="sh_roadAddr" placeholder="ADDRESS LINE 1">
-					<input id="sh_detailAddress" type="text" name="sh_detailAddress" placeholder="ADDRESS LINE 2">
-					<input id="sh_location" type="hidden" name="sh_location">
-					<input id="chklocation" type="button" value="주소 입력 확인"><br>
-					<input id="sh_postcode" type="text" name="sh_postcode" placeholder="POST CODE"> 
-					<input id="btn2" type="button" onclick="sh_execDaumPostcode()" value="FIND"><br>
 					
-					<input id="sh_location" type="text" name="sh_add1" placeholder="ADDRESS LINE 1"><br>
-					<input id="sh_detailAddress" type="text"  name="sh_add2"  placeholder="ADDRESS LINE 2"><br>
+					<input id="btn2" type="button" onclick="sh_execDaumPostcode()" value="FIND"><br>
+					<input id="sh_roadAddr" type="text" name="sh_roadAddr" placeholder="ADDRESS LINE 1"><br>
+					<input id="sh_detailAddress" type="text" name="sh_detailAddress" placeholder="ADDRESS LINE 2"><br>
+					<input id="sh_location" type="hidden" name="sh_location">
+					<input id="chklocation" type="button" value="Address Check "><br>
+				
 					<input type="hidden" name="sh_location">
 					<input id="sh_location_lat" type="hidden" name="sh_location_lat" placeholder="위도">
 					<input id="sh_location_lng" type="hidden" name="sh_location_lng" placeholder="경도">
 
-					<input id="chklocation" type="button" value="Address Check "><br>
+					
 
 					<input type="submit" id="btn" value="Sign Up">
 				

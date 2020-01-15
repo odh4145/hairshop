@@ -17,413 +17,247 @@ DROP TABLE IF EXISTS USER;
 
 CREATE TABLE BOOK
 (
-	bo_uid int NOT NULL AUTO_INCREMENT,
-	bo_service varchar(80) NOT NULL,
-	bo_stat int NOT NULL DEFAULT 1,CHECK(bo_stat>=1 and bo_stat<=3),
-	bo_time datetime NOT NULL,
-	bo_comment varchar(80),
-	use_uid int NOT NULL,
-	sh_uid int NOT NULL,
-	PRIMARY KEY (bo_uid)
+   bo_uid int NOT NULL AUTO_INCREMENT,
+   bo_service varchar(80) NOT NULL,
+   bo_stat int NOT NULL DEFAULT 1,CHECK(bo_stat>=1 and bo_stat<=3),
+   bo_time datetime NOT NULL default now(),
+   bo_comment varchar(80),
+   use_uid int,
+   sh_uid int,
+   PRIMARY KEY (bo_uid)
 );
 
 
 CREATE TABLE COMMENT
 (
-	co_uid int NOT NULL AUTO_INCREMENT,
-	co_star int NOT NULL,
-	co_content text NOT NULL,
-	co_name varchar(40) NOT NULL,
-	co_regdate datetime NOT NULL DEFAULT now(),
-	use_uid int NOT NULL,
-	sh_uid int NOT NULL,
-	co_title varchar(20) NOT NULL,
-	PRIMARY KEY (co_uid)
+   co_uid int NOT NULL AUTO_INCREMENT,
+   co_star int NOT NULL,
+   co_content text NOT NULL,
+   co_name varchar(40) NOT NULL,
+   co_regdate datetime NOT NULL DEFAULT now(),
+   use_uid int,
+   sh_uid int,
+   co_title varchar(20) NOT NULL,
+   PRIMARY KEY (co_uid)
 );
 
 
 CREATE TABLE DESIGNER
 (
-	de_uid int NOT NULL AUTO_INCREMENT,
-	de_name varchar(40) NOT NULL,
-	de_position varchar(20) NOT NULL DEFAULT '디자이너',
-	de_career int NOT NULL,
-	de_major varchar(40) NOT NULL,
-	de_picture varchar(500),
-	sh_uid int NOT NULL,
-	PRIMARY KEY (de_uid)
+   de_uid int NOT NULL AUTO_INCREMENT,
+   de_name varchar(40) NOT NULL,
+   de_position varchar(20) NOT NULL DEFAULT '디자이너',
+   de_career int NOT NULL,
+   de_major varchar(40) NOT NULL,
+   de_picture varchar(40),
+   sh_uid int,
+   PRIMARY KEY (de_uid)
 );
 
 
 CREATE TABLE REPLY
 (
-	re_uid int NOT NULL AUTO_INCREMENT,
-	re_content text NOT NULL,
-	co_uid int NOT NULL,
-	re_regdate datetime NOT NULL DEFAULT now(),
-	PRIMARY KEY (re_uid)
+   re_uid int NOT NULL AUTO_INCREMENT,
+   re_content text NOT NULL,
+   co_uid int,
+   re_regdate datetime NOT NULL DEFAULT now(),
+   PRIMARY KEY (re_uid)
 );
 
 
 CREATE TABLE SERVICE
 (
-	ser_uid int NOT NULL AUTO_INCREMENT,
-	ser_name varchar(40) NOT NULL,
-	ser_price int NOT NULL,
-	ser_time int NOT NULL,
-	sh_uid int NOT NULL,
-	PRIMARY KEY (ser_uid)
+   ser_uid int NOT NULL AUTO_INCREMENT,
+   ser_name varchar(40) NOT NULL,
+   ser_price int,
+   ser_time time NOT NULL,
+   sh_uid int,
+   PRIMARY KEY (ser_uid)
 );
 
 
 CREATE TABLE SHOP
 (
-	sh_uid int NOT NULL AUTO_INCREMENT,
-	sh_id varchar(40) NOT NULL,
-	sh_pw varchar(15) NOT NULL,
-	sh_no_id double NOT NULL,
-	sh_name varchar(20) NOT NULL,
-	sh_telephone varchar(30) NOT NULL,
-	sh_location varchar(80),
-	sh_location_lat varchar(40),
-	sh_location_lng varchar(40),
-	sh_hello varchar(200),
-	sh_picture1 varchar(500),
-	sh_picture2 varchar(500),
-	sh_picture3 varchar(500),
-	sh_starttime int DEFAULT 9,
-	sh_endtime int DEFAULT 21,
-	num_identify int DEFAULT 2,
-	PRIMARY KEY (sh_uid),
-	UNIQUE (sh_id),
-	UNIQUE (sh_no_id)
+   sh_uid int NOT NULL AUTO_INCREMENT,
+   sh_id varchar(40) NOT NULL,
+   sh_pw varchar(15) NOT NULL,
+   sh_no_id double NOT NULL,
+   sh_name varchar(20) NOT NULL,
+   sh_telephone varchar(30) NOT NULL,
+   sh_location varchar(80),
+   sh_location_lat varchar(40),
+   sh_location_lng varchar(40),
+   sh_hello varchar(200),
+   sh_picture1 varchar(400),
+   sh_picture2 varchar(400),
+   sh_picture3 varchar(400),
+   sh_starttime int DEFAULT 9,
+   sh_endtime int DEFAULT 21,
+   num_identify int DEFAULT 2,
+   sh_star double,
+   PRIMARY KEY (sh_uid),
+   UNIQUE (sh_id),
+   UNIQUE (sh_no_id)
 );
 
 
 CREATE TABLE USER
 (
-	use_id varchar(40) NOT NULL,
-	use_uid int NOT NULL AUTO_INCREMENT,
-	use_pw varchar(15) NOT NULL,
-	use_name varchar(40) NOT NULL,
-	use_phoneNum varchar(11) NOT NULL,
-	num_identify int DEFAULT 1,
-	PRIMARY KEY (use_uid),
-	UNIQUE (use_id),
-	UNIQUE (use_phoneNum)
+   use_id varchar(40) NOT NULL,
+   use_uid int NOT NULL AUTO_INCREMENT,
+   use_pw varchar(15) NOT NULL,
+   use_name varchar(40) NOT NULL,
+   use_phoneNum varchar(11) NOT NULL,
+   num_identify int DEFAULT 1,
+   PRIMARY KEY (use_uid),
+   UNIQUE (use_id),
+   UNIQUE (use_phoneNum)
 );
-
-
 
 /* Create Foreign Keys */
 
 ALTER TABLE REPLY
-	ADD FOREIGN KEY (co_uid)
-	REFERENCES COMMENT (co_uid)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
+   ADD FOREIGN KEY (co_uid)
+   REFERENCES COMMENT (co_uid)
+   ON UPDATE RESTRICT
+   ON DELETE cascade
 ;
 
 
 ALTER TABLE BOOK
-	ADD FOREIGN KEY (sh_uid)
-	REFERENCES SHOP (sh_uid)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
+   ADD FOREIGN KEY (sh_uid)
+   REFERENCES SHOP (sh_uid)
+   ON UPDATE RESTRICT
+   ON DELETE set null
 ;
 
 
 ALTER TABLE COMMENT
-	ADD FOREIGN KEY (sh_uid)
-	REFERENCES SHOP (sh_uid)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
+   ADD FOREIGN KEY (sh_uid)
+   REFERENCES SHOP (sh_uid)
+   ON UPDATE RESTRICT
+   ON DELETE set null
 ;
 
 
 ALTER TABLE DESIGNER
-	ADD FOREIGN KEY (sh_uid)
-	REFERENCES SHOP (sh_uid)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
+   ADD FOREIGN KEY (sh_uid)
+   REFERENCES SHOP (sh_uid)
+   ON UPDATE RESTRICT
+   ON DELETE cascade
 ;
 
 
 ALTER TABLE SERVICE
-	ADD FOREIGN KEY (sh_uid)
-	REFERENCES SHOP (sh_uid)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
+   ADD FOREIGN KEY (sh_uid)
+   REFERENCES SHOP (sh_uid)
+   ON UPDATE RESTRICT
+   ON DELETE cascade
 ;
 
 
 ALTER TABLE BOOK
-	ADD FOREIGN KEY (use_uid)
-	REFERENCES USER (use_uid)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
+   ADD FOREIGN KEY (use_uid)
+   REFERENCES USER (use_uid)
+   ON UPDATE RESTRICT
+   ON DELETE set null
 ;
 
 
 ALTER TABLE COMMENT
-	ADD FOREIGN KEY (use_uid)
-	REFERENCES USER (use_uid)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
+   ADD FOREIGN KEY (use_uid)
+   REFERENCES USER (use_uid)
+   ON UPDATE RESTRICT
+   ON DELETE set null
 ;
 
 
-/** Sample Data **/
-INSERT INTO USER(
-	use_id,
-	use_pw,
-	use_name,
-	use_phoneNum
-)
-VALUES('test01', '1234', '손님용', '01000000000');
+/* 샘플데이터 */
 
-INSERT INTO SHOP(
-	sh_id,
-	sh_pw,
-	sh_no_id,
-	sh_name,
-	sh_telephone,
-	sh_location,
-	sh_hello
-)
-VALUES('store01', '1234', 1111111111, '매장용', '07011111111', '서울시 강남구 역삼동 1',
-'저희 매장을 찾아주셔서 감사합니다. 항상 좋은 서비스로 보답하겠습니다.');
+insert into USER (use_id,use_pw,use_name,use_phoneNum) values 
+('userId01','1234','임민교','01011111111'),
+('userId02','1234','최현진','01022222222'),
+('userId03','1234','오다현','01033333333'),
+('userId04','1234','강경근','01044444444'),
+('userId05','1234','고정민','01055555555');
+
+
+insert into SHOP (sh_id,sh_pw,sh_no_id,sh_name,sh_telephone,sh_location,
+sh_location_lat,sh_location_lng,sh_hello,sh_starttime,sh_endtime) values 
+('ShopId1','1234',1111111111,'헤네시스미용실','01022222222','빅토리아아일랜드',
+37.490239,126.91232,'최선을 다하는 헤네시스 미용실입니다.',9,19),
+('ShopId02','1234',2222222222,'커닝시티미용실','01011111111','빅토리아아일랜드',
+37.590259,126.41632,'최선을 다하는 커닝시티 미용실입니다.',9,22),
+('ShopId03','1234',3333333333,'페리온미용실','01011122234','빅토리아아일랜드',
+37.590289,126.81632,'최선을 다하는 페리온 미용실입니다.',9,22),
+('ShopId04','1234',4444444444,'슬리피우드미용실','01033333333','빅토리아아일랜드',
+37.49049,126.93632,'최선을 다하는 슬리피우드 미용실입니다.',9,20),
+('ShopId05','1234',5555555555,'엘리니아미용실','01044444444','빅토리아아일랜드',
+37.440279,126.99632,'최선을 다하는 엘리니아 미용실입니다.',9,21),
+('ShopId06','1234',6666666666,'좌표용','01044444444','빅토리아아일랜드',
+37.424279,126.98732,'최선을 다하는 엘리니아 미용실입니다.',9,21),
+('ShopId07','1234',7777777777,'좌표용','01044444444','빅토리아아일랜드',
+37.488279,126.98632,'최선을 다하는 엘리니아 미용실입니다.',9,21),
+('ShopId08','1234',8888888888,'좌표용','01044444444','빅토리아아일랜드',
+37.478279,126.98332,'최선을 다하는 엘리니아 미용실입니다.',9,21)
+;
+
+
+insert into COMMENT (co_star,co_content,co_name,co_title,use_uid,sh_uid) values 
+('4','민교 머리잘랐다 ~','임민교','엘리니아 미용실-컷트',1,1),
+('4','민교 머리 두번자른다','임민교','커닝시티 미용실 - 컷트',1,2),
+('5','민교 머리 염색한다','임민교','엘리니아 미용실 - 염색',2,1),
+('5','민교 머리 볶았다ㅏㅏ','임민교','커닝시티 미용실 - 파마',2,2),
+('4','민교 머리 풤~햇다','임민교','엘리니아 미용실 - 파마',1,1)
+;
 
 INSERT INTO DESIGNER
-(
-	de_name,
-	de_position,
-	de_career,
-	de_major,
-	de_picture,
-	sh_uid
-)
-VALUES('디자이너1', '점장님', 15, '염색', '1', 1);
+(de_name,de_position,de_career,de_major,de_picture,sh_uid)
+VALUES('디자이너1', '점장', 15, '염색', '1', 1),
+('디자이너2','디자이너', 3, '커트', '1', 1),
+('디자이너2','원장', 30, '파마', '1', 1);
 
-INSERT INTO DESIGNER
-(
-	de_name,
-	de_career,
-	de_major,
-	de_picture,
-	sh_uid
-)
-VALUES('디자이너2', 3, '커트', '1', 1);
 
 INSERT INTO SERVICE
-(
-	ser_name,
-	ser_price,
-	ser_time,
-	sh_uid
-)
-VALUES('염색', 100000, 3, 1);
+(ser_name,ser_price,ser_time,sh_uid)
+VALUES('염색', 100000, 3, 1),
+('파마', 100000, 4, 1),
+('컷트', 100000, 1, 1);
 
 
+insert into book ( bo_service,bo_stat,bo_comment,use_uid,sh_uid)
+values
+('test01_service',1,'취소사유01',1,1),
+('test02_service',1, '취소사유02',1, 2),
+('test03_service',1, '취소사유02',1, 2),
+('test04_service',1, '취소사유02',1, 2),
+('test05_service',2, '취소사유02',1, 2),
+('test06_service',2, '취소사유02',1, 2),
+('test07_service',2, '취소사유02',1, 2),
+('test08_service',2, '취소사유02',1, 2),
+('test09_service',3, '취소사유02',1, 2),
+('test10_service',3, '취소사유02',1, 2),
+('test11_service',3, '취소사유02',1, 2),
+('test12_service',3, '취소사유02',1, 2)
+;
 
-INSERT INTO SHOP(
-	sh_id,
-	sh_pw,
-	sh_no_id,
-	sh_name,
-	sh_telephone,
-	sh_location,
-	sh_location_lat,
-	sh_location_lng
-)
-VALUES('store03', '1234', 3333333333, '건대좌표', '07011111111','보라매동 969-20','37.5434924','127.0733933');
+/*페이징 위해서 코멘트양 늘리기*/
 
-
-
-INSERT INTO SHOP(
-	sh_id,
-	sh_pw,
-	sh_no_id,
-	sh_name,
-	sh_telephone,
-	sh_location,
-	sh_location_lat,
-	sh_location_lng
-)
-VALUES('store04', '1234', 4444444444, '신림좌표', '07011111111','봉천로7길','37.490259','126.916320');
-
-
-
-INSERT INTO SHOP(
-	sh_id,
-	sh_pw,
-	sh_no_id,
-	sh_name,
-	sh_telephone,
-	sh_location,
-	sh_location_lat,
-	sh_location_lng
-)
-VALUES('store05', '1234', 5555555555, '신림좌표', '07011111111','봉천로7길','37.487159','126.932628');
-
-
-INSERT INTO SHOP(
-	sh_id,
-	sh_pw,
-	sh_no_id,
-	sh_name,
-	sh_telephone,
-	sh_location,
-	sh_location_lat,
-	sh_location_lng
-)
-VALUES('store06', '1234', 66666666666, '신림좌표', '07011111111','봉천로7길','37.491858','126.927779');
-
-INSERT INTO SHOP(
-	sh_id,
-	sh_pw,
-	sh_no_id,
-	sh_name,
-	sh_telephone,
-	sh_location,
-	sh_location_lat,
-	sh_location_lng
-)
-VALUES('store7', '1234', 7777777777, '역삼좌표', '07011111111','봉천로7길','37.511016','127.034426'),
-('store08', '1234', 888888888, '역삼좌표', '07011111111','봉천로7길','37.521016','127.099426'),
-('store09', '1234', 9999999999, '역삼좌표', '07011111111','봉천로7길','37.531016','127.032626'),
-('store10', '1234', 101010101, '역삼좌표', '07011111111','봉천로7길','37.525516','127.036626'),
-('store11', '1234', 111111112, '역삼좌표', '07011111111','봉천로7길','37.518816','127.039926');
-
-INSERT INTO SERVICE
-(
-	ser_name,
-	ser_price,
-	ser_time,
-	sh_uid
-)
-VALUES('커트', 30000, 1, 1);
-select * from shop;
-select * from service;
-select * from designer;
-select * from user;
-
-select * from user;
-/*testdata_book*/
-insert into book (
-	bo_service,
-	bo_time,
-	use_uid,
-	sh_uid
-)
-values('test01_service', '2020-01-12 12:00:00', 1, 1);
-
-insert into book (
-	bo_service,
-	bo_time,
-	use_uid,
-	sh_uid
-)
-values('test02_service', '2020-01-12 12:00:00', 2, 1);
-
-insert into book (
-	bo_service,
-	bo_time,
-	use_uid,
-	sh_uid
-)
-values('test03_service', '2020-01-12 12:00:00', 2, 1);
-
-INSERT INTO USER(
-	use_id,
-	use_pw,
-	use_name,
-	use_phoneNum
-)
-VALUES('test03', '1234', '손님용2', '01000000002');
-
-<<<<<<< HEAD
-select * from user;
-select * from shop;
-
-SELECT  * from shop where sh_id = 'store12';
-
-
-select * from book where use_uid = 1;
-select * from book natural join shop where use_uid = 1;
-select * from book;
-
-select * from shop;
-
-
-SELECT * FROM DESIGNER WHERE sh_uid=1;
-select * from book b natural join shop where b.use_uid = 1;
-
-select * from user;
-
-select * from shop;
-
-select count(*) from shop where sh_no_id = 1111111111;
-
-select * from shop where sh_id = 'store01';
-
-select * from comment;
-
--- select * from user where user.use_id = 'test01';
-
--- SELECT * FROM USER WHERE use_id='test01';
-
--- delete from user where use_uid = 3;
-
--- 특정 id 로 회원 가입을 하려 할때
--- user 의  use_id  이어서도 안되고
--- ship 의  sh_id 이어서도 암됨
-
-
-SELECT 
-	(SELECT count(*) from user where use_id = 'store01'), 
-	(SELECT count(*) from shop where sh_id = 'store01')
-
--- select
--- 	(select count() from user where use_phoneNum = '01000000000'),
--- 	(select count() from shop where sh_telephone = 'store01');
-
--- select * from user where use_id='test01';
-
-
--- UPDATE [테이블] SET [열] = '변경할값' WHERE [조건]
-<<<<<<< HEAD
-
-
--- uid >> 2
--- uid2인사람의 비밀번호 바꾸기 
-=======
-SELECT * FROM BOOK WHERE use_uid = 1 ORDER BY bo_time desc;
-select * from book where sh_uid = 1;
-uid >> 2
-uid2인사람의 비밀번호 바꾸기 
->>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
-
--- update user set use_pw = '?' where use_uid = '?';
-
-<<<<<<< HEAD
--- select * from user where use_uid=2;
-=======
-select * from service;
->>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
-	
-<<<<<<< HEAD
--- update user set use_pw = ? where use_uid = ?
-=======
-update user set use_pw = ? where use_uid = ?
-
->>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
-=======
-select * from book;
->>>>>>> branch 'master' of https://github.com/odh4145/hairshop.git
 
 INSERT INTO comment(use_uid,sh_uid,co_name,co_title, co_star, co_content)
 SELECT use_uid,sh_uid,co_name,co_title, co_star, co_content from comment;
 
+INSERT INTO comment(use_uid,sh_uid,co_name,co_title, co_star, co_content)
+SELECT use_uid,sh_uid,co_name,co_title, co_star, co_content from comment;
 
--- 손님 페이지로 가면 손님 
+INSERT INTO comment(use_uid,sh_uid,co_name,co_title, co_star, co_content)
+SELECT use_uid,sh_uid,co_name,co_title, co_star, co_content from comment;
+
+INSERT INTO comment(use_uid,sh_uid,co_name,co_title, co_star, co_content)
+SELECT use_uid,sh_uid,co_name,co_title, co_star, co_content from comment;
+
+select * from shop;
+
+select * from user;
+
+

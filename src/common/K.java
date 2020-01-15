@@ -22,14 +22,20 @@ public interface K {
 			"UPDATE BOOK SET bo_stat = 2 WHERE bo_uid = ?";
 	// sh_uid로 book 확인
 	public static final String SQL_BOOK_SELECT_BY_SHOP=
-			"SELECT * FROM book WHERE sh_uid = ?;";
+			"SELECT * FROM book WHERE sh_uid = ?";
 	// use_uid book 확인
 	public static final String SQL_BOOK_JOIN_=
 			"SELECT * FROM book b NATURAL JOIN shop WHERE use_uid = ?";
 	//DELETE
 	public static final String SQL_BOOK_DELETE_BO_UID=
 			"DELETE FROM BOOK WHERE bo_uid = ?";
-	// 매장이 취소시 bo_comment update
+	// UPDATE stat --> 시간이 지난경우 stat을 3으로
+	public static final String SQL_BOOK_UPDATE_STAT_BY_BO_UID=
+				"UPDATE BOOK SET bo_stat = 3 WHERE bo_uid = ?";
+	// serviceTime가져오기
+	public static final String SQL_BOOK_SERVICE_TIME = 
+				"SELECT ser.ser_time FROM shop s JOIN service ser "
+				+ "ON s.sh_uid = ser.sh_uid WHERE ser.ser_name = ? AND s.sh_uid = ?";
 
 	
 	/*

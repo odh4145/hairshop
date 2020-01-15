@@ -12,7 +12,7 @@
 	<c:otherwise>
 		<script>
 			alert("삭제되었습니다.");
-			location.href = "storeUpdate.bbq?sh_uid=1";
+			location.href = "storeUpdate.bbq?sh_uid=${sessionScope.shop }";
 		</script>
 	</c:otherwise>
 </c:choose>

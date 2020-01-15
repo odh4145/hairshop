@@ -10,21 +10,21 @@ import com.lec.beans.ReplyDTO;
 
 public class ReListCommand implements Command {
 
-	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		ReplyDAO dao = new ReplyDAO();
-		ReplyDTO[] arr = null;
-		int uid = Integer.parseInt(request.getParameter("uid"));
-		
-		try {
-			arr = dao.ReselectByUid(uid);
-			
-			request.setAttribute("Relist", arr);
+   @Override
+   public void execute(HttpServletRequest request, HttpServletResponse response) {
+      ReplyDAO dao = new ReplyDAO();
+      ReplyDTO[] arr = null;
+      int uid = Integer.parseInt(request.getParameter("uid"));
+      
+      try {
+         arr = dao.ReselectByUid(uid);
+         
+         request.setAttribute("Relist", arr);
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+      } catch (SQLException e) {
+         e.printStackTrace();
+      }
 
-	}
+   }
 
 }

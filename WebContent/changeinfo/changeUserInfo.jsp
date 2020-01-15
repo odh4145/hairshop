@@ -40,22 +40,61 @@ frm = document.forms["frm_chk_user_pw"];
 }
 </script>
 <body>
-<header>
-	<ul id="top_menu">
-		<li id="logo"><a href="../index.jsp">Booking<span>HairShop</span></a></li>
-		<ul id="menu_list">
-			<li><a href="../location/Location2.bbq">내주변</a></li>
-			<li><a href="../location/chooseArea.bbq">지역별매장</a></li>
-			<li><a href="#">마이페이지</a></li>
-		</ul>	
-		<c:if test="${sessionScope.user == null }">
-		<li id="login" ><a href="../login/login_user.bbq">로그인</a></li>
-		</c:if>
-		<c:if test="${sessionScope.user != null }">
-		<li id="login" ><a href="../logout/Userlogout.bbq">로그아웃</a></li>
-		</c:if>
-	</ul>
-</header>
+	<header>
+		<ul id="top_menu">
+			<li class="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
+			<ul id="menu_list">
+				<li><a href="../location/Location2.bbq">내 주변 매장</a></li>
+				<li><a href="../location/chooseArea.bbq">지역별 매장</a></li>
+				<c:choose>
+					<c:when test="${sessionScope.user != null }">
+						<li><a href="../book/user.bbq?use_uid=${sessionScope.user }">마이페이지</a></li>
+					</c:when>
+					<c:when test="${sessionScope.user == null }">
+						<li><a href="../book/user.bbq?use_uid=0">마이페이지</a></li>
+					</c:when>				
+				</c:choose>				
+			</ul>
+			<c:if test="${sessionScope.user == null }">
+				<li id="login"><a href="../login/login_user.bbq">로그인</a></li>
+			</c:if>
+			<c:if test="${sessionScope.user != null }">
+				<li id="login"><a href="../logout/Userlogout.bbq">로그아웃</a></li>
+			</c:if>
+			<li><a id="btn_menu"><i class="fas fa-ellipsis-h"></i></a></li>
+		</ul>
+			<ul id="mo_menu">
+				<li><a href="../location/Location2.bbq">내 주변 매장</a></li>
+				<li><a href="../location/chooseArea.bbq">지역별 매장</a></li>
+				<li><a id="mypage">마이페이지</a></li>
+				<ul id="mo_sub">
+					<c:if test="${sessionScope.user != null }">
+						<li><a href="../book/user.bbq?use_uid=${sessionScope.user }">예약내역</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.user == null }">
+						<li><a href="../book/user.bbq?use_uid=0">예약내역</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.user != null }">
+						<li><a href="../jm/uselist.bbq?use_uid=${sessionScope.user }">내가 쓴 글</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.user == null }">
+						<li><a href="../jm/uselist.bbq?use_uid=0">내가 쓴 글</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.user != null }">
+						<li><a href="../changeinfo/changeUserInfo.bbq">개인정보수정</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.user == null }">
+						<li><a href="../changeinfo/changeUserInfo.bbq">개인정보수정</a></li>
+					</c:if>				
+				</ul>
+			<c:if test="${sessionScope.user == null }">
+				<li><a href="../login/login_user.bbq">로그인</a></li>
+			</c:if>
+			<c:if test="${sessionScope.user != null }">
+				<li><a href="../logout/Userlogout.bbq">로그아웃</a></li>
+			</c:if>			
+			</ul>
+	</header>
 
 <section>
 	<div class="content">
@@ -64,9 +103,15 @@ frm = document.forms["frm_chk_user_pw"];
 		
 		<!------------- 세부메뉴 ----------마이페이지아닌 분들은 세부메뉴 지우세요------------->
 		<div class="submenu inner">
-			<h4 class="selected"><a href="user.bbq?use_uid=">예약내역</a></h4>
-			<h4><a>내가 쓴 글</a></h4>
-			<h4><a>개인정보수정</a></h4>
+			<h4 class="selected">
+				<a href="../book/user.bbq?use_uid=${sessionScope.user }">예약내역</a>
+			</h4>
+			<h4>
+				<a href="../jm/uselist.bbq?use_uid=${sessionScope.user }">내가 쓴 글</a>
+			</h4>
+			<h4>
+				<a href="../changeinfo/changeUserInfo.bbq?use_uid=${sessionScope.user }">개인정보수정</a>
+			</h4>
 		</div>
 		
 
@@ -81,6 +126,7 @@ frm = document.forms["frm_chk_user_pw"];
 					<li><input id="use_pw" type="password" name="use_pw" placeholder="CURRENT PASSWORD"></li>
 					<li><input id="use_pw2" type="password" name="use_pw2" placeholder="NEW PASSWORD"></li>
 					<li><input type="submit" id="btn" value="Change"/></li>
+					<li><a href="../changeinfo/deleteUserInfo.bbq">탈퇴하기</a>
 			  </ul>
 				</form>
 			
@@ -88,12 +134,12 @@ frm = document.forms["frm_chk_user_pw"];
 		
 </c:when>
 			
-			<c:when test="${sessionScope.user == null }">
-				<script>
-					alert("로그인 해야함")
-					location.href = "../login/login_user.bbq";
-				</script>
-			</c:when>
+	<c:when test="${sessionScope.user == null }">
+		<script>
+			alert("로그인 해야함")
+			location.href = "../login/login_user.bbq";
+		</script>
+	</c:when>
 		</c:choose>
 		
 	</div>

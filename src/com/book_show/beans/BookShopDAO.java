@@ -69,6 +69,19 @@ public class BookShopDAO implements K {
 
 		return arr;
 	}
+	// service time int로 바꾸는 메소드
+		public int ser_time(ResultSet rs) throws SQLException{
+				rs.first();
+				Time ser_time = rs.getTime("ser_time");
+				String service = new SimpleDateFormat("HH").format(ser_time);
+				int ser_time_int = Integer.parseInt(service);
+				System.out.println(ser_time);
+				System.out.println(ser_time_int);
+			
+			return ser_time_int;
+		}
+	
+	
 	// 매장uid로 예약 확인
 	public BookShopDTO[] select_by_shop (int shop_uid) throws SQLException{
 		BookShopDTO[] arr = null;
@@ -98,4 +111,18 @@ public class BookShopDAO implements K {
 		return cnt;
 	}
 	
+	//service에서 시간가져오기
+	public int serviceTime (int sh_uid, String name) throws SQLException{
+		int arr = 0;
+		try {
+			pstmt = conn.prepareStatement(K.SQL_BOOK_SERVICE_TIME);
+			pstmt.setString(1, name);
+			pstmt.setInt(2, sh_uid);
+			rs = pstmt.executeQuery();
+			arr = ser_time(rs);
+		} finally {}
+		
+		return arr;
+		
+	}
 }

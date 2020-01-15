@@ -31,7 +31,7 @@
 			<ul id="menu_list">
 				<li><a href="../location/Location2.bbq">내주변</a></li>
 				<li><a href="../location/Location3.bbq">지역별매장</a></li>
-				<li><a href="#">마이페이지</a></li>
+				<li><a href="../changeinfo/changeUserInfo.bbq">마이페이지</a></li>
 			</ul>
 			<c:if test="${sessionScope.user == null }">
 			<li id="login" ><a href="../login/login_user.bbq">로그인</a></li>
