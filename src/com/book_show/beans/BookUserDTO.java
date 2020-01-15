@@ -9,10 +9,12 @@ private String bo_comment;
 private String sh_telephone;
 private String sh_location;
 private String sh_name;
+private String use_name;
 private int sh_uid;
 private int bo_uid;
 private int use_uid;
 private int bo_stat;
+
 public String getBo_sevice() {
 	return bo_service;
 }
@@ -27,6 +29,12 @@ public void setSh_name(String sh_name) {
 }
 public String getSh_name() {
 	return sh_name;
+}
+public void setUse_name(String use_name) {
+	this.use_name = use_name;
+}
+public String getUse_name() {
+	return use_name;
 }
 public void setBo_time(String bo_time) {
 	this.bo_time = bo_time;
@@ -74,7 +82,7 @@ public void setBo_stat(int bo_stat) {
 	this.bo_stat = bo_stat;
 }
 public BookUserDTO(String bo_service, String bo_time, String bo_comment, String sh_telephone, String sh_location,
-		int sh_uid, int bo_uid, int use_uid, int bo_stat, String sh_name) {
+		int sh_uid, int bo_uid, int use_uid, int bo_stat, String sh_name, String use_name) {
 	super();
 	this.bo_service = bo_service;
 	this.bo_time = bo_time;
@@ -86,6 +94,7 @@ public BookUserDTO(String bo_service, String bo_time, String bo_comment, String 
 	this.use_uid = use_uid;
 	this.bo_stat = bo_stat;
 	this.sh_name = sh_name;
+	this.use_name = use_name;
 }
 public BookUserDTO() {
 	super();

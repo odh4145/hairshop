@@ -21,11 +21,10 @@ public class BookShopDAO implements K {
 
 	// DAO 생성
 	public BookShopDAO() {
-
 		try {
 			Class.forName(K.DRIVER);
 			conn = DriverManager.getConnection(K.URL, K.USERID, K.USERPW);
-			System.out.println("BooKuserDAO 객체 생성, 데이터베이스 연결");
+			System.out.println("BookShopDAO생성 객체 생성, 데이터베이스 연결");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -125,4 +124,48 @@ public class BookShopDAO implements K {
 		return arr;
 		
 	}
+	
+	//페이징 용 DAO
+	// 총 몇개의 글이 있는지
+	public int countAll(int sh_uid) throws SQLException{
+		int cnt = 0;
+		// 결과값이 1x1행렬값이니까 int로 반환 하면 됨
+		
+		try {
+			pstmt = conn.prepareStatement(K.SQL_COUNT_ALL_SHOP);
+			pstmt.setInt(1, sh_uid);
+			rs = pstmt.executeQuery();
+			rs.next(); // 첫번째 행으로 이동
+			cnt = rs.getInt(1); // 첫번째 컬럼
+			
+		}finally {
+			close();
+		}
+		return cnt;
+	}
+	
+	// 몇번째 from 부터 몇개  rows를 select할것인지 정하기
+			public BookShopDTO [] selectFromRow(int sh_uid ,int from, int rows) throws SQLException{
+				BookShopDTO[] arr = null;
+				System.out.println("sh_uid="  + sh_uid);
+				System.out.println("from="  + from);
+				System.out.println("rows="  + rows);
+				try {
+					pstmt = conn.prepareStatement(K.SQL_SELECT_FROM_ROW_SHOP);
+					pstmt.setInt(1, sh_uid);
+					pstmt.setInt(2, from);
+					pstmt.setInt(3, rows);
+					rs = pstmt.executeQuery();
+					arr = createArray(rs);
+					for (int i = 0; i < arr.length; i++) {
+						arr[i].getBo_uid();
+					}
+				} finally {
+					close();
+				}
+				
+				return arr;
+			}	
+	
+	
 }

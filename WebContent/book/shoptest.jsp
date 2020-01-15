@@ -11,6 +11,10 @@
 <link rel="icon" href="../img/favicon.png">
 <link href="../css/menu.css" rel="stylesheet" type="text/css">
 <link href="../css/sub.css" rel="stylesheet" type="text/css">
+<link href="./book.css" rel="stylesheet" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="CSS/common.css" />
+<script src="https://kit.fontawesome.com/bb29575d31.js"></script>
 </head>
 
 <body>
@@ -83,12 +87,6 @@
 			<!------------- 세부메뉴 ----------class="inner" 지우세요------------->
 			<div class="inner">
 				<h3>가장 최근 예약 순대로 보입니다</h3>
-				<select onchange="categoryChange(this)">
-					<option selected="selected" value="all">전체보기</option>
-					<option value="1">승인대기중인 예약</option>
-					<option value="2">승인된 예약</option>
-					<option value="3">이전 예약</option>
-				</select>
 				<c:forEach var="book_sh" items="${book_sh }">
 					<div>
 					
@@ -139,6 +137,12 @@
 				<a><i class="fas fa-arrow-circle-up"></i></a>
 			</div>
 		</div>
+		<jsp:include page="pagingbook_shop.jsp">
+				<jsp:param value="${writePages }" name="writePages" />
+				<jsp:param value="${totalPage }" name="totalPage" />
+				<jsp:param value="${page }" name="curPage" />
+				<jsp:param value="${sh_uid }" name="sh_uid" />
+			</jsp:include>
 	</section>
 	
 </c:when>
@@ -151,33 +155,6 @@
 </c:when>
 
 </c:choose>
-<script type="text/javascript">
-function categoryChange(e) {
-	alert(e.value)
-	
-	if(e.value == "all"){
-		document.getElementByid("show_stat1").style.display = "block";
-		document.getElementByid("show_stat2").style.display = "block";
-		document.getElementByid("show_stat3").style.display = "block";
-	}else if(e.value == 1){
-		document.getElementByid("show_stat1").style.display = "block";
-		document.getElementByid("show_stat2").style.display = "none";
-		document.getElementByid("show_stat3").style.display = "none";
-	}else if(e.value == 2){
-		document.getElementByid("show_stat1").style.display = "none";
-		document.getElementByid("show_stat2").style.display = "block";
-		document.getElementByid("show_stat3").style.display = "none";
-	}else if(e.value == 3){
-		document.getElementByid("show_stat1").style.display = "none";
-		document.getElementByid("show_stat2").style.display = "none";
-		document.getElementByid("show_stat3").style.display = "block";
-	}else {
-		document.getElementByid("show_stat1").style.display = "block";
-		document.getElementByid("show_stat2").style.display = "block";
-		document.getElementByid("show_stat3").style.display = "block";
-	}
-}
-</script>
 	<!-- javascript 링크 -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

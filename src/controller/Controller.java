@@ -435,7 +435,6 @@ public class Controller extends HttpServlet {
 	         break;
 ///////////////////////////////////////////////////BOOK////////////////////////////////////////////////////////////////
 		case "/book/user.bbq":
-			System.out.println("debug용");
 			command = new ShowBookuserCommand();
 			command.execute(request, response);
 			viewPage = "/book/usertest.jsp";
