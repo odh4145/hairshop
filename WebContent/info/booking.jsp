@@ -43,6 +43,7 @@
 <script>
 var de = "";
 var ser = "";
+var arr = "";
 
 $(document).ready(function() {
 	$('#date').bootstrapMaterialDatePicker({
@@ -104,8 +105,6 @@ function sub() {
 </head>
 
 <body>
-
-	<c:choose>
 	
 	<c:when test="${sessionScope.user != null }">
 	
@@ -146,109 +145,57 @@ function sub() {
 	</header>
 
 	<section>
-		<div class="content">
-			<!-- 상세페이지 제목 -->
-			<h2 id="content_title">${info[0].sh_name } 예약하기</h2>
-			<form name="frm" method="post" action="bookingOk.bbq" onSubmit="return sub()">
-			<div class="container well">
-				<div class="row">
-					<div class="col-md-6">
-						<h3>날짜선택하기</h3>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
-						<div class="form-control-wrapper">
-							<input type="text" id="date" class="form-control floating-label"
-								name="date" placeholder="Date">
-						</div>
-					</div>
-				</div>
+	<div class="content">
+		<!-- 상세페이지 제목 -->
+		<h2 id="content_title">매장사진관리</h2>
+		
+		<div class="box clear">
+			<!------------- 세부메뉴 ----------마이페이지아닌 분들은 세부메뉴 지우세요------------->
+			<div class="submenu">
+				<h4><a href="storeUpdate.bbq?sh_uid=${info[0].sh_uid}">매장정보변경</a></h4>
+				<h4 class="selected"><a>매장사진관리</a></h4>
+				<h4><a>개인정보수정</a></h4>
 			</div>
-			
-			<div class="container well">
-				<div class="row">
-					<div class="col-md-6">
-						<h3>시간선택하기</h3>
-					</div>
-				</div>
-				<div class="row">
-					<ul class="col-md-6">
-						<select name="number" id="number">
-							<c:forEach var="i" begin="${info[0].sh_starttime }" end="${info[0].sh_endtime }" step="1">						
-	      						<option value="${i}:00:00">${i} : 00</option>
-							</c:forEach>
-   					 	</select>						
-					</ul>
-				</div>
-			</div>
-			
-			<div class="container well">
-				<div class="row">
-					<div class="col-md-6">
-						<h3>디자이너선택하기</h3>
-					</div>
-				</div>
-				<div class="row">
-					<c:forEach var="dto1" items="${designer }">
-						<ul class="designer">
-							<li>
-								<input type="checkbox" onclick="deCheck(this)" name="de_name" value="${dto1.de_name }">
-								${dto1.de_name } ${dto1.de_position}
-							</li>
-						</ul>
-					</c:forEach>
-				</div>
-			</div>
-			
-			<div class="container well">
-				<div class="row">
-					<div class="col-md-6">
-						<h3>스타일선택하기</h3>
-					</div>
-				</div>
-				<div class="row">
-					<c:forEach var="dto2" items="${service }">
-						<ul class="price_info">
-							<input type="checkbox" onclick="serCheck(this)" name="ser_name" value="${dto2.ser_name }">
-							<li>${dto2.ser_name }</li>
-							<li>${dto2.ser_price }원</li>
-							<li><span>${dto2.ser_time }시간</span></li>
-						</ul>
-					</c:forEach>
-				</div>
-			</div>
-			<input type="hidden" name="use_uid" value="1">
-			<input type="hidden" name="sh_uid" value="${info[0].sh_uid }">
-			<input type="hidden" name="bo_time" value="">
-			<input type="hidden" name="bo_service" value="">
-			<input class="book" type="submit" value="예약신청하기" />
-		</form>
-		</div>
-
-		<!-- 화살표버튼 -->
-		<div id="go_top">
-			<a><i class="fas fa-arrow-circle-up"></i></a>
-		</div>
-		</div>
-	</section>
 	
-	</c:when>
-	
-	<c:when test="${sessionScope.user == null }">
-		<script>
-			alert("로그인 해야함")
-			location.href = "../login/login_user.bbq";
-		</script>
-	</c:when>
-	
-	</c:choose>
+			<!------------- 세부메뉴 ----------class="inner" 지우세요------------->
+			<div class="inner">
+				<form name="picfrm" enctype="Multipart/form-data" action="storepicUpdate.bbq" method="post">
+					<ul class="pic_box">
+						<input type="hidden" name="sh_uid" value="${info[0].sh_uid }">
+						<li><img src="${info[0].sh_picture1 }"></li>
+						<li><input class="insert_dpic" type="file" name="sh_picture1" size=40></li>
+						<li><input class="update" type="submit" value="수정하기" /></li>
+					</ul>						
+					<ul class="pic_box">
+						<input type="hidden" name="sh_uid" value="${info[0].sh_uid }">
+						<li><img src="${info[0].sh_picture2 }"></li>
+						<li><input class="insert_dpic" type="file" name="sh_picture2" size=40></li>
+						<li><input class="update" type="submit" value="수정하기" /></li>
+					</ul>						
+					<ul class="pic_box">
+						<input type="hidden" name="sh_uid" value="${info[0].sh_uid }">
+						<li><img src="${info[0].sh_picture3 }"></li>
+						<li><input class="insert_dpic" type="file" name="sh_picture3" size=40></li>
+						<li><input class="update" type="submit" value="수정하기" /></li>
+					</ul>						
+				</form>
+			</div>
+		</div>			
+	</div>
+		
+	<!-- 화살표버튼 -->
+	<div id="go_top">
+		<a><i class="fas fa-arrow-circle-up"></i></a>
+	</div>
+</div>
+</section>
 
 <!-- javascript 링크 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="../js/public.js" type="text/javascript"></script>
-<script src="../js/calendar.js" type="text/javascript"></script>
+<script src="../js/storeUpdate.js" type="text/javascript"></script>
 </body>
 </html>
+</c:when>
 </c:otherwise>
 </c:choose>
