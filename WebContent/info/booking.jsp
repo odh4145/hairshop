@@ -11,7 +11,7 @@
 		</script>
 	</c:when>
 	<c:otherwise>
-	
+
 <!------ html 시작 ------>
 <!DOCTYPE html>
 <html lang="ko">
@@ -43,6 +43,7 @@
 <script>
 var de = "";
 var ser = "";
+var arr = "";
 
 $(document).ready(function() {
 	$('#date').bootstrapMaterialDatePicker({
@@ -104,8 +105,6 @@ function sub() {
 </head>
 
 <body>
-
-	<c:choose>
 	
 	<c:when test="${sessionScope.user != null }">
 	
@@ -113,142 +112,110 @@ function sub() {
 		<ul id="top_menu">
 			<li class="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
 			<ul id="menu_list">
-				<li><a href="../location/Location2.bbq">내주변</a></li>
-				<li><a href="../locaion/chooseArea.bbq">지역별매장</a></li>
+				<li><a href="../location/Location2.bbq">내 주변 매장</a></li>
+				<li><a href="../location/chooseArea.bbq">지역별 매장</a></li>
 				<c:choose>
-				<c:when test="${sessionScope.user != null }">
-				<li><a href="../book/user.bbq?use_uid=${sessionScope.user }">마이페이지</a></li>
-				</c:when>
-				<c:when test="${sessionScope.user == null }">
-				<li><a href="../book/user.bbq?use_uid=0">마이페이지</a></li>
-				</c:when>
-			</c:choose>
+					<c:when test="${sessionScope.user != null }">
+						<li><a href="../book/user.bbq?use_uid=${sessionScope.user }">마이페이지</a></li>
+					</c:when>
+					<c:when test="${sessionScope.user == null }">
+						<li><a href="../book/user.bbq?use_uid=0">마이페이지</a></li>
+					</c:when>				
+				</c:choose>				
 			</ul>
 			<c:if test="${sessionScope.user == null }">
-				<li id="login"><a href="login_user.bbqLoginUser">로그인</a></li>
+				<li id="login"><a href="../login/login_user.bbq">로그인</a></li>
 			</c:if>
 			<c:if test="${sessionScope.user != null }">
-				<li id="login"><a href="../logout/Userlogout.jsp">로그아웃</a></li>
+				<li id="login"><a href="../logout/Userlogout.bbq">로그아웃</a></li>
 			</c:if>
 			<li><a id="btn_menu"><i class="fas fa-ellipsis-h"></i></a></li>
 		</ul>
-		<ul id="mo_menu">
-			<li><a>내주변</a></li>
-			<li><a>지역별매장</a></li>
-			<li><a id="mypage">마이페이지</a></li>
-			<ul id="mo_sub">
-				<li>예약내역</li>
-				<li>내가쓴글</li>
-				<li>개인정보수정</li>
+			<ul id="mo_menu">
+				<li><a href="../location/Location2.bbq">내 주변 매장</a></li>
+				<li><a href="../location/chooseArea.bbq">지역별 매장</a></li>
+				<li><a id="mypage">마이페이지</a></li>
+				<ul id="mo_sub">
+					<c:if test="${sessionScope.user != null }">
+						<li><a href="../book/user.bbq?use_uid=${sessionScope.user }">예약내역</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.user == null }">
+						<li><a href="../book/user.bbq?use_uid=0">예약내역</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.user != null }">
+						<li><a href="../jm/uselist.bbq?use_uid=${sessionScope.user }">내가 쓴 글</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.user == null }">
+						<li><a href="../jm/uselist.bbq?use_uid=0">내가 쓴 글</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.user != null }">
+						<li><a href="../changeinfo/changeUserInfo.bbq">개인정보수정</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.user == null }">
+						<li><a href="../changeinfo/changeUserInfo.bbq">개인정보수정</a></li>
+					</c:if>				
+				</ul>
+			<c:if test="${sessionScope.user == null }">
+				<li><a href="../login/login_user.bbq">로그인</a></li>
+			</c:if>
+			<c:if test="${sessionScope.user != null }">
+				<li><a href="../logout/Userlogout.bbq">로그아웃</a></li>
+			</c:if>			
 			</ul>
-			<li><a>로그인</a></li>
-		</ul>
 	</header>
 
 	<section>
-		<div class="content">
-			<!-- 상세페이지 제목 -->
-			<h2 id="content_title">${info[0].sh_name } 예약하기</h2>
-			<form name="frm" method="post" action="bookingOk.bbq" onSubmit="return sub()">
-			<div class="container well">
-				<div class="row">
-					<div class="col-md-6">
-						<h3>날짜선택하기</h3>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
-						<div class="form-control-wrapper">
-							<input type="text" id="date" class="form-control floating-label"
-								name="date" placeholder="Date">
-						</div>
-					</div>
-				</div>
+	<div class="content">
+		<!-- 상세페이지 제목 -->
+		<h2 id="content_title">매장사진관리</h2>
+		
+		<div class="box clear">
+			<!------------- 세부메뉴 ----------마이페이지아닌 분들은 세부메뉴 지우세요------------->
+			<div class="submenu">
+				<h4><a href="storeUpdate.bbq?sh_uid=${info[0].sh_uid}">매장정보변경</a></h4>
+				<h4 class="selected"><a>매장사진관리</a></h4>
+				<h4><a>개인정보수정</a></h4>
 			</div>
-			
-			<div class="container well">
-				<div class="row">
-					<div class="col-md-6">
-						<h3>시간선택하기</h3>
-					</div>
-				</div>
-				<div class="row">
-					<ul class="col-md-6">
-						<select name="number" id="number">
-							<c:forEach var="i" begin="${info[0].sh_starttime }" end="${info[0].sh_endtime }" step="1">						
-	      						<option value="${i}:00:00">${i} : 00</option>
-							</c:forEach>
-   					 	</select>						
-					</ul>
-				</div>
-			</div>
-			
-			<div class="container well">
-				<div class="row">
-					<div class="col-md-6">
-						<h3>디자이너선택하기</h3>
-					</div>
-				</div>
-				<div class="row">
-					<c:forEach var="dto1" items="${designer }">
-						<ul class="designer">
-							<li>
-								<input type="checkbox" onclick="deCheck(this)" name="de_name" value="${dto1.de_name }">
-								${dto1.de_name } ${dto1.de_position}
-							</li>
-						</ul>
-					</c:forEach>
-				</div>
-			</div>
-			
-			<div class="container well">
-				<div class="row">
-					<div class="col-md-6">
-						<h3>스타일선택하기</h3>
-					</div>
-				</div>
-				<div class="row">
-					<c:forEach var="dto2" items="${service }">
-						<ul class="price_info">
-							<input type="checkbox" onclick="serCheck(this)" name="ser_name" value="${dto2.ser_name }">
-							<li>${dto2.ser_name }</li>
-							<li>${dto2.ser_price }원</li>
-							<li><span>${dto2.ser_time }시간</span></li>
-						</ul>
-					</c:forEach>
-				</div>
-			</div>
-			<input type="hidden" name="use_uid" value="1">
-			<input type="hidden" name="sh_uid" value="${info[0].sh_uid }">
-			<input type="hidden" name="bo_time" value="">
-			<input type="hidden" name="bo_service" value="">
-			<input class="book" type="submit" value="예약신청하기" />
-		</form>
-		</div>
-
-		<!-- 화살표버튼 -->
-		<div id="go_top">
-			<a><i class="fas fa-arrow-circle-up"></i></a>
-		</div>
-		</div>
-	</section>
 	
-	</c:when>
-	
-	<c:when test="${sessionScope.user == null }">
-		<script>
-			alert("로그인 해야함")
-			location.href = "../login/login_user.bbq";
-		</script>
-	</c:when>
-	
-	</c:choose>
+			<!------------- 세부메뉴 ----------class="inner" 지우세요------------->
+			<div class="inner">
+				<form name="picfrm" enctype="Multipart/form-data" action="storepicUpdate.bbq" method="post">
+					<ul class="pic_box">
+						<input type="hidden" name="sh_uid" value="${info[0].sh_uid }">
+						<li><img src="${info[0].sh_picture1 }"></li>
+						<li><input class="insert_dpic" type="file" name="sh_picture1" size=40></li>
+						<li><input class="update" type="submit" value="수정하기" /></li>
+					</ul>						
+					<ul class="pic_box">
+						<input type="hidden" name="sh_uid" value="${info[0].sh_uid }">
+						<li><img src="${info[0].sh_picture2 }"></li>
+						<li><input class="insert_dpic" type="file" name="sh_picture2" size=40></li>
+						<li><input class="update" type="submit" value="수정하기" /></li>
+					</ul>						
+					<ul class="pic_box">
+						<input type="hidden" name="sh_uid" value="${info[0].sh_uid }">
+						<li><img src="${info[0].sh_picture3 }"></li>
+						<li><input class="insert_dpic" type="file" name="sh_picture3" size=40></li>
+						<li><input class="update" type="submit" value="수정하기" /></li>
+					</ul>						
+				</form>
+			</div>
+		</div>			
+	</div>
+		
+	<!-- 화살표버튼 -->
+	<div id="go_top">
+		<a><i class="fas fa-arrow-circle-up"></i></a>
+	</div>
+</div>
+</section>
 
 <!-- javascript 링크 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="../js/public.js" type="text/javascript"></script>
-<script src="../js/calendar.js" type="text/javascript"></script>
+<script src="../js/storeUpdate.js" type="text/javascript"></script>
 </body>
 </html>
+</c:when>
 </c:otherwise>
 </c:choose>
