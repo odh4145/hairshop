@@ -5,16 +5,17 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.lec.beans.WriteDAO;
+import com.lec.beans.LogDAO;
+import com.lec.beans.LogDTO;
 import com.lec.beans.WriteDTO;
 
-public class ListCommand implements Command {
+public class UseListCommand implements Command {
 
    @Override
    public void execute(HttpServletRequest request, HttpServletResponse response) {
-      WriteDAO dao = new WriteDAO();
+      LogDAO dao = new LogDAO();
       WriteDTO[] arr = null;
-      int sh_uid = Integer.parseInt(request.getParameter("sh_uid"));
+      int use_uid = Integer.parseInt(request.getParameter("use_uid"));
       
       
       
@@ -46,7 +47,7 @@ public class ListCommand implements Command {
 
       try {
          // 글 전체 갯수 구하기
-         cnt = dao.countAll(sh_uid);
+         cnt = dao.countAll(use_uid);
 
          // 총 몇페이지 분량인가
          totalPage = (int) Math.ceil(cnt / (double) pageRows); // Math.ceil << 나눠서 나머지 존재하면 올림 11.2 ==> 12
@@ -54,16 +55,16 @@ public class ListCommand implements Command {
          // 몇번째 row부터 시작할것인가?
          int fromRow = (page - 1) * pageRows;
 
-         dao = new WriteDAO(); // 위에서 dao close()됫으니까 새로만들어서 한번더 동작시킴
+         dao = new LogDAO(); // 위에서 dao close()됫으니까 새로만들어서 한번더 동작시킴
 
-         arr = dao.selectFromRowsh(sh_uid, fromRow, pageRows);
+         arr = dao.selectFromRowuse(use_uid, fromRow, pageRows);
 
          request.setAttribute("list", arr);
          request.setAttribute("page", page);
          request.setAttribute("totalPage", totalPage);
          request.setAttribute("writePages", writePages);
          request.setAttribute("pageRows", pageRows);
-         request.setAttribute("sh_uid", sh_uid);
+         request.setAttribute("use_uid", use_uid);
       } catch (SQLException e) {
          e.printStackTrace();
       }

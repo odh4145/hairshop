@@ -78,8 +78,8 @@ function chkDelete(id){
 	<ul id="top_menu">
 			<li id="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
 			<ul id="menu_list">
-			<li><a href="../location/Location2.bbq">내주변</a></li>
-			<li><a href="../location/chooseArea.bbq">지역별매장</a></li>
+			<li><a href="#">후기</a></li>
+			<li><a href="#">예약내역</a></li>
 			<li><a href="#">마이페이지</a></li>
 			</ul>
 			<!-- 로그인 상황에 따른 버튼 변경 -->
@@ -115,11 +115,6 @@ function chkDelete(id){
 				<br>
 				<button
 					onclick="location.href = 'shlist.bbq?page=${page }&sh_uid=<%=sh_uid %>'">목록보기</button>
-
-				<!-- 민교야 여기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-				<button
-					onclick="location.href = 'update.bbq?uid=<%=uid%>&sh_uid=<%=sh_uid%>'">수정하기</button>
-				<button onclick="chkDelete(<%=uid%>)">삭제하기</button>
 
 				<br> <br> <br>
 				<form name="frm" action="reWrite.bbq" method="post">

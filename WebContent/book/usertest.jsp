@@ -19,28 +19,62 @@
 </head>
 
 <body>
-
-
 	<header>
-		<ul id="top_menu">
-			<li id="logo"><a href="../index.jsp">Booking<span>HairShop</span></a></li>
-			<ul id="menu_list">
-				<li><a href="../location/Location2.bbq">내주변</a></li>
-			<li><a href="../location/chooseArea.bbq">지역별매장</a></li>
-				<li><a href="../book/user.bbq?use_uid=${sessionScope.user }">마이페이지</a></li>
-			</ul>
-			<c:if test="${sessionScope.user == null }">
-				<li id="login"><a href="../login/login_user.bbq">로그인</a></li>
-			</c:if>
-			<c:if test="${sessionScope.user != null }">
-				<li id="login"><a href="../logout/Userlogout.bbq">로그아웃</a></li>
-			</c:if>
-			<li><a id="btn_menu"><i class="fas fa-ellipsis-h"></i></a></li>
+	<ul id="top_menu">
+		<li class="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
+		<ul id="menu_list">
+			<li><a href="../location/Location2.bbq">내 주변 매장</a></li>
+			<li><a href="../location/chooseArea.bbq">지역별 매장</a></li>
+			<c:choose>
+				<c:when test="${sessionScope.user != null }">
+					<li><a href="../book/user.bbq?use_uid=${sessionScope.user }">마이페이지</a></li>
+				</c:when>
+				<c:when test="${sessionScope.user == null }">
+					<li><a href="../book/user.bbq?use_uid=0">마이페이지</a></li>
+				</c:when>				
+			</c:choose>				
 		</ul>
-	</header>
-
+		<c:if test="${sessionScope.user == null }">
+			<li id="login"><a href="../login/login_user.bbq">로그인</a></li>
+		</c:if>
+		<c:if test="${sessionScope.user != null }">
+			<li id="login"><a href="../logout/Userlogout.bbq">로그아웃</a></li>
+		</c:if>
+		<li><a id="btn_menu"><i class="fas fa-ellipsis-h"></i></a></li>
+	</ul>
+		<ul id="mo_menu">
+			<li><a href="../location/Location2.bbq">내 주변 매장</a></li>
+			<li><a href="../location/chooseArea.bbq">지역별 매장</a></li>
+			<li><a id="mypage">마이페이지</a></li>
+			<ul id="mo_sub">
+				<c:if test="${sessionScope.user != null }">
+					<li><a href="../book/user.bbq?use_uid=${sessionScope.user }">예약내역</a></li>
+				</c:if>				
+				<c:if test="${sessionScope.user == null }">
+					<li><a href="../book/user.bbq?use_uid=0">예약내역</a></li>
+				</c:if>				
+				<c:if test="${sessionScope.user != null }">
+					<li><a href="../jm/uselist.bbq?use_uid=${sessionScope.user }">내가 쓴 글</a></li>
+				</c:if>				
+				<c:if test="${sessionScope.user == null }">
+					<li><a href="../jm/uselist.bbq?use_uid=0">내가 쓴 글</a></li>
+				</c:if>				
+				<c:if test="${sessionScope.user != null }">
+					<li><a href="../changeinfo/changeUserInfo.bbq">개인정보수정</a></li>
+				</c:if>				
+				<c:if test="${sessionScope.user == null }">
+					<li><a href="../changeinfo/changeUserInfo.bbq">개인정보수정</a></li>
+				</c:if>				
+			</ul>
+		<c:if test="${sessionScope.user == null }">
+			<li><a href="../login/login_user.bbq">로그인</a></li>
+		</c:if>
+		<c:if test="${sessionScope.user != null }">
+			<li><a href="../logout/Userlogout.bbq">로그아웃</a></li>
+		</c:if>			
+		</ul>
+	</header>	
 	<c:choose>
-	
 	<c:when test="${sessionScope.user != null }">
 
 	<section>
@@ -54,7 +88,7 @@
 					<a href="../book/user.bbq?use_uid=${sessionScope.user }">예약내역</a>
 				</h4>
 				<h4>
-					<a href="../jm/list.bbq?use_uid=${sessionScope.user }">내가 쓴 글</a>
+					<a href="../jm/uselist.bbq?use_uid=${sessionScope.user }">내가 쓴 글</a>
 				</h4>
 				<h4>
 					<a href="../changeinfo/changeUserInfo.bbq?use_uid=${sessionScope.user }">개인정보수정</a>

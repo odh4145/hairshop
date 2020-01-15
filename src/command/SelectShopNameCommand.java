@@ -7,23 +7,25 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.lec.beans.WriteDAO;
 
-public class DeleteCommand implements Command {
+public class SelectShopNameCommand implements Command {
 
    @Override
    public void execute(HttpServletRequest request, HttpServletResponse response) {
-      int cnt = 0; 
+      // TODO Auto-generated method stub
+      String cnt = ""; 
       WriteDAO dao = new WriteDAO();
-      int uid = Integer.parseInt(request.getParameter("uid"));
       
+      int sh_uid = Integer.parseInt(request.getParameter("sh_uid"));
+      // Parameter 유효성 검증   
          try {
-            cnt = dao.deleteByUid(uid);
+            cnt = dao.SelectShopName(sh_uid);
             
          }catch(SQLException e) {
             e.printStackTrace();
          }
-                  System.out.println("ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ"+cnt);
-      request.setAttribute("deleteOk", cnt);
+            
       
+      
+      request.setAttribute("shopName", cnt);   
    }
-
 }

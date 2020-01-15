@@ -22,7 +22,7 @@ public interface K {
 			"UPDATE BOOK SET bo_stat = 2 WHERE bo_uid = ?";
 	// sh_uid로 book 확인
 	public static final String SQL_BOOK_SELECT_BY_SHOP=
-			"SELECT * FROM book WHERE sh_uid = ?;";
+			"SELECT * FROM book WHERE sh_uid = ?";
 	// use_uid book 확인
 	public static final String SQL_BOOK_JOIN_=
 			"SELECT * FROM book b NATURAL JOIN shop WHERE use_uid = ?";

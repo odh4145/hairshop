@@ -2,7 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-	
+
+<c:choose>
+	<c:when test="${empty info || fn:length(info) == 0 }">
+		<script>
+			alert("매장의 정보가 없습니다.");
+			history.back();
+		</script>
+	</c:when>
+	<c:otherwise>
 <!------ html 시작 ------>
 <!DOCTYPE html>
 <html lang="ko">
@@ -19,33 +27,60 @@
 </head>
 
 <body>
-<header>
+	<header>
 		<ul id="top_menu">
-			<li class="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
+			<li id="logo"><a href="../index.jsp">Booking<span>HairShop</span></a></li>
 			<ul id="menu_list">
-				<li><a href="">후기</a></li>
-				<li><a href="">예약내역</a></li>
-				<li><a href="">마이페이지</a></li>
+				<li><a href="../hj/shlist.bbq?sh_uid=${sessionScope.shop }">후기</a></li>
+				<li><a href="../book/shop.bbq?sh_uid=${sessionScope.shop }">예약내역</a></li>
+				<c:choose>
+				<c:when test="${sessionScope.shop != null }">
+				<li><a href="../info/storeUpdate.bbq?sh_uid=${sessionScope.shop }">마이페이지</a></li>
+				</c:when>
+				<c:when test="${sessionScope.shop == null }">
+				<li><a href="../info/storeUpdate.bbq?sh_uid=0">마이페이지</a></li>
+				</c:when>
+				</c:choose>
 			</ul>
-			<c:if test="${sessionScope.user == null }">
-				<li id="login"><a href="login_user.bbqLoginUser">로그인</a></li>
+			<c:if test="${sessionScope.shop == null }">
+				<li id="login"><a href="../login/login_shop.bbq">로그인</a></li>
 			</c:if>
-			<c:if test="${sessionScope.user != null }">
-				<li id="login"><a href="../logout/Userlogout.jsp">로그아웃</a></li>
+			<c:if test="${sessionScope.shop != null }">
+				<li id="login"><a href="../logout/Shoplogout.bbq">로그아웃</a></li>
 			</c:if>
 			<li><a id="btn_menu"><i class="fas fa-ellipsis-h"></i></a></li>
 		</ul>
-		<ul id="mo_menu">
-			<li><a>후기</a></li>
-			<li><a>예약내역</a></li>
-			<li><a id="mypage">마이페이지</a></li>
-			<ul id="mo_sub">
-				<li>매장정보변경</li>
-				<li>매장사진관리</li>
-				<li>개인정보수정</li>
+			<ul id="mo_menu">
+				<li><a href="../hj/shlist.bbq?sh_uid=${sessionScope.shop }">후기</a></li>
+				<li><a href="../book/shop.bbq?sh_uid=${sessionScope.shop }">예약내역</a></li>
+				<li><a id="mypage">마이페이지</a></li>
+				<ul id="mo_sub">
+					<c:if test="${sessionScope.shop != null }">
+						<li><a href="../info/storeUpdate.bbq?sh_uid=${sessionScope.shop }">매장정보 변경</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.shop == null }">
+						<li><a href="../info/storeUpdate.bbq?sh_uid=0">매장정보 변경</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.user != null }">
+						<li><a href="../info/storepicList.bbq?sh_uid=${sessionScope.shop }">매장 사진 관리</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.user == null }">
+						<li><a href="../info/storepicList.bbq?sh_uid=0">매장 사진 관리</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.user != null }">
+						<li><a href="">개인정보수정</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.user == null }">
+						<li><a href="">개인정보수정</a></li>
+					</c:if>				
+				</ul>
+			<c:if test="${sessionScope.shop == null }">
+				<li><a href="../login/login_shop.bbq">로그인</a></li>
+			</c:if>
+			<c:if test="${sessionScope.shop != null }">
+				<li><a href="../logout/Shoplogout.bbq">로그아웃</a></li>
+			</c:if>			
 			</ul>
-			<li><a>로그인</a></li>
-		</ul>
 	</header>
 
 <section>
@@ -96,3 +131,6 @@
 <script src="../js/storeUpdate.js" type="text/javascript"></script>
 </body>
 </html>
+
+	</c:otherwise>
+</c:choose>

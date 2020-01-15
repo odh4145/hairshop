@@ -1,45 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
+<%@ page import="com.lec.beans.*"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+
+<%
+
+   String use_id = (String)request.getAttribute("use_id");
+
+   int use_uid = Integer.parseInt(request.getParameter("use_uid"));
+
+%>
+
 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>개인정보수정</title>
+<title><%= use_id %>님의 후기 게시판</title>
+<style>
+table {
+   width: 80%;
+}
+
+table, th, td {
+   border: 1px solid black;
+   border-collapse: collapse;
+}
+</style>
 <link rel="icon" href="../img/favicon.png">
 
 <!-- css파일 link -->
 <link href="../css/menu.css" rel="stylesheet" type="text/css">
-<!-- 마이페이지 아닌분들은 sub.css 지우세요 -->
 <link href="../css/sub.css" rel="stylesheet" type="text/css">
-<link href="../css/changeUserInfo.css" rel="stylesheet" type="text/css">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../css/common.css" />
+<script src="https://kit.fontawesome.com/bb29575d31.js"></script>
 </head>
-
-<!--  form 검증  -->
-<script>
-function chkUserPw(){
-frm = document.forms["frm_chk_user_pw"];
-	
-	var use_pw = frm["use_pw"].value.trim();
-	var use_pw2 = frm["use_pw2"].value.trim();
-	
-	if(use_pw == ""){
-		alert("현재 비밀번호를 입력해주세요");
-		frm["use_pw"].focus();
-		return false;
-	}
-	if(use_pw2 == ""){
-		alert("새 비밀번호를 입력해주세요");
-		frm["use_pw2"].focus();
-		return false;
-	}
-	return true;
-}
-</script>
 <body>
+<c:choose>
+<c:when test="${sessionScope.user != null }">
 	<header>
 		<ul id="top_menu">
 			<li class="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
@@ -96,58 +99,78 @@ frm = document.forms["frm_chk_user_pw"];
 			</ul>
 	</header>
 
-<section>
-	<div class="content">
-		<!-- 상세페이지 제목 -->
-		<h2 id="content_title">마이페이지 개인정보수정</h2>
-		
-		<!------------- 세부메뉴 ----------마이페이지아닌 분들은 세부메뉴 지우세요------------->
-		<div class="submenu inner">
-			<h4 class="selected">
-				<a href="../book/user.bbq?use_uid=${sessionScope.user }">예약내역</a>
-			</h4>
-			<h4>
-				<a href="../jm/uselist.bbq?use_uid=${sessionScope.user }">내가 쓴 글</a>
-			</h4>
-			<h4>
-				<a href="../changeinfo/changeUserInfo.bbq?use_uid=${sessionScope.user }">개인정보수정</a>
-			</h4>
-		</div>
-		
+   <section>
+      <div class="content">
+         
+         <h2 id="content_title"><%= use_id %>님의 후기 List</h2>
 
-<c:choose>
-			<c:when test="${sessionScope.user != null }">    
-		
-		<div id="changeinfo" >
-		<h3>개인정보수정</h3>
-		<hr>
-				<form name="frm_chk_user_pw" action="changeUserInfo_ok.bbq" method="post" onsubmit="return chkUserPw()">
-		       <ul>
-					<li><input id="use_pw" type="password" name="use_pw" placeholder="CURRENT PASSWORD"></li>
-					<li><input id="use_pw2" type="password" name="use_pw2" placeholder="NEW PASSWORD"></li>
-					<li><input type="submit" id="btn" value="Change"/></li>
-					<li><a href="../changeinfo/deleteUserInfo.bbq">탈퇴하기</a>
-			  </ul>
-				</form>
-			
-			</div>
-		
+            <div>
+               <hr>
+               
+               
+               <table>
+                  <tr>
+                     <th>row</th>
+                     <th>제목</th>
+                     <th>내용</th>
+                     <th>별점</th>
+                     <th>등록일</th>
+                  </tr>
+
+                  <c:forEach var="dto" items="${list }" varStatus="status">
+                     <tr>
+                        <td>${(page - 1) * pageRows + status.index + 1 }</td>
+                        <td>${dto.title }</td>
+                        <td>${dto.content }</td>
+                        <td>${dto.star }</td>
+                        <td>${dto.regDate }</td>
+                     </tr>
+                  </c:forEach>
+               </table>
+               <br>
+
+            </div>
+            
+            <jsp:include page="usepagination.jsp">
+               <jsp:param value="${writePages }" name="writePages" />
+               <jsp:param value="${totalPage }" name="totalPage" />
+               <jsp:param value="${page }" name="curPage" />
+               <jsp:param value="${sh_uid }" name="sh_uid" />
+            </jsp:include>
+         </div>
+   
+   
+  
+
+      <!-- 화살표버튼 -->
+      <div id="go_top">
+         <a><i class="fas fa-arrow-circle-up"></i></a>
+      </div>
+      
+      
+      
+   </section>
 </c:when>
-			
-	<c:when test="${sessionScope.user == null }">
-		<script>
-			alert("로그인 해야함")
-			location.href = "../login/login_user.bbq";
-		</script>
-	</c:when>
-		</c:choose>
-		
-	</div>
-</section>
+<c:when test="${sessionScope.user == null }">
+	<script>
+		alert("로그인 해야함")
+		location.href = "../login/login_user.bbq";
+	</script>
+</c:when>
+</c:choose>
 
+   <!-- javascript 링크 -->
+   <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   <script src="../js/public.js" type="text/javascript"></script>
 
-<!-- javascript 링크 -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="../js/public.js" type="text/javascript"></script>
+   
+   
 </body>
 </html>
+
+
+
+
+
+

@@ -8,7 +8,8 @@
 	int totalPage = Integer.parseInt(request.getParameter("totalPage"));
 	int curPage = Integer.parseInt(request.getParameter("curPage"));
 	int sh_uid = Integer.parseInt(request.getParameter("sh_uid"));
-
+	String text = (request.getParameter("text"));
+	
 	// ※ 사실 위 단계에서도 파라미터 검증 필요하다
 	
 	// 위 url에 추가로 붙어야 할 것들.  (옵션)
@@ -16,7 +17,7 @@
 	if(add == null){ add = ""; }
 	
 	// 페이징 버튼 링크 url 주소에 넣을 문자열 준비
-	String url = "shlist.bbq?page=";
+	String url = "sortlist.bbq?page=";
 	
 	
 	
@@ -32,18 +33,18 @@
 	
 	//■ << 표시 여부
 	if(curPage > 1){
-		str += "<li><a href='" + url + "1" +"&sh_uid="+ sh_uid +  add + "' class='tooltip-top' title='처음'><i class='fas fa-angle-double-left'></i></a></li>\n";
+		str += "<li><a href='" + url + "1" +"&sh_uid="+ sh_uid +"&text="+ text +  add + "' class='tooltip-top' title='처음'><i class='fas fa-angle-double-left'></i></a></li>\n";
 	}
 	
   	//■  < 표시 여부
     if (start_page > 1) 
-    	str += "<li><a href='" + url + (start_page - 1) +"&sh_uid="+ sh_uid + add + "' class='tooltip-top' title='이전'><i class='fas fa-angle-left'></i></a></li>\n";
+    	str += "<li><a href='" + url + (start_page - 1) +"&sh_uid="+ sh_uid +"&text="+ text + add + "' class='tooltip-top' title='이전'><i class='fas fa-angle-left'></i></a></li>\n";
     
     //■  페이징 안의 '숫자' 표시	
 	if (totalPage > 1) {
 	    for (int k = start_page; k <= end_page; k++) {
 	        if (curPage != k)
-	            str += "<li><a href='" + url + k +"&sh_uid="+ sh_uid+ add + "'>" + k + "</a></li>\n";
+	            str += "<li><a href='" + url + k +"&sh_uid="+ sh_uid +"&text="+ text + add + "'>" + k + "</a></li>\n";
 	        else
 	            str += "<li><a href='#' class='active tooltip-top' title='현재페이지'>" + k + "</a></li>\n";
 	    }
@@ -51,12 +52,12 @@
 	
 	//■ > 표시
     if (totalPage > end_page){
-    	str += "<li><a href='" + url + (end_page + 1) +"&sh_uid="+ sh_uid+ add + "' class='tooltip-top' title='다음'><i class='fas fa-angle-right'></i></a></li>\n";
+    	str += "<li><a href='" + url + (end_page + 1) +"&sh_uid="+ sh_uid +"&text="+ text + add + "' class='tooltip-top' title='다음'><i class='fas fa-angle-right'></i></a></li>\n";
     }
 
 	//■ >> 표시
     if (curPage < totalPage) {
-        str += "<li><a href='" + url + totalPage +"&sh_uid="+ sh_uid+ add + "' class='tooltip-top' title='맨끝'><i class='fas fa-angle-double-right'></i></a></li>\n";
+        str += "<li><a href='" + url + totalPage +"&sh_uid=" + sh_uid +"&text="+ text + add + "' class='tooltip-top' title='맨끝'><i class='fas fa-angle-double-right'></i></a></li>\n";
     }
 
 %>

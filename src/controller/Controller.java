@@ -22,9 +22,12 @@ import command.DesignerDeleteCommand;
 import command.DesignerListCommand;
 import command.DesignerUpdateCommand;
 import command.ListCommand;
+import command.LocationCommand;
 import command.MyLocationCommand;
 import command.ReListCommand;
 import command.ReWriteCommand;
+import command.SelectShopNameCommand;
+import command.SelectUseNameCommand;
 import command.ServiceAddCommand;
 import command.ServiceDeleteCommand;
 import command.ServiceListCommand;
@@ -40,6 +43,7 @@ import command.StorepicUpdateCommand;
 import command.UpdateBookShopCommand;
 import command.UpdateCommand;
 import command.UpdateOkCommand;
+import command.UseListCommand;
 import command.UserJoinCommand;
 import command.UserLoginCommand;
 import command.ViewCommand;
@@ -110,6 +114,7 @@ public class Controller extends HttpServlet {
 
 		// 손님-로그아웃
 		case "/logout/Userlogout.bbq":
+			// 현재 url -> request 에  담아
 			viewPage = "/logout/Userlogout.jsp";
 			break;
 
@@ -167,66 +172,79 @@ public class Controller extends HttpServlet {
 			viewPage = "/book/usertest.jsp";
 			break;
 
-		// 손님-후기목록
-		case "/jm/list.bbq":
-			command = new ListCommand();
-			command.execute(request, response);
-			viewPage = "/jm/list.jsp";
-			break;
-
-		case "/jm/sortlist.bbq":
-			command = new SorttingCommand();
-			command.execute(request, response);
-			viewPage = "/jm/list.jsp";
-			break;
+		// 손님 - 후기목록
+	    case "/jm/shlist.bbq":
+	         command = new SelectShopNameCommand();
+	         command.execute(request, response);
+	         command = new ListCommand();
+	         command.execute(request, response); 
+	         viewPage = "/jm/list.jsp";
+	         break;
+	         
+	    // 손님 후기 검색
+	    case "/jm/sortlist.bbq":
+	         command = new SelectShopNameCommand();
+	         command.execute(request, response);
+	         command = new SorttingCommand();
+	         command.execute(request, response);
+	         viewPage = "/jm/sortlist.jsp";
+	         break;
 
 		// 손님-후기작성
-		case "/jm/write.bbq":
-			viewPage = "/jm/write.jsp";
-			break;
-		case "/jm/writeOk.bbq":
-			command = new WriteCommand();
-			command.execute(request, response);
-			viewPage = "/jm/writeOk.jsp";
-			break;
+	    case "/jm/write.bbq" :
+	         viewPage = "/jm/write.jsp";
+	         break;
+	    case "/jm/writeOk.bbq" :
+	         command = new WriteCommand();
+	         command.execute(request, response);
+	         viewPage = "/jm/writeOk.jsp";
+	         break;  
 
-		// 손매-답글작성
-		case "/jm/reWrite.bbq":
-			viewPage = "reWrite.jsp";
-			break;
-		case "/jm/reWriteOk.bbq":
-			command = new ReWriteCommand();
-			command.execute(request, response);
-			viewPage = "reWriteOk.jsp";
-			break;
+	    // 손님-답글작성
+	    case "/jm/reWrite.bbq" :
+	         viewPage = "reWrite.jsp";
+	         break;
+	    case "/jm/reWriteOk.bbq" :
+	         command = new ReWriteCommand();
+	         command.execute(request, response);
+	         viewPage = "reWriteOk.jsp";
+	         break;   
 
-		// 손님-후기 상세
-		case "/jm/view.bbq":
-			command = new ViewCommand();
-			command.execute(request, response);
-			command = new ReListCommand();
-			command.execute(request, response);
-			viewPage = "view.jsp";
-			break;
+	    // 손님-후기 상세
+	    case "/jm/view.bbq" :
+	         command = new ViewCommand();
+	         command.execute(request, response);
+	         command = new ReListCommand();
+	         command.execute(request, response);
+	         viewPage = "view.jsp";
+	         break;
 
-		// 손님-후기 수정
-		case "/jm/update.bbq":
-			command = new UpdateCommand();
-			command.execute(request, response);
-			viewPage = "update.jsp";
-			break;
-		case "/jm/updateOk.bbq":
-			command = new UpdateOkCommand();
-			command.execute(request, response);
-			viewPage = "updateOk.jsp";
-			break;
+	    // 손님-후기 수정
+	    case "/jm/update.bbq":
+	         command = new UpdateCommand();
+	         command.execute(request, response);
+	         viewPage = "update.jsp";
+	         break;   
+	    case "/jm/updateOk.bbq":
+	         command = new UpdateOkCommand();
+	         command.execute(request, response);
+	         viewPage = "updateOk.jsp";
+	         break;
 
-		// 손님-후기 삭제
-		case "/jm/deleteOk.bbq":
-			command = new DeleteCommand();
-			command.execute(request, response);
-			viewPage = "deleteOk.jsp";
-			break;
+	    // 손님-후기 삭제
+	    case "/jm/deleteOk.bbq":
+	         command = new DeleteCommand();
+	         command.execute(request, response);
+	         viewPage = "deleteOk.jsp";
+	         break;
+	    // 손님 - 후기목록
+	    case "/jm/uselist.bbq":   
+	         command = new SelectUseNameCommand();
+	         command.execute(request, response);
+	         command = new UseListCommand();
+	         command.execute(request, response); 
+	         viewPage = "/jm/uselist.jsp";
+	         break;
 
 		// 손님 - 개인정보 변경
 		case "/changeinfo/changeUserInfo.bbq":
@@ -242,7 +260,7 @@ public class Controller extends HttpServlet {
 		case "/changeinfo/deleteUserInfo.bbq":
 			viewPage = "deleteUserInfo.jsp";
 			break;
-		case "deleteUserInfo_ok.bbq":
+		case "/changeinfo/deleteUserInfo_ok.bbq":
 			command = new DeleteUser();
 			command.execute(request, response);
 			viewPage = "deleteUserInfo_ok.jsp";
@@ -353,6 +371,45 @@ public class Controller extends HttpServlet {
 		case "/book/shoptest.bbq":
 			viewPage = "/book/shoptest.jsp";
 			break;
+			
+			   // 매장 후기 검색
+        case "/hj/sortlist.bbq":
+           command = new SelectShopNameCommand();
+           command.execute(request, response);
+           command = new SorttingCommand();
+           command.execute(request, response);
+           viewPage = "/hj/sortlist.jsp";
+           break;
+           
+        // 매장 - 후기목록
+        case "/hj/shlist.bbq":
+           command = new SelectShopNameCommand();
+           command.execute(request, response);
+           command = new ListCommand();
+           command.execute(request, response); 
+           viewPage = "/hj/list.jsp";
+           break;
+
+
+        // 손님-답글작성
+        case "/hj/reWrite.bbq" :
+           viewPage = "/hj/reWrite.jsp";
+           break;
+        case "/hj/reWriteOk.bbq" :
+           command = new ReWriteCommand();
+           command.execute(request, response);
+           viewPage = "/hj/reWriteOk.jsp";
+           break;   
+           
+           
+        // 매장-후기 상세
+        case "/hj/view.bbq" :
+           command = new ViewCommand();
+           command.execute(request, response);
+           command = new ReListCommand();
+           command.execute(request, response);
+           viewPage = "/hj/view.jsp";
+           break;
 
 //////////////////////////////////////////////////////////// Ajax //////////////////////////////////////////////////////			
 		// Ajax용 컨트롤
@@ -364,6 +421,15 @@ public class Controller extends HttpServlet {
 			command.execute(request, response);
 			// ajax로 쏴주기
 			break;
+		
+		case "/shopSelect.bbq":
+	         command = new LocationCommand();
+	         command.execute(request, response);
+	         // shoplist받아와서
+	         command = new AjaxListCommand();
+	         command.execute(request, response);
+	         // ajax로 쏴주기
+	         break;
 ///////////////////////////////////////////////////BOOK////////////////////////////////////////////////////////////////
 		case "/book/user.bbq":
 			System.out.println("debug용");

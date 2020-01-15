@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>지역별매장</title>
+<title>지역별 매장</title>
 <link rel="icon" href="../img/favicon.png">
 
 <!-- css파일 link -->
@@ -17,24 +17,19 @@
 </head>
 
 <body>
-<header>
+	<header>
 		<ul id="top_menu">
 			<li class="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
-			<ul id="mo_menu">
-			<li><a href="../location/Location2.bbq">내주변</a></li>
-			<li><a href="../location/chooseArea.bbq">지역별매장</a></li>
-			<li><a href="../book/usertest.bbq">마이페이지</a></li>
-			</ul>
 			<ul id="menu_list">
-				<li><a href="../location/Location2.bbq">내주변</a></li>
-				<li><a href="../location/chooseArea.bbq">지역별매장</a></li>
+				<li><a href="../location/Location2.bbq">내 주변 매장</a></li>
+				<li><a href="../location/chooseArea.bbq">지역별 매장</a></li>
 				<c:choose>
-				<c:when test="${sessionScope.user != null }">
-				<li><a href="../book/user.bbq?use_uid=${sessionScope.user }">마이페이지</a></li>
-				</c:when>
-				<c:when test="${sessionScope.user == null }">
-				<li><a href="../book/user.bbq?use_uid=0">마이페이지</a></li>
-				</c:when>				
+					<c:when test="${sessionScope.user != null }">
+						<li><a href="../book/user.bbq?use_uid=${sessionScope.user }">마이페이지</a></li>
+					</c:when>
+					<c:when test="${sessionScope.user == null }">
+						<li><a href="../book/user.bbq?use_uid=0">마이페이지</a></li>
+					</c:when>				
 				</c:choose>				
 			</ul>
 			<c:if test="${sessionScope.user == null }">
@@ -45,23 +40,43 @@
 			</c:if>
 			<li><a id="btn_menu"><i class="fas fa-ellipsis-h"></i></a></li>
 		</ul>
-		<ul id="mo_menu">
-			<li><a>내주변</a></li>
-			<li><a>지역별매장</a></li>
-			<li><a id="mypage">마이페이지</a></li>
-			<ul id="mo_sub">
-				<li>예약내역</li>
-				<li>내가쓴글</li>
-				<li>개인정보수정</li>
+			<ul id="mo_menu">
+				<li><a href="../location/Location2.bbq">내 주변 매장</a></li>
+				<li><a href="../location/chooseArea.bbq">지역별 매장</a></li>
+				<li><a id="mypage">마이페이지</a></li>
+				<ul id="mo_sub">
+					<c:if test="${sessionScope.user != null }">
+						<li><a href="../book/user.bbq?use_uid=${sessionScope.user }">예약내역</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.user == null }">
+						<li><a href="../book/user.bbq?use_uid=0">예약내역</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.user != null }">
+						<li><a href="../jm/uselist.bbq?use_uid=${sessionScope.user }">내가 쓴 글</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.user == null }">
+						<li><a href="../jm/uselist.bbq?use_uid=0">내가 쓴 글</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.user != null }">
+						<li><a href="../changeinfo/changeUserInfo.bbq">개인정보수정</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.user == null }">
+						<li><a href="../changeinfo/changeUserInfo.bbq">개인정보수정</a></li>
+					</c:if>				
+				</ul>
+			<c:if test="${sessionScope.user == null }">
+				<li><a href="../login/login_user.bbq">로그인</a></li>
+			</c:if>
+			<c:if test="${sessionScope.user != null }">
+				<li><a href="../logout/Userlogout.bbq">로그아웃</a></li>
+			</c:if>			
 			</ul>
-			<li><a>로그인</a></li>
-		</ul>
 	</header>
 
 <section>
 	<div class="content">
 		<!-- 상세페이지 제목 -->
-		<h2 id="content_title">지역별매장</h2>
+		<h2 id="content_title">지역별 매장</h2>
 		<div class="innerbox">
 			<div class="choose">
 				<a class="where" href="chooseDetailArea2.bbq">서울특별시</a>

@@ -42,33 +42,60 @@ function infoSubmit(frm) {
 }
 </script>
 <body>
-<header>
+	<header>
 		<ul id="top_menu">
-			<li class="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>
+			<li id="logo"><a href="../index.jsp">Booking<span>HairShop</span></a></li>
 			<ul id="menu_list">
-				<li><a href="">후기</a></li>
-				<li><a href="../book/shoptest.bbq?sh_uid=${sessionScope.shop }">예약내역</a></li>
+				<li><a href="../hj/shlist.bbq?sh_uid=${sessionScope.shop }">후기</a></li>
+				<li><a href="../book/shop.bbq?sh_uid=${sessionScope.shop }">예약내역</a></li>
+				<c:choose>
+				<c:when test="${sessionScope.shop != null }">
 				<li><a href="../info/storeUpdate.bbq?sh_uid=${sessionScope.shop }">마이페이지</a></li>
+				</c:when>
+				<c:when test="${sessionScope.shop == null }">
+				<li><a href="../info/storeUpdate.bbq?sh_uid=0">마이페이지</a></li>
+				</c:when>
+				</c:choose>
 			</ul>
 			<c:if test="${sessionScope.shop == null }">
-				<li id="login"><a href="login_shop.bbq">로그인</a></li>
+				<li id="login"><a href="../login/login_shop.bbq">로그인</a></li>
 			</c:if>
 			<c:if test="${sessionScope.shop != null }">
 				<li id="login"><a href="../logout/Shoplogout.bbq">로그아웃</a></li>
 			</c:if>
 			<li><a id="btn_menu"><i class="fas fa-ellipsis-h"></i></a></li>
 		</ul>
-		<ul id="mo_menu">
-			<li><a>후기</a></li>
-			<li><a>예약내역</a></li>
-			<li><a id="mypage">마이페이지</a></li>
-			<ul id="mo_sub">
-				<li>매장정보변경</li>
-				<li>매장사진관리</li>
-				<li>개인정보수정</li>
+			<ul id="mo_menu">
+				<li><a href="../hj/shlist.bbq?sh_uid=${sessionScope.shop }">후기</a></li>
+				<li><a href="../book/shop.bbq?sh_uid=${sessionScope.shop }">예약내역</a></li>
+				<li><a id="mypage">마이페이지</a></li>
+				<ul id="mo_sub">
+					<c:if test="${sessionScope.shop != null }">
+						<li><a href="../info/storeUpdate.bbq?sh_uid=${sessionScope.shop }">매장정보 변경</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.shop == null }">
+						<li><a href="../info/storeUpdate.bbq?sh_uid=0">매장정보 변경</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.user != null }">
+						<li><a href="../info/storepicList.bbq?sh_uid=${sessionScope.shop }">매장 사진 관리</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.user == null }">
+						<li><a href="../info/storepicList.bbq?sh_uid=0">매장 사진 관리</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.user != null }">
+						<li><a href="">개인정보수정</a></li>
+					</c:if>				
+					<c:if test="${sessionScope.user == null }">
+						<li><a href="">개인정보수정</a></li>
+					</c:if>				
+				</ul>
+			<c:if test="${sessionScope.shop == null }">
+				<li><a href="../login/login_shop.bbq">로그인</a></li>
+			</c:if>
+			<c:if test="${sessionScope.shop != null }">
+				<li><a href="../logout/Shoplogout.bbq">로그아웃</a></li>
+			</c:if>			
 			</ul>
-			<li><a>로그인</a></li>
-		</ul>
 	</header>
 
 <section>
@@ -78,9 +105,9 @@ function infoSubmit(frm) {
 			<div class="box clear">
 				<!------------- 세부메뉴 ----------마이페이지아닌 분들은 세부메뉴 지우세요------------->
 				<div class="submenu">
-					<h4 class="selected"><a href="storeUpdate.bbq?sh_uid=${param.sh_uid }">매장정보변경</a></h4>
-					<h4><a>매장사진관리</a></h4>
-					<h4><a>개인정보수정</a></h4>
+					<h4 class="selected"><a href="storeUpdate.bbq?sh_uid=${param.sh_uid }">매장정보 변경</a></h4>
+					<h4><a href="../info/storepicList.bbq?sh_uid=${sessionScope.shop }">매장 사진 관리</a></h4>
+					<h4><a href="">개인정보수정</a></h4>
 				</div>
 	
 				<!------------- 세부메뉴 ----------class="inner" 지우세요------------->
