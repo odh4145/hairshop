@@ -24,6 +24,7 @@ import command.ListCommand;
 import command.MyLocationCommand;
 import command.ReListCommand;
 import command.ReWriteCommand;
+import command.SearchBookTimeCommand;
 import command.ServiceAddCommand;
 import command.ServiceDeleteCommand;
 import command.ServiceListCommand;
@@ -123,6 +124,8 @@ public class Controller extends HttpServlet {
 			command = new DesignerListCommand();
 			command.execute(request, response);
 			command = new ServiceListCommand();
+			command.execute(request, response);
+			command = new SearchBookTimeCommand();
 			command.execute(request, response);
 			viewPage = "booking.jsp";
 			break;

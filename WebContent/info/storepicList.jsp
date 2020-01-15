@@ -2,6 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<c:choose>
+	<c:when test="${empty info || fn:length(info) == 0 }">
+		<script>
+			alert("매장의 정보가 없습니다.");
+			history.back();
+		</script>
+	</c:when>
+	<c:otherwise>
 	
 <!------ html 시작 ------>
 <!DOCTYPE html>
@@ -56,28 +65,32 @@
 		<div class="box clear">
 			<!------------- 세부메뉴 ----------마이페이지아닌 분들은 세부메뉴 지우세요------------->
 			<div class="submenu">
-				<h4><a href="storeUpdate.bbq?sh_uid=${param.sh_uid }">매장정보변경</a></h4>
+				<h4><a href="storeUpdate.bbq?sh_uid=${info[0].sh_uid}">매장정보변경</a></h4>
 				<h4 class="selected"><a>매장사진관리</a></h4>
 				<h4><a>개인정보수정</a></h4>
 			</div>
 	
 			<!------------- 세부메뉴 ----------class="inner" 지우세요------------->
 			<div class="inner">
-				<form name="picfrm" erctype="Multipart/form-data" action="storepicUpdate.bbq" method="post">					
-					<input type="hidden" value="${info[0].sh_uid }"/>
+				<form name="picfrm" enctype="Multipart/form-data" action="storepicUpdate.bbq" method="post">
 					<ul class="pic_box">
+						<input type="hidden" name="sh_uid" value="${info[0].sh_uid }">
 						<li><img src="${info[0].sh_picture1 }"></li>
 						<li><input class="insert_dpic" type="file" name="sh_picture1" size=40></li>
-					</ul>				
+						<li><input class="update" type="submit" value="수정하기" /></li>
+					</ul>						
 					<ul class="pic_box">
-						<li><img src="${info[0].sh_picture1 }"></li>
+						<input type="hidden" name="sh_uid" value="${info[0].sh_uid }">
+						<li><img src="${info[0].sh_picture2 }"></li>
 						<li><input class="insert_dpic" type="file" name="sh_picture2" size=40></li>
-					</ul>				
+						<li><input class="update" type="submit" value="수정하기" /></li>
+					</ul>						
 					<ul class="pic_box">
+						<input type="hidden" name="sh_uid" value="${info[0].sh_uid }">
 						<li><img src="${info[0].sh_picture3 }"></li>
 						<li><input class="insert_dpic" type="file" name="sh_picture3" size=40></li>
-					</ul>	
-					<input class="update" type="submit" value="수정하기" />		
+						<li><input class="update" type="submit" value="수정하기" /></li>
+					</ul>						
 				</form>
 			</div>
 		</div>			
@@ -96,3 +109,5 @@
 <script src="../js/storeUpdate.js" type="text/javascript"></script>
 </body>
 </html>
+</c:otherwise>
+</c:choose>

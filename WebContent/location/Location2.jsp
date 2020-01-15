@@ -13,6 +13,7 @@
 <!-- css파일 link -->
 <link href="../css/menu.css" rel="stylesheet" type="text/css">
 <!-- 지도 스타일 지정 -->
+<link href="../css/location.css" rel="stylesheet" type="text/css">
 
 <style>
 #map {
@@ -127,20 +128,16 @@ th,td {
 					var i;
 					var arrLat = new Array();
 					var arrLng = new Array();
-					var table = "<tr><th>매장명</th><th>매장위치</th><th>매장Lat</th><th>매장Lng</th></tr>";
+					var ul = "<div class='sh_list'>";
 					for (i = 0; i < row.length; i++) {
-						table += "<tr>";
-						table += "<td><a herf=\"#\">" + row[i].name + "<a></td>";
-						table += "<td>" + row[i].location + "</td>";
-						table += "<td>" + row[i].locationLat;
-						+"</td>";
-						table += "<td>" + row[i].locationLng;
-						+"</td>";
-						table += "</tr>";
-						arrLat[i] = row[i].locationLat;
-						arrLng[i] = row[i].locationLng;
+						ul= "<a id='list_pic'><img src='" + row[i].picture1 + "'></a>";
+						ul += "<ul id='list_info'><li>"+ row[i].name + "</li>";
+						ul += "<li><span>★</span>" + row[i].star + "</li>";
+						ul += "<li>" + row[i].location + "</li>";
+						ul += "<li>" + row[i].telephone + "</li>";
+						ul += "</ul></div>"
 					}
-					$("#shoplist").html(table);
+					$("#shoplist").html(ul);
 					// 여기안에는 데이터 값 남아있어 여기서 지지고 볶아야 할꺼같은데 !ㅏ!ㅜ!ㅟㅜㅏㅣㅁㄴ우리ㅏ
 					
 					for(i = 0; i < row.length; i++) {
@@ -168,8 +165,7 @@ th,td {
 
 </script>
 			<br>
-			<div>
-				<table id="shoplist"></table>
+			<div id="shoplist">
 			</div>
 			<!-- 화살표버튼 -->
 			<div id="go_top">

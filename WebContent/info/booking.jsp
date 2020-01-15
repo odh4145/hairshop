@@ -40,10 +40,13 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <!-- javascript 코드 -->
+
+					
 <script>
 var de = "";
 var ser = "";
-
+var arr = "";
+// 달력스크립트
 $(document).ready(function() {
 	$('#date').bootstrapMaterialDatePicker({
 		time : false,
@@ -54,6 +57,7 @@ $(document).ready(function() {
 	$.material.init()
 });
 
+// 체크박스 1개만 선택
 function deCheck(chk){
 	de = chk.value;
     var de_chk = document.getElementsByName("de_name");
@@ -63,7 +67,6 @@ function deCheck(chk){
         }
     }
 }
-    
 function serCheck(chk){
 	ser = chk.value;
     var ser_chk = document.getElementsByName("ser_name");
@@ -83,27 +86,46 @@ function sub() {
 		alert("날짜와 시간 선택은 필수입니다.");
 		return false;
 	} 
+	
 	else{		
 		var bo_time = date + " " + time;
 		frm.bo_time.value = bo_time;
 		
-		if (de == "") {
-			de = "미정";
-		}
-		if (ser == "") {
-			ser = "미정";
-		}	
-		
-		var bo_service = de + " - " + ser;
-		frm.bo_service.value = bo_service;
-		
-		return true;
+		//예약중복검사
+		if(chkTime(bo_time) == true){;
+			
+			if (de == "") {
+				de = "미정";
+			}
+			if (ser == "") {
+				ser = "미정";
+			}	
+			
+			var bo_service = de + " - " + ser;
+			frm.bo_service.value = bo_service;
+			
+			return true;
+		} else{return false;}
 	}
 }
+
+
+
 </script>
+
+
+
 </head>
 
 <body>
+<%for (int i = 0 ; i < ) %>
+<c:forEach var="bto" items="${book }">
+	<script>
+		arr = <c:out value="${bto.bo_time}">;
+		alret(arr);
+	</script>
+</c:forEach>
+
 	<header>
 		<ul id="top_menu">
 			<li class="logo"><a href="../index.bbq">Booking<span>HairShop</span></a></li>

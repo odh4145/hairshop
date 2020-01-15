@@ -1,6 +1,7 @@
 img{
 	width:100%;
 	height:250px;
+	border:1px solid #eee;
 }
 
 input{
@@ -11,7 +12,6 @@ form{
 }
 
 .pic_box{
-	border:1px solid #fafafa;
 	width:280px;
 	margin:15px;
 	float:left;
